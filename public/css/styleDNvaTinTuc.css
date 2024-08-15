@@ -89,10 +89,11 @@ a {
 
 header .search span {
     padding-top: 16px !important;
+    padding-bottom: 6px !important;
 }
 
 header .search span img {
-    padding-bottom: 12px;
+    padding-bottom: 10px;
 }
 
 .icon-calendar #notification-calendar {

@@ -69,6 +69,6 @@ function totalNotification() {
 
     if(subContents.length > 0) {
         const notificationCalendar = document.querySelector('#notification-calendar');
-        notificationCalendar.textContent= subContents.length;
+        notificationCalendar.textContent = subContents.length;
     }
 }

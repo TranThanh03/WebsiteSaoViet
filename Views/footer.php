@@ -1,14 +1,14 @@
     <footer>
         <div class="infor">
-            <h4>Phòng khám đa khoa Phước Thịnh</h4>
+            <h4>Sao Việt Traveloka - Vivu ba miền</h4>
             <span><img src="./public/icons/location-dot-solid.svg" alt="icon"></span><p>1 Hoàng Công Chất, Phú Diễn, Nam Từ Liêm, Hà Nội, Việt Nam</p>
             <span><img src="./public/icons/phone-solid.svg" alt="icon"></span><p>0399999999 </p>
-            <span><img src="./public/icons/envelope-solid.svg" alt="icon"></span><p>support@phuocthinh.com</p>
+            <span><img src="./public/icons/envelope-solid.svg" alt="icon"></span><p>support@saoviet.com</p>
             <span><img src="./public/icons/bo-cong-thuong.svg" alt="icon"></span>
         </div>
         <div class="policy">
-            <img src="./public/img/logo.png" alt="logo">
-            <span>Phước Thịnh</span>
+            <img src="./public/img/logo.jpg" alt="logo">
+            <span>Sao Việt</span>
             <p><a href="#">Tuyển dụng</a></p>
             <p><a href="#">Chính sách bảo mật</a></p>
             <p><a href="#">Điều khoản sử dụng</a></p>
@@ -23,7 +23,7 @@
         </div>
         <div class="end">
             <hr>
-            <span>© 2024 Phước Thịnh</span>
+            <span>© 2024 Sao Việt</span>
         </div>
     </footer>
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sao Việt Traveloka - Vivu bốn miền</title>
+    <title>Sao Việt Traveloka - Vivu ba miền</title>
     <link rel="icon" href="./public/img/logo.jpg" type="image/jpg">
 
 
@@ -67,7 +67,7 @@
             <div class="search">
                 <div class="sub-search">
                     <form id="search_form" action="index.php?controller=faculty&action=search" method="post">
-                        <input type="text" placeholder="Tìm kiếm khoa" name="search_tenkhoa">
+                        <input type="text" placeholder="Tìm kiếm tours" name="search_tenkhoa">
                         <span><img src="./public/icons/search.svg" alt="icon"></span>
                     </form>
                 </div>

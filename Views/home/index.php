@@ -1,5 +1,3 @@
-
-
 <!-- slider -->
 <div class="slide">
     <div class="sub-slide">
@@ -90,8 +88,5 @@
             sessionStorage.setItem("navStatus", "0");
             location.reload();
         }
-
-        const subContents = document.querySelectorAll('.sub-content');
-        localStorage.setItem('totalCalendar', subContents.length);
     })
 </script>
