@@ -7,10 +7,10 @@
             <img src="./public/img/slide_1.jpg" alt="slide_1">
         </div>
         <div class="item">
-            <img src="./public/img/slide_2.png" alt="slide_2">
+            <img src="./public/img/slide_2.jpg" alt="slide_2">
         </div>
         <div class="item">
-            <img src="./public/img/slide_3.png" alt="slide_3">
+            <img src="./public/img/slide_3.jpg" alt="slide_3">
         </div>
     </div>
     <button class="control-prev" type="button">

@@ -164,7 +164,7 @@ nav .menu a:active {
     position: absolute;
     overflow: hidden;
     width: 1000px;
-    height: 440px;
+    height: 450px;
     margin: 0 auto;
     border-radius: 30px;
     top: 220px;
@@ -189,7 +189,7 @@ nav .menu a:active {
 
 .slide .item img {
     max-width: 1000px;
-    max-height: 1000px;
+    height: auto;
 }
 
 .slide .control-prev,
