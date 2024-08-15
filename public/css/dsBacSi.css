@@ -1,0 +1,40 @@
+.list-doctor {
+    padding: 20px 120px;
+}
+
+.list-doctor h2 {
+    font-size: 28px;
+    margin-bottom: 40px;
+}
+
+.list-doctor .sub-doctor {
+    border-bottom: 1px solid rgb(149, 149, 149);  
+    margin-bottom: 50px;
+}
+
+.list-doctor .sub-doctor img {
+    max-width: 200px;
+    border-radius: 50%;
+    box-shadow: 5px 5px 5px rgb(175, 174, 174);
+}
+
+.list-doctor .sub-doctor p {
+    position: relative;
+    top: -125px;
+    left: 240px;
+    font-size: 20px;
+}
+
+.list-doctor .sub-doctor a {
+    text-decoration: none;
+    color: black;
+}
+
+.list-doctor .sub-doctor #name-faculty {
+    font-size: 17px;
+}
+
+.list-doctor .sub-doctor #name-doctor {
+    font-weight: bold;
+    margin-bottom: 5px;
+}

@@ -1,0 +1,169 @@
+:root {
+    --bg-green: rgb(191, 230, 219);
+    --color-white: #fff;
+    --text-color: #333;
+    --color-black: #000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Roboto", sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    background-color: var(--bg-green);
+    height: 40px;
+}
+.header button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 16px;
+    color: var(--text-color);
+}
+.header button a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.header button:hover,
+.header button:hover a {
+    background-color: var(--color-white);
+}
+
+.menu {
+    width: 200px;
+    height: 100%;
+    min-height: 800px;
+    background-color: var(--bg-green);
+}
+
+.menu .menu__nav li {
+    padding: 8px 15px;
+    list-style-type: none;
+}
+.menu .menu__nav li:hover {
+    background-color: var(--color-white);
+}
+.menu .menu__nav a {
+    display: inline-block;
+    color: var(--text-color);
+    text-decoration: none;
+    width: 100%;
+}
+
+/* Content */
+.content {
+    display: flex;
+}
+.content .user {
+    flex: 1;
+    margin: 4px 0 0 12px;
+}
+.content .user button {
+    background-color: var(--bg-green);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 12px;
+}
+.content .user button a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+.content table {
+    width: 100%;
+    min-width: 1000px;
+    max-width: 1400px;
+    border-collapse: collapse;
+    margin-top: 12px;
+    margin-inline: auto;
+}
+.content table th {
+    background-color: var(--bg-green);
+    color: var(--text-color);
+}
+.content table tr {
+    border-bottom: 1px solid var(--bg-green);
+}
+.content table th,
+.content table td {
+    padding: 4px 0;
+    text-align: center;
+}
+
+.content table .avatar {
+    width: 100px;
+}
+.content table td img {
+    width: 100%;
+}
+
+/* form thêm dữ liệu */
+
+.form__insert {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+}
+
+.show {
+    display: flex;
+}
+.form__insert .form__insert-content {
+    position: relative;
+    background-color: var(--bg-green);
+    padding: 12px;
+    width: 550px;
+    min-height: 300px;
+    text-align: center;
+}
+.form__insert-content form label {
+    display: inline-block;
+    width: 150px;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+.form__insert-content form input,
+.form__insert-content form select {
+    margin-top: 8px;
+    padding: 4px 6px;
+    width: 350px;
+    border-radius: 4px;
+}
+.form__insert-content form button {
+    padding: 4px 6px;
+    cursor: pointer;
+}
+
+.form__insert-content .insert {
+    margin-top: 8px;
+}
+
+.form__insert-content .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    padding: 2px 6px;
+    cursor: pointer;
+}

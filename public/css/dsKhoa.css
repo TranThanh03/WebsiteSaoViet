@@ -1,0 +1,32 @@
+.list-faculty {
+    padding: 20px 120px;
+}
+
+.list-faculty h2 {
+    font-size: 28px;
+    padding-bottom: 40px;
+}
+
+.list-faculty .sub-faculty {
+    border-bottom: 1px solid rgb(149, 149, 149);  
+    margin: 0 0 40px 0;
+    padding-bottom: 40px;
+}
+
+.list-faculty .sub-faculty img {
+    max-width: 340px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px rgb(175, 174, 174);
+}
+
+.list-faculty .sub-faculty span {
+    position: relative;
+    top: -80px;
+    left: 20px;
+    font-size: 20px;
+}
+
+.list-faculty .sub-faculty a {
+    text-decoration: none;
+    color: black;
+}

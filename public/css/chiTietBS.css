@@ -1,0 +1,77 @@
+.doctor .infor-doctor
+{
+    padding: 30px;
+    display: flex;
+    border-bottom: 1px solid rgb(216, 216, 216);
+}
+
+.infor-doctor #avatar-doctor {
+    max-width: 250px;
+    border-radius: 50%;
+    margin-right: 50px;
+}
+
+.infor-doctor #name-doctor {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.infor-doctor #name-faculty {
+    font-size: 19px;
+    font-weight: 500;
+}
+
+.infor-doctor p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.infor-doctor #describe {
+    width: 1000px;
+    margin-bottom: 15px;
+    line-height: 27px;
+}
+
+.infor-doctor button {
+    width: 250px;
+    font-size: 18px;
+    padding: 6px 0 10px 0;
+    position: relative;
+    top: -54px;
+    left: 55%;
+    transform: translate(-50%, 0);
+    border-radius: 20px;
+    border: none;
+    background-color: #45C3D2;
+    cursor: pointer;
+    color: white;
+}
+
+.infor-doctor button:hover {
+    font-weight: bold;
+}
+
+.infor-doctor button a {
+    text-decoration: none;
+}
+
+.infor-doctor img {
+    max-width: 20px;
+}
+
+.infor-doctor a{
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.doctor .introduce {
+    padding: 30px 125px 30px 125px;
+    background-color: rgb(248, 248, 248);
+    line-height: 25px;
+}
+
+.doctor .introduce p{
+    font-size: 16px;
+    margin: 15px 0 5px 0;
+}

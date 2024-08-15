@@ -1,0 +1,100 @@
+
+.box-area {
+    width: 930px;
+    margin-bottom: auto;
+    margin-top: 20px;
+}
+
+.box-area0 {
+    background-image: url("../img/bacsicon.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 1200px;
+}
+
+.box-area1 {
+    background-image: url("../img/bacsi.jpg");
+    background-size: cover;
+    background-position: center;
+    width: 500px;
+}
+
+.box-area2 {
+    width: 100%;
+}
+
+.box-area3 {
+    width: 1240px;
+}
+
+.right-box {
+    padding: 40px 30px 40px 40px;
+    flex: 1;
+}
+
+.left-box {
+    flex: 1;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .box-area {
+        margin: 0 10px;
+    }
+
+    .left-box {
+        height: 100px;
+        overflow: hidden;
+        position: absolute;
+    }
+
+    .right-box {
+        padding: 20px;
+    }
+}
+
+
+.custom-label {
+    padding-left: 50px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+.all-product {
+    text-decoration: none;
+}
+
+.gender-wrapper {
+    display: flex;
+}
+
+.gender-wrapper p {
+    margin-right: 20px;
+}
+
+.gender-wrapper input {
+    margin-bottom: 0px;
+    margin-left: 10px;
+}
+
+.gender-wrapper label {
+    margin-left: 10px;
+}
+
+header .search span {
+    padding-top: 16px !important;
+}
+
+header .search span img {
+    padding-bottom: 12px;
+}
+
+.icon-calendar #notification-calendar {
+    top: -87px !important;
+}

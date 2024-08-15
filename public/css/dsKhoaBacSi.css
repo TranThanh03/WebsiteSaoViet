@@ -1,0 +1,115 @@
+.infor-faculty {
+    padding: 30px 125px 10px 125px;
+}
+
+.infor-faculty p[id="name-faculty"] {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.infor-faculty p[id="disease"] {
+    font-weight: 550;
+    margin-left: 8px;
+}
+
+.infor-faculty p {
+    margin-bottom: 10px;
+}
+
+.infor-faculty .content-sub {
+    margin-left: 20px;
+    line-height: 25px;
+}
+
+.list-doctor {
+    padding: 10px 120px 10px 120px;
+    position: relative;
+    top: -180px;
+    background-color: white;
+    transition: all 0.05s ease;
+}
+
+.list-doctor .sub-doctor {
+    display: flex;
+    border: none;
+    padding: 40px;
+    border-radius: 25px;
+    margin-bottom: 30px;
+    width: 1233px;
+    box-shadow: 1px 1px 1px 2px rgb(239, 239, 239);
+}
+
+.list-doctor .sub-doctor #avatar-doctor {
+    max-width: 310px;
+    border-radius: 50%;
+}
+
+.list-doctor .infor-doctor {
+    padding-left: 50px;
+}
+
+.list-doctor .infor-doctor #name-doctor {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.list-doctor .infor-doctor p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.list-doctor .infor-doctor #describe {
+    margin-bottom: 15px;
+    line-height: 27px;
+    width: 760px;
+}
+
+.list-doctor .infor-doctor button {
+    width: 450px;
+    font-size: 20px;
+    padding: 6px 0 10px 0;
+    position: relative;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 20px;
+    border: none;
+    background-color: #45C3D2;
+    cursor: pointer;
+    color: white;
+}
+
+.list-doctor .infor-doctor button:hover {
+    font-weight: bold;
+}
+
+.list-doctor .infor-doctor button a {
+    text-decoration: none;
+}
+
+.list-doctor .infor-doctor img {
+    max-width: 20px;
+}
+
+.list-doctor .infor-doctor a{
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.list-doctor .img-doctor a {
+    width: 80px;
+    display: block;
+    position: relative;
+    text-decoration: none;
+    top: 5px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.list-doctor #btn-Control {
+    color: #45C3D2;
+    margin-bottom: 50px;
+    padding-left: 10px;
+    cursor: pointer;
+}

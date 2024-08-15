@@ -1,0 +1,33 @@
+.countdown-item {
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+    text-align: center;
+    color: aliceblue;
+    padding: 20px;
+    margin: 0 10px;
+    background-color: #090707;
+    border-radius: 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.link-product .all-product {
+    font-size: 14px;
+    line-height: 16px;
+    padding: 10px 16px;
+    border-radius: 12px 0px;
+    box-shadow: inset;
+}
+.link-product .all-product {
+    background: #ffffff;
+    border: 1px solid #221f20;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9); /* Thêm đổ bóng */
+    box-sizing: border-box;
+    color: #221f20;
+    display: inline-block;
+    position: relative;
+}
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
