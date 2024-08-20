@@ -6,24 +6,29 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="./public/css/styleDNvaTinTuc.css">
-    <title>Document</title>
+    <title>Đăng ký</title>
 </head>
 <body>
-    <div class="container d-flex justify-content-center align-items-center min-vh-100 box-area0 " style="font-family:'Segoe UI';">
-        <div class="row border rounded-5 p-3 bg-while shadow box-area1 ">
+    <div class="container d-flex justify-content-center align-items-center min-vh-100 box-area0 " style="font-family:'Segoe UI';
+    background: url('./public/img/background.jpg') no-repeat; background-size: contain;">
+        <div class="row border rounded-5 p-3 bg-while shadow box-area1" style="background-color: white;">
             <h1 class="text-center " >Đăng ký tài khoản</h1>
             <form action="index.php?controller=user&action=createAccount" method="post">
               <div class="form-floating mb-1 mt-1">
-                <input type="text" class="form-control" id="email" placeholder="Họ và tên" name="username">
+                <input type="text" class="form-control" id="email" placeholder="Họ và tên" name="full-name">
                 <label for="name">Họ và tên</label>
               </div>
               <div class="form-floating  mb-1 mt-1">
-                <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="sdt">
-                <label for="pwd">Số điện thoại</label>
+                <input type="text" class="form-control" id="phone" placeholder="Enter password" name="number-phone">
+                <label for="telephone">Số điện thoại</label>
               </div>
               <div class="form-floating mb-1 mt-1">
                 <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
                 <label for="email">Email</label>
+              </div>
+              <div class="form-floating  mb-1 mt-1">
+                <input type="text" class="form-control" id="une" placeholder="Enter username" name="username">
+                <label for="une">Tên tài khoản</label>
               </div>
               <div class="form-floating mb-1 mt-1">
                 <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">

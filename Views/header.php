@@ -55,6 +55,18 @@
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="./public/js/chung.js"></script>
+    <script defer src="./public/js/trangChu.js"></script>
+    <script defer src="./public/js/dsKhoaBacSi.js"></script>
+    <script defer src="./public/js/datLich.js"></script>
+    <script defer src="./public/js/chiTietBS.js"></script>
+    <script src="./public/js/ts.js"></script>
+    <script>
+        window.onbeforeunload = function() {
+            // Thực hiện hành động tải lại trang
+            window.location.reload(true);
+        };
+    </script>
 </head>
 
 <body>
@@ -81,7 +93,7 @@
                 <div class="icon-account">
                     <a href=" 
                         <?php
-                        if (isset($_SESSION['sdt'])) {
+                        if (isset($_SESSION['username'])) {
                             echo "index.php?controller=user&action=logout";
                         } else {
                             echo "index.php?controller=user&action=index";
@@ -90,7 +102,7 @@
                         <img src="./public/icons/user-regular.svg" alt="icon"></i>
                         <p>
                             <?php
-                            if (isset($_SESSION['sdt'])) {
+                            if (isset($_SESSION['username'])) {
                                 echo "Đăng xuất";
                             } else {
                                 echo "Đăng nhập";

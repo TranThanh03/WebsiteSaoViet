@@ -87,7 +87,7 @@
         }
 
         private function _get($value) {
-            $idUser = $this->userModel->getUser(['MaKH'], 'sdt', $_SESSION['sdt']);
+            $idUser = $this->userModel->getUser(['MaKH'], 'TenKH', $_SESSION['sdt']);
             $users = $this->userModel->getUser(['MaKH','TenKH', 'DiaChi', 'sdt', 'email','NgaySinh','GioiTinh'], 'MaKH', $idUser['0']['MaKH']);
             $data = $this->doctorModel->getById(['MaBS', 'TenBS', 'anh','GiaKham','bacsi.MaKhoa','TenKhoa'],"MaBS", $value);
 

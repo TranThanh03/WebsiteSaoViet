@@ -26,18 +26,5 @@
             <span>© 2024 Sao Việt</span>
         </div>
     </footer>
-
-    <script defer src="./public/js/chung.js"></script>
-    <script defer src="./public/js/trangChu.js"></script>
-    <script defer src="./public/js/dsKhoaBacSi.js"></script>
-    <script defer src="./public/js/datLich.js"></script>
-    <script defer src="./public/js/chiTietBS.js"></script>
-    <script src="./public/js/ts.js"></script>
-    <script>
-        window.onbeforeunload = function() {
-            // Thực hiện hành động tải lại trang
-            window.location.reload(true);
-        };
-    </script>
 </body>
 </html>

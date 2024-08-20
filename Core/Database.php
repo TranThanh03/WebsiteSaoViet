@@ -4,7 +4,7 @@ class Database
     const HOST = 'localhost';
     const USER = 'root';
     const PASS = '';
-    const DB_NAME = 'phongkham';
+    const DB_NAME = 'toursaoviet';
 
     public function connect()
     {

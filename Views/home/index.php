@@ -22,7 +22,7 @@
 <!-- faculty list -->
 <div class="list" id="faculty-slide">
     <div class="title">
-        <span>Chuyên khoa</span>
+        <span>Tours du lịch</span>
         <a href="index.php?controller=faculty&action=index">
             <span>Xem thêm</span>
         </a>

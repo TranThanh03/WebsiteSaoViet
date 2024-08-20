@@ -5,7 +5,8 @@
             $this->model('DoctorModel');
             $this->doctorModel = new DoctorModel();
         }
-        public function index() {
+
+            public function index() {
             $data = $this->doctorModel->getAll();
             return $this->view("doctor.index",[
                 'data' => $data
@@ -20,4 +21,4 @@
         }
     }
 
-?>
+?>   

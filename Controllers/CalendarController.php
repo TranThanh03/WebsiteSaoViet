@@ -11,7 +11,7 @@
         }
         public function index() {
             if(isset($_SESSION['sdt'] )) {
-                $idUser = $this->User->getUser(['MaKH'], 'sdt', $_SESSION['sdt']);
+                $idUser = $this->User->getUser(['MaKH'], 'TenKH', $_SESSION['sdt']);
                 if(!empty($idUser)) {
                     $data = $this->Calendar->getById(['MaLichKham','ThoiGianKham','TenPhongKham','TenKhoa', 'TenBS','TenTrangThai', 'NgayKham'], 'lichkham.MaKH', $idUser['0']['MaKH']);
                     return $this->view('calendar',[

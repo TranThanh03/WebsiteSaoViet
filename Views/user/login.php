@@ -9,11 +9,7 @@
             integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
             crossorigin="anonymous"
         />
-        <link
-            rel="stylesheet"
-            href="D:\code\Web Đặt lịch\Website_PhuocThinh\Website_PhuocThinh\styles\style.css"
-        />
-        <title>Document</title>
+        <title>Đăng nhập</title>
     </head>
     <body>
         <div
@@ -25,7 +21,7 @@
                     style="background: #1087be"
                 >
                 <div class="featured-image mb-3">
-                    <img src="./public/img/login/phuocthinhx2.png" class="img-fluid" style="width:280px; height: 200px;">
+                    <img src="./public/img/logo.jpg" class="img-fluid" style="width:280px; height: 200px;">
                 </div>
                     <p
                         class="text-white fs-2"
@@ -35,7 +31,7 @@
                             font-weight: 600;
                         "
                     >
-                        Verified
+                        Sao Việt
                     </p>
                     <small
                         class="text-white text-wrap text-center fs-4"
@@ -51,7 +47,7 @@
                 <div class="col-md-6 right-box d-flex">
                     <div class="row align-items-center">
                         <div class="header-text mb-4">
-                            <h2>Hello,again</h2>
+                            <h2>Hello</h2>
                             <p>We are very happy to have your back</p>
                         </div>
                         <form action="index.php?controller=user&action=login" method="post">
@@ -62,9 +58,9 @@
                             >
                                 <input
                                     type="text"
-                                    placeholder="Phone number"
+                                    placeholder="Username"
                                     class="form-control form-control-lg bg-light fs-6"
-                                    name="sdt"
+                                    name="username"
                                 />
                             </div>
                             <div
