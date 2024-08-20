@@ -87,7 +87,7 @@
             <div class="content-right">
                 <div class="icon-calendar">
                     <img src="./public/icons/clock-regular.svg" alt="icon">
-                    <p>Lịch hẹn</p>
+                    <p>Lịch đặt</p>
                     <span id="notification-calendar"></span>
                 </div>
                 <div class="icon-account">
@@ -118,8 +118,8 @@
             <ul class="menu">
                 <li><a href="index.php">Trang chủ</a></li>
                 <li><a href="index.php?controller=faculty&action=index">Tours</a></li>
-                <li><a href="index.php?controller=doctor&action=index">Khách sạn</a></li>
-                <li><a href="index.php?controller=faculty&action=index">Khuyến mãi</a></li>
+                <li><a href="index.php?controller=doctor&action=index">Hướng dẫn viên</a></li>
+                <li><a href="index.php?controller=faculty&action=index">Khách sạn</a></li>
                 <li><a href="index.php?controller=news&action=index">Tin tức</a></li>
             </ul>
         </nav>

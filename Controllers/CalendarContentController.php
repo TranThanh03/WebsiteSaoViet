@@ -14,7 +14,7 @@
         }
 
         public function index() {
-            if(isset($_SESSION['sdt']) ) {
+            if(isset($_SESSION['username']) ) {
                 $value = $_REQUEST['id'] ?? '';
                 $datas = $this->_get($value);
                 return $this->view("calendarContent.index",[
@@ -22,7 +22,6 @@
                     'idUser'=>$datas['users'],
                 ]);
             } else {
-                // return $this->view("user.index");
                 header("Location: index.php?controller=user&action=index");
             }
         }
@@ -87,8 +86,8 @@
         }
 
         private function _get($value) {
-            $idUser = $this->userModel->getUser(['MaKH'], 'TenKH', $_SESSION['sdt']);
-            $users = $this->userModel->getUser(['MaKH','TenKH', 'DiaChi', 'sdt', 'email','NgaySinh','GioiTinh'], 'MaKH', $idUser['0']['MaKH']);
+            $idUser = $this->userModel->getUser(['MaKH'], 'TenKH', $_SESSION['username']);
+            $users = $this->userModel->getUser(['MaKH','TenKH', 'DiaChi', 'username', 'email','NgaySinh','GioiTinh'], 'MaKH', $idUser['0']['MaKH']);
             $data = $this->doctorModel->getById(['MaBS', 'TenBS', 'anh','GiaKham','bacsi.MaKhoa','TenKhoa'],"MaBS", $value);
 
             return [

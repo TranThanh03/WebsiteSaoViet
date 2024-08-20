@@ -10,8 +10,8 @@
             $this->User = new UserModel();
         }
         public function index() {
-            if(isset($_SESSION['sdt'] )) {
-                $idUser = $this->User->getUser(['MaKH'], 'TenKH', $_SESSION['sdt']);
+            if(isset($_SESSION['username'] )) {
+                $idUser = $this->User->getUser(['MaKH'], 'TenKH', $_SESSION['username']);
                 if(!empty($idUser)) {
                     $data = $this->Calendar->getById(['MaLichKham','ThoiGianKham','TenPhongKham','TenKhoa', 'TenBS','TenTrangThai', 'NgayKham'], 'lichkham.MaKH', $idUser['0']['MaKH']);
                     return $this->view('calendar',[
@@ -30,7 +30,7 @@
         } 
 
         public function delete () {
-            $idCalendar = $_REQUEST['id'];
+            $idCalendar = $_REQUEST['username'];
             $data = $this->Calendar->deleteCalendar($idCalendar,'MaLichKham');
             if(!empty($data)) {
                 return $this->view('message',[

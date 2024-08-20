@@ -19,21 +19,17 @@
 
         public function dataNormalization($dataUser, $dataAccount)
         {
-            $nonAdminAccounts = array_filter($dataAccount, function($account) {
-                return isset($account['Quyen']) && $account['Quyen'] !== 'admin';
-            });
-            
-            $maxLength = min(count($dataUser), count($nonAdminAccounts));
-            
-            $nonAdminAccounts = array_values($nonAdminAccounts); 
-            
-            $data = [];
+            $mergedData = [];
 
-            for ($i = 0; $i < $maxLength; $i++) {
-                $data[] = array_merge($dataUser[$i], $nonAdminAccounts[$i]);
+            foreach ($dataUser as $user) {
+                foreach ($dataAccount as $account) {
+                    if ($user['MaTK'] == $account['MaTK']) {
+                        $mergedData[] = array_merge($user, $account);
+                    }
+                }
             }
 
-            return $data;
+            return $mergedData;
         }
 
         public function insert() {
@@ -43,15 +39,11 @@
                 $email = $_POST['email'];
                 $username = $_POST['username'];
                 $password = $_POST['password'];
-                
-                $dataUser = $this->userModel->insertUser(
-                ['TenKH','SDT','Email'], 
-                ["'{$fullName}'", "'{$numberPhone}'", "'{$email}'"]);
 
-                $dataAccount = $this->userModel->insertAccount(
-                    ['TenTK' ,'MatKhau', 'Quyen'], 
-                    ["'{$username}'", "'{$password}'", "'user'"]);    
-
+                $dataAccount = $this->userModel->insertAccount(['TenTK' ,'MatKhau', 'Quyen'], ["'{$username}'", "'{$password}'", "'user'"]);
+                $getIdAccount = $this->userModel->getAccount(['MaTK'], 'TenTK', $username);
+                $dataUser = $this->userModel->insertUser(['TenKH','SDT','Email', 'MaTK'], ["'{$fullName}'", "'{$numberPhone}'", "'{$email}'", "'{$getIdAccount[0]['MaTK']}'"]);
+                    
                 if($dataUser && $dataAccount) {
                     header('location: index.php?controller=user&action=index');
                 } else {
@@ -93,7 +85,7 @@
                 echo "Lỗi";
             } else {
                 $dataUser = $this->userModel->getUser(
-                    ['MaKH', 'TenKH','SDT', 'Email'], 
+                    ['MaKH', 'TenKH','SDT', 'Email', 'MaTK'], 
                     'MaKH', $idUser);
 
                 $dataAccount = $this->userModel->getAccount(

@@ -5,8 +5,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Sao Việt Traveloka - Vivu ba miền</title>
-        <link rel="stylesheet" href="./public/Css/index.css"/>
-        <link rel="stylesheet" href="./public/css/dangnhap.css"/>
+        <link rel="stylesheet" href="./public/css/index.css"/>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -39,11 +38,9 @@
                     <ul class="menu__nav">
                         <li><a href="index.php?controller=home&action=index">Trang chủ</a></li>
                         <li><a href="index.php?controller=user&action=index">Khách hàng</a></li>
-                        <li><a href="index.php?controller=service&action=index">Khoa</a></li>
-                        <li><a href="index.php?controller=doctor&action=index">Bác sỹ</a></li>
-                        <li><a href="index.php?controller=room&action=index">Phòng khám</a></li>
+                        <li><a href="index.php?controller=tour&action=index">Tours</a></li>
+                        <li><a href="index.php?controller=doctor&action=index">Hướng dẫn viên</a></li>
                         <li><a href="index.php?controller=appointment&action=index">Đặt lịch</a></li>
-                        <li><a href="index.php?controller=home&action=index">Tin tức</a></li>
                     </ul>
                 </div>
                 <!-- End menu -->

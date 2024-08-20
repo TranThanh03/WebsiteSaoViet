@@ -1,7 +1,7 @@
 <!-- calendar -->
 <div class="calendar">
     <div class="title">
-        <span>Lịch hẹn</span>
+        <span>Lịch đặt</span>
         <button type="button" id="btn-close"><img src="./public/icons/xmark-solid.svg" alt="icon"></button>
     </div>
     <div class="content">

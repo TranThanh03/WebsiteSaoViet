@@ -77,8 +77,9 @@
                         'warning' => 'Email đã tồn tại'
                     ]);
                 } else {
-                    $dataUser = $this->userModel->insertUser(['TenKH','SDT', 'Email'], ["'{$fullName}'", "'{$numberPhone}'", "'{$email}'"], UserModel::TABLE_USER);
                     $dataAccount = $this->userModel->insertUser(['TenTK','MatKhau', 'Quyen'], ["'{$username}'", "'{$password}'", "'user'"], UserModel::TABLE_ACCOUNT);
+                    $getIdAccount = $this->userModel->getUser(['MaTK'], 'TenTK', $username, UserModel::TABLE_ACCOUNT);
+                    $dataUser = $this->userModel->insertUser(['TenKH','SDT', 'Email', 'MaTK'], ["'{$fullName}'", "'{$numberPhone}'", "'{$email}'", "'{$getIdAccount[0]['MaTK']}'"], UserModel::TABLE_USER);
                     if($dataAccount && $dataUser) {
                         $_SESSION['username'] = $username;
                         header('location: index.php?controller=user&action=login');
