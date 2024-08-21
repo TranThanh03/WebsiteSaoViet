@@ -91,13 +91,14 @@
             }
             if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $nameTour = $_POST['TenTour'];
+                $introduce = $_POST['GioiThieu'];
                 $pathImage = basename( $_FILES["input-file"]["name"]);
                 $description = $_POST['MoTa'];
                 $cost = $_POST['Gia'];
 
                 $data = $this->tourModel->insertTour(
-                ['TenTour', 'AnhTour','MoTa', 'Gia'], 
-                ["'{$nameTour}'", "'{$pathImage}'", "'{$description}'", "'{$cost}'"]);
+                ['TenTour', 'GioiThieu', 'AnhTour','MoTa', 'Gia'], 
+                ["'{$nameTour}'", "'{$introduce}'", "'{$pathImage}'", "'{$description}'", "'{$cost}'"]);
     
                 if($data) {
                     header('location: index.php?controller=tour&action=index');
@@ -130,7 +131,7 @@
             if(empty($id)) {
                 echo "Lỗi";
             } else {
-                $tour = $this->tourModel->getTour(['MaTour','TenTour','AnhTour', 'MoTa', 'Gia'], 'MaTour',$id);
+                $tour = $this->tourModel->getTour(['MaTour','TenTour', 'GioiThieu','AnhTour', 'MoTa', 'Gia'], 'MaTour',$id);
                 return $this->view("tour.formUpdateTour",
                 [
                     'tour' => $tour
@@ -213,8 +214,8 @@
                         $anhTour = basename($_FILES["input-file"]["name"]);
                     }
                     $this->tourModel->updateTour(
-                        ['TenTour','AnhTour','MoTa' ,'Gia'],
-                        [$_POST['TenTour'],  $anhTour, $_POST['MoTa'],$_POST['Gia']], 
+                        ['TenTour', 'GioiThieu','AnhTour','MoTa' ,'Gia'],
+                        [$_POST['TenTour'], $_POST['GioiThieu'], $anhTour, $_POST['MoTa'],$_POST['Gia']], 
                         'MaTour', $id);
                     header('location: index.php?controller=tour&action=index');
                     

@@ -5,6 +5,8 @@
             <form action="index.php?controller=tour&action=insert" method="post" enctype="multipart/form-data">
                     <label for="name">Tên tour:</label>
                     <input id="name" name="TenTour" type="text" style="width: 400px; height: 30px;"><br>
+                    <label for="gioithieu">Giới thiệu:</label>
+                    <textarea name="GioiThieu" id="gioithieu" cols="45" rows="10"></textarea><br>
                     <p id="anh">Ảnh tour:</p>
                     <img class="avata-img" alt="ảnh tour" style="max-width: 400px; margin-left: 150px"><br>
                     <input class="avatar-input-update" type="file" name="input-file" style="margin-left: 150px"><br>
