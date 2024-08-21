@@ -16,20 +16,20 @@
         }
 
         public function insert() {
-            if (!isset($_FILES["avatar"]))
+            if (!isset($_FILES["input-file"]))
             {
                 echo "Dữ liệu không đúng cấu trúc";
                 die;
             }
             
-            if ($_FILES["avatar"]['error'] != 0)
+            if ($_FILES["input-file"]['error'] != 0)
             {
                 echo "Dữ liệu upload bị lỗi";
                 die;
             }
 
             $target_dir    = "./public/img/tour/";
-            $target_file   = $target_dir . basename($_FILES["avatar"]["name"]);
+            $target_file   = $target_dir . basename($_FILES["input-file"]["name"]);
             $allowUpload   = true;
 
             $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -39,7 +39,7 @@
 
 
             if(isset($_POST["submit"])) {
-                $check = getimagesize($_FILES["avatar"]["tmp_name"]);
+                $check = getimagesize($_FILES["input-file"]["tmp_name"]);
                 if($check !== false)
                 {
                     echo "Đây là file ảnh - " . $check["mime"] . ".";
@@ -58,7 +58,7 @@
                 $allowUpload = false;
             }
         
-            if ($_FILES["avatar"]["size"] > $maxfilesize)
+            if ($_FILES["input-file"]["size"] > $maxfilesize)
             {
                 echo "Không được upload ảnh lớn hơn $maxfilesize (bytes).";
                 $allowUpload = false;
@@ -72,9 +72,9 @@
 
             if ($allowUpload)
             {
-                if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file))
+                if (move_uploaded_file($_FILES["input-file"]["tmp_name"], $target_file))
                 {
-                    echo "File ". basename( $_FILES["avatar"]["name"]).
+                    echo "File ". basename( $_FILES["input-file"]["name"]).
                     " Đã upload thành công.";
 
                     echo "File lưu tại " . $target_file;
@@ -91,7 +91,7 @@
             }
             if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $nameTour = $_POST['TenTour'];
-                $pathImage = basename( $_FILES["avatar"]["name"]);
+                $pathImage = basename( $_FILES["input-file"]["name"]);
                 $description = $_POST['MoTa'];
                 $cost = $_POST['Gia'];
 

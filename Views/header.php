@@ -6,41 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sao Việt Traveloka - Vivu ba miền</title>
     <link rel="icon" href="./public/img/logo.jpg" type="image/jpg">
+    <link rel="stylesheet" href="./public/css/home.css">
+    <link rel="stylesheet" href="./public/css/news.css">
+    <link rel="stylesheet" href="./public/css/newsDetail.css">
+    <link rel="stylesheet" href="./public/css/tourDetail.css">
 
-
-    <?php if ((isset($_REQUEST['controller']) && $_REQUEST['controller'] !== 'news') || !isset($_REQUEST['controller'])) : ?>
-        <link rel="stylesheet" href="./public/css/trangChu.css">
-        <link rel="stylesheet" href="./public/css/dsKhoa.css">
-    <?php endif; ?>
-
-    <?php if (isset($_REQUEST['controller']) && $_REQUEST['controller'] === 'news') : ?>
-        <link rel="stylesheet" href="./public/css/styleDNvaTinTuc.css">
-        <link rel="stylesheet" href="./public/css/styleCtttTuyenDung.css">
-        <link rel="stylesheet" href="./public/css/trangChu.css">
-        <link rel="stylesheet" href="./public/css/st.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <?php endif; ?>
-
-    <?php if (isset($_REQUEST['controller']) && $_REQUEST['controller'] === 'doctor') : ?>
-        <?php if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'index') : ?>
-            <link rel="stylesheet" href="./public/css/dsBacSi.css">
-        <?php endif; ?>
-
-        <?php if (isset($_REQUEST['action']) && $_REQUEST['action'] === 'detail') : ?>
-            <link rel="stylesheet" href="./public/css/chiTietBS.css">
-        <?php endif; ?>
-    <?php endif; ?>
-    <?php if (isset($_REQUEST['controller']) && $_REQUEST['controller'] === 'list') : ?>
-        <link rel="stylesheet" href="./public/css/dsKhoaBacSi.css">
-    <?php endif; ?>
-    <link rel="stylesheet" href="./public/css/datLich.css">
-    <link rel="stylesheet" href="./public/css/thongbao.css">
     <script>
         function submitForm(event) {
-            // Ngăn chặn hành động mặc định của form
             event.preventDefault();
-
-            // Lấy form và gửi nó đi
             document.getElementById("search_form").submit();
         }
     </script>
@@ -54,16 +27,13 @@
             });
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script defer src="./public/js/chung.js"></script>
-    <script defer src="./public/js/trangChu.js"></script>
+    <script defer src="./public/js/home.js"></script>
     <script defer src="./public/js/dsKhoaBacSi.js"></script>
     <script defer src="./public/js/datLich.js"></script>
     <script defer src="./public/js/chiTietBS.js"></script>
-    <script src="./public/js/ts.js"></script>
     <script>
         window.onbeforeunload = function() {
-            // Thực hiện hành động tải lại trang
             window.location.reload(true);
         };
     </script>
@@ -78,7 +48,7 @@
             </div>
             <div class="search">
                 <div class="sub-search">
-                    <form id="search_form" action="index.php?controller=faculty&action=search" method="post">
+                    <form id="search_form" action="index.php?controller=tour&action=search" method="post">
                         <input type="text" placeholder="Tìm kiếm tours" name="search_tenkhoa">
                         <span><img src="./public/icons/search.svg" alt="icon"></span>
                     </form>
@@ -117,9 +87,9 @@
         <nav>
             <ul class="menu">
                 <li><a href="index.php">Trang chủ</a></li>
-                <li><a href="index.php?controller=faculty&action=index">Tours</a></li>
-                <li><a href="index.php?controller=doctor&action=index">Hướng dẫn viên</a></li>
-                <li><a href="index.php?controller=faculty&action=index">Khách sạn</a></li>
+                <li><a href="index.php?controller=tour&action=index">Tours</a></li>
+                <li><a href="index.php?controller=guide&action=index">Hướng dẫn viên</a></li>
+                <li><a href="index.php?controller=hotel&action=index">Khách sạn</a></li>
                 <li><a href="index.php?controller=news&action=index">Tin tức</a></li>
             </ul>
         </nav>

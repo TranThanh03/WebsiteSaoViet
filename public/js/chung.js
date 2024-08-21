@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let checkStatus = sessionStorage.getItem("navStatus");
     if(checkStatus) {
-        aElement[checkStatus].style.color = 'white';
         aElement[checkStatus].style.backgroundColor = '#45C3D2';
     }
     

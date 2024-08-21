@@ -44,7 +44,7 @@ html {
 
 .menu {
     width: 200px;
-    height: 100%;
+    height: auto;
     min-height: 800px;
     background-color: var(--bg-green);
 }
@@ -166,4 +166,11 @@ html {
     font-size: 20px;
     padding: 2px 6px;
     cursor: pointer;
+}
+
+.home {
+    width: 100%;
+    height: auto;
+    background: url('../img/background/background.jpg') no-repeat;
+    background-size: contain;
 }

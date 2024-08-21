@@ -1,20 +1,20 @@
 <?php
-    class HomeController extends BaseController {
-        public $facultyModel;
-        public $doctorModel;
+    class homeController extends BaseController {
+        public $tourModel;
+        public $guideModel;
         public function __construct() {
-            $this->model('FacultyModel');
-            $this->model('DoctorModel');
-            $this->facultyModel = new FacultyModel();
-            $this->doctorModel = new DoctorModel();
+            $this->model('tourModel');
+            $this->model('guideModel');
+            $this->tourModel = new tourModel();
+            $this->guideModel = new guideModel();
         }
         public function index() {
-            $dataFaculty = $this->facultyModel->getAll();
-            $dataDoctor = $this->doctorModel->getById(['MaBS', 'TenBS', 'anh', 'TenKhoa'], 'DanhGia', '5');
+            $dataTour = $this->tourModel->getAll();
+            $dataGuide = $this->guideModel->getById(['MaHDV', 'TenHDV', 'AnhHDV', 'NgaySinh'], 'DanhGia', '5');
             return $this->view("home.index",
                 [
-                    'dataFaculty' => $dataFaculty,
-                    'dataDoctor' => $dataDoctor    
+                    'dataTour' => $dataTour,
+                    'dataGuide' => $dataGuide    
                 ],
             );
         }

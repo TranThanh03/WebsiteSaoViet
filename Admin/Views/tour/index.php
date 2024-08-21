@@ -22,8 +22,8 @@
                     <img src="../Admin/public/img/tour/<?php echo $value['AnhTour']?>" alt="ảnh tour">
                 </td>
                 <td>
-                    <button><a href="index.php?controller=tour&action=showForm&id=<?php echo $value['MaTour']?>">Sửa</a></button>
-                    <button><a href="index.php?controller=tour&action=delete&id=<?php echo $value['MaTour']?>" style="color: red;">Xóa</a></button>
+                    <a href="index.php?controller=tour&action=showForm&id=<?php echo $value['MaTour']?>"><button type="button">Sửa</button></a>
+                    <a href="index.php?controller=tour&action=delete&id=<?php echo $value['MaTour']?>"><button type="button" style="color: red;">Xóa</button></a>
                 </td>
             </tr>
             <?php endforeach;?>

@@ -14,16 +14,16 @@
                 $idUser = $this->User->getUser(['MaKH'], 'TenKH', $_SESSION['username']);
                 if(!empty($idUser)) {
                     $data = $this->Calendar->getById(['MaLichKham','ThoiGianKham','TenPhongKham','TenKhoa', 'TenBS','TenTrangThai', 'NgayKham'], 'lichkham.MaKH', $idUser['0']['MaKH']);
-                    return $this->view('calendar',[
+                    return $this->view('calendar.index',[
                         'data' => $data
                     ]);
                 } else {
-                    return $this->view('calendar',[
+                    return $this->view('calendar.index',[
                         'data' => []
                     ]);
                 }
             } else {
-                return $this->view('calendar',[
+                return $this->view('calendar.index',[
                     'data' => []
                 ]);
             }

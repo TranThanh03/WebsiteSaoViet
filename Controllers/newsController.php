@@ -1,14 +1,10 @@
 <?php 
     class NewsController extends BaseController {
         public function index() {
-            return $this->view("newsPage");
+            return $this->view("news.index");
         }
 
-        public function chitietCNTT() {
-            return $this->view("CtttTuyenDungCNTT");
-        }
-        public function chitietdieuduong() {
-            return $this->view("CtttTuyenDungDieuDuong");
+        public function newsDetail() {
+            return $this->view("news.newsDetail");
         }
     }
-?>

@@ -26,8 +26,8 @@
                         <td><?php echo $value['TenTK']?></td>
                         <td><?php echo $value['MatKhau']?></td>
                         <td>
-                            <button class="edit"><a href="index.php?controller=user&action=showForm&iduser=<?php echo $value['MaKH']?>&idaccount=<?php echo $value['MaTK']?>">Sửa</a></button>
-                            <button class="delete"><a href="index.php?controller=user&action=delete&iduser=<?php echo $value['MaKH']?>&idaccount=<?php echo $value['MaTK']?>" style="color: red;">Xóa</a></button>
+                            <a href="index.php?controller=user&action=showForm&iduser=<?php echo $value['MaKH']?>&idaccount=<?php echo $value['MaTK']?>"><button class="edit">Sửa</button></a>
+                            <a href="index.php?controller=user&action=delete&iduser=<?php echo $value['MaKH']?>&idaccount=<?php echo $value['MaTK']?>"><button class="delete" style="color: red;">Xóa</button></a>
                         </td>
                     </tr>
             <?php endforeach;?>
@@ -55,9 +55,7 @@
             <label for="name">Mật khẩu</label>
             <input type="text" name="password" id="name" /><br />
     
-            <button type="submit" name="insert" class="insert">
-                Thêm
-            </button>
+            <button type="submit" name="insert" class="insert">Thêm</button>
         </form>
     </div>
 </div>

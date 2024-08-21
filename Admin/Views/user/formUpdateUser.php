@@ -14,9 +14,7 @@
                 <input type="text" name="username" id="name" value="<?php echo $values['TenTK']?>"/><br />
                 <label for="name">Mật khẩu</label>
                 <input type="text" name="password" id="name" value="<?php echo $values['MatKhau']?>"/><br />
-                <button type="submit" name="insert" class="insert">
-                    Sửa
-                </button>
+                <button type="submit" name="insert" class="insert">Cập nhật</button>
                 <button>
                     <a href="index.php?controller=user&action=index">Quay về</a>
                 </button>
