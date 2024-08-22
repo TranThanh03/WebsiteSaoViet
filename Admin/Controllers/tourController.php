@@ -95,10 +95,11 @@
                 $pathImage = basename( $_FILES["input-file"]["name"]);
                 $description = $_POST['MoTa'];
                 $cost = $_POST['Gia'];
+                $maCD = $_POST['MaCD'];
 
                 $data = $this->tourModel->insertTour(
-                ['TenTour', 'GioiThieu', 'AnhTour','MoTa', 'Gia'], 
-                ["'{$nameTour}'", "'{$introduce}'", "'{$pathImage}'", "'{$description}'", "'{$cost}'"]);
+                ['TenTour', 'GioiThieu', 'AnhTour','MoTa', 'Gia', 'MaCD'], 
+                ["'{$nameTour}'", "'{$introduce}'", "'{$pathImage}'", "'{$description}'", "'{$cost}'", "'{$maCD}'"]);
     
                 if($data) {
                     header('location: index.php?controller=tour&action=index');
@@ -113,28 +114,56 @@
             if(empty($id)) {
                 echo "Lỗi";
             } else {
-                $img = $this->tourModel->getTour(['AnhTour'], 'MaTour',$id);
-                $pathImg = $img[0]['AnhTour'];
-                $link = "public/img/tour/{$pathImg}";
-                if(unlink($link)) {
+                try {
+                    $img = $this->tourModel->getTour(['AnhTour'], 'MaTour',$id);
+                    $pathImg = $img[0]['AnhTour'];
+                    $link = "public/img/tour/{$pathImg}";
                     $this->tourModel->deleteTour($id, 'MaTour');
-                    header('location: index.php?controller=tour&action=index');
-                }else {
-                    echo "Lỗi xảy ra";
-                }       
+                    if(unlink($link)) {
+                        header('location: index.php?controller=tour&action=index');
+                    }else {
+                        echo "Lỗi xảy ra";
+                    }       
+                }
+                catch(Exception $e) {
+                    echo "Tour này chỉ có thể chỉnh sửa, không thể xóa!";
+                }
             }
-
         }
+
         public function showForm() {
             $id = $_REQUEST['id'] ?? '';
+            $dataCD = [
+                    [
+                        'id' => 1,
+                        'name' => 'Tour Biển Đảo'
+                    ],
+                    [
+                        'id' => 2,
+                        'name' => 'Tour Văn Hóa Lịch Sử'
+                    ],
+                    [
+                        'id' => 3,
+                        'name' => 'Tour Nghỉ Dưỡng'
+                    ],
+                    [
+                        'id' => 4,
+                        'name' => 'Tour Mạo Hiểm'
+                    ],
+                    [
+                        'id' => 5,
+                        'name' => 'Tour Ẩm Thực'
+                    ]
+                ];
 
             if(empty($id)) {
                 echo "Lỗi";
             } else {
-                $tour = $this->tourModel->getTour(['MaTour','TenTour', 'GioiThieu','AnhTour', 'MoTa', 'Gia'], 'MaTour',$id);
+                $tour = $this->tourModel->getTour(['*'], 'MaTour',$id);
                 return $this->view("tour.formUpdateTour",
                 [
-                    'tour' => $tour
+                    'tour' => $tour,
+                    'dataCD' => $dataCD
                 ]);
             }
         }
@@ -201,7 +230,6 @@
                 echo "Không upload được file, có thể do file lớn, kiểu file không đúng ...";
             }
 
-            echo "hii";
             if(empty($id)) {
                 echo "Lỗi";
             } else {
@@ -214,8 +242,8 @@
                         $anhTour = basename($_FILES["input-file"]["name"]);
                     }
                     $this->tourModel->updateTour(
-                        ['TenTour', 'GioiThieu','AnhTour','MoTa' ,'Gia'],
-                        [$_POST['TenTour'], $_POST['GioiThieu'], $anhTour, $_POST['MoTa'],$_POST['Gia']], 
+                        ['TenTour', 'GioiThieu','AnhTour','MoTa' ,'Gia', 'MaCD'],
+                        [$_POST['TenTour'], $_POST['GioiThieu'], $anhTour, $_POST['MoTa'], $_POST['Gia'], $_POST['MaCD']], 
                         'MaTour', $id);
                     header('location: index.php?controller=tour&action=index');
                     

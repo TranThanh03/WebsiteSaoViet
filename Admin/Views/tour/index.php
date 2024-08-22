@@ -1,11 +1,11 @@
 <!-- Start docter-->
 <div class="user">
     <button class="service-Insert__btn"><a href="index.php?controller=tour&action=create">Thêm Tour</a></button>
-
     <table>
         <thead>
             <tr>
                 <th>STT</th>
+                <th>Mã tour</th>
                 <th>Tour</th>
                 <th>Hình ảnh</th>
                 <th>Thao tác</th>
@@ -17,6 +17,7 @@
                 <?php $i++;?>
             <tr>
                 <td><?php echo $i;?></td>
+                <td><?php echo $value['MaTour']?></td>
                 <td><?php echo $value['TenTour']?></td>
                 <td class="avatar">
                     <img src="../Admin/public/img/tour/<?php echo $value['AnhTour']?>" alt="ảnh tour">

@@ -1,10 +1,10 @@
 <?php 
-    class UserController extends BaseController {
+    class userController extends BaseController {
         public $userModel;
         public $data;
         public function __construct() {
-            $this->model("UserModel");
-            $this->userModel = new UserModel();
+            $this->model("userModel");
+            $this->userModel = new userModel();
         }
         public function index() {
             return $this->view("user.login");
@@ -33,7 +33,7 @@
             {
                 $_SESSION['accountAdmin'] = $_POST['username'];
                 $_SESSION['passwordAdmin'] = $_POST['password'];
-                header('location: /DuLichSaoViet/Admin/index.php?controller=home&action=index');
+                header('location: /WebsiteSaoViet/Admin/index.php?controller=home&action=index');
             } 
             else {
                 $warning = "Số điện thoại hoặc mật khẩu không đúng";

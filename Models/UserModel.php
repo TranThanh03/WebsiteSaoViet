@@ -1,5 +1,5 @@
 <?php 
-    class UserModel extends BaseModel {
+    class userModel extends BaseModel {
         const TABLE_USER = 'khachhang';
         const TABLE_ACCOUNT = 'taikhoan';
     

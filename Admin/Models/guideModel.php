@@ -1,26 +1,25 @@
 <?php 
-    class tourModel extends BaseModel {
-        const TABLE = 'tour';
+    class guideModel extends BaseModel {
+        const TABLE = 'huongdanvien';
 
         public function getAll($columns = ['*']) {
             return $this->all(self::TABLE, $columns);
         }
 
-        public function insertTour($keys, $data)
+        public function insertGuide($keys, $data)
         {
             return $this->insert(self::TABLE, $keys, $data);
         }
 
-        public function updateTour($columns, $value, $id, $option) {
+        public function updateGuide($columns, $value, $id, $option) {
             return $this->update(self::TABLE, $columns, $value, $id, $option);
         }
 
-        public function getTour($select, $id, $value) {
+        public function getGuide($select, $id, $value) {
             return $this->getOption(self::TABLE, $select, $id, $value);
         }
 
-        public function deleteTour( $id, $columns) {
+        public function deleteGuide($id, $columns) {
             return $this->delete(self::TABLE, $id, $columns);
         }
     }
-?>

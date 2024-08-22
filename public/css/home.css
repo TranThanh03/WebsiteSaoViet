@@ -247,7 +247,7 @@ nav .menu a:hover {
     height: 190px;
     text-align: center;
     background-color: rgb(246, 246, 246);
-    height: 290px;
+    height: auto;
 }
 
 .sub-list img {
