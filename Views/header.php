@@ -7,9 +7,23 @@
     <title>Sao Việt Traveloka - Vivu ba miền</title>
     <link rel="icon" href="./public/img/logo.jpg" type="image/jpg">
     <link rel="stylesheet" href="./public/css/home.css">
-    <link rel="stylesheet" href="./public/css/news.css">
-    <link rel="stylesheet" href="./public/css/newsDetail.css">
-    <link rel="stylesheet" href="./public/css/tourDetail.css">
+
+    <?php
+        if(isset($_REQUEST['controller'])) {
+            if($_REQUEST['controller'] === 'news') {
+                echo '<link rel="stylesheet" href="./public/css/news.css">';
+                echo '<link rel="stylesheet" href="./public/css/newsDetail.css">';
+            }      
+            else if($_REQUEST['controller'] === 'hotel') {
+                echo '<link rel="stylesheet" href="./public/css/hotel.css">';
+                echo '<link rel="stylesheet" href="./public/css/hotelDetail.css">';
+            }
+            else if($_REQUEST['controller'] === 'tour') {
+                echo '<link rel="stylesheet" href="./public/css/tour.css">';
+                echo '<link rel="stylesheet" href="./public/css/tourDetail.css">';
+            }
+        }
+    ?>
 
     <script>
         function submitForm(event) {

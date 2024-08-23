@@ -8,14 +8,14 @@
 
             public function index() {
             $data = $this->guideModel->getAll();
-            return $this->view("doctor.index",[
+            return $this->view("guide.index",[
                 'data' => $data
             ]);
         }
         public function detail() {
             $value = $_REQUEST['id'] ?? '';
             $data = $this->guideModel->getById(['*'],"MaHDV", $value);
-            return $this->view("tour.detail",[
+            return $this->view("guide.detail",[
                 'data'=>$data,
             ]);
         }

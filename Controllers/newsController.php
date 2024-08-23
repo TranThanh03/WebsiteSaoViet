@@ -4,7 +4,7 @@
             return $this->view("news.index");
         }
 
-        public function newsDetail() {
-            return $this->view("news.newsDetail");
+        public function detail() {
+            return $this->view("news.detail");
         }
     }

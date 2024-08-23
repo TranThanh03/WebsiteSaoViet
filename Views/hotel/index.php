@@ -7,63 +7,63 @@
                 <h3>Khách sạn Sao Việt</h3>
                 <p>Địa chỉ: 123 Đường ABC, Quận XYZ, Hà Nội</p>
                 <p>Giá từ: 1,000,000 VNĐ/đêm</p>
-                <a href="index.php?controller=hotel&action=hoteldetail" class="btn-detail">Xem chi tiết</a>
+                <a href="index.php?controller=hotel&action=detail" class="btn-detail">Xem chi tiết</a>
             </div>
             <div class="hotel-item">
                 <img src="./public/img/hotel/hotel_2.jpg" alt="Khách sạn 2">
                 <h3>Khách sạn Mặt Trời</h3>
                 <p>Địa chỉ: 456 Đường DEF, Quận UVW, Hồ Chí Minh</p>
                 <p>Giá từ: 1,200,000 VNĐ/đêm</p>
-                <a href="index.php?controller=hotel&action=hoteldetail" class="btn-detail">Xem chi tiết</a>
+                <a href="index.php?controller=hotel&action=detail" class="btn-detail">Xem chi tiết</a>
             </div>
             <div class="hotel-item">
                 <img src="./public/img/hotel/hotel_3.jpg" alt="Khách sạn 3">
                 <h3>Khách sạn Biển Xanh</h3>
                 <p>Địa chỉ: 789 Đường GHI, Quận JKL, Đà Nẵng</p>
                 <p>Giá từ: 800,000 VNĐ/đêm</p>
-                <a href="index.php?controller=hotel&action=hoteldetail" class="btn-detail">Xem chi tiết</a>
+                <a href="index.php?controller=hotel&action=detail" class="btn-detail">Xem chi tiết</a>
             </div>
             <div class="hotel-item">
                 <img src="./public/img/hotel/hotel_1.jpg" alt="Khách sạn 1">
                 <h3>Khách sạn Sao Việt</h3>
                 <p>Địa chỉ: 123 Đường ABC, Quận XYZ, Hà Nội</p>
                 <p>Giá từ: 1,000,000 VNĐ/đêm</p>
-                <a href="index.php?controller=hotel&action=hoteldetail" class="btn-detail">Xem chi tiết</a>
+                <a href="index.php?controller=hotel&action=detail" class="btn-detail">Xem chi tiết</a>
             </div>
             <div class="hotel-item">
                 <img src="./public/img/hotel/hotel_2.jpg" alt="Khách sạn 2">
                 <h3>Khách sạn Mặt Trời</h3>
                 <p>Địa chỉ: 456 Đường DEF, Quận UVW, Hồ Chí Minh</p>
                 <p>Giá từ: 1,200,000 VNĐ/đêm</p>
-                <a href="index.php?controller=hotel&action=hoteldetail" class="btn-detail">Xem chi tiết</a>
+                <a href="index.php?controller=hotel&action=detail" class="btn-detail">Xem chi tiết</a>
             </div>
             <div class="hotel-item">
                 <img src="./public/img/hotel/hotel_3.jpg" alt="Khách sạn 3">
                 <h3>Khách sạn Biển Xanh</h3>
                 <p>Địa chỉ: 789 Đường GHI, Quận JKL, Đà Nẵng</p>
                 <p>Giá từ: 800,000 VNĐ/đêm</p>
-                <a href="index.php?controller=hotel&action=hoteldetail" class="btn-detail">Xem chi tiết</a>
+                <a href="index.php?controller=hotel&action=detail" class="btn-detail">Xem chi tiết</a>
             </div>
             <div class="hotel-item">
                 <img src="./public/img/hotel/hotel_1.jpg" alt="Khách sạn 1">
                 <h3>Khách sạn Sao Việt</h3>
                 <p>Địa chỉ: 123 Đường ABC, Quận XYZ, Hà Nội</p>
                 <p>Giá từ: 1,000,000 VNĐ/đêm</p>
-                <a href="index.php?controller=hotel&action=hoteldetail" class="btn-detail">Xem chi tiết</a>
+                <a href="index.php?controller=hotel&action=detail" class="btn-detail">Xem chi tiết</a>
             </div>
             <div class="hotel-item">
                 <img src="./public/img/hotel/hotel_2.jpg" alt="Khách sạn 2">
                 <h3>Khách sạn Mặt Trời</h3>
                 <p>Địa chỉ: 456 Đường DEF, Quận UVW, Hồ Chí Minh</p>
                 <p>Giá từ: 1,200,000 VNĐ/đêm</p>
-                <a href="index.php?controller=hotel&action=hoteldetail" class="btn-detail">Xem chi tiết</a>
+                <a href="index.php?controller=hotel&action=detail" class="btn-detail">Xem chi tiết</a>
             </div>
             <div class="hotel-item">
                 <img src="./public/img/hotel/hotel_3.jpg" alt="Khách sạn 3">
                 <h3>Khách sạn Biển Xanh</h3>
                 <p>Địa chỉ: 789 Đường GHI, Quận JKL, Đà Nẵng</p>
                 <p>Giá từ: 800,000 VNĐ/đêm</p>
-                <a href="index.php?controller=hotel&action=hoteldetail" class="btn-detail">Xem chi tiết</a>
+                <a href="index.php?controller=hotel&action=detail" class="btn-detail">Xem chi tiết</a>
             </div>
             <!-- Thêm các khách sạn khác tương tự -->
         </div>

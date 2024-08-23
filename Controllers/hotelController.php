@@ -4,7 +4,7 @@
             return $this->view("hotel.index");
         }
 
-        public function hotelDetail() {
-            return $this->view("hotel.hoteldetail");
+        public function detail() {
+            return $this->view("hotel.detail");
         }
     }

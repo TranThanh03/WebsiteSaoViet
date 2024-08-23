@@ -7,7 +7,7 @@
             <img src="./public/img/news/featured-travel.jpg" alt="Ảnh tin tức nổi bật">
             <h3>Khám phá 5 bãi biển đẹp nhất Việt Nam năm 2024</h3>
             <p>Từ Phú Quốc đến Nha Trang, hãy cùng chúng tôi khám phá những bãi biển tuyệt đẹp và còn nguyên sơ của Việt Nam...</p>
-            <a href="index.php?controller=news&action=newsDetail">Đọc thêm</a>
+            <a href="index.php?controller=news&action=detail">Đọc thêm</a>
         </article>
     </section>
 
@@ -17,31 +17,31 @@
             <img src="./public/img/news/travel-news1.jpg" alt="Ảnh tin tức 1">
             <h3>Hướng dẫn du lịch Sapa mùa lúa chín</h3>
             <p>Khám phá vẻ đẹp của những thửa ruộng bậc thang vàng óng ở Sapa vào mùa thu...</p>
-            <a href="index.php?controller=news&action=newsDetail">Đọc thêm</a>
+            <a href="index.php?controller=news&action=detail">Đọc thêm</a>
         </article>
         <article class="news-item">
             <img src="./public/img/news/travel-news2.jpg" alt="Ảnh tin tức 2">
             <h3>Top 10 nhà hàng đáng thử ở Hội An</h3>
             <p>Khám phá ẩm thực đặc sắc của phố cổ Hội An qua danh sách 10 nhà hàng tuyệt vời nhất...</p>
-            <a href="index.php?controller=news&action=newsDetail">Đọc thêm</a>
+            <a href="index.php?controller=news&action=detail">Đọc thêm</a>
         </article>
         <article class="news-item">
             <img src="./public/img/news/travel-news3.jpg" alt="Ảnh tin tức 3">
             <h3>Cập nhật: Quy định mới về visa du lịch Việt Nam</h3>
             <p>Những thay đổi quan trọng trong chính sách visa du lịch Việt Nam năm 2024...</p>
-            <a href="index.php?controller=news&action=newsDetail">Đọc thêm</a>
+            <a href="index.php?controller=news&action=detail">Đọc thêm</a>
         </article>
         <article class="news-item">
             <img src="./public/img/news/travel-news1.jpg" alt="Ảnh tin tức 1">
             <h3>Hướng dẫn du lịch Sapa mùa lúa chín</h3>
             <p>Khám phá vẻ đẹp của những thửa ruộng bậc thang vàng óng ở Sapa vào mùa thu...</p>
-            <a href="index.php?controller=news&action=newsDetail">Đọc thêm</a>
+            <a href="index.php?controller=news&action=detail">Đọc thêm</a>
         </article>
         <article class="news-item">
             <img src="./public/img/news/travel-news2.jpg" alt="Ảnh tin tức 2">
             <h3>Top 10 nhà hàng đáng thử ở Hội An</h3>
             <p>Khám phá ẩm thực đặc sắc của phố cổ Hội An qua danh sách 10 nhà hàng tuyệt vời nhất...</p>
-            <a href="index.php?controller=news&action=newsDetail">Đọc thêm</a>
+            <a href="index.php?controller=news&action=detail">Đọc thêm</a>
         </article>
     </section>
 

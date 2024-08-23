@@ -7,31 +7,27 @@
             $this->tourModel = new tourModel();
         }
         public function index() {
-            if(isset($_REQUEST['tenkhoa'])) {
-                $data = $this->tourModel->searchTour(['MaKhoa', 'TenKhoa','HinhAnh'], "TenKhoa", $_REQUEST['tenkhoa']);
-                if(!empty($data)) {
-                    return $this->view('faculty.index',[
-                        'data' => $data
-                    ]);
-                } else {
-                    return $this->view('faculty.index',[
-                        'warning' => "Không tìm thấy tour cần tìm"
-                    ]);
-                }
-            } else {
-                $data = $this->tourModel->getAll();
-                return $this->view('faculty.index',[
-                    'data' => $data
-                ]);
-
-            }
+            return $this->view('tour.index');
         }
 
         public function detail() {
             $value = $_REQUEST['id'] ?? '';
             $data = $this->tourModel->getById(['*'],"MaTour", $value);
-            return $this->view("tour.detail",[
+            return $this->view("tour.detail", [
                 'data'=>$data,
+            ]);
+        }
+
+        public function list() {
+            $value = $_REQUEST['id'] ?? '';
+            if($value != '') {
+                $data = $this->tourModel->getById(['*'],"MaCD", $value);
+            } else {
+                $data = $this->tourModel->getAll();
+            }
+
+            return $this->view("tour.list", [
+                'data' => $data
             ]);
         }
 

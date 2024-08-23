@@ -2,7 +2,7 @@
         <div class="hotel-details">
             <h1>Chi tiết khách sạn</h1>
             <div class="hotel-info">
-                <img src="/images/hotel_1.jpg" alt="Ảnh khách sạn" class="hotel-image">
+                <img src="./public/img/hotel/hotel_1.jpg" alt="Ảnh khách sạn" class="hotel-image">
                 <div class="hotel-text">
                     <p><strong>Mã khách sạn:</strong> <span id="hotel-id">KS001</span></p>
                     <h2 id="hotel-name">Khách sạn Sao Việt Luxury</h2>

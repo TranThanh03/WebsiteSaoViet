@@ -29,7 +29,7 @@
 <div class="list" id="tour-slide">
         <div class="title">
             <span>Tour xu hướng</span>
-            <a href="/index/tour.html">
+            <a href="index.php?controller=tour&action=list">
                 <span>Xem thêm</span>
             </a>
         </div>
@@ -58,7 +58,7 @@
 <div class="list" id="guide-slide">
         <div class="title">
             <span>Hướng dẫn viên nổi bật</span>
-            <a href="/index/diemDen.html">
+            <a href="index.php?controller=guide&action=list">
                 <span>Xem thêm</span>
             </a>
         </div>
