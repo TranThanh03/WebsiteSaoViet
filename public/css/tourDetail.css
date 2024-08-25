@@ -30,11 +30,12 @@
 }
 
 .book-now {
+    width: 200px;
     padding: 10px 20px 15px 20px;
     background-color: #45C3D2;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 20px;
 }

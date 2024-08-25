@@ -40,7 +40,7 @@
                         <a href="index.php?controller=tour&action=detail&id=<?php echo $tour['MaTour']?>">
                             <img src="./Admin/public/img/tour/<?php echo $tour['AnhTour']?>" alt="anh tour" id="avatar-tour">
                             <h4 id="tour-name"><?php echo $tour['TenTour']?></h4>
-                            <span id="tour-price"><?php echo $tour['Gia']?></span>
+                            <span id="tour-price"><?php echo $tour['Gia']?>VND</span>
                         </a>
                     </div>
                 <?php endforeach;?>
@@ -58,7 +58,7 @@
 <div class="list" id="guide-slide">
         <div class="title">
             <span>Hướng dẫn viên nổi bật</span>
-            <a href="index.php?controller=guide&action=list">
+            <a href="index.php?controller=guide&action=index">
                 <span>Xem thêm</span>
             </a>
         </div>

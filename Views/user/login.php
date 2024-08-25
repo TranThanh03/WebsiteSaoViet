@@ -58,7 +58,7 @@
                             >
                                 <input
                                     type="text"
-                                    placeholder="Username"
+                                    placeholder="Tài khoản"
                                     class="form-control form-control-lg bg-light fs-6"
                                     name="username"
                                 />
@@ -69,7 +69,7 @@
                             >
                                 <input
                                     type="password"
-                                    placeholder="Password"
+                                    placeholder="Mật khẩu"
                                     class="form-control form-control-lg bg-light fs-6"
                                     name="password"
                                 />

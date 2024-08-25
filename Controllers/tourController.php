@@ -32,8 +32,8 @@
         }
 
         public function search() {
-            $TenKhoa = $_POST['search_tenkhoa'];
-            header("location: index.php?controller=faculty&action=index&tenkhoa={$TenKhoa}");
+            $TenTour = $_POST['search_tenkhoa'];
+            header("location: index.php?controller=tour&action=list&name={$TenTour}");
         }
     }
 ?>

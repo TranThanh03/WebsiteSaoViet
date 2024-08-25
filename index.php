@@ -10,7 +10,7 @@
 
 
     if(isset($_REQUEST['controller']) && $_REQUEST['controller'] === 'user') {
-        require "./Controllers/{$controllerName}.php";
+        require_once "./Controllers/{$controllerName}.php";
         $controllerObject = new $controllerName;
         $controllerObject -> $actionName();
     } else {
@@ -18,17 +18,15 @@
         require "./Views/header.php";
         
         if(!isset($_REQUEST['action'])  || (isset($_REQUEST['action']) && $_REQUEST['action'] !== 'delete')) {
-            require "./Controllers/CalendarController.php";
+            require_once "./Controllers/CalendarController.php";
             $controllerCalendar = new CalendarController;
             $controllerCalendar -> index();
         }
 
 
-        require "./Controllers/{$controllerName}.php";
+        require_once "./Controllers/{$controllerName}.php";
         $controllerObject = new $controllerName;
         $controllerObject -> $actionName();
         
         require "./Views/footer.php";
     }
-
-?>

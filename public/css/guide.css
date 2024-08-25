@@ -1,0 +1,132 @@
+main {
+    padding: 40px 0;
+}
+
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: #3498db;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.intro {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+}
+
+.intro p {
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+.guide-list {
+    margin-bottom: 40px;
+}
+
+.guide-list h2 {
+    padding-left: 20px;
+}
+
+.guide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 420px));
+    gap: 30px;
+    padding: 0 30px;
+}
+
+.guide-card {
+    width: 400px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.guide-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.guide-card img {
+    width: 400px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.guide-card h3 {
+    padding: 20px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 1.3em;
+    text-align: center;
+}
+
+.guide-card p {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.guide-card p:last-child {
+    border-bottom: none;
+}
+
+.why-choose {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.why-choose ul {
+    list-style-type: none;
+}
+
+.why-choose li {
+    margin-bottom: 15px;
+    padding-left: 30px;
+    position: relative;
+    font-size: 1.1em;
+}
+
+.why-choose li::before {
+    content: "\2713";
+    color: #27ae60;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.guide-card button {
+    width: 150px;
+    padding: 5px 10px 10px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffc10e;
+    color: white;
+    cursor: pointer;
+}
+
+.guide-card button:hover {
+    color: #3498db;
+}
+
+#evaluate img {
+    max-width: 15px;
+    max-height: 15px;
+}
+
+#totalEvaluate a {
+    text-decoration: none;
+}

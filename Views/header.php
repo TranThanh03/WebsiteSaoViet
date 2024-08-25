@@ -7,10 +7,14 @@
     <title>Sao Việt Traveloka - Vivu ba miền</title>
     <link rel="icon" href="./public/img/logo.jpg" type="image/jpg">
     <link rel="stylesheet" href="./public/css/home.css">
+    <script defer src="./public/js/general.js"></script>
 
     <?php
         if(isset($_REQUEST['controller'])) {
-            if($_REQUEST['controller'] === 'news') {
+            if($_REQUEST['controller'] === 'home') {
+                echo '<script defer src="./public/js/home.js"></script>';
+            }
+            else if($_REQUEST['controller'] === 'news') {
                 echo '<link rel="stylesheet" href="./public/css/news.css">';
                 echo '<link rel="stylesheet" href="./public/css/newsDetail.css">';
             }      
@@ -19,12 +23,25 @@
                 echo '<link rel="stylesheet" href="./public/css/hotelDetail.css">';
             }
             else if($_REQUEST['controller'] === 'tour') {
-                echo '<link rel="stylesheet" href="./public/css/tour.css">';
-                echo '<link rel="stylesheet" href="./public/css/tourDetail.css">';
+                if($_REQUEST['action'] === 'list') {
+                    echo '<link rel="stylesheet" href="./public/css/listTour.css">';
+                } 
+                else {
+                    echo '<link rel="stylesheet" href="./public/css/tour.css">';
+                    echo '<link rel="stylesheet" href="./public/css/tourDetail.css">';
+                }
+            }
+            else if($_REQUEST['controller'] === 'guide') {
+                echo '<link rel="stylesheet" href="./public/css/guide.css">';
+                echo '<script defer src="./public/js/reviews.js"></script>';
+            }
+            else if($_REQUEST['controller'] === 'calendarContent') {
+                echo '<link rel="stylesheet" href="./public/css/calendarContent.css">';
+                echo '<script defer src="./public/js/reviews.js"></script>';
             }
         }
     ?>
-
+     
     <script>
         function submitForm(event) {
             event.preventDefault();
@@ -40,13 +57,7 @@
                 }
             });
         });
-    </script>
-    <script defer src="./public/js/chung.js"></script>
-    <script defer src="./public/js/home.js"></script>
-    <script defer src="./public/js/dsKhoaBacSi.js"></script>
-    <script defer src="./public/js/datLich.js"></script>
-    <script defer src="./public/js/chiTietBS.js"></script>
-    <script>
+
         window.onbeforeunload = function() {
             window.location.reload(true);
         };
@@ -63,8 +74,8 @@
             <div class="search">
                 <div class="sub-search">
                     <form id="search_form" action="index.php?controller=tour&action=search" method="post">
-                        <input type="text" placeholder="Tìm kiếm tours" name="search_tenkhoa">
-                        <span><img src="./public/icons/search.svg" alt="icon"></span>
+                        <input type="text" placeholder="Tìm kiếm Tours" name="search_tour">
+                        <button type="submit"><img src="./public/icons/search.svg" alt="icon"></button>
                     </form>
                 </div>
             </div>

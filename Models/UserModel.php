@@ -4,7 +4,7 @@
         const TABLE_ACCOUNT = 'taikhoan';
     
         // Phương thức lấy dữ liệu từ một bảng cụ thể
-        private function getFromTable($table, $columns = ['*']) {
+        public function getFromTable($table, $columns = ['*']) {
             return $this->all($table, $columns);
         }
     
@@ -13,7 +13,7 @@
         }
     
         // Phương thức lấy dữ liệu người dùng từ một bảng cụ thể
-        private function getUserFromTable($table, $columns = ['*'], $keys, $data) {
+        public function getUserFromTable($table, $columns = ['*'], $keys, $data) {
             return $this->getOption($table, $columns, $keys, $data);
         }
     
@@ -22,7 +22,7 @@
         }
     
         // Phương thức đăng nhập người dùng từ một bảng cụ thể
-        private function loginUserFromTable($table, $data = ['*'], $option = []) {
+        public function loginUserFromTable($table, $data = ['*'], $option = []) {
             return $this->login($table, $data, $option);
         }
     
@@ -31,7 +31,7 @@
         }
     
         // Phương thức chèn dữ liệu người dùng vào một bảng cụ thể
-        private function insertUserToTable($table, $keys, $data) {
+        public function insertUserToTable($table, $keys, $data) {
             return $this->insert($table, $keys, $data);
         }
     
@@ -40,7 +40,7 @@
         }
     
         // Phương thức cập nhật dữ liệu người dùng trong một bảng cụ thể
-        private function updateUserInTable($table, $columns, $value, $id, $option) {
+        public function updateUserInTable($table, $columns, $value, $id, $option) {
             return $this->update($table, $columns, $value, $id, $option);
         }
     

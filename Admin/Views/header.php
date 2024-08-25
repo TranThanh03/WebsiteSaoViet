@@ -40,7 +40,7 @@
                         <li><a href="index.php?controller=user&action=index">Khách hàng</a></li>
                         <li><a href="index.php?controller=tour&action=index">Tours</a></li>
                         <li><a href="index.php?controller=guide&action=index">Hướng dẫn viên</a></li>
-                        <li><a href="index.php?controller=appointment&action=index">Đặt lịch</a></li>
+                        <li><a href="index.php?controller=appointment&action=index">Lịch đặt</a></li>
                     </ul>
                 </div>
                 <!-- End menu -->

@@ -1,25 +1,29 @@
 <?php 
-    class CalendarContentController extends BaseController {
-        public $doctorModel;
+    class calendarContentController extends BaseController {
+        public $calendarModel;
         public $userModel;
-        public $CalendarModel;
-        public $RoomModel;
+        public $tourModel;
+        public $guideModel;
+
         public function __construct() {
-            $this->model('DoctorModel');
-            $this->doctorModel = new DoctorModel();
-            $this->userModel = new UserModel();
-            $this->CalendarModel = new CalendarModel();
-            $this->model('RoomModel');
-            $this->RoomModel = new RoomsModel();
+            $this->calendarModel = new calendarModel();
+            $this->userModel = new userModel();
+            
+            $this->model('tourModel');
+            $this->tourModel = new tourModel();
+
+            $this->model('guideModel');
+            $this->guideModel = new guideModel();
         }
 
         public function index() {
-            if(isset($_SESSION['username']) ) {
+            if(isset($_SESSION['username'])) {
                 $value = $_REQUEST['id'] ?? '';
                 $datas = $this->_get($value);
                 return $this->view("calendarContent.index",[
-                    'data'=>$datas['data'],
-                    'idUser'=>$datas['users'],
+                    'tour' => $datas['tour'],
+                    'user' => $datas['user'],
+                    'guide' => $datas['guide'] 
                 ]);
             } else {
                 header("Location: index.php?controller=user&action=index");
@@ -86,13 +90,15 @@
         }
 
         private function _get($value) {
-            $idUser = $this->userModel->getUser(['MaKH'], 'TenKH', $_SESSION['username']);
-            $users = $this->userModel->getUser(['MaKH','TenKH', 'DiaChi', 'username', 'email','NgaySinh','GioiTinh'], 'MaKH', $idUser['0']['MaKH']);
-            $data = $this->doctorModel->getById(['MaBS', 'TenBS', 'anh','GiaKham','bacsi.MaKhoa','TenKhoa'],"MaBS", $value);
+            $idUser = $this->userModel->getUser(['MaTK'], 'TenTK', $_SESSION['username'], userModel::TABLE_ACCOUNT);
+            $user = $this->userModel->getUser(['*'], 'MaTK', $idUser['0']['MaTK']);
+            $tour = $this->tourModel->getById(['MaTour', 'TenTour', 'AnhTour', 'Gia'],'MaTour', $value);
+            $guide = $this->guideModel->getById(['MaHDV', 'TenHDV', 'AnhHDV', 'Gia'],'MaTour', $value);
 
             return [
-                'data' => $data,
-                'users' => $users,
+                'tour' => $tour,
+                'user' => $user,
+                'guide' => $guide
             ];
         }
     } 

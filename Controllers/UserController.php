@@ -13,16 +13,27 @@
             return $this->view('user.register');
         }
 
+        private function isValidUsername($username) {
+            return preg_match('/^[a-zA-Z0-9_]+$/', $username);
+        }
+
         public function login() {
             if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $user = $_POST['username'];
                 $pass = $_POST['password'];
-                if(empty($user)|| empty($pass)) {
+                if(empty($user) || empty($pass)) {
                     return $this->view('user.login',[
-                        'warning' => 'Bạn cần nhập thông tin đăng nhập'
+                        'warning' => 'Bạn cần nhập thông tin đăng nhập!'
                     ]);
                 } 
-                $this->data = $this->userModel->loginUser(['TenTK', 'MatKhau', 'Quyen'], [$user, $pass], UserModel::TABLE_ACCOUNT);
+                else {
+                    if(!$this->isValidUsername($user)) {
+                        return $this->view('user.login',[
+                            'warning' => 'Tài khoản không hợp lệ!'
+                        ]);
+                    }
+                }
+                $this->data = $this->userModel->loginUser(['TenTK', 'MatKhau', 'Quyen'], [$user, $pass], userModel::TABLE_ACCOUNT);
             }
 
             if(!empty($this->data) && $this->data[0]['Quyen'] == 'user') {
@@ -36,7 +47,7 @@
                 header('location: /WebsiteSaoViet/Admin/index.php?controller=home&action=index');
             } 
             else {
-                $warning = "Số điện thoại hoặc mật khẩu không đúng";
+                $warning = "Tài khoản hoặc mật khẩu không đúng!";
                 return $this->view('user.login', 
                 ['warning' => $warning]);
             }
@@ -53,15 +64,22 @@
                 $email = $_POST['email'];
                 $username = $_POST['username'];
                 $password = $_POST['password'];
+
+                if(!$this->isValidUsername($username)) {
+                    return $this->view('user.login',[
+                        'warning' => 'Tên tài khoản chỉ cho phép chữ cái thường, chữ cái hoa, số, và dấu gạch dưới!'
+                    ]);
+                }
+
                 if($password !== $_POST['repeatpw']) {
                     return $this->view('user.register',[
-                        'warning' => 'Mật khẩu không khớp'
+                        'warning' => 'Mật khẩu không khớp!'
                     ]);
                 } 
 
                 if(empty($fullName) || empty($numberPhone) || empty($email) || empty($username) ||empty($password)) {
                     return $this->view('user.register',[
-                        'warning' => 'Không được để trống thông tin'
+                        'warning' => 'Không được để trống thông tin!'
                     ]);
                 } 
 
