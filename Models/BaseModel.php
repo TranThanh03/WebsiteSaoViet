@@ -69,21 +69,15 @@
 
         //Sửa dữ liệu
         public function update($table, $columns = [], $values = [], $id, $options) {
-            // Xử lý các giá trị đầu vào để tạo phần SET trong câu lệnh SQL
             $setColumns = [];
             for ($i = 0; $i < count($columns); $i++) {
                 $column = $columns[$i];
-                $value = $this->escape($values[$i]); // Sử dụng hàm escape để bảo vệ khỏi SQL Injection
+                $value = $this->escape($values[$i]);
                 $setColumns[] = "{$column} = '{$value}'";
             }
         
-            // Tạo phần SET của câu lệnh UPDATE từ các cặp cột-giá trị đã xử lý
             $setString = implode(', ', $setColumns);
-        
-            // Xây dựng câu lệnh SQL UPDATE
             $sql = "UPDATE {$table} SET {$setString} WHERE {$id} = '{$options}'";
-        
-            // Thực thi truy vấn SQL
             $query = $this->_query($sql);
         
             return $query;
@@ -101,14 +95,7 @@
             return $query;
         }
         private function escape($value) {
-            // Việc escape giá trị này phụ thuộc vào loại cơ sở dữ liệu bạn đang sử dụng
-            // Ví dụ, nếu đang sử dụng MySQL, bạn có thể sử dụng hàm mysqli_real_escape_string
-            // hoặc PDO để thực hiện việc escape giá trị này trước khi sử dụng trong câu lệnh SQL
-            // Ví dụ cho MySQLi:
-            // return mysqli_real_escape_string($this->connection, $value);
-            // Hoặc sử dụng PDO:
-            // return $this->pdo->quote($value);
-            return addslashes($value); // Ví dụ đơn giản, hãy thay đổi tùy theo loại cơ sở dữ liệu và thư viện bạn đang sử dụng
+            return addslashes($value);
         }
     }
 ?>

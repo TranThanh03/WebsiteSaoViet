@@ -32,8 +32,15 @@
         }
 
         public function search() {
-            $TenTour = $_POST['search_tenkhoa'];
-            header("location: index.php?controller=tour&action=list&name={$TenTour}");
+            $TenTour = $_POST['search_tour'] ?? '';
+            if($TenTour != '') {
+                $data = $this->tourModel->searchTour(['*'], 'TenTour', $TenTour);
+            } else {
+                $data = [];
+            }
+
+            return $this->view("tour.list", [
+                'data' => $data
+            ]);
         }
     }
-?>

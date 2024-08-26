@@ -23,7 +23,7 @@
                 echo '<link rel="stylesheet" href="./public/css/hotelDetail.css">';
             }
             else if($_REQUEST['controller'] === 'tour') {
-                if($_REQUEST['action'] === 'list') {
+                if($_REQUEST['action'] === 'list' || $_REQUEST['action'] === 'search') {
                     echo '<link rel="stylesheet" href="./public/css/listTour.css">';
                 } 
                 else {
