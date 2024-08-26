@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2024 at 03:33 PM
+-- Generation Time: Aug 26, 2024 at 01:19 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -37,16 +37,9 @@ CREATE TABLE `huongdanvien` (
   `Email` varchar(50) NOT NULL,
   `MoTa` text NOT NULL,
   `Gia` varchar(20) NOT NULL,
-  `MaTour` int(11) NOT NULL,
-  `DanhGia` int(5) DEFAULT NULL
+  `DanhGia` int(5) DEFAULT NULL,
+  `MaTour` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
-
---
--- Dumping data for table `huongdanvien`
---
-
-INSERT INTO `huongdanvien` (`MaHDV`, `TenHDV`, `AnhHDV`, `GioiTinh`, `NgaySinh`, `SDT`, `Email`, `MoTa`, `Gia`, `MaTour`, `DanhGia`) VALUES
-(1, 'Trần Văn Thành', 'Screenshot (52).png', 'Nam', '2003-10-22', 123456789, 'thanh@gmail.com', 'afdsghjhvrteyhtuayW$GƯEH', '4.500.000đ', 2, 5);
 
 -- --------------------------------------------------------
 
@@ -62,12 +55,21 @@ CREATE TABLE `khachhang` (
   `MaTK` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `khachhang`
+-- Table structure for table `lichdat`
 --
 
-INSERT INTO `khachhang` (`MaKH`, `TenKH`, `SDT`, `Email`, `MaTK`) VALUES
-(23, 'thanh tran', 825702210, 'thanhhkh3@gmail.com', 29);
+CREATE TABLE `lichdat` (
+  `MaLD` int(11) NOT NULL,
+  `MaKH` int(11) NOT NULL,
+  `MaTour` int(11) NOT NULL,
+  `TongTien` varchar(100) NOT NULL,
+  `MaHDV` int(11) DEFAULT NULL,
+  `ThoiGian` datetime DEFAULT NULL,
+  `TrangThai` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 -- --------------------------------------------------------
 
@@ -87,8 +89,7 @@ CREATE TABLE `taikhoan` (
 --
 
 INSERT INTO `taikhoan` (`MaTK`, `TenTK`, `MatKhau`, `Quyen`) VALUES
-(1, 'admin', '123', 'admin'),
-(29, 'thanh22', '123', 'user');
+(1, 'admin', '123', 'admin');
 
 -- --------------------------------------------------------
 
@@ -102,16 +103,9 @@ CREATE TABLE `tour` (
   `AnhTour` varchar(100) NOT NULL,
   `MoTa` text NOT NULL,
   `Gia` varchar(50) NOT NULL,
-  `GioiThieu` text DEFAULT NULL
+  `GioiThieu` text DEFAULT NULL,
+  `MaCD` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
-
---
--- Dumping data for table `tour`
---
-
-INSERT INTO `tour` (`MaTour`, `TenTour`, `AnhTour`, `MoTa`, `Gia`, `GioiThieu`) VALUES
-(2, 'HaLongBay 3 ngay di voi trang', 'Screenshot (52).png', '<p>son y&ecirc;u trang rat nhieu</p>\r\n', '4.500.000đ', 'dsfsdg'),
-(6, 'Yeu trang di', 'Screenshot (62).png', '<h1>Vịnh Hạ Long</h1>\r\n\r\n<p><strong>Vịnh Hạ Long</strong>&nbsp;được Unesco nhiều lần c&ocirc;ng nhận l&agrave;&nbsp;<strong>Di sản thi&ecirc;n nhi&ecirc;n của Thế giới</strong>&nbsp;với h&agrave;ng ngh&igrave;n h&ograve;n đảo được l&agrave;m n&ecirc;n bởi tạo ho&aacute; kỳ vĩ v&agrave; sống động. Vịnh Hạ Long c&oacute; phong cảnh tuyệt đẹp n&ecirc;n nơi đ&acirc;y l&agrave; một điểm du lịch rất hấp dẫn với du kh&aacute;ch trong nước v&agrave; quốc tế.</p>\r\n\r\n<p>Mới đ&acirc;y nhất, ng&agrave;y 16/9/2023, tại thủ đ&ocirc; Riyadh, Ả Rập X&ecirc; &Uacute;t,&nbsp;<strong>UNESCO lại một lần nữa vinh danh v&agrave; c&ocirc;ng nhận quần thể vịnh Hạ Long &ndash; quần đảo C&aacute;t B&agrave; l&agrave; Di sản thi&ecirc;n nhi&ecirc;n thế giới</strong>, bởi nơi đ&acirc;y chứa đựng c&aacute;c khu vực c&oacute; vẻ đẹp thi&ecirc;n nhi&ecirc;n bao gồm c&aacute;c đảo đ&aacute; v&ocirc;i c&oacute; thảm thực vật che phủ v&agrave; c&aacute;c đỉnh nhọn n&uacute;i đ&aacute; v&ocirc;i nh&ocirc; l&ecirc;n tr&ecirc;n mặt biển c&ugrave;ng với c&aacute;c đặc điểm karst li&ecirc;n quan như c&aacute;c m&aacute;i v&ograve;m v&agrave; hang động.</p>\r\n\r\n<p><strong><a href=\"https://www.dulichhalong.net/vinh-ha-long/\" target=\"_blank\">Vịnh Hạ Long</a>&nbsp;</strong>l&agrave; một di sản độc đ&aacute;o bởi địa danh n&agrave;y chứa đựng những dấu t&iacute;ch quan trọng trong qu&aacute; tr&igrave;nh h&igrave;nh th&agrave;nh v&agrave; ph&aacute;t triển lịch sử tr&aacute;i đất, l&agrave; c&aacute;i n&ocirc;i cư tr&uacute; của người Việt cổ, đồng thời l&agrave; t&aacute;c phẩm nghệ thuật tạo h&igrave;nh vĩ đại của thi&ecirc;n nhi&ecirc;n với sự hiện diện của h&agrave;ng ngh&igrave;n đảo đ&aacute; mu&ocirc;n h&igrave;nh vạn trạng, với nhiều hang động kỳ th&uacute; quần tụ th&agrave;nh một thế giới vừa sinh động vừa huyền b&iacute;. B&ecirc;n cạnh đ&oacute;, vịnh Hạ Long c&ograve;n l&agrave; nơi tập trung đa dạng sinh học cao với những hệ sinh th&aacute;i điển h&igrave;nh c&ugrave;ng với h&agrave;ng ngh&igrave;n lo&agrave;i động thực vật v&ocirc; c&ugrave;ng phong ph&uacute;, đa dạng. Nơi đ&acirc;y c&ograve;n gắn liền với những gi&aacute; trị văn h&oacute;a &ndash; lịch sử h&agrave;o h&ugrave;ng của d&acirc;n tộc.<br />\r\n&nbsp;</p>\r\n\r\n<p><strong><a href=\"https://www.dulichhalong.net/vinh-ha-long/\" target=\"_blank\">Vịnh Hạ Long</a>&nbsp;</strong>nổi bật với hệ thống đảo đ&aacute; v&agrave; hang động tuyệt đẹp. Đảo ở Hạ Long c&oacute; hai dạng l&agrave; đảo đ&aacute; v&ocirc;i v&agrave; đảo phiến thạch, tập trung ở hai v&ugrave;ng ch&iacute;nh l&agrave; v&ugrave;ng ph&iacute;a đ&ocirc;ng nam&nbsp;<strong><a href=\"https://www.dulichhalong.net/diem-du-lich/vinh-bai-tu-long/\">vịnh B&aacute;i Tử Long</a>&nbsp;</strong>v&agrave; v&ugrave;ng ph&iacute;a t&acirc;y nam vịnh Hạ Long. Đ&acirc;y l&agrave; h&igrave;nh ảnh cổ xưa nhất của địa h&igrave;nh c&oacute; tuổi kiến tạo địa chất từ 250 &ndash; 280 triệu năm, l&agrave; kết quả của qu&aacute; tr&igrave;nh vận động n&acirc;ng l&ecirc;n, hạ xuống nhiều lần từ lục địa th&agrave;nh trũng biển. Qu&aacute; tr&igrave;nh Carxto b&agrave;o m&ograve;n, phong ho&aacute; gần như ho&agrave;n to&agrave;n tạo ra một Hạ Long độc nhất v&ocirc; nhị tr&ecirc;n thế giới.</p>\r\n\r\n<p>H&agrave;ng trăm đảo đ&aacute;, mỗi đảo mang một h&igrave;nh d&aacute;ng kh&aacute;c nhau hết sức sinh động: h&ograve;n Đầu Người, h&ograve;n Rồng, h&ograve;n L&atilde; Vọng, h&ograve;n C&aacute;nh Buồm, h&ograve;n G&agrave; Chọi, h&ograve;n Lư Hương&hellip; Tiềm ẩn trong l&ograve;ng c&aacute;c đảo đ&aacute; ấy l&agrave; những hang động tuyệt đẹp gắn với nhiều truyền thuyết thần kỳ như&nbsp;<strong>động Thi&ecirc;n Cung</strong>,&nbsp;<strong>hang Đầu Gỗ</strong>,&nbsp;<strong>hang Sửng Sốt</strong>,&nbsp;<strong>hang Trinh Nữ, động Tam Cung</strong>&hellip; Đ&oacute; thực sự l&agrave; những l&acirc;u đ&agrave;i của tạo ho&aacute; giữa chốn trần gian. Từ xưa, Hạ Long đ&atilde; được đại thi h&agrave;o d&acirc;n tộc Nguyễn Tr&atilde;i mệnh danh l&agrave; &ldquo;kỳ quan đất dựng giữa trời cao&rdquo;.</p>\r\n', '4.950.000đ', NULL);
 
 --
 -- Indexes for dumped tables
@@ -130,6 +124,15 @@ ALTER TABLE `huongdanvien`
 ALTER TABLE `khachhang`
   ADD PRIMARY KEY (`MaKH`),
   ADD KEY `FK_KH_TK` (`MaTK`);
+
+--
+-- Indexes for table `lichdat`
+--
+ALTER TABLE `lichdat`
+  ADD PRIMARY KEY (`MaLD`),
+  ADD KEY `FK_LD_TOUR` (`MaTour`),
+  ADD KEY `FK_LD_KH` (`MaKH`),
+  ADD KEY `FK_LD_HDV` (`MaHDV`);
 
 --
 -- Indexes for table `taikhoan`
@@ -151,25 +154,31 @@ ALTER TABLE `tour`
 -- AUTO_INCREMENT for table `huongdanvien`
 --
 ALTER TABLE `huongdanvien`
-  MODIFY `MaHDV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `MaHDV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `khachhang`
 --
 ALTER TABLE `khachhang`
-  MODIFY `MaKH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `MaKH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `lichdat`
+--
+ALTER TABLE `lichdat`
+  MODIFY `MaLD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `taikhoan`
 --
 ALTER TABLE `taikhoan`
-  MODIFY `MaTK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `MaTK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `tour`
 --
 ALTER TABLE `tour`
-  MODIFY `MaTour` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `MaTour` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
@@ -186,6 +195,14 @@ ALTER TABLE `huongdanvien`
 --
 ALTER TABLE `khachhang`
   ADD CONSTRAINT `FK_KH_TK` FOREIGN KEY (`MaTK`) REFERENCES `taikhoan` (`MaTK`);
+
+--
+-- Constraints for table `lichdat`
+--
+ALTER TABLE `lichdat`
+  ADD CONSTRAINT `FK_LD_HDV` FOREIGN KEY (`MaHDV`) REFERENCES `huongdanvien` (`MaHDV`),
+  ADD CONSTRAINT `FK_LD_KH` FOREIGN KEY (`MaKH`) REFERENCES `khachhang` (`MaKH`),
+  ADD CONSTRAINT `FK_LD_TOUR` FOREIGN KEY (`MaTour`) REFERENCES `tour` (`MaTour`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
