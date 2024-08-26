@@ -4,7 +4,7 @@
     padding: 20px;
 }
 
-.booking-form h1 {
+.booking-form h2 {
     text-align: center;
     color: #333;
     margin-bottom: 30px;
@@ -72,15 +72,19 @@
 }
 
 .btn-submit {
-    background-color: #0066cc;
-    color: white;
+    background-color: #ffffff;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    display: block;
-    margin: 0 auto;
+    background-color: #5b9ddf;
+    margin-right: 20px;
+}
+
+.btn-submit a {
+    color: white;
+    text-decoration: none;
 }
 
 .btn-submit:hover {
@@ -122,4 +126,8 @@
     font-size: 20px;
     font-weight: bold;
     text-align: right;
+}
+
+.form-actions {
+    text-align: center;
 }

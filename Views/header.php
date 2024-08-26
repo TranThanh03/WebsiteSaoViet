@@ -33,11 +33,15 @@
             }
             else if($_REQUEST['controller'] === 'guide') {
                 echo '<link rel="stylesheet" href="./public/css/guide.css">';
+                echo '<link rel="stylesheet" href="./public/css/guideDetail.css">';
                 echo '<script defer src="./public/js/reviews.js"></script>';
             }
             else if($_REQUEST['controller'] === 'calendarContent') {
                 echo '<link rel="stylesheet" href="./public/css/calendarContent.css">';
-                echo '<script defer src="./public/js/reviews.js"></script>';
+                echo '<script defer src="./public/js/appointment.js"></script>';
+            }
+            else if($_REQUEST['controller'] === 'calendar') {
+                echo '<link rel="stylesheet" href="./public/css/calendar.css">';
             }
         }
     ?>
@@ -81,9 +85,11 @@
             </div>
             <div class="content-right">
                 <div class="icon-calendar">
-                    <img src="./public/icons/clock-regular.svg" alt="icon">
-                    <p>Lịch đặt</p>
-                    <span id="notification-calendar"></span>
+                    <a href="index.php?controller=calendar&action=index">
+                        <img src="./public/icons/clock-regular.svg" alt="icon">
+                        <p>Lịch đặt</p>
+                        <span id="notification-calendar"></span>
+                    </a>
                 </div>
                 <div class="icon-account">
                     <a href=" 
@@ -111,11 +117,11 @@
 
         <nav>
             <ul class="menu">
-                <li><a href="index.php">Trang chủ</a></li>
-                <li><a href="index.php?controller=tour&action=index">Tours</a></li>
-                <li><a href="index.php?controller=guide&action=index">Hướng dẫn viên</a></li>
-                <li><a href="index.php?controller=hotel&action=index">Khách sạn</a></li>
-                <li><a href="index.php?controller=news&action=index">Tin tức</a></li>
+                <li><a href="index.php">🏠Trang chủ</a></li>
+                <li><a href="index.php?controller=tour&action=index">✈️Tours</a></li>
+                <li><a href="index.php?controller=guide&action=index">🧑‍💼Hướng dẫn viên</a></li>
+                <li><a href="index.php?controller=hotel&action=index">🏩Khách sạn</a></li>
+                <li><a href="index.php?controller=news&action=index">📰Tin tức</a></li>
             </ul>
         </nav>
     </header>

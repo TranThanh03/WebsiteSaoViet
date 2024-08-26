@@ -1,0 +1,66 @@
+.container {
+    width: 100%; 
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.tour-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.tour-item {
+    display: flex;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    width: 100%;
+}
+
+.tour-item:hover {
+    transform: scale(1.02);
+}
+
+.tour-item img {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px;
+    object-fit: cover;
+}
+
+.tour-info {
+    flex-grow: 1;
+}
+
+.tour-info h3 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.tour-info p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.tour-info p strong {
+    color: #333;
+}
+
+.status-confirmed {
+    color: green;
+}
+
+.status-pending {
+    color: orange;
+}
+
+.status-cancelled {
+    color: red;
+}

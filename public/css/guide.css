@@ -127,6 +127,11 @@ h2 {
     max-height: 15px;
 }
 
-#totalEvaluate a {
+#totalEvaluate {
+    color: blue;
+}
+
+.guide-card a {
     text-decoration: none;
+    color: black;
 }

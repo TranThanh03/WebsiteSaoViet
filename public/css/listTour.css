@@ -46,6 +46,7 @@
 .tour-info p {
     margin-bottom: 15px;
     color: #666;
+    text-align: justify;
 }
 
 .tour-info strong {

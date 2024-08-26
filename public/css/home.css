@@ -537,3 +537,11 @@ footer .end span {
     left: 18px;
     font-weight: 700;
 }
+
+.icon-calendar a {
+    text-decoration: none;
+}
+
+.icon-calendar p {
+    color: white;
+}

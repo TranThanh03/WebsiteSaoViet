@@ -6,10 +6,10 @@
         </div>
         <div class="tour-summary">
             <h2>Giới thiệu</h2>
-            <p><?php echo $data[0]['GioiThieu']?></p>
-            <h2>Giá Tour</h2>
+            <p id="tour-introduction"><?php echo $data[0]['GioiThieu']?></p>
+            <h2 id="tour-totalCosts">Giá Tour</h2>
             <p class="price"><?php echo $data[0]['Gia']?>VND</p>
-            <a href="index.php?controller=calendarContent&action=index&id=<?php echo $data[0]['MaTour']?>"><button class="book-now">Đặt ngay</button></a>
+            <a href="index.php?controller=guide&action=index&idTour=<?php echo $data[0]['MaTour']?>"><button class="book-now">Đặt ngay</button></a>
         </div>
     </div>
 

@@ -16,13 +16,6 @@
     } else {
         
         require "./Views/header.php";
-        
-        if(!isset($_REQUEST['action'])  || (isset($_REQUEST['action']) && $_REQUEST['action'] !== 'delete')) {
-            require_once "./Controllers/CalendarController.php";
-            $controllerCalendar = new CalendarController;
-            $controllerCalendar -> index();
-        }
-
 
         require_once "./Controllers/{$controllerName}.php";
         $controllerObject = new $controllerName;

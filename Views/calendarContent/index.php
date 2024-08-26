@@ -1,8 +1,7 @@
-
 <main class="booking-form">
     <h1>Đặt Tour</h1>
     
-    <form action="#" method="POST" id="booking-form">
+    <form action="index.php?controller=calendarContent&action=booking" method="POST" id="booking-form">
         <div class="form-container">
             <section class="tour-info">
                 <h2>Thông tin tour</h2>
@@ -11,55 +10,61 @@
                 </div>
                 <div class="form-group">
                     <label for="tour-code">Mã tour:</label>
-                    <input type="text" id="tour-code" name="tour-code" value="<?php echo $tour[0]['MaTour']?>" disabled>
+                    <input type="text" id="tour-code" name="tour-code" value="<?php echo $tour[0]['MaTour']?>" readonly>
                 </div>
                 <div class="form-group">
                     <label for="tour-name">Tên tour:</label>
                     <input type="text" id="tour-name" name="tour-name" value="<?php echo $tour[0]['TenTour']?>" disabled>
                 </div>
                 <div class="form-group">
-                    <label for="duration">Giá:</label>
-                    <input type="text" id="duration" name="duration" value="<?php echo $tour[0]['Gia']?>VND" disabled>
+                    <label for="tour-costs">Giá:</label>
+                    <input class= "cost" type="text" id="tour-costs" name="tour-costs" value="<?php echo $tour[0]['Gia']?>VND" disabled>
                 </div>
             </section>
 
             <section class="customer-info">
                 <h2>Thông tin người đặt</h2>
+                <input type="hidden" id="user-code" name="user-code" value="<?php echo $user[0]['MaKH']?>" readonly>
                 <div class="form-group">
                     <label for="fullname">Họ và tên:</label>
                     <input type="text" id="fullname" name="fullname" value="<?php echo $user[0]['TenKH']?>" disabled>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="text" id="email" name="email" value="<?php echo $user[0]['Email']?>" disabled>
-                </div>
-                <div class="form-group">
                     <label for="phone">Số điện thoại:</label>
                     <input type="text" id="phone" name="phone" value="<?php echo $user[0]['SDT']?>" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" value="<?php echo $user[0]['Email']?>" disabled>
                 </div>
             </section>
         </div>
 
-        <section class="guide-selection">
-            <h2>Chọn hướng dẫn viên</h2>
-            <div class="form-group">
-                <label for="guide">Hướng dẫn viên:</label>
-                <select id="guide" name="guide" required>
-                    <option value="">Chọn hướng dẫn viên</option>
-                    <option value="guide1">Nguyễn Văn A</option>
-                    <option value="guide2">Trần Thị B</option>
-                    <option value="guide3">Lê Văn C</option>
-                </select>
+        <div class="guide-info">
+            <h2>Thông tin hướng dẫn viên</h2>
+            <div class="guide-image">
+                <img src="./Admin/public/img/guide/<?php echo $guide[0]['AnhHDV']?>" alt="anh" id="guide-image">
             </div>
-        </section>
+            <div class="guide-content">
+                <input type="hidden" id="guide-code" name="guide-code" value="<?php echo $guide[0]['MaHDV']?>" readonly>
+                <div class="form-group">
+                    <label for="guide-name">Tên hướng dẫn viên:</label>
+                    <input type="text" id="guide-name" name="guide-name" value="<?php echo $guide[0]['TenHDV']?>" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="guide-costs">Giá:</label>
+                    <input class= "cost" type="text" id="guide-costs" name="guide-costs" value="<?php echo $guide[0]['Gia']?>VND" disabled>
+                </div>
+            </div>
+        </div>
 
-        <div class="form-group">
+        <div class="form-group" id="total-group">
             <label for="total-price">Tổng tiền:</label>
             <input type="text" id="total-price" name="total-price" readonly>
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn-submit">Xác nhận đặt tour</button>
+            <button type="submit" class="btn-submit">Xác nhận đặt Tour</button>
         </div>
     </form>
 </main>

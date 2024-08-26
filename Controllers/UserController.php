@@ -83,21 +83,29 @@
                     ]);
                 } 
 
-                $userByPhone = $this->userModel->getUser(["*"], 'SDT', $numberPhone, UserModel::TABLE_USER);
-                $userByEmail = $this->userModel->getUser(["*"], 'Email', $email, UserModel::TABLE_USER);
+                $userByPhone = $this->userModel->getUser(["SDT"], 'SDT', $numberPhone, userModel::TABLE_USER);
+                $userByEmail = $this->userModel->getUser(["Email"], 'Email', $email, userModel::TABLE_USER);
+                $userByUsername = $this->userModel->getUser(["TenTK"], 'TenTK', $username, userModel::TABLE_ACCOUNT);
 
-                if(!empty($userByPhone)) {
+                if(!empty($userByUsername)) {
                     return $this->view('user.register',[
-                        'warning' => 'Số điện thoại đã tồn tại'
+                        'warning' => 'Tài khoản đã tồn tại!'
                     ]);
-                } else if(!empty($userByEmail)) {
+                }
+                else if(!empty($userByPhone)) {
                     return $this->view('user.register',[
-                        'warning' => 'Email đã tồn tại'
+                        'warning' => 'Số điện thoại đã tồn tại!'
                     ]);
-                } else {
-                    $dataAccount = $this->userModel->insertUser(['TenTK','MatKhau', 'Quyen'], ["'{$username}'", "'{$password}'", "'user'"], UserModel::TABLE_ACCOUNT);
-                    $getIdAccount = $this->userModel->getUser(['MaTK'], 'TenTK', $username, UserModel::TABLE_ACCOUNT);
-                    $dataUser = $this->userModel->insertUser(['TenKH','SDT', 'Email', 'MaTK'], ["'{$fullName}'", "'{$numberPhone}'", "'{$email}'", "'{$getIdAccount[0]['MaTK']}'"], UserModel::TABLE_USER);
+                } 
+                else if(!empty($userByEmail)) {
+                    return $this->view('user.register',[
+                        'warning' => 'Email đã tồn tại!'
+                    ]);
+                } 
+                else {
+                    $dataAccount = $this->userModel->insertUser(['TenTK','MatKhau', 'Quyen'], ["'{$username}'", "'{$password}'", "'user'"], userModel::TABLE_ACCOUNT);
+                    $getIdAccount = $this->userModel->getUser(['MaTK'], 'TenTK', $username, userModel::TABLE_ACCOUNT);
+                    $dataUser = $this->userModel->insertUser(['TenKH','SDT', 'Email', 'MaTK'], ["'{$fullName}'", "'{$numberPhone}'", "'{$email}'", "'{$getIdAccount[0]['MaTK']}'"], userModel::TABLE_USER);
                     if($dataAccount && $dataUser) {
                         $_SESSION['username'] = $username;
                         header('location: index.php?controller=user&action=login');

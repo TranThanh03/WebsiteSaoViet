@@ -1,52 +1,53 @@
-<!-- calendar -->
-<div class="calendar">
-    <div class="title">
-        <span>Lịch đặt</span>
-        <button type="button" id="btn-close"><img src="./public/icons/xmark-solid.svg" alt="icon"></button>
-    </div>
-    <div class="content">
-        <?php if(isset($_SESSION['sdt'])):?>
-            <?php foreach($data as $calendar):?>
-                <div class="sub-content">
-                    <div class="icon-sub">
-                        <img src="./public/icons/calendar-regular.svg" alt="icon">
-                    </div>
-                    <div class="infor-calendar">
-                        <div>
-                            <p>Mã phiếu khám: <span id="id-calendar"><?php echo $calendar['MaLichKham']?></span></p>
-                        </div>
-                        <div>
-                            <p>Thời gian khám: <span id="time">
-                                <?php 
-                                    $date = date('d/m/Y', strtotime($calendar['NgayKham']));
-                                    echo $calendar['ThoiGianKham'] . " | ". $date;
-                                ?>
-                            </span></p>
-                        </div>
-                        <div>
-                            <p>Phòng khám: <span id="room"><?php echo $calendar['TenPhongKham']?></span></p>
-                        </div>
-                        <div>
-                            <p>Khoa: <span id="name-faculty"><?php echo $calendar['TenKhoa']?></span></p>
-                        </div>
-                        <div>
-                            <p>Bác sĩ: <span id="name-doctor"><?php echo $calendar['TenBS']?></span></p>
-                        </div>
-                        <div>
-                            <p>Trạng thái: <span id="status"><?php echo $calendar['TenTrangThai']?></span></p>
+<?php if(isset($_SESSION['username'])):?> 
+    <?php if(!empty($data)):?>    
+        <main>
+            <div class="container">
+                <div class="tour-list">
+                    <div class="tour-item">
+                        <img src="/images/tour_1.jpg" alt="Hạ Long Bay">
+                        <div class="tour-info">
+                            <h3>Hạ Long Bay</h3>
+                            <p><strong>Mã tour:</strong> T001</p>
+                            <p><strong>Ngày đặt:</strong> 2024-07-15</p>
+                            <p><strong>Ngày khởi hành:</strong> 2024-08-01</p>
+                            <p><strong>Hướng dẫn viên:</strong> Nguyễn Văn A</p>
+                            <p class="status-confirmed"><strong>Trạng thái:</strong> Đã xác nhận</p>
                         </div>
                     </div>
-                    <div class="cancel">
-                        <p><a href="index.php?controller=calendar&action=delete&id=<?php echo $calendar['MaLichKham']?>"><span>Hủy lịch</span></a></p>
+            
+                    <div class="tour-item">
+                        <img src="/images/tour_2.jpg" alt="Phú Quốc">
+                        <div class="tour-info">
+                            <h3>Phú Quốc</h3>
+                            <p><strong>Mã tour:</strong> T002</p>
+                            <p><strong>Ngày đặt:</strong> 2024-08-10</p>
+                            <p><strong>Ngày khởi hành:</strong> 2024-08-20</p>
+                            <p><strong>Hướng dẫn viên:</strong> Trần Thị B</p>
+                            <p class="status-pending"><strong>Trạng thái:</strong> Đang chờ xác nhận</p>
+                        </div>
+                    </div>
+            
+                    <div class="tour-item">
+                        <img src="/images/tour_3.jpg" alt="Hội An">
+                        <div class="tour-info">
+                            <h3>Hội An</h3>
+                            <p><strong>Mã tour:</strong> T003</p>
+                            <p><strong>Ngày đặt:</strong> 2024-06-01</p>
+                            <p><strong>Ngày khởi hành:</strong> 2024-07-01</p>
+                            <p><strong>Hướng dẫn viên:</strong> Lê Văn C</p>
+                            <p class="status-cancelled"><strong>Trạng thái:</strong> Đã hủy</p>
+                        </div>
                     </div>
                 </div>
-            <?php endforeach;?>
-        <?php endif;?>
-        <?php if(!isset($_SESSION['sdt'])):?>
-            <h3>Chưa có thông tin</h3>
-        <?php endif;?>
-    </div>
-    <div class="total">
-        <p>Tổng: <span id="totalCalendar"></span></p>
-    </div>
-</div>
+            </div>
+        </main>
+    <?php else:?>
+        <main style="height: 500px; padding: 10px 20px;">
+            <h2>Chưa có tour nào được đặt. Hãy tìm hiểu các lựa chọn du lịch tuyệt vời cùng Sao Việt Traveloka!</h2>
+        </main>
+    <?php endif;?>  
+<?php else:?>
+    <main style="height: 500px; padding: 10px 20px;">
+        <h2>Không có dữ liệu!</h2>
+    </main>
+<?php endif;?>    

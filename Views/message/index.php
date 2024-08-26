@@ -1,5 +1,6 @@
-<?php if(($_REQUEST['controller'] === 'calendar' && $_REQUEST['action'] === 'delete') || ($_REQUEST['controller'] === 'CalendarContent' && $_REQUEST['action'] === 'booking')):?>
+<?php if(($_REQUEST['controller'] === 'calendar' && $_REQUEST['action'] === 'delete') || ($_REQUEST['controller'] === 'calendarContent' && $_REQUEST['action'] === 'booking')):?>
     <div class="message">
+        <?php echo '<link rel="stylesheet" href="./public/css/message.css">';?>
         <h2><?php echo $title?></h2>
 
         <p><?php echo $message?></p>

@@ -18,15 +18,11 @@
     border-radius: 10px;
 }
 
-.tour-summary h2 {
-    margin-top: 20px;
-}
-
 .tour-summary p.price {
     font-size: 24px;
     color: #de2e2e;
     font-weight: bold;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .book-now {
@@ -52,3 +48,16 @@
     font-size: 28px;
     margin-bottom: 20px;
 }
+
+.tour-detail p {
+    text-align: justify;
+}
+
+.tour-summary #tour-introduction {
+    text-align: justify;
+    margin-bottom: 5px;
+}
+
+.tour-summary #tour-totalCosts {
+    padding-top: 10px;
+} 

@@ -11,7 +11,15 @@
         public function getById($columns = ['*'], $id, $value) {
             return $this->getOption(self::TABLE, $columns, $id, $value);
         }
+
+        public function getCalendar($columns = ['*'], $id, $value) {
+            return $this->getOption(self::GETTABLE, $columns, $id, $value);
+        }
+
         public function createCalendar($keys, $values) {
             return $this->insert(self::GETTABLE, $keys, $values);
+        }
+        public function cancelCalendar($columns, $value, $id, $option) {
+            return $this->update(self::GETTABLE, $columns, $value, $id, $option);
         }
     }

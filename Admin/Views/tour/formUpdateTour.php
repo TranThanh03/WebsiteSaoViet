@@ -9,7 +9,9 @@
                     <label for="name">Tên Tour:</label>
                     <input id="name" name="TenTour" type="text" style="width: 400px; height: 30px; margin-left: 85px" value="<?php echo $data['TenTour']?>"><br><br>
                     <label for="gioithieu">Giới thiệu:</label>
-                    <textarea name="GioiThieu" id="gioithieu" cols="45" rows="10"></textarea><br><br>
+                    <textarea name="GioiThieu" id="gioithieu" cols="45" rows="10">
+                        <?php echo $data['GioiThieu']?>
+                    </textarea><br><br>
                     <label for="tour" id="anh">Chủ đề:</label>
                     <select id="tour" name="MaCD" style="height: 30px; width: 200px; margin-left: 88px">
                         <option value="<?php echo $data['MaCD']?>" selected>

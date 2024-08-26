@@ -15,7 +15,14 @@
         <link
             rel="stylesheet"
             href="./public/fonts/fontawesome-free-6.5.2-web/css/all.min.css"/>
-            
+        
+        <?php
+            if(isset($_REQUEST['controller'])) {
+                if($_REQUEST['controller'] === 'appointment' && $_REQUEST['action'] === 'detail') {
+                    echo '<link rel="stylesheet" href="./public/css/appointment.css"/>';
+                }
+            }
+        ?>   
     </head>
     <body>
         
