@@ -89,6 +89,10 @@ header .icon-calendar {
     font-weight: 500;
 }
 
+header .icon-calendar a {
+    text-decoration: none;
+}
+
 header p {
     margin-top: 10px;
     font-size: 15px;
