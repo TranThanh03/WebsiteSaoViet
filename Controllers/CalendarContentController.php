@@ -6,7 +6,10 @@
         public $guideModel;
 
         public function __construct() {
+            $this->model('calendarModel');
             $this->calendarModel = new calendarModel();
+            
+            $this->model('userModel');
             $this->userModel = new userModel();
             
             $this->model('tourModel');
