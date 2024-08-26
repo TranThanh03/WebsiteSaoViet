@@ -27,8 +27,8 @@
 }
 
 .tour-item img {
-    width: 200px;
-    height: auto;
+    width: 300px;
+    height: 100%;
     border-radius: 8px;
     margin-right: 20px;
     object-fit: cover;
@@ -63,4 +63,22 @@
 
 .status-cancelled {
     color: red;
+}
+
+.tour-info a {
+    text-decoration: none;
+}
+
+.tour-info button {
+    border: none;
+    width: 100px;
+    height: 30px;
+    color: white;
+    background-color: rgb(50, 147, 244);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tour-info button:hover {
+    background-color: rgb(9, 128, 246);
 }

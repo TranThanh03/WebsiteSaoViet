@@ -21,6 +21,11 @@
 
         public function index() {
             $data = $this->appointmentModel->getAll();
+            usort($data, function($a, $b) {
+                $order = ['Đang xử lý' => 1, 'Xác nhận' => 2, 'Hủy' => 3];
+                return $order[$a['TrangThai']] <=> $order[$b['TrangThai']];
+            });
+
             return $this->view("appointment.index",
                 ['data' => $data]
             );
@@ -35,10 +40,7 @@
 
                 return $this->view("appointment.detail",
                     [
-                        'data' => $data,
-                        'user' => $user,
-                        'guide' => $guide,
-                        'tour' => $tour
+                        'data' => $data
                     ]
                 );
             }

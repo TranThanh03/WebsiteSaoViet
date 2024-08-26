@@ -4,7 +4,7 @@
             <section class="tour-info">
                 <h2>Thông tin tour</h2>
                 <div class="tour-image">
-                    <img src="./public/img/tour/<?php echo $tour[0]['AnhTour']?>" alt="anh" id="tour-image">
+                    <img src="./public/img/tour/<?php echo $data[0]['AnhTour']?>" alt="anh" id="tour-image">
                 </div>
                 <div class="form-group">
                     <label for="tour-code">Mã tour:</label>
@@ -12,11 +12,11 @@
                 </div>
                 <div class="form-group">
                     <label for="tour-name">Tên tour:</label>
-                    <input type="text" id="tour-name" name="tour-name" value="<?php echo $tour[0]['TenTour']?>" disabled>
+                    <input type="text" id="tour-name" name="tour-name" value="<?php echo $data[0]['TenTour']?>" disabled>
                 </div>
                 <div class="form-group">
                     <label for="tour-costs">Giá:</label>
-                    <input class= "cost" type="text" id="tour-costs" name="tour-costs" value="<?php echo $tour[0]['Gia']?>VND" disabled>
+                    <input class= "cost" type="text" id="tour-costs" name="tour-costs" value="<?php echo $data[0]['Gia']?>VND" disabled>
                 </div>
             </section>
 
@@ -28,15 +28,15 @@
                 </div>
                 <div class="form-group">
                     <label for="fullname">Họ và tên:</label>
-                    <input type="text" id="fullname" name="fullname" value="<?php echo $user[0]['TenKH']?>" disabled>
+                    <input type="text" id="fullname" name="fullname" value="<?php echo $data[0]['TenKH']?>" disabled>
                 </div>
                 <div class="form-group">
                     <label for="phone">Số điện thoại:</label>
-                    <input type="text" id="phone" name="phone" value="<?php echo $user[0]['SDT']?>" disabled>
+                    <input type="text" id="phone" name="phone" value="<?php echo $data[0]['SDT']?>" disabled>
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="text" id="email" name="email" value="<?php echo $user[0]['Email']?>" disabled>
+                    <input type="text" id="email" name="email" value="<?php echo $data[0]['Email']?>" disabled>
                 </div>
             </section>
         </div>
@@ -44,16 +44,16 @@
         <div class="guide-info">
             <h2>Thông tin hướng dẫn viên</h2>
             <div class="guide-image">
-                <img src="./public/img/guide/<?php echo $guide[0]['AnhHDV']?>" alt="anh" id="guide-image">
+                <img src="./public/img/guide/<?php echo $data[0]['AnhHDV']?>" alt="anh" id="guide-image">
             </div>
             <div class="guide-content">
                 <div class="form-group">
                     <label for="guide-name">Tên hướng dẫn viên:</label>
-                    <input type="text" id="guide-name" name="guide-name" value="<?php echo $guide[0]['TenHDV']?>" disabled>
+                    <input type="text" id="guide-name" name="guide-name" value="<?php echo $data[0]['TenHDV']?>" disabled>
                 </div>
                 <div class="form-group">
                     <label for="guide-costs">Giá:</label>
-                    <input class= "cost" type="text" id="guide-costs" name="guide-costs" value="<?php echo $guide[0]['Gia']?>VND" disabled>
+                    <input class= "cost" type="text" id="guide-costs" name="guide-costs" value="<?php echo $data[0]['Gia']?>VND" disabled>
                 </div>
             </div>
         </div>

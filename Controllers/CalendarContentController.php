@@ -52,7 +52,7 @@
                         'message' => 'Vui lòng để ý Tour đã đặt!'
                     ]);
                 } else {
-                    return $this->view("cmessage.index",[
+                    return $this->view("message.index",[
                         'title' => 'Đặt Tour không thành công',
                         'message' => 'Không thể đặt Tour, vui lòng đặt Tour lại!',
                     ]);
