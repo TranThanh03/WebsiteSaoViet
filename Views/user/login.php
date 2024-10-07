@@ -31,7 +31,7 @@
                             font-weight: 600;
                         "
                     >
-                        Sao Việt
+                        Sao Việt Traveloka
                     </p>
                     <small
                         class="text-white text-wrap text-center fs-4"
@@ -104,29 +104,6 @@
                                 echo "<p style='color: red; padding-top:4px;'>{$warning}</p>";
                             }
                         ?>
-                        </div>
-                        <div class="input-group mb-3 d-flex">
-                            <div>
-                                <button class="btn btn-lg btn-light w-100 fs-6">
-                                    <img
-                                        src="./public/img/login/a1fb.png"
-                                        style="width: 20px"
-                                        class="me-2"
-                                    />
-                                    <small>Sign in with FaceBook</small>
-                                </button>
-                            </div>
-
-                            <div>
-                                <button class="btn btn-lg btn-light w-100 fs-6">
-                                    <img
-                                        src="./public/img/login/gg2.png"
-                                        style="width: 30px"
-                                        class="me-2"
-                                    />
-                                    <small>Sign in with Google</small>
-                                </button>
-                            </div>
                         </div>
 
                         <!-- day la div cua create account -->
