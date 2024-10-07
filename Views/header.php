@@ -88,7 +88,7 @@
                     <a href="index.php?controller=calendar&action=index">
                         <img src="./public/icons/clock-regular.svg" alt="icon">
                         <p>Lịch đặt</p>
-                        <span id="notification-calendar"></span>
+                        <span id="notification-calendar">.</span>
                     </a>
                 </div>
                 <div class="icon-account">

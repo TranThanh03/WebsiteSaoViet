@@ -53,6 +53,8 @@
             }
         }
         public function logout() {
+            setcookie("status", "active", time() - 3600, "/");
+
             unset($_SESSION['username']);
             header('location: index.php?controller=home&action=index' );
         }

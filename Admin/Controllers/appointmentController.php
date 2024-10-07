@@ -22,7 +22,7 @@
         public function index() {
             $data = $this->appointmentModel->getAll();
             usort($data, function($a, $b) {
-                $order = ['Đang xử lý' => 1, 'Xác nhận' => 2, 'Hủy' => 3];
+                $order = ['Đang xử lý' => 1, 'Đã xác nhận' => 2, 'Đã hủy' => 3];
                 return $order[$a['TrangThai']] <=> $order[$b['TrangThai']];
             });
 
@@ -55,12 +55,12 @@
             } else {
                 if($status === 'confirm') {
                     $this->appointmentModel->updateAppointment(
-                    ['TrangThai'], ["Xác nhận"]
+                    ['TrangThai'], ["Đã xác nhận"]
                     , 'MaLD', $id);
                 } 
                 else {
                     $this->appointmentModel->updateAppointment(
-                    ['TrangThai'], ["Hủy"]
+                    ['TrangThai'], ["Đã hủy"]
                     , 'MaLD', $id);
                 }
                 

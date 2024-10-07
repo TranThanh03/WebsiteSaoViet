@@ -47,6 +47,7 @@
                                                                         [$MaKH, $MaTour, $MaHDV, "'{$TongTien}'", "'{$CurrentTime}'", "'Đang xử lý'"]);
                     
                 if(!empty($createCalendar)) {
+                    setcookie("status", "active", time() + (86400 * 30), "/");
                     return $this->view('message.index',[
                         'title' => 'Đặt Tour thành công',
                         'message' => 'Vui lòng để ý Tour đã đặt!'

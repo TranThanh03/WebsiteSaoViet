@@ -12,6 +12,8 @@
         }
         public function index() {
             if (isset($_SESSION['username'])) {
+                setcookie("status", "active", time() - 3600, "/");
+
                 $idAcc = $this->userModel->getUser(['MaTK'], 'TenTK', $_SESSION['username'], userModel::TABLE_ACCOUNT);
                 $idUser = $this->userModel->getUser(['MaKH'], 'MaTK', $idAcc[0]['MaTK'], userModel::TABLE_USER);
                 $idCalendar = $this->calendarModel->getCalendar(['MaLD'], 'MaKH', $idUser[0]['MaKH']);
@@ -24,7 +26,7 @@
                     }
                     
                     usort($arrayData, function($a, $b) {
-                        $order = ['Đang xử lý' => 1, 'Xác nhận' => 2, 'Hủy' => 3];
+                        $order = ['Đang xử lý' => 1, 'Đã xác nhận' => 2, 'Đã hủy' => 3];
                         return $order[$a[0]['TrangThai']] <=> $order[$b[0]['TrangThai']];
                     });
 
@@ -44,7 +46,7 @@
 
         public function cancel() {
             $id = $_REQUEST['id'];
-            $data = $this->calendarModel->cancelCalendar(['TrangThai'], ['Hủy'], 'MaLD', $id);
+            $data = $this->calendarModel->cancelCalendar(['TrangThai'], ['Đã hủy'], 'MaLD', $id);
 
             if(!empty($data)) {
                 echo "
