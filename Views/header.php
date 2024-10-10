@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sao Việt Traveloka - Vivu ba miền</title>
+    <title>Sao Việt - Vivu ba miền</title>
     <link rel="icon" href="./public/img/logo.jpg" type="image/jpg">
     <link rel="stylesheet" href="./public/css/home.css">
     <script defer src="./public/js/general.js"></script>

@@ -1,6 +1,6 @@
     <footer>
         <div class="infor">
-            <h4>Sao Việt Traveloka - Vivu ba miền</h4>
+            <h4>Sao Việt - Vivu ba miền</h4>
             <span><img src="./public/icons/location-dot-solid.svg" alt="icon"></span><p>1 Hoàng Công Chất, Phú Diễn, Nam Từ Liêm, Hà Nội, Việt Nam</p>
             <span><img src="./public/icons/phone-solid.svg" alt="icon"></span><p>0399999999 </p>
             <span><img src="./public/icons/envelope-solid.svg" alt="icon"></span><p>support@saoviet.com</p>

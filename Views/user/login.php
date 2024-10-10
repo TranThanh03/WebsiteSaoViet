@@ -31,7 +31,7 @@
                             font-weight: 600;
                         "
                     >
-                        Sao Việt Traveloka
+                        Sao Việt
                     </p>
                     <small
                         class="text-white text-wrap text-center fs-4"

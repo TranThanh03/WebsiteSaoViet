@@ -13,10 +13,15 @@
 
         public function index() {
             if(isset($_REQUEST['idTour'])) {
-                $data = $this->guideModel->getById(['*'], "MaTour", $_REQUEST['idTour']);
-                return $this->view("guide.index",[
-                    'data' => $data
-                ]);
+                if(isset($_SESSION['username'])) {
+                    $data = $this->guideModel->getById(['*'], "MaTour", $_REQUEST['idTour']);
+                    return $this->view("guide.index",[
+                        'data' => $data
+                    ]);
+                }
+                else {
+                    header("Location: index.php?controller=user&action=index");
+                }
             }
             else {
                 $data = $this->guideModel->getAll();
