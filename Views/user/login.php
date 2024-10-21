@@ -54,24 +54,30 @@
 
                             <div
                                 class="input-group mb-3"
-                                style="font-family: 'Segoe UI'"
+                                style="font-family: 'Segoe UI'; display: block;"
                             >
+                                <p><b>Tài khoản</b></p>
                                 <input
                                     type="text"
-                                    placeholder="Tài khoản"
                                     class="form-control form-control-lg bg-light fs-6"
+                                    style="width: 100%; border-radius: 8px;"
+                                    placeholder="Email/SĐT"
                                     name="username"
+                                    value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>"
                                 />
                             </div>
                             <div
                                 class="input-group mb-1"
-                                style="font-family: 'Segoe UI'"
+                                style="font-family: 'Segoe UI'; display: block;"
                             >
+                                <p><b>Mật khẩu</b></p>
                                 <input
                                     type="password"
-                                    placeholder="Mật khẩu"
                                     class="form-control form-control-lg bg-light fs-6"
+                                    style="width: 100%; border-radius: 8px;"
+                                    placeholder="**********"
                                     name="password"
+                                    value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>"
                                 />
                             </div>
                             <div

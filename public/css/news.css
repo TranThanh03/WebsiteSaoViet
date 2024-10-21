@@ -53,10 +53,6 @@ h1 {
     border-radius: 4px;
 }
 
-.news-list a{
-    text-decoration: none;
-}
-
 .news-list a:hover {
     color: skyblue;
 }

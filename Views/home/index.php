@@ -35,12 +35,12 @@
         </div>
         <div class="container">
             <div class="content" id="tour">
-                <?php foreach($dataTour as $tour):?>
+                <?php foreach($tours as $tour):?>
                     <div class="sub-list" id="sub-tour">
-                        <a href="index.php?controller=tour&action=detail&id=<?php echo $tour['MaTour']?>">
-                            <img src="./Admin/public/img/tour/<?php echo $tour['AnhTour']?>" alt="anh tour" id="avatar-tour">
-                            <h4 id="tour-name"><?php echo $tour['TenTour']?></h4>
-                            <span id="tour-price"><?php echo $tour['Gia']?>VND</span>
+                        <a href="index.php?controller=tour&action=detail&id=<?php echo $tour->MaTour?>">
+                            <img src="./Admin/public/img/tour/<?php echo $tour->AnhTour?>" alt="anh tour" id="avatar-tour">
+                            <h4 id="tour-name"><?php echo $tour->TenTour?></h4>
+                            <span id="tour-price"><?php echo $tour->Gia?>VND</span>
                         </a>
                     </div>
                 <?php endforeach;?>
@@ -64,14 +64,14 @@
         </div>
         <div class="container">
             <div class="content" id="guide">
-                <?php foreach($dataGuide as $guide):?>
+                <?php foreach($guides as $guide):?>
                     <div class="sub-list" id="sub-guide">
-                        <a href="index.php?controller=guide&action=detail&id=<?php echo $guide['MaHDV']?>">
-                            <img id="avatar-guide" src="./Admin/public/img/guide/<?php echo $guide['AnhHDV']?>" alt="anh hdv">
-                            <h4 id="guide-name"><?php echo $guide['TenHDV']?></h4>
+                        <a href="index.php?controller=guide&action=detail&id=<?php echo $guide->MaHDV?>">
+                            <img id="avatar-guide" src="./Admin/public/img/guide/<?php echo $guide->AnhHDV?>" alt="anh hdv">
+                            <h4 id="guide-name"><?php echo $guide->TenHDV?></h4>
                             <span id="guide-age">
                                 <?php 
-                                    $ngaySinh = new DateTime($guide['NgaySinh']);
+                                    $ngaySinh = new DateTime($guide->NgaySinh);
                                     $ngayHienTai = new DateTime();
                                     $tuoi = $ngayHienTai->diff($ngaySinh)->y;
                                     
@@ -91,14 +91,3 @@
             </button>
         </div>
     </div>
-<script>
-    window.addEventListener("load", () => {
-        const aElement = document.querySelector('.menu a');
-        aElement.style.color = 'white';
-        aElement.style.backgroundColor = '#45C3D2';
-        if(sessionStorage.getItem("navStatus") != 0) {
-            sessionStorage.setItem("navStatus", "0");
-            location.reload();
-        }
-    })
-</script>

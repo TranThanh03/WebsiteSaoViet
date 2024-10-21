@@ -12,35 +12,35 @@
 
         public function detail() {
             $value = $_REQUEST['id'] ?? '';
-            $data = $this->tourModel->getById(['*'],"MaTour", $value);
+            $tour = $this->tourModel->getById(['*'],"MaTour", $value);
             return $this->view("tour.detail", [
-                'data'=>$data,
+                'tour'=>$tour,
             ]);
         }
 
         public function list() {
             $value = $_REQUEST['id'] ?? '';
             if($value != '') {
-                $data = $this->tourModel->getById(['*'],"MaCD", $value);
+                $tours = $this->tourModel->getById(['*'],"MaCD", $value);
             } else {
-                $data = $this->tourModel->getAll();
+                $tours = $this->tourModel->getAll();
             }
 
             return $this->view("tour.list", [
-                'data' => $data
+                'tours' => $tours
             ]);
         }
 
         public function search() {
-            $TenTour = $_POST['search_tour'] ?? '';
-            if($TenTour != '') {
-                $data = $this->tourModel->searchTour(['*'], 'TenTour', $TenTour);
+            $nameTour = $_POST['search_tour'] ?? '';
+            if($nameTour != '') {
+                $tours = $this->tourModel->searchTour(['*'], 'TenTour', $nameTour);
             } else {
-                $data = [];
+                $tours = [];
             }
 
             return $this->view("tour.list", [
-                'data' => $data
+                'tours' => $tours
             ]);
         }
     }

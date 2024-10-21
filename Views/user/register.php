@@ -12,27 +12,23 @@
             <h1 class="text-center " >Đăng ký tài khoản</h1>
             <form action="index.php?controller=user&action=createAccount" method="post">
               <div class="form-floating mb-1 mt-1">
-                <input type="text" class="form-control" id="email" placeholder="Họ và tên" name="full-name">
+                <input type="text" class="form-control" id="email" placeholder="Họ và tên" name="full-name" value="<?php echo isset($_POST['full-name']) ? htmlspecialchars($_POST['full-name']) : ''; ?>">
                 <label for="name">Họ và tên</label>
               </div>
               <div class="form-floating  mb-1 mt-1">
-                <input type="text" class="form-control" id="phone" placeholder="Enter password" name="number-phone">
+                <input type="text" class="form-control" id="phone" placeholder="Enter password" name="number-phone" value="<?php echo isset($_POST['number-phone']) ? htmlspecialchars($_POST['number-phone']) : ''; ?>">
                 <label for="telephone">Số điện thoại</label>
               </div>
               <div class="form-floating mb-1 mt-1">
-                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
                 <label for="email">Email</label>
               </div>
-              <div class="form-floating  mb-1 mt-1">
-                <input type="text" class="form-control" id="une" placeholder="Enter username" name="username">
-                <label for="une">Tên tài khoản</label>
-              </div>
               <div class="form-floating mb-1 mt-1">
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>">
                 <label for="pwd">Mật khẩu</label>
               </div>
               <div class="form-floating mb-1 mt-1 ml-3">
-                <input type="password" class="form-control" id="email" placeholder="Enter email" name="repeatpw">
+                <input type="password" class="form-control" id="email" placeholder="Enter email" name="repeatpw" value="<?php echo isset($_POST['repeatpw']) ? htmlspecialchars($_POST['repeatpw']) : ''; ?>">
                 <label for="pwd" class="form-floating">Nhập lại mật khẩu</label>
               </div>
               <div>

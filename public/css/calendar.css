@@ -82,3 +82,43 @@
 .tour-info button:hover {
     background-color: rgb(9, 128, 246);
 }
+
+.tour-info span {
+    font-size: 18px;
+}
+
+.tour-info #startDate {
+    color: #ffc107;
+}
+
+.tour-info #endDate {
+    color: #34b7c6;
+}
+
+.notifi {
+    border: 2px solid green;
+    width: 320px;
+    height: 80px;
+    position: fixed;
+    top: -80px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: white;
+    border-radius: 10px;
+    transition: top 0.3s ease;
+    overflow: hidden;
+}
+
+.notifi .title #message {
+    font-size: 18px;
+    color: green;
+    position: relative;
+    display: block;
+    top: -37px;
+    right: -38px;
+}
+
+.notifi .title {
+    padding: 20px 0px 0px 10px;
+    height: 72px;
+}

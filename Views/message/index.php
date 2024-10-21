@@ -1,32 +1,40 @@
-<?php if(($_REQUEST['controller'] === 'calendar' && $_REQUEST['action'] === 'delete') || ($_REQUEST['controller'] === 'calendarContent' && $_REQUEST['action'] === 'booking')):?>
+<?php if($_REQUEST['controller'] === 'calendarContent' && $_REQUEST['action'] === 'booking'):?>
+    <?php echo '<link rel="stylesheet" href="./public/css/message.css">';?>
     <div class="message">
-        <?php echo '<link rel="stylesheet" href="./public/css/message.css">';?>
-        <h2><?php echo $title?></h2>
-
-        <p><?php echo $message?></p>
-
-        <p style="color: blue;">Về trang chủ sau <span id="countdown"></span>s</p>
-        <a href="index.php"></a>
+        <input type="hidden" id="code"value="<?=$code?>">
+        <h2><?=$title?></h2>
+        <p><?=$message?></p>
+        <p id="goHome">Về trang chủ sau <span id="countdown"></span>s</p>
+        <br>
+        <a id="goCalendar" href="<?=$href?>"><span id="calendar"><?=$messageAction?></span></a>
     </div>
 <?php endif;?>
 
 <script>
-    let count = 3;
-    const countDown = document.querySelector('.message #countdown');
-    
-    countDown.textContent = count;
-    
-    const interval = setInterval(() => {
-        countDown.textContent = --count;
-    }, 1000)
+    const code = document.querySelector('.message #code');
+    if(code.value == 0) {
+        let count = 3;
+        const countDown = document.querySelector('.message #countdown');
+        const goHome = document.querySelector('.message #goHome');
+        
+        goHome.style.display = "block";
+        
+        countDown.textContent = count;
+        
+        const interval = setInterval(() => {
+            countDown.textContent = --count;
+        }, 1000)
 
-    function goHome() {
-        const tagA =document.querySelector('.message a');
-        tagA.click();
+        setTimeout(() => {
+            clearInterval(interval);
+            window.location.href = "index.php";
+        }, 3000);
     }
+    else {
+        const tagH2 = document.querySelector('.message h2');
+        const goCalendar = document.querySelector('.message #goCalendar');
 
-    setTimeout(() => {
-        goHome();
-        clearInterval(interval);
-    }, 3000);
+        tagH2.style.color = "red";
+        goCalendar.style.display = "block";
+    }
 </script>

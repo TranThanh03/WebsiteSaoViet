@@ -150,10 +150,6 @@ nav .menu a {
     font-size: 20px;
 }
 
-nav .menu a:hover {
-    color: #45c3d2;
-}
-
 .space {
     height: 160px;
     margin-bottom: 280px;
@@ -421,115 +417,11 @@ footer .end {
 }
 
 footer .end hr {
-    width: 1265px;
+    width: 1480px;
 }
 
 footer .end span {
     font-size: 11px;
-}
-
-.calendar {
-    width: 420px;
-    height: 710px;
-    background-color: rgb(241, 240, 240);
-    position: absolute;
-    right: -430px;
-    top: 0;
-    z-index: 3;
-}
-
-.calendar .title {
-    text-align: center;
-    padding-bottom: 75px;
-    height: 30px;
-}
-
-.calendar .title span {
-    position: relative;
-    top: 15px;
-}
-
-.calendar #btn-close {
-    float: right;
-    border: none;
-    background: none;
-    position: relative;
-    right: 15px;
-    top: 10px;
-    width: 20px;
-    cursor: pointer;
-}
-
-.calendar .content {
-    height: 585px;
-    overflow-y: scroll;
-    padding: 0 10px 0 15px;
-}
-
-.calendar .total {
-    padding: 5px 0 0 350px;
-    font-weight: 700;
-}
-
-.calendar .total span {
-    font-weight: normal;
-}
-
-.calendar .sub-content {
-    width: 380px;
-    background-color: rgb(215, 216, 216);
-    margin-bottom: 15px;
-    padding: 10px;
-    border-radius: 20px;
-}
-
-.calendar .sub-content #time {
-    font-weight: bold;
-    color: #de2e2e;
-}
-
-.calendar .sub-content #room {
-    font-weight: 600;
-}
-
-.calendar .icon-sub {
-    float: left;
-    width: 40px;
-}
-
-.calendar .sub-content img {
-    max-width: 40px;
-    padding: 10px 5px 0 5px;
-}
-
-.calendar .sub-content p {
-    clear: both;
-    height: 28px;
-    padding-top: 5px;
-}
-
-.calendar .infor-calendar {
-    float: right;
-    width: 300px;
-    margin-right: 5px;
-}
-
-.calendar .infor-calendar span {
-    float: right;
-    display: block;
-}
-
-.calendar .cancel {
-    clear: both;
-    height: 30px;
-}
-
-.calendar .cancel span {
-    float: right;
-    margin: 5px 10px 0 0;
-    color: orange;
-    font-size: 17px;
-    font-weight: 500;
 }
 
 .icon-calendar #notification-calendar {
@@ -549,4 +441,10 @@ footer .end span {
 
 .icon-calendar p {
     color: white;
+}
+
+.active {
+    background-color: #45C3D2;
+    border-radius: 20px;
+    padding: 2px 5px 5px 5px;
 }

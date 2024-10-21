@@ -2,6 +2,8 @@
     class calendarContentController extends BaseController {
         public $calendarModel;
         public $userModel;
+
+        public $accountModel;
         public $tourModel;
         public $guideModel;
 
@@ -11,12 +13,29 @@
             
             $this->model('userModel');
             $this->userModel = new userModel();
+
+            $this->model('accountModel');
+            $this->accountModel = new accountModel();
             
             $this->model('tourModel');
             $this->tourModel = new tourModel();
 
             $this->model('guideModel');
             $this->guideModel = new guideModel();
+        }
+
+        private function _get($idTour, $idGuide) {
+            $user = $this->userModel->getUser(['*'], 'Email', $_SESSION['username']);
+            $account = $this->accountModel->getAccount(['SDT'], 'MaTK', $user[0]->MaTK);
+            $tour = $this->tourModel->getById(['MaTour', 'TenTour', 'AnhTour', 'Gia'],'MaTour', $idTour);
+            $guide = $this->guideModel->getById(['MaHDV', 'TenHDV', 'AnhHDV', 'DanhGia', 'Gia'],'MaHDV', $idGuide);
+
+            return [
+                'tour' => $tour,
+                'account' => $account,
+                'user' => $user,
+                'guide' => $guide
+            ];
         }
 
         public function index() {
@@ -28,6 +47,7 @@
                 return $this->view("calendarContent.index",[
                     'tour' => $datas['tour'],
                     'user' => $datas['user'],
+                    'account' => $datas['account'],
                     'guide' => $datas['guide'] 
                 ]);
             } else {
@@ -35,43 +55,132 @@
             }
         }
 
-        public function booking() {
-            if($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $MaKH = $_POST['user-code'];
-                $MaTour = $_POST['tour-code'];
-                $MaHDV = $_POST['guide-code'];
-                $TongTien = str_replace("VND", "", $_POST['total-price']);
-                $CurrentTime = date('Y-m-d H:i:s');
+        public function execPostRequest($url, $data)
+        {
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                    'Content-Type: application/json',
+                    'Content-Length: ' . strlen($data))
+            );
+            curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+            $result = curl_exec($ch);
+            curl_close($ch);
+            return $result;
+        }
+
+        public function payment() {
+            try {
+                if(isset($_POST['payUrl'])) {
+                    $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
+
+                    $partnerCode = 'MOMOBKUN20180529';
+                    $accessKey = 'klm05TvNBzhg7h7j';
+                    $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
+                    $orderInfo = "Thanh toán qua MoMo";
+                    $amount = str_replace('.', '', str_replace("VND", "", $_POST['total-price']));
+                    $orderId = rand(1, 1000);
+                    $redirectUrl = "http://localhost/WebsiteSaoViet/index.php?controller=calendarContent&action=booking&idUser=" . $_REQUEST['idUser'] . "&idTour=" . $_REQUEST['idTour'] . "&idGuide=" . $_REQUEST['idGuide'];    
+                    $ipnUrl = "http://localhost/WebsiteSaoViet/index.php?controller=calendarContent&action=booking&idUser=" . $_REQUEST['idUser'] . "&idTour=" . $_REQUEST['idTour'] . "&idGuide=" . $_REQUEST['idGuide'];
+                    $extraData = "";
+
+                    $serectkey = $secretKey;
+
+                    $requestId = time() . "";
+                    $requestType = "payWithATM";
+                    $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
+                    $signature = hash_hmac("sha256", $rawHash, $serectkey);
+                    $data = array(
+                        'partnerCode' => $partnerCode,
+                        'partnerName' => "Test",
+                        "storeId" => "MomoTestStore",
+                        'requestId' => $requestId,
+                        'amount' => $amount,
+                        'orderId' => $orderId,
+                        'orderInfo' => $orderInfo,
+                        'redirectUrl' => $redirectUrl,
+                        'ipnUrl' => $ipnUrl,
+                        'lang' => 'vi',
+                        'extraData' => $extraData,
+                        'requestType' => $requestType,
+                        'signature' => $signature);
+                    $result = $this->execPostRequest($endpoint, json_encode($data));
+                    $jsonResult = json_decode($result, true);
+                    if (isset($jsonResult['payUrl'])) {
+                        header('Location: ' . $jsonResult['payUrl']);
+                    }
+                    else {
+                        header('Location: index.php?controller=calendarContent&action=error');
+                    }
+                }
+            }
+            catch(Exception $e) {
                 
-                $createCalendar = $this->calendarModel->createCalendar(['MaKH','MaTour','MaHDV', 'TongTien', 'ThoiGian', 'TrangThai'], 
-                                                                        [$MaKH, $MaTour, $MaHDV, "'{$TongTien}'", "'{$CurrentTime}'", "'Đang xử lý'"]);
+            }
+        }
+
+        public function booking() {
+            if (!empty($_GET)) {
+                $resultCode = $_GET["resultCode"];
+
+                if ($resultCode == 0) {
+                    $MaKH = $_REQUEST['idUser'];
+                    $MaTour = $_REQUEST['idTour'];
+                    $MaHDV = $_REQUEST['idGuide'];
+                    $TongTien = number_format($_GET['amount'], 0, ',', '.');
+                    $CurrentTime = date('Y-m-d H:i:s');
                     
-                if(!empty($createCalendar)) {
-                    setcookie("status", "active", time() + (86400 * 30), "/");
-                    return $this->view('message.index',[
-                        'title' => 'Đặt Tour thành công',
-                        'message' => 'Vui lòng để ý Tour đã đặt!'
-                    ]);
+                    $createCalendar = $this->calendarModel->createCalendar(['MaKH','MaTour','MaHDV', 'TongTien', 'ThoiGian', 'TrangThai'], 
+                                                                            [$MaKH, $MaTour, $MaHDV, $TongTien, $CurrentTime, "Đang xử lý"]);
+                        
+                    if(!empty($createCalendar)) {
+                        echo "<script>sessionStorage.setItem('statusCalendar', 'true');</script>";
+                        return $this->view('message.index',[
+                            'code' => 0,
+                            'title' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50" fill="green">
+                                            <circle cx="12" cy="12" r="10" fill="none" stroke="green" stroke-width="2"/>
+                                            <path d="M6 12l4 4l8-8" fill="none" stroke="green" stroke-width="2"/>
+                                        </svg>
+                                        <p>Đặt Tour thành công</p>',
+                            'message' => 'Cảm ơn bạn đã đặt tour tại website Sao Việt!',
+                            'messageAction' => "",
+                            'href' => '#'
+                        ]);
+                    } else {
+                        return $this->view("message.index",[
+                            'code' => 1,
+                            'title' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50" fill="red">
+                                            <circle cx="12" cy="12" r="10" fill="none" stroke="red" stroke-width="2"/>
+                                            <line x1="8" y1="8" x2="16" y2="16" stroke="red" stroke-width="2"/>
+                                            <line x1="16" y1="8" x2="8" y2="16" stroke="red" stroke-width="2"/>
+                                        </svg>                                       
+                                        <p>Đặt Tour không thành công</p>',
+                            'message' => 'Có lỗi khi đặt tour. Vui lòng đặt Tour lại!',
+                            'messageAction' => "Đặt tour",
+                            'href' => "index.php?controller=calendarContent&action=index&idUser=" . $_REQUEST['idUser'] . "&idTour=" . $_REQUEST['idTour'] . "&idGuide=" . $_REQUEST['idGuide']
+                        ]);
+                    }
                 } else {
                     return $this->view("message.index",[
-                        'title' => 'Đặt Tour không thành công',
-                        'message' => 'Không thể đặt Tour, vui lòng đặt Tour lại!',
+                        'code' => 1,
+                        'title' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50" fill="red">
+                                        <circle cx="12" cy="12" r="10" fill="none" stroke="red" stroke-width="2"/>
+                                        <line x1="8" y1="8" x2="16" y2="16" stroke="red" stroke-width="2"/>
+                                        <line x1="16" y1="8" x2="8" y2="16" stroke="red" stroke-width="2"/>
+                                    </svg>                                       
+                                    <p>Đặt Tour không thành công</p>',
+                        'message' => 'Có lỗi khi đặt tour. Vui lòng đặt Tour lại!',
+                        'messageAction' => "Đặt tour",
+                        'href' => "index.php?controller=calendarContent&action=index&idUser=" . $_REQUEST['idUser'] . "&idTour=" . $_REQUEST['idTour'] . "&idGuide=" . $_REQUEST['idGuide']
                     ]);
                 }
             }
-
         }
 
-        private function _get($idTour, $idGuide) {
-            $idUser = $this->userModel->getUser(['MaTK'], 'TenTK', $_SESSION['username'], userModel::TABLE_ACCOUNT);
-            $user = $this->userModel->getUser(['*'], 'MaTK', $idUser['0']['MaTK']);
-            $tour = $this->tourModel->getById(['MaTour', 'TenTour', 'AnhTour', 'Gia'],'MaTour', $idTour);
-            $guide = $this->guideModel->getById(['MaHDV', 'TenHDV', 'AnhHDV', 'DanhGia', 'Gia'],'MaHDV', $idGuide);
-
-            return [
-                'tour' => $tour,
-                'user' => $user,
-                'guide' => $guide
-            ];
+        public function error() {
+            return $this->view("message.error");
         }
     } 

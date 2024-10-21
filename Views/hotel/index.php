@@ -65,15 +65,14 @@
                 <p>Giá từ: 800,000 VNĐ/đêm</p>
                 <a href="index.php?controller=hotel&action=detail" class="btn-detail">Xem chi tiết</a>
             </div>
-            <!-- Thêm các khách sạn khác tương tự -->
         </div>
 
-        <!-- <div class="pagination">
+        <div class="pagination">
             <a href="#" class="active">1</a>
             <a href="#">2</a>
             <a href="#">3</a>
             <a href="#">4</a>
             <a href="#">5</a>
             <a href="#">Tiếp &raquo;</a>
-        </div> -->
+        </div>
     </main>

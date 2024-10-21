@@ -7,12 +7,11 @@
     <title>Sao Việt - Vivu ba miền</title>
     <link rel="icon" href="./public/img/logo.jpg" type="image/jpg">
     <link rel="stylesheet" href="./public/css/home.css">
-    <script defer src="./public/js/general.js"></script>
-
+    
     <?php
         if(isset($_REQUEST['controller'])) {
             if($_REQUEST['controller'] === 'home') {
-                echo '<script defer src="./public/js/home.js"></script>';
+                echo '<script src="./public/js/home.js"></script>';
             }
             else if($_REQUEST['controller'] === 'news') {
                 echo '<link rel="stylesheet" href="./public/css/news.css">';
@@ -34,38 +33,26 @@
             else if($_REQUEST['controller'] === 'guide') {
                 echo '<link rel="stylesheet" href="./public/css/guide.css">';
                 echo '<link rel="stylesheet" href="./public/css/guideDetail.css">';
-                echo '<script defer src="./public/js/reviews.js"></script>';
+                echo '<script src="./public/js/reviews.js"></script>';
             }
-            else if($_REQUEST['controller'] === 'calendarContent') {
+            else if($_REQUEST['controller'] === 'calendarContent' && $_REQUEST['action'] === 'index') {
                 echo '<link rel="stylesheet" href="./public/css/calendarContent.css">';
-                echo '<script defer src="./public/js/appointment.js"></script>';
+                echo '<script src="./public/js/appointment.js"></script>';
             }
             else if($_REQUEST['controller'] === 'calendar') {
                 echo '<link rel="stylesheet" href="./public/css/calendar.css">';
             }
         }
-    ?>
-     
-    <script>
-        function submitForm(event) {
-            event.preventDefault();
-            document.getElementById("search_form").submit();
+        else {
+            echo '<script src="./public/js/home.js"></script>';
         }
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.addEventListener("keydown", function(event) {
-                if (event.key === "Enter") {
-                    submitForm(event);
-                }
-            });
-        });
-
-        window.onbeforeunload = function() {
-            window.location.reload(true);
-        };
-    </script>
+    ?>
+    <script src="./public/js/general.js"></script>
+    <?php
+        if(!isset($_SESSION['username'])) {
+            echo "<script>sessionStorage.removeItem('statusCalendar');</script>";
+        }
+    ?>
 </head>
 
 <body>
@@ -78,7 +65,7 @@
             <div class="search">
                 <div class="sub-search">
                     <form id="search_form" action="index.php?controller=tour&action=search" method="post">
-                        <input type="text" placeholder="Tìm kiếm Tours" name="search_tour">
+                        <input type="text" placeholder="Tìm kiếm Tours" name="search_tour" value="<?php echo isset($_POST['search_tour']) ? htmlspecialchars($_POST['search_tour']) : ''; ?>">
                         <button type="submit"><img src="./public/icons/search.svg" alt="icon"></button>
                     </form>
                 </div>
@@ -128,3 +115,5 @@
     <?php if (!isset($_REQUEST['controller']) || $_REQUEST['controller'] === 'home') : ?>
         <div class="space"></div>
     <?php endif; ?>
+    
+</div>

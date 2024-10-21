@@ -21,10 +21,18 @@
 
         public function index() {
             $data = $this->appointmentModel->getAll();
-            usort($data, function($a, $b) {
+            
+            usort($calendars, function($a, $b) {
                 $order = ['Đang xử lý' => 1, 'Đã xác nhận' => 2, 'Đã hủy' => 3];
-                return $order[$a['TrangThai']] <=> $order[$b['TrangThai']];
+                $statusComparison = $order[$a[0]->TrangThai] <=> $order[$b[0]->TrangThai];
+            
+                if ($statusComparison === 0) {
+                    return $b[0]->MaLD <=> $a[0]->MaLD;
+                }
+        
+                return $statusComparison;
             });
+            
 
             return $this->view("appointment.index",
                 ['data' => $data]

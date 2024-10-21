@@ -29,8 +29,6 @@
                     thích check-in thì Phan Thiết là địa điểm không thể bỏ lỡ trong mùa hè này vì nơi đây còn nhiều khu giữ được nét hoang sơ, hùng vĩ.
                 </p>
             
-            <!-- Thêm nội dung chi tiết cho các bãi biển khác -->
-            
             <h2>Lời kết</h2>
             <p>Việt Nam tự hào có nhiều bãi biển tuyệt đẹp, mỗi nơi đều mang một vẻ đẹp riêng...</p>
         </div>
@@ -53,7 +51,6 @@
         
         <div class="comments-section">
             <h3>Bình luận</h3>
-            <!-- Thêm hệ thống bình luận ở đây -->
             <form class="comment-form">
                 <textarea placeholder="Nhập bình luận của bạn"></textarea>
                 <button type="submit">Gửi bình luận</button>
@@ -80,10 +77,9 @@
     <aside class="sidebar">
         <section class="popular-posts">
             <h3>Bài viết phổ biến</h3>
-            <!-- Danh sách các bài viết phổ biến -->
             <ul>
                 <li>
-                    <a href="/index//chiTietTinTuc.html">
+                    <a href="#">
                         <img src="./public/img/news/popular-post-1.jpg" alt="Ảnh bài viết phổ biến 1">
                         <div class="popular-post-info">
                             <h4>10 món ăn đường phố must-try ở Hà Nội</h4>
@@ -92,7 +88,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/index/chiTietTinTuc.html">
+                    <a href="#">
                         <img src="./public/img/news/popular-post-2.jpg" alt="Ảnh bài viết phổ biến 2">
                         <div class="popular-post-info">
                             <h4>Hướng dẫn du lịch Đà Lạt tiết kiệm</h4>
@@ -101,7 +97,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/index/chiTietTinTuc.html">
+                    <a href="#">
                         <img src="./public/img/news/popular-post-3.jpg" alt="Ảnh bài viết phổ biến 3">
                         <div class="popular-post-info">
                             <h4>5 resort sang trọng nhất ở Phú Quốc</h4>
@@ -114,7 +110,6 @@
         
         <section class="news-categories">
             <h3>Chuyên mục</h3>
-            <!-- Danh sách các chuyên mục -->
             <ul>
                 <li><a href="#">Điểm đến hot</a></li>
                 <li><a href="#">Ẩm thực du lịch</a></li>
@@ -127,7 +122,6 @@
         
         <section class="newsletter">
             <h3>Đăng ký nhận tin</h3>
-            <!-- Form đăng ký nhận tin -->
             <p>Nhận những thông tin du lịch mới nhất và ưu đãi hấp dẫn!</p>
             <form>
                 <input type="email" placeholder="Nhập email của bạn">

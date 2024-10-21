@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    sessionStorage.setItem("navLiIndex", 0);
     functionSlide();
     functionSlide_2();
     functionSlide_3();

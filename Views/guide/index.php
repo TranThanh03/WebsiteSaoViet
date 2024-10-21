@@ -5,24 +5,24 @@
         <section class="guide-list">
             <h2>Danh sách hướng dẫn viên</h2>
             <div class="guide-grid">
-                <?php foreach($data as $value):?>
+                <?php foreach($guides as $value):?>
                     <div class="guide-card">
-                        <a href="index.php?controller=calendarContent&action=index&idTour=<?php echo $_REQUEST['idTour']?>&idGuide=<?php echo $value['MaHDV']?>">
-                            <img src="./Admin/public/img/guide/<?php echo $value['AnhHDV']?>" alt="anh">
-                            <h3><?php echo $value['TenHDV']?></h3>
-                            <p>Thông tin: <?php echo $value['GioiTinh']?> - 
+                        <a href="index.php?controller=calendarContent&action=index&idTour=<?php echo $_REQUEST['idTour']?>&idGuide=<?php echo $value->MaHDV?>">
+                            <img src="./Admin/public/img/guide/<?php echo $value->AnhHDV?>" alt="anh">
+                            <h3><?php echo $value->TenHDV?></h3>
+                            <p>Thông tin: <?php echo $value->GioiTinh?> - 
                                         <?php 
-                                            $ngaySinh = new DateTime($value['NgaySinh']);
+                                            $ngaySinh = new DateTime($value->NgaySinh);
                                             $ngayHienTai = new DateTime();
                                             $tuoi = $ngayHienTai->diff($ngaySinh)->y;
                                             
                                             echo $tuoi;
                                         ?>
                                         tuổi</p>
-                            <p>Đánh giá: <span id="evaluate"><?php echo $value['DanhGia']?></span></p>
-                            <p>Giá: <span style="color: red;"><?php echo $value['Gia']?>VND</span></p>
+                            <p>Đánh giá: <span id="evaluate"><?php echo $value->DanhGia?></span></p>
+                            <p>Giá: <span style="color: red;"><?php echo $value->Gia?>VND</span></p>
                         </a>
-                        <p style="text-align: center;"><a href="index.php?controller=guide&action=detail&id=<?php echo $value['MaHDV']?>"><button type="button">Xem chi tiết</button></a></p>
+                        <p style="text-align: center;"><a href="index.php?controller=guide&action=detail&id=<?php echo $value->MaHDV?>"><button type="button">Xem chi tiết</button></a></p>
                     </div>
                 <?php endforeach;?>
             </div>
@@ -40,22 +40,22 @@
         <section class="guide-list">
             <h2>Danh sách hướng dẫn viên</h2>
             <div class="guide-grid">
-                <?php foreach($data as $value):?>
+                <?php foreach($guides as $value):?>
                     <div class="guide-card">
-                        <img src="./Admin/public/img/guide/<?php echo $value['AnhHDV']?>" alt="anh">
-                        <h3><?php echo $value['TenHDV']?></h3>
-                        <p>Thông tin: <?php echo $value['GioiTinh']?> - 
+                        <img src="./Admin/public/img/guide/<?php echo $value->AnhHDV?>" alt="anh">
+                        <h3><?php echo $value->TenHDV?></h3>
+                        <p>Thông tin: <?php echo $value->GioiTinh?> - 
                                     <?php 
-                                        $ngaySinh = new DateTime($value['NgaySinh']);
+                                        $ngaySinh = new DateTime($value->NgaySinh);
                                         $ngayHienTai = new DateTime();
                                         $tuoi = $ngayHienTai->diff($ngaySinh)->y;
                                         
                                         echo $tuoi;
                                     ?>
                                     tuổi</p>
-                        <p>Đánh giá: <span id="evaluate"><?php echo $value['DanhGia']?></span></p>
-                        <p>Giá: <span style="color: red;"><?php echo $value['Gia']?>VND</span></p>
-                        <p style="text-align: center;"><a href="index.php?controller=guide&action=detail&id=<?php echo $value['MaHDV']?>"><button type="button">Xem chi tiết</button></a></p>
+                        <p>Đánh giá: <span id="evaluate"><?php echo $value->DanhGia?></span></p>
+                        <p>Giá: <span style="color: red;"><?php echo $value->Gia?>VND</span></p>
+                        <p style="text-align: center;"><a href="index.php?controller=guide&action=detail&id=<?php echo $value->MaHDV?>"><button type="button">Xem chi tiết</button></a></p>
                     </div>
                 <?php endforeach;?>
             </div>

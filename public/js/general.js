@@ -1,33 +1,26 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const aElement = document.querySelectorAll('.menu a');
-    const notifiStatus = document.getElementById('notification-calendar');
+    let liElements = document.querySelectorAll('.menu li a');
+    let liIndex =  sessionStorage.getItem("navLiIndex");
+    let statusCalendar = sessionStorage.getItem('statusCalendar');
+    let iconCalendar = document.querySelector(".icon-calendar");
+
+    if(liIndex != null) {
+        liElements.forEach(el => el.parentElement.classList.remove('active'));
+        liElements[liIndex].parentElement.classList.add('active');
+    }
     
-    aElement.forEach((element, index) => {
-        element.addEventListener("click", () => {
-            sessionStorage.setItem("navStatus", index);
+    liElements.forEach((element, index) => {
+        element.addEventListener('click', function () {
+            sessionStorage.setItem("navLiIndex", index);
         })
     });
 
-    let checkStatus = sessionStorage.getItem("navStatus");
-    if(checkStatus) {
-        aElement[checkStatus].style.backgroundColor = '#45C3D2';
+    if(statusCalendar && statusCalendar == 'true') {
+        const notifiCalendar = document.querySelector(".icon-calendar #notification-calendar");
+        notifiCalendar.style.display = "block";
     }
 
-    function getCookie(name) {
-        let cookieArr = document.cookie.split(";");
-        
-        for (let i = 0; i < cookieArr.length; i++) {
-            let cookiePair = cookieArr[i].split("=");
-            
-            if (name == cookiePair[0].trim()) {
-                return decodeURIComponent(cookiePair[1]);
-            }
-        }
-        
-        return null;
-    }
-
-    if(getCookie('status') == 'active') {
-        notifiStatus.style.display = 'block';
-    }
-})
+    iconCalendar.addEventListener('click', () => {
+        sessionStorage.removeItem('statusCalendar');
+    })
+});

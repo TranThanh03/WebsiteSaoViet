@@ -14,12 +14,15 @@
         $controllerObject = new $controllerName;
         $controllerObject -> $actionName();
     } else {
+        if(!isset($_REQUEST['action']) || (isset($_REQUEST['action']) && $_REQUEST['action'] != "error")) {
+            require "./Views/header.php";
+        }
         
-        require "./Views/header.php";
-
         require_once "./Controllers/{$controllerName}.php";
         $controllerObject = new $controllerName;
         $controllerObject -> $actionName();
         
-        require "./Views/footer.php";
+        if(!isset($_REQUEST['action']) || (isset($_REQUEST['action']) && $_REQUEST['action'] != "error")) {
+            require "./Views/footer.php";
+        }
     }

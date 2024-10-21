@@ -116,6 +116,7 @@ h2 {
     background-color: #ffc10e;
     color: white;
     cursor: pointer;
+    font-size: 18px;
 }
 
 .guide-card button:hover {

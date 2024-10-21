@@ -18,7 +18,7 @@
     border-radius: 10px;
 }
 
-.tour-summary p.price {
+.tour-infor p#price {
     font-size: 24px;
     color: #de2e2e;
     font-weight: bold;
@@ -53,11 +53,19 @@
     text-align: justify;
 }
 
-.tour-summary #tour-introduction {
+.tour-infor #tour-introduction {
     text-align: justify;
     margin-bottom: 5px;
 }
 
-.tour-summary #tour-totalCosts {
-    padding-top: 10px;
-} 
+.tour-infor #date {
+    margin-bottom: 10px;
+}
+
+.tour-infor #price-tour {
+    margin-top: 30px;
+}
+
+.tour-infor p {
+    font-size: 18px;
+}

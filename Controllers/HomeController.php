@@ -9,12 +9,12 @@
             $this->guideModel = new guideModel();
         }
         public function index() {
-            $dataTour = $this->tourModel->getAll();
-            $dataGuide = $this->guideModel->getById(['MaHDV', 'TenHDV', 'AnhHDV', 'NgaySinh'], 'DanhGia', '5');
+            $tours = $this->tourModel->getAll();
+            $guides = $this->guideModel->getById(['MaHDV', 'TenHDV', 'AnhHDV', 'NgaySinh'], 'DanhGia', '5');
             return $this->view("home.index",
                 [
-                    'dataTour' => $dataTour,
-                    'dataGuide' => $dataGuide    
+                    'tours' => $tours,
+                    'guides' => $guides    
                 ],
             );
         }
