@@ -9,25 +9,23 @@
                 <th>Tên khách hàng</th>
                 <th>Số điện thoại</th>
                 <th>Email</th>
-                <th>Tên tài khoản</th>
                 <th>Mật khẩu</th>
                 <th>Thao tác</th>
             </tr>
         </thead>
         <tbody>
             <?php $i=0;?>
-            <?php foreach($data as $value):?>
+            <?php foreach($users as $value):?>
                 <?php $i++;?>
                     <tr>
-                        <td><?php echo $i;?></td>
-                        <td><?php echo $value['TenKH']?></td>
-                        <td><?php echo $value['SDT']?></td>
-                        <td><?php echo $value['Email']?></td>
-                        <td><?php echo $value['TenTK']?></td>
-                        <td><?php echo $value['MatKhau']?></td>
+                        <td><?=$i;?></td>
+                        <td><?=$value->TenKH?></td>
+                        <td><?=$value->SDT?></td>
+                        <td><?=$value->Email?></td>
+                        <td><?=$value->MatKhau?></td>
                         <td>
-                            <a href="index.php?controller=user&action=showForm&iduser=<?php echo $value['MaKH']?>&idaccount=<?php echo $value['MaTK']?>"><button class="edit">Sửa</button></a>
-                            <a href="index.php?controller=user&action=delete&iduser=<?php echo $value['MaKH']?>&idaccount=<?php echo $value['MaTK']?>"><button class="delete" style="color: red;">Xóa</button></a>
+                            <a href="index.php?controller=user&action=showForm&iduser=<?=$value->MaKH?>&idaccount=<?=$value->MaTK?>"><button class="edit">Sửa</button></a>
+                            <a href="index.php?controller=user&action=delete&iduser=<?=$value->MaKH?>&idaccount=<?=$value->MaTK?>"><button class="delete" style="color: red;">Xóa</button></a>
                         </td>
                     </tr>
             <?php endforeach;?>
@@ -50,8 +48,6 @@
             <input type="text" name="number-phone" id="name" /><br />
             <label for="name">Email</label>
             <input type="text" name="email" id="name" /><br/>
-            <label for="name">Tên tài khoản</label>
-            <input type="text" name="username" id="name" /><br />
             <label for="name">Mật khẩu</label>
             <input type="text" name="password" id="name" /><br />
     

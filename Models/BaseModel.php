@@ -1,6 +1,5 @@
 <?php 
 class BaseModel extends Database {
-    // Kết nối CSDL
     protected $connect;
     
     public function __construct() {
@@ -85,6 +84,18 @@ class BaseModel extends Database {
         return $this->_query($sql);
     }
 
+    public function allAccount($table, $select = ['*'], $id, $option) {
+        $columns = implode(', ', $select);
+        $sql = "SELECT {$columns} FROM {$table} WHERE {$id} != '{$option}'";
+        $query = $this->_query($sql);
+
+        $data = [];
+        while ($row = mysqli_fetch_object($query)) {
+            array_push($data, $row);
+        }
+        return $data;
+    }
+
     private function _query($sql) {
         return mysqli_query($this->connect, $sql);
     }
@@ -92,4 +103,5 @@ class BaseModel extends Database {
     private function escape($value) {
         return addslashes($value);
     }
+
 }

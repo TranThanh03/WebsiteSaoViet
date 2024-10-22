@@ -34,11 +34,6 @@
             <h3><?=$tour[0]->TenTour?></h3></p>
             <p id="tour-cost"><strong>Giá:</strong> <span style="color: red;"><?=$tour[0]->Gia?>VND</span></p>
             <a href="index.php?controller=calendarContent&action=index&idTour=<?=$tour[0]->MaTour?>&idGuide=<?=$guide[0]->MaHDV?>"><button class="book-button">Đặt tour</button></a>
-        </div>
-
-        <div class="tour-content">
-            <p><?=$tour[0]->GioiThieu?></p>
-        </div>
-        
+        </div>        
     </section>
 </main>

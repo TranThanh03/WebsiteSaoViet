@@ -79,12 +79,3 @@
 .tour-image .book-button:hover {
     background-color: #0052a3;
 }
-
-.tour-content {
-    clear: both;
-    padding-top: 10px;
-}
-
-.tour-content p {
-    text-align: justify;
-}

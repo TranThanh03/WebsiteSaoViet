@@ -1,4 +1,4 @@
- <?php if(!empty($tours)):?>
+<?php if(!empty($tours)):?>
     <div class="tour-detail">
         <h1>Danh sách các Tour</h1>
         <p>Khám phá các tour cùng Sao Việt hấp dẫn với nhiều địa điểm du lịch tuyệt vời</p>

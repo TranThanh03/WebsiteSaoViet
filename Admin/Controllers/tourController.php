@@ -6,9 +6,9 @@
             $this->tourModel = new tourModel();
         }
         public function index() {
-            $data = $this->tourModel->getAll();
+            $tours = $this->tourModel->getAll();
             return $this->view("tour.index",
-            ['data' => $data]);
+            ['tours' => $tours]);
         }
 
         public function create() {
@@ -91,6 +91,8 @@
             }
             if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $nameTour = $_POST['TenTour'];
+                $dateStart = date('Y-m-d', strtotime( $_POST['NgayKH']));
+                $dateEnd = date('Y-m-d', strtotime( $_POST['NgayKT']));
                 $introduce = $_POST['GioiThieu'];
                 $pathImage = basename( $_FILES["input-file"]["name"]);
                 $description = $_POST['MoTa'];
@@ -98,8 +100,8 @@
                 $maCD = $_POST['MaCD'];
 
                 $data = $this->tourModel->insertTour(
-                ['TenTour', 'GioiThieu', 'AnhTour','MoTa', 'Gia', 'MaCD'], 
-                ["'{$nameTour}'", "'{$introduce}'", "'{$pathImage}'", "'{$description}'", "'{$cost}'", "'{$maCD}'"]);
+                ['TenTour', 'NgayKH', 'NgayKT','GioiThieu', 'AnhTour','MoTa', 'Gia', 'MaCD'], 
+                ["{$nameTour}", "{$dateStart}", "{$dateEnd}", "{$introduce}", "{$pathImage}", "{$description}", "{$cost}", "{$maCD}"]);
     
                 if($data) {
                     header('location: index.php?controller=tour&action=index');
@@ -235,20 +237,20 @@
             } else {
                 if($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $img = $this->tourModel->getTour(['AnhTour'], 'MaTour', $id);
-                    $imgString = $img[0]['AnhTour'];
+                    $imgString = $img[0]->AnhTour;
                     if(empty(basename( $_FILES["input-file"]["name"]))) {
                         $anhTour = $imgString;
                     } else {
                         $anhTour = basename($_FILES["input-file"]["name"]);
                     }
                     $this->tourModel->updateTour(
-                        ['TenTour', 'GioiThieu','AnhTour','MoTa' ,'Gia', 'MaCD'],
-                        [$_POST['TenTour'], $_POST['GioiThieu'], $anhTour, $_POST['MoTa'], $_POST['Gia'], $_POST['MaCD']], 
+                        ['TenTour', 'NgayKH', 'NgayKT', 'GioiThieu','AnhTour','MoTa' ,'Gia', 'MaCD'],
+                        [$_POST['TenTour'], date('Y-m-d', strtotime( $_POST['NgayKH'])), date('Y-m-d', strtotime( $_POST['NgayKT'])), $_POST['GioiThieu'], $anhTour, $_POST['MoTa'], $_POST['Gia'], $_POST['MaCD']], 
                         'MaTour', $id);
                     header('location: index.php?controller=tour&action=index');
                     
                 } else {
-                    echo 'Lỗi rồi' ;
+                    echo 'Lỗi!' ;
                 }
             }
         }

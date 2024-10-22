@@ -21,8 +21,9 @@
                                         tuổi</p>
                             <p>Đánh giá: <span id="evaluate"><?php echo $value->DanhGia?></span></p>
                             <p>Giá: <span style="color: red;"><?php echo $value->Gia?>VND</span></p>
+                            <p id="linkDetail"><button type="button" onclick="window.location.href='index.php?controller=guide&action=detail&id=<?=$value->MaHDV?>'; return false;">Xem chi tiết</button></p>
+                            <p></p>
                         </a>
-                        <p style="text-align: center;"><a href="index.php?controller=guide&action=detail&id=<?php echo $value->MaHDV?>"><button type="button">Xem chi tiết</button></a></p>
                     </div>
                 <?php endforeach;?>
             </div>

@@ -1,19 +1,23 @@
 <?php 
     class userController extends BaseController {
         public $userModel;
+        public $accountModel;
         
         function __construct() {
             $this->model("userModel");
             $this->userModel = new userModel();
+
+            $this->model("accountModel");
+            $this->accountModel = new accountModel();
         }
 
         function index() {
-            $dataUser = $this->userModel->getAllUser();
-            $dataAccount = $this->userModel->getAllAccount();
+            $users = $this->userModel->getAll();
+            $accounts = $this->accountModel->getAll(['*'], 'Quyen', 'admin');
 
             return $this->view("user.index",
             [
-                'data' => $this->dataNormalization($dataUser, $dataAccount)
+                'users' => $this->dataNormalization($users, $accounts)
             ]);
         }
 
@@ -23,8 +27,18 @@
 
             foreach ($dataUser as $user) {
                 foreach ($dataAccount as $account) {
-                    if ($user['MaTK'] == $account['MaTK']) {
-                        $mergedData[] = array_merge($user, $account);
+                    if ($user->MaTK == $account->MaTK) {
+                        $mergedObject = new stdClass();
+                        
+                        foreach ($user as $key => $value) {
+                            $mergedObject->$key = $value;
+                        }
+                        
+                        foreach ($account as $key => $value) {
+                            $mergedObject->$key = $value;
+                        }
+
+                        $mergedData[] = $mergedObject;
                     }
                 }
             }
@@ -37,18 +51,30 @@
                 $fullName = $_POST['full-name'];
                 $numberPhone = $_POST['number-phone'];
                 $email = $_POST['email'];
-                $username = $_POST['username'];
                 $password = $_POST['password'];
 
-                $dataAccount = $this->userModel->insertAccount(['TenTK' ,'MatKhau', 'Quyen'], ["'{$username}'", "'{$password}'", "'user'"]);
-                $getIdAccount = $this->userModel->getAccount(['MaTK'], 'TenTK', $username);
-                $dataUser = $this->userModel->insertUser(['TenKH','SDT','Email', 'MaTK'], ["'{$fullName}'", "'{$numberPhone}'", "'{$email}'", "'{$getIdAccount[0]['MaTK']}'"]);
-                    
-                if($dataUser && $dataAccount) {
-                    header('location: index.php?controller=user&action=index');
-                } else {
-                    echo 'lỗi';
+                $getByPhone = $this->accountModel->getAccount(['MaTK'], 'SDT', $numberPhone);
+                $getByEmail = $this->userModel->getUser(['MaTK'], 'Email', $email);
+                
+                if(!empty($getByPhone)) {
+                    echo "<script>alert('Số điện thoại đã tồn tại!')</script>";
                 }
+                else if(!empty($getByEmail)) {
+                    echo "<script>alert('Email đã tồn tại!')</script>";
+                }
+                else {
+                    $accounts = $this->accountModel->insertAccount(['SDT' ,'MatKhau', 'Quyen'], ["{$numberPhone}", "{$password}", "user"]);
+                    $getIdAccount = $this->accountModel->getAccount(['MaTK'], 'SDT', $numberPhone);
+                    $users = $this->userModel->insertUser(['TenKH','Email', 'MaTK'], ["{$fullName}", "{$email}", "{$getIdAccount[0]->MaTK}"]);
+                        
+                    if($users && $accounts) {
+                        echo "<script>alert('Thêm khách hàng thành công.')</script>";
+                    }
+                    else {
+                        echo "<script>alert('Lỗi! Thêm khách hàng không thành công.')</script>";
+                    }
+                }
+                echo "<script>window.location.href = 'index.php?controller=user&action=index'</script>";
             }
         }
 
@@ -61,18 +87,18 @@
             } else {
                 if($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $this->userModel->updateUser(
-                    ['TenKH','SDT','Email'],
-                    [$_POST['full-name'],  $_POST['number-phone'], $_POST['email']], 
+                    ['TenKH', 'Email'],
+                    [$_POST['full-name'], $_POST['email']], 
                     'MaKH', $idUser);
 
-                    $this->userModel->updateAccount(
-                        ['TenTK' ,'MatKhau'],
-                        [$_POST['username'], $_POST['password']], 
+                    $this->accountModel->updateAccount(
+                        ['SDT' ,'MatKhau'],
+                        [$_POST['number-phone'], $_POST['password']], 
                         'MaTK', $idAccount);
 
                     header('location: index.php?controller=user&action=index');
                 } else {
-                    echo 'Lỗi rồi' ;
+                    echo 'Lỗi!' ;
                 }
             }
         }
@@ -82,19 +108,19 @@
             $idAccount = $_REQUEST['idaccount'] ?? '';
 
             if(empty($idUser) || empty($idAccount)) {
-                echo "Lỗi";
+                echo "Lỗi!";
             } else {
-                $dataUser = $this->userModel->getUser(
-                    ['MaKH', 'TenKH','SDT', 'Email', 'MaTK'], 
+                $users = $this->userModel->getUser(
+                    ['MaKH', 'TenKH', 'Email', 'MaTK'], 
                     'MaKH', $idUser);
 
-                $dataAccount = $this->userModel->getAccount(
-                    ['MaTK', 'TenTK', 'MatKhau', 'Quyen'], 
+                $accounts = $this->accountModel->getAccount(
+                    ['MaTK', 'SDT', 'MatKhau'], 
                     'MaTK', $idAccount);
 
                 return $this->view("user.formUpdateUser",
                 [
-                    'data' => $this->dataNormalization($dataUser, $dataAccount)
+                    'users' => $this->dataNormalization($users, $accounts)
                 ]
                 );
             }
@@ -108,7 +134,7 @@
                 echo "Lỗi";
             } else {
                 $this->userModel->deleteUser( $idUser, 'MaKH');
-                $this->userModel->deleteAccount( $idAccount, 'MaTK');
+                $this->accountModel->deleteAccount( $idAccount, 'MaTK');
                 header('location: index.php?controller=user&action=index');
             }
 

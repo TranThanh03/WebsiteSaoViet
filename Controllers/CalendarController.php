@@ -51,7 +51,7 @@
         public function cancel() {
             if(isset($_REQUEST['id'])) {
                 $id = $_REQUEST['id'];
-                $getIdCalendar = $this->calendarModel->getCalendar(['MaLD'], 'MaLD', $id);
+                $getIdCalendar = $this->calendarModel->getCalendar(['TrangThai'], 'MaLD', $id);
                 $result = $this->calendarModel->cancelCalendar(['TrangThai'], ['Đã hủy'], 'MaLD', $id);
 
                 $idUser = $this->userModel->getUser(['MaKH'], 'email', $_SESSION['username']);
@@ -66,11 +66,17 @@
                     
                     usort($calendars, function($a, $b) {
                         $order = ['Đang xử lý' => 1, 'Đã xác nhận' => 2, 'Đã hủy' => 3];
-                        return $order[$a[0]->TrangThai] <=> $order[$b[0]->TrangThai];
+                        $statusComparison = $order[$a[0]->TrangThai] <=> $order[$b[0]->TrangThai];
+                    
+                        if ($statusComparison === 0) {
+                            return $b[0]->MaLD <=> $a[0]->MaLD;
+                        }
+                
+                        return $statusComparison;
                     });
                 }     
 
-                if(!empty($result) && !empty($getIdCalendar)) {
+                if(!empty($result) && !empty($getIdCalendar) && $getIdCalendar[0]->TrangThai != "Đã hủy") {
                     
                 return $this->view("calendar.index",
                 [

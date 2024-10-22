@@ -113,7 +113,7 @@
                         header('Location: ' . $jsonResult['payUrl']);
                     }
                     else {
-                        header('Location: index.php?controller=calendarContent&action=error');
+                        header('Location: index.php?controller=calendarContent&action=error&idTour=' . $_REQUEST["idTour"] . '&idGuide=' . $_REQUEST["idGuide"]);
                     }
                 }
             }

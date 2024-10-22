@@ -33,7 +33,6 @@
                 return $statusComparison;
             });
             
-
             return $this->view("appointment.index",
                 ['data' => $data]
             );
@@ -41,9 +40,9 @@
 
         public function detail() {
             if($_REQUEST['id']) {
-                $data = $this->appointmentModel->getAppointment(['*'], 'MaLD', $_REQUEST['id']);
+                $id = $this->appointmentModel->getAppointment(['*'], 'MaLD', $_REQUEST['id']);
                 $user = $this->userModel->getUser(['*'], 'MaKH', $data[0]['MaKH']);
-                $guide = $this->guideModel->getGuide(['TenHDV', 'AnhHDV', 'Gia'], 'MaHDV', $data[0]['MaHDV']);
+                $guide = $this->guideModel->getGuide(['TenHDV', 'AnhHDV', 'Gia'], 'MaHDV', $id[0]['MaHDV']);
                 $tour = $this->tourModel->getTour(['*'], 'MaTour',  $data[0]['MaTour']);
 
                 return $this->view("appointment.detail",

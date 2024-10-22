@@ -61,9 +61,9 @@
                                     type="text"
                                     class="form-control form-control-lg bg-light fs-6"
                                     style="width: 100%; border-radius: 8px;"
-                                    placeholder="Email/SĐT"
+                                    placeholder="SĐT hoặc Email"
                                     name="username"
-                                    value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>"
+                                    value="<?=isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>"
                                 />
                             </div>
                             <div
@@ -75,9 +75,8 @@
                                     type="password"
                                     class="form-control form-control-lg bg-light fs-6"
                                     style="width: 100%; border-radius: 8px;"
-                                    placeholder="**********"
                                     name="password"
-                                    value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>"
+                                    value="<?=isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>"
                                 />
                             </div>
                             <div
