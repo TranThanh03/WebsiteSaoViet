@@ -6,12 +6,12 @@
         <div class="tour-list">
             <?php foreach($tours as $value):?>
                 <div class="tour-item">
-                    <img src="./Admin/public/img/tour/<?php echo $value->AnhTour?>" alt="anh">
+                    <img src="./Admin/public/img/tour/<?=$value->AnhTour?>" alt="anh">
                     <div class="tour-info">
-                        <h2><?php echo $value->TenTour?></h2>
-                        <p><?php echo $value->GioiThieu?></p>
-                        <p><strong>Giá:</strong> <?php echo $value->Gia?> VND</p>
-                        <a href="index.php?controller=tour&action=detail&id=<?php echo $value->MaTour?>" class="btn-detail">Xem chi tiết</a>
+                        <h2><?=$value->TenTour?></h2>
+                        <p><?=$value->GioiThieu?></p>
+                        <p><strong>Giá:</strong> <?=$value->Gia?> VND</p>
+                        <a href="index.php?controller=tour&action=detail&id=<?=$value->MaTour?>" class="btn-detail">Xem chi tiết</a>
                     </div>
                 </div>
             <?php endforeach;?>
