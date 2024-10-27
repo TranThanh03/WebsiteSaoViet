@@ -2,6 +2,7 @@
     class appointmentController extends BaseController {
         public $appointmentModel;
         public $userModel;
+        public $accountModel;
         public $guideModel;
         public $tourModel;
 
@@ -12,6 +13,9 @@
             $this->model("userModel");
             $this->userModel = new userModel();
 
+            $this->model("accountModel");
+            $this->accountModel = new accountModel();
+
             $this->model("guideModel");
             $this->guideModel = new guideModel();
 
@@ -20,34 +24,39 @@
         }
 
         public function index() {
-            $data = $this->appointmentModel->getAll();
-            
+            $calendars = $this->appointmentModel->getAll();
+        
             usort($calendars, function($a, $b) {
                 $order = ['Đang xử lý' => 1, 'Đã xác nhận' => 2, 'Đã hủy' => 3];
-                $statusComparison = $order[$a[0]->TrangThai] <=> $order[$b[0]->TrangThai];
+                $statusComparison = $order[$a->TrangThai] <=> $order[$b->TrangThai];
             
                 if ($statusComparison === 0) {
-                    return $b[0]->MaLD <=> $a[0]->MaLD;
+                    return $b->MaLD <=> $a->MaLD;
                 }
         
                 return $statusComparison;
             });
             
             return $this->view("appointment.index",
-                ['data' => $data]
+                ['calendars' => $calendars]
             );
         }
 
         public function detail() {
             if($_REQUEST['id']) {
-                $id = $this->appointmentModel->getAppointment(['*'], 'MaLD', $_REQUEST['id']);
-                $user = $this->userModel->getUser(['*'], 'MaKH', $data[0]['MaKH']);
-                $guide = $this->guideModel->getGuide(['TenHDV', 'AnhHDV', 'Gia'], 'MaHDV', $id[0]['MaHDV']);
-                $tour = $this->tourModel->getTour(['*'], 'MaTour',  $data[0]['MaTour']);
+                $calendar = $this->appointmentModel->getAppointment(['*'], 'MaLD', $_REQUEST['id']);
+                $user = $this->userModel->getUser(['*'], 'MaKH', $calendar[0]->MaKH);
+                $account = $this->accountModel->getAccount(['SDT'], 'MaTK', $user[0]->MaTK);
+                $guide = $this->guideModel->getGuide(['TenHDV', 'AnhHDV', 'Gia'], 'MaHDV', $calendar[0]->MaHDV);
+                $tour = $this->tourModel->getTour(['*'], 'MaTour',  $calendar[0]->MaTour);
 
                 return $this->view("appointment.detail",
                     [
-                        'data' => $data
+                        'calendar' => $calendar,
+                        'user' => $user,
+                        'account' => $account,
+                        'guide' => $guide,
+                        'tour' => $tour
                     ]
                 );
             }

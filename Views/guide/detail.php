@@ -27,13 +27,21 @@
 
     <section class="guide-booking">
         <h2>Đặt tour với <?=$guide[0]->TenHDV?></h2>
-        <div class="tour-image">
-            <a href="index.php?controller=tour&action=detail&id=<?=$tour[0]->MaTour?>">
-                <img src="./Admin/public/img/tour/<?=$tour[0]->AnhTour?>" alt="anh" id="tour-image">
-            </a>
-            <h3><?=$tour[0]->TenTour?></h3></p>
-            <p id="tour-cost"><strong>Giá:</strong> <span style="color: red;"><?=$tour[0]->Gia?>VND</span></p>
-            <a href="index.php?controller=calendarContent&action=index&idTour=<?=$tour[0]->MaTour?>&idGuide=<?=$guide[0]->MaHDV?>"><button class="book-button">Đặt tour</button></a>
-        </div>        
+        
+        <?php foreach($tours as $item):?>
+            <?php foreach($item as $index => $value):?>
+                <div class="tour-infor">
+                    <a href="index.php?controller=tour&action=detail&id=<?=$value->MaTour?>">
+                        <img src="./Admin/public/img/tour/<?=$value->AnhTour?>" alt="anh" id="tour-image">
+                    </a>
+                    <h3><?=$value->TenTour?></h3></p>
+                    <p><b>Ngày khởi hành: </b><?=date('d-m-Y', strtotime($value->NgayKH))?></p>
+                    <p><b>Ngày kết thúc: </b><?=date('d-m-Y', strtotime($value->NgayKT))?></p>
+                    <p id="tour-cost"><strong>Giá:</strong> <span style="color: red;"><?=$value->Gia?>VND</span></p>
+                    <a href="index.php?controller=calendarContent&action=index&idTour=<?=$value->MaTour?>&idGuide=<?=$guide[0]->MaHDV?>"><button class="book-button">Đặt tour</button></a>
+                </div>   
+                <hr>
+            <?php endforeach;?>
+        <?php endforeach;?>     
     </section>
 </main>

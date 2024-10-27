@@ -46,7 +46,7 @@ class BaseModel extends Database {
     }
 
     // Đăng nhập dưới dạng đối tượng
-    public function login($table, $select = ['*'], $options = []) {
+    public function optionObject($table, $select = ['*'], $options = []) {
         $columns = implode(', ', $select);
         $sql = "SELECT {$columns} FROM {$table} WHERE {$select[0]} = '{$options[0]}' AND {$select[1]} = '{$options[1]}'";
         $query = $this->_query($sql);

@@ -1,4 +1,4 @@
-<div class="user">
+<div class="main">
     <table>
         <thead>
             <tr>
@@ -15,19 +15,19 @@
         </thead>
         <tbody>
             <?php $i=0;?>
-            <?php foreach($data as $value):?>
+            <?php foreach($calendars as $value):?>
                 <?php $i++;?>
                 <tr>
-                    <td><?php echo $i;?></td>
-                    <td><?php echo $value['MaLD']?></td>
-                    <td><?php echo $value['MaKH']?></td>
-                    <td><?php echo $value['TenKH']?></td>
-                    <td><?php echo $value['TenTour']?></td>
-                    <td><?php echo $value['TongTien']?></td>
-                    <td><?php echo $value['ThoiGian']?></td>
-                    <td><?php echo $value['TrangThai']?></td>
+                    <td><?=$i;?></td>
+                    <td><?=$value->MaLD?></td>
+                    <td><?=$value->MaKH?></td>
+                    <td><?=$value->TenKH?></td>
+                    <td><?=$value->TenTour?></td>
+                    <td><?=$value->TongTien?></td>
+                    <td><?=date('H:i:s d/m/Y', strtotime($value->ThoiGianDat))?></td>
+                    <td><?=$value->TrangThai?></td>
                     <td>
-                        <a href="index.php?controller=appointment&action=detail&id=<?php echo $value['MaLD']?>"><button type="button">Chi tiết</button></a>
+                        <a href="index.php?controller=appointment&action=detail&id=<?=$value->MaLD?>"><button type="button">Chi tiết</button></a>
                     </td> 
                 </tr>
             <?php endforeach;?>

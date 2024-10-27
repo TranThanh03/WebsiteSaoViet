@@ -5,26 +5,30 @@
         <section class="guide-list">
             <h2>Danh sách hướng dẫn viên</h2>
             <div class="guide-grid">
-                <?php foreach($guides as $value):?>
-                    <div class="guide-card">
-                        <a href="index.php?controller=calendarContent&action=index&idTour=<?php echo $_REQUEST['idTour']?>&idGuide=<?php echo $value->MaHDV?>">
-                            <img src="./Admin/public/img/guide/<?php echo $value->AnhHDV?>" alt="anh">
-                            <h3><?php echo $value->TenHDV?></h3>
-                            <p>Thông tin: <?php echo $value->GioiTinh?> - 
-                                        <?php 
-                                            $ngaySinh = new DateTime($value->NgaySinh);
-                                            $ngayHienTai = new DateTime();
-                                            $tuoi = $ngayHienTai->diff($ngaySinh)->y;
-                                            
-                                            echo $tuoi;
-                                        ?>
-                                        tuổi</p>
-                            <p>Đánh giá: <span id="evaluate"><?php echo $value->DanhGia?></span></p>
-                            <p>Giá: <span style="color: red;"><?php echo $value->Gia?>VND</span></p>
-                            <p id="linkDetail"><button type="button" onclick="window.location.href='index.php?controller=guide&action=detail&id=<?=$value->MaHDV?>'; return false;">Xem chi tiết</button></p>
-                            <p></p>
-                        </a>
-                    </div>
+                <?php foreach($guides as $item):?>
+                    <?php foreach($item as $value):?>
+                        <div class="guide-card">
+                            <a href="index.php?controller=calendarContent&action=index&idTour=<?=$_REQUEST['idTour']?>&idGuide=<?=$value->MaHDV?>">
+                                <img src="./Admin/public/img/guide/<?=$value->AnhHDV?>" alt="anh">
+                                <h3><?=$value->TenHDV?></h3>
+                                <p>Thông tin: <?=$value->GioiTinh?> - 
+                                            <?php 
+                                                $ngaySinh = new DateTime($value->NgaySinh);
+                                                $ngayHienTai = new DateTime();
+                                                $tuoi = $ngayHienTai->diff($ngaySinh)->y;
+                                                
+                                                echo $tuoi;
+                                            ?>
+                                            tuổi</p>
+                                <p>Ngày khởi hành: <span id="startDate"><?=date('d-m-Y',strtotime($value->NgayKH))?></span></p>
+                                <p>Ngày kết thúc: <span id="endDate"><?=date('d-m-Y',strtotime($value->NgayKT))?></span></p>
+                                <p>Đánh giá: <span id="evaluate"><?=$value->DanhGia?></span></p>
+                                <p>Giá: <span style="color: red;"><?=$value->Gia?>VND</span></p>
+                                <p id="linkDetail"><button type="button" onclick="window.location.href='index.php?controller=guide&action=detail&id=<?=$value->MaHDV?>'; return false;">Xem chi tiết</button></p>
+                                <p></p>
+                            </a>
+                        </div>
+                    <?php endforeach;?>
                 <?php endforeach;?>
             </div>
         </section>
@@ -43,9 +47,9 @@
             <div class="guide-grid">
                 <?php foreach($guides as $value):?>
                     <div class="guide-card">
-                        <img src="./Admin/public/img/guide/<?php echo $value->AnhHDV?>" alt="anh">
-                        <h3><?php echo $value->TenHDV?></h3>
-                        <p>Thông tin: <?php echo $value->GioiTinh?> - 
+                        <img src="./Admin/public/img/guide/<?=$value->AnhHDV?>" alt="anh">
+                        <h3><?=$value->TenHDV?></h3>
+                        <p>Thông tin: <?=$value->GioiTinh?> - 
                                     <?php 
                                         $ngaySinh = new DateTime($value->NgaySinh);
                                         $ngayHienTai = new DateTime();
@@ -54,9 +58,9 @@
                                         echo $tuoi;
                                     ?>
                                     tuổi</p>
-                        <p>Đánh giá: <span id="evaluate"><?php echo $value->DanhGia?></span></p>
-                        <p>Giá: <span style="color: red;"><?php echo $value->Gia?>VND</span></p>
-                        <p style="text-align: center;"><a href="index.php?controller=guide&action=detail&id=<?php echo $value->MaHDV?>"><button type="button">Xem chi tiết</button></a></p>
+                        <p>Đánh giá: <span id="evaluate"><?=$value->DanhGia?></span></p>
+                        <p>Giá: <span style="color: red;"><?=$value->Gia?>VND</span></p>
+                        <p style="text-align: center;"><a href="index.php?controller=guide&action=detail&id=<?=$value->MaHDV?>"><button type="button">Xem chi tiết</button></a></p>
                     </div>
                 <?php endforeach;?>
             </div>

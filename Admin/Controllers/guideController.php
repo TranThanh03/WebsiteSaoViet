@@ -5,14 +5,15 @@
         public function __construct(){
             $this->model("guideModel");
             $this->guideModel = new guideModel();
+
             $this->model("tourModel");
             $this->tourModel = new tourModel();
         }
         public function index() {
-            $data = $this->guideModel->getAll(['*']);
+            $guides = $this->guideModel->getAll(['*']);
             return $this->view("guide.index",
             [
-                'data' => $data
+                'guides' => $guides
             ]);
         }
 
@@ -209,12 +210,11 @@
             if(empty($id)) {
                 echo "Lỗi";
             } else {
-                $dataGuide = $this->guideModel->getGuide(['*'], 'MaHDV', $id);
-                $dataTour = $this->tourModel->getAll();
+                $guides = $this->guideModel->getGuide(['*'], 'MaHDV', $id);
+
                 return $this->view("guide.formUpdateGuide",
                 [
-                    'dataTour' => $dataTour,
-                    'dataGuide' => $dataGuide
+                    'guides' => $guides
                 ]);
             }
         }

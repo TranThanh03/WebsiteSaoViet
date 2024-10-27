@@ -5,7 +5,7 @@
         public function getAll() {
             return $this->all(self::TABLE);
         }
-        public function getById($columns = ['*'], $id, $value) {
+        public function getGuide($columns = ['*'], $id, $value) {
             return $this->getOption(self::TABLE, $columns, $id, $value);
         }
     }

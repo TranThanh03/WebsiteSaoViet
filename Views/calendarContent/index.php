@@ -1,7 +1,6 @@
 <main class="booking-form">
     <h1>Đặt Tour</h1>
-    
-    <form action="index.php?controller=calendarContent&action=payment&idUser=<?=$user[0]->MaKH?>&idTour=<?=$tour[0]->MaTour?>&idGuide=<?=$guide[0]->MaHDV?>" method="POST" id="booking-form">
+    <form action="index.php?controller=calendarContent&action=payment&idUser=<?=$user[0]->MaKH?>&idTour=<?=$tour[0]->MaTour?>&idGuide=<?=$guide[0]->MaHDV?>&startDate=<?=$task->NgayKH?>&endDate=<?=$task->NgayKT?>" method="POST" id="booking-form">
         <div class="form-container">
             <section class="tour-info">
                 <h2>Thông tin tour</h2>
@@ -9,12 +8,16 @@
                     <img src="./Admin/public/img/tour/<?=$tour[0]->AnhTour?>" alt="anh" id="tour-image">
                 </div>
                 <div class="form-group">
-                    <label for="tour-code">Mã tour:</label>
-                    <input type="text" id="tour-code" name="tour-code" value="<?=$tour[0]->MaTour?>" readonly>
+                    <label for="tour-name">Tên tour:</label>
+                    <input type="text" id="tour-name" name="tour-name" value="<?=$tour[0]->TenTour?>" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="tour-name">Tên tour:</label>
-                    <input type="text" id="tour-name" name="tour-name" value="<?=$tour[0]->TenTour?>" disabled>
+                    <label for="start-date">Ngày khởi hành:</label>
+                    <input type="text" id="start-date" name="start-date" value="<?=date('d-m-Y', strtotime($task->NgayKH))?>" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="end-date">Ngày kết thúc:</label>
+                    <input type="text" id="end-date" name="end-date" value="<?=date('d-m-Y', strtotime($task->NgayKT))?>" disabled>
                 </div>
                 <div class="form-group">
                     <label for="tour-costs">Giá:</label>

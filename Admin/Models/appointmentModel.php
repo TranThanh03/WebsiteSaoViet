@@ -1,6 +1,6 @@
 <?php 
     class appointmentModel extends BaseModel {
-        const TABLE = 'lichdat
+        const TABLE = ' lichdat
                         INNER JOIN khachhang ON lichdat.MaKH = khachhang.MaKH
                         INNER JOIN tour ON lichdat.MaTour = tour.MaTour
                         INNER JOIN huongdanvien ON lichdat.MaHDV = huongdanvien.MaHDV';
@@ -10,7 +10,7 @@
         }
 
         public function getAppointment($select, $id, $value) {
-            return $this->getOption(self::TABLE, $select, $id, $value);
+            return $this->getOption(self::GETTABLE, $select, $id, $value);
         }
 
         public function updateAppointment($columns, $value, $id, $option) {

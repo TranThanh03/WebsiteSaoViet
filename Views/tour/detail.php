@@ -5,9 +5,8 @@
             <img src="./Admin/public/img/tour/<?=$tour[0]->AnhTour?>" alt="anh Tour">
         </div>
         <div class="tour-infor">
-            <h2 id="date">Thông tin:</h2>
-            <p><b>Ngày khởi hành:</b> <?=date('d-m-Y', strtotime($tour[0]->NgayKH))?></p>
-            <p><b>Ngày kết thúc: </b><?=date('d-m-Y', strtotime($tour[0]->NgayKT))?></p>
+            <h2 id="introduce-tour">Giới thiệu:</h2>
+            <span id="introduce"><?=$tour[0]->GioiThieu?></span>
             <h2 id="price-tour">Giá Tour:</h2>
             <p id="price"><?=$tour[0]->Gia?>VND</p>
             <a href="index.php?controller=guide&action=index&idTour=<?=$tour[0]->MaTour?>"><button class="book-now">Đặt ngay</button></a>

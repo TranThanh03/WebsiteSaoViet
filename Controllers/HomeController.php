@@ -10,7 +10,7 @@
         }
         public function index() {
             $tours = $this->tourModel->getAll();
-            $guides = $this->guideModel->getById(['MaHDV', 'TenHDV', 'AnhHDV', 'NgaySinh'], 'DanhGia', '5');
+            $guides = $this->guideModel->getGuide(['MaHDV', 'TenHDV', 'AnhHDV', 'NgaySinh'], 'DanhGia', '5');
             return $this->view("home.index",
                 [
                     'tours' => $tours,

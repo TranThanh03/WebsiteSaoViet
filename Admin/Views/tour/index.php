@@ -7,9 +7,8 @@
                 <th>STT</th>
                 <th>Mã tour</th>
                 <th>Tour</th>
-                <th>Ngày khởi hành</th>
-                <th>Ngày kết thúc</th>
                 <th>Hình ảnh</th>
+                <th>Chủ đề</th>
                 <th>Thao tác</th>
             </tr>
         </thead>
@@ -21,10 +20,17 @@
                 <td><?=$i;?></td>
                 <td><?=$value->MaTour?></td>
                 <td><?=$value->TenTour?></td>
-                <td><?=date('d-m-Y', strtotime($value->NgayKH))?></td>
-                <td><?=date('d-m-Y', strtotime($value->NgayKT))?></td>
                 <td class="avatar">
                     <img src="../Admin/public/img/tour/<?=$value->AnhTour?>" alt="ảnh tour">
+                </td>
+                <td>
+                    <?php 
+                        foreach($dataCD as $data) {
+                            if($data['id'] == $value->MaCD) {
+                                echo $data['name'];
+                            }
+                        }
+                    ?>
                 </td>
                 <td>
                     <a href="index.php?controller=tour&action=showForm&id=<?=$value->MaTour?>"><button type="button">Sửa</button></a>

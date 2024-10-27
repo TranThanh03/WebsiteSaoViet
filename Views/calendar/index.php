@@ -10,11 +10,11 @@
                                 <img src="./Admin/public/img/tour/<?=$value[0]->AnhTour?>" alt="anh">
                             </a>
                             <div class="tour-info">
-                                <h3><?=$value[0]->TenTour?>(<span id="startDate"><?=date('d-m-Y', strtotime($value[0]->NgayKH))?></span> - <span id="endDate"><?=date('d-m-Y', strtotime($value[0]->NgayKT))?></span>)</h3>
+                                <h3><?=$value[0]->TenTour?>(<span id="startDate"><?=date('d/m/Y', strtotime($value[0]->NgayKH))?></span> - <span id="endDate"><?=date('d/m/Y', strtotime($value[0]->NgayKT))?></span>)</h3>
                                 <p><strong>Mã lịch đặt:</strong> <?=$value[0]->MaLD?></p>
                                 <p><strong>Thời gian đặt:</strong> 
                                     <?php 
-                                        $datetime = $value[0]->ThoiGian;
+                                        $datetime = $value[0]->ThoiGianDat;
                                         $date = new DateTime($datetime);
                                         echo $date->format('H:i:s d-m-Y');
                                     ?>

@@ -2,10 +2,10 @@
     class calendarContentController extends BaseController {
         public $calendarModel;
         public $userModel;
-
         public $accountModel;
         public $tourModel;
         public $guideModel;
+        public $taskModel;
 
         public function __construct() {
             $this->model('calendarModel');
@@ -22,13 +22,16 @@
 
             $this->model('guideModel');
             $this->guideModel = new guideModel();
+
+            $this->model('taskModel');
+            $this->taskModel = new taskModel();
         }
 
         private function _get($idTour, $idGuide) {
             $user = $this->userModel->getUser(['*'], 'Email', $_SESSION['username']);
             $account = $this->accountModel->getAccount(['SDT'], 'MaTK', $user[0]->MaTK);
             $tour = $this->tourModel->getById(['MaTour', 'TenTour', 'AnhTour', 'Gia'],'MaTour', $idTour);
-            $guide = $this->guideModel->getById(['MaHDV', 'TenHDV', 'AnhHDV', 'DanhGia', 'Gia'],'MaHDV', $idGuide);
+            $guide = $this->guideModel->getGuide(['MaHDV', 'TenHDV', 'AnhHDV', 'DanhGia', 'Gia'],'MaHDV', $idGuide);
 
             return [
                 'tour' => $tour,
@@ -44,11 +47,14 @@
                 $idGuide = $_REQUEST['idGuide'] ?? '';
                 
                 $datas = $this->_get($idTour, $idGuide);
+                $task = $this->taskModel->getTaskOption(['MaTour', 'MaHDV', 'MaPC', 'NgayKH', 'NgayKT'], [$idTour, $idGuide]);
+
                 return $this->view("calendarContent.index",[
                     'tour' => $datas['tour'],
                     'user' => $datas['user'],
                     'account' => $datas['account'],
-                    'guide' => $datas['guide'] 
+                    'guide' => $datas['guide'],
+                    'task' => $task 
                 ]);
             } else {
                 header("Location: index.php?controller=user&action=index");
@@ -73,52 +79,47 @@
         }
 
         public function payment() {
-            try {
-                if(isset($_POST['payUrl'])) {
-                    $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
+            if(isset($_POST['payUrl'])) {
+                $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
 
-                    $partnerCode = 'MOMOBKUN20180529';
-                    $accessKey = 'klm05TvNBzhg7h7j';
-                    $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
-                    $orderInfo = "Thanh toán qua MoMo";
-                    $amount = str_replace('.', '', str_replace("VND", "", $_POST['total-price']));
-                    $orderId = rand(1, 1000);
-                    $redirectUrl = "http://localhost/WebsiteSaoViet/index.php?controller=calendarContent&action=booking&idUser=" . $_REQUEST['idUser'] . "&idTour=" . $_REQUEST['idTour'] . "&idGuide=" . $_REQUEST['idGuide'];    
-                    $ipnUrl = "http://localhost/WebsiteSaoViet/index.php?controller=calendarContent&action=booking&idUser=" . $_REQUEST['idUser'] . "&idTour=" . $_REQUEST['idTour'] . "&idGuide=" . $_REQUEST['idGuide'];
-                    $extraData = "";
+                $partnerCode = 'MOMOBKUN20180529';
+                $accessKey = 'klm05TvNBzhg7h7j';
+                $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
+                $orderInfo = "Thanh toán qua MoMo";
+                $amount = str_replace('.', '', str_replace("VND", "", $_POST['total-price']));
+                $orderId = rand(1, 1000);
+                $redirectUrl = "http://localhost/WebsiteSaoViet/index.php?controller=calendarContent&action=booking&idUser=" . $_REQUEST['idUser'] . "&idTour=" . $_REQUEST['idTour'] . "&idGuide=" . $_REQUEST['idGuide'] . '&ngayKH=' . $_REQUEST["startDate"] . '&ngayKT=' . $_REQUEST["endDate"];    
+                $ipnUrl = "http://localhost/WebsiteSaoViet/index.php?controller=calendarContent&action=booking&idUser=" . $_REQUEST['idUser'] . "&idTour=" . $_REQUEST['idTour'] . "&idGuide=" . $_REQUEST['idGuide'] . '&ngayKH=' . $_REQUEST["startDate"] . '&ngayKT=' . $_REQUEST["startDate"];
+                $extraData = "";
 
-                    $serectkey = $secretKey;
+                $serectkey = $secretKey;
 
-                    $requestId = time() . "";
-                    $requestType = "payWithATM";
-                    $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
-                    $signature = hash_hmac("sha256", $rawHash, $serectkey);
-                    $data = array(
-                        'partnerCode' => $partnerCode,
-                        'partnerName' => "Test",
-                        "storeId" => "MomoTestStore",
-                        'requestId' => $requestId,
-                        'amount' => $amount,
-                        'orderId' => $orderId,
-                        'orderInfo' => $orderInfo,
-                        'redirectUrl' => $redirectUrl,
-                        'ipnUrl' => $ipnUrl,
-                        'lang' => 'vi',
-                        'extraData' => $extraData,
-                        'requestType' => $requestType,
-                        'signature' => $signature);
-                    $result = $this->execPostRequest($endpoint, json_encode($data));
-                    $jsonResult = json_decode($result, true);
-                    if (isset($jsonResult['payUrl'])) {
-                        header('Location: ' . $jsonResult['payUrl']);
-                    }
-                    else {
-                        header('Location: index.php?controller=calendarContent&action=error&idTour=' . $_REQUEST["idTour"] . '&idGuide=' . $_REQUEST["idGuide"]);
-                    }
+                $requestId = time() . "";
+                $requestType = "payWithATM";
+                $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
+                $signature = hash_hmac("sha256", $rawHash, $serectkey);
+                $data = array(
+                    'partnerCode' => $partnerCode,
+                    'partnerName' => "Test",
+                    "storeId" => "MomoTestStore",
+                    'requestId' => $requestId,
+                    'amount' => $amount,
+                    'orderId' => $orderId,
+                    'orderInfo' => $orderInfo,
+                    'redirectUrl' => $redirectUrl,
+                    'ipnUrl' => $ipnUrl,
+                    'lang' => 'vi',
+                    'extraData' => $extraData,
+                    'requestType' => $requestType,
+                    'signature' => $signature);
+                $result = $this->execPostRequest($endpoint, json_encode($data));
+                $jsonResult = json_decode($result, true);
+                if (isset($jsonResult['payUrl'])) {
+                    header('Location: ' . $jsonResult['payUrl']);
                 }
-            }
-            catch(Exception $e) {
-                
+                else {
+                    header('Location: index.php?controller=calendarContent&action=error&idTour=' . $_REQUEST["idTour"] . '&idGuide=' . $_REQUEST["idGuide"]);
+                }
             }
         }
 
@@ -130,11 +131,13 @@
                     $MaKH = $_REQUEST['idUser'];
                     $MaTour = $_REQUEST['idTour'];
                     $MaHDV = $_REQUEST['idGuide'];
+                    $NgayKH = date('Y-m-d', strtotime($_REQUEST['ngayKH']));
+                    $NgayKT = date('Y-m-d', strtotime($_REQUEST['ngayKT']));
                     $TongTien = number_format($_GET['amount'], 0, ',', '.');
                     $CurrentTime = date('Y-m-d H:i:s');
                     
-                    $createCalendar = $this->calendarModel->createCalendar(['MaKH','MaTour','MaHDV', 'TongTien', 'ThoiGian', 'TrangThai'], 
-                                                                            [$MaKH, $MaTour, $MaHDV, $TongTien, $CurrentTime, "Đang xử lý"]);
+                    $createCalendar = $this->calendarModel->createCalendar(['MaKH', 'MaTour', 'MaHDV', 'NgayKH', 'NgayKT', 'TongTien', 'ThoiGianDat', 'TrangThai'], 
+                                                                            [$MaKH, $MaTour, $MaHDV, $NgayKH, $NgayKT, $TongTien, $CurrentTime, "Đang xử lý"]);
                         
                     if(!empty($createCalendar)) {
                         echo "<script>sessionStorage.setItem('statusCalendar', 'true');</script>";

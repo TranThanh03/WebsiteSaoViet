@@ -13,8 +13,9 @@
         public function detail() {
             $value = $_REQUEST['id'] ?? '';
             $tour = $this->tourModel->getById(['*'],"MaTour", $value);
+            
             return $this->view("tour.detail", [
-                'tour'=>$tour,
+                'tour' => $tour
             ]);
         }
 

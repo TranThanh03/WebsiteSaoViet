@@ -58,7 +58,7 @@
     margin-bottom: 5px;
 }
 
-.tour-infor #date {
+.tour-infor #introduce-tour {
     margin-bottom: 10px;
 }
 
@@ -68,4 +68,8 @@
 
 .tour-infor p {
     font-size: 18px;
+}
+
+.tour-infor #introduce {
+    text-align: justify;
 }

@@ -37,10 +37,10 @@
             <div class="content" id="tour">
                 <?php foreach($tours as $tour):?>
                     <div class="sub-list" id="sub-tour">
-                        <a href="index.php?controller=tour&action=detail&id=<?php echo $tour->MaTour?>">
-                            <img src="./Admin/public/img/tour/<?php echo $tour->AnhTour?>" alt="anh tour" id="avatar-tour">
-                            <h4 id="tour-name"><?php echo $tour->TenTour?></h4>
-                            <span id="tour-price"><?php echo $tour->Gia?>VND</span>
+                        <a href="index.php?controller=tour&action=detail&id=<?=$tour->MaTour?>">
+                            <img src="./Admin/public/img/tour/<?=$tour->AnhTour?>" alt="anh tour" id="avatar-tour">
+                            <h4 id="tour-name"><?=$tour->TenTour?></h4>
+                            <span id="tour-price"><?=$tour->Gia?>VND</span>
                         </a>
                     </div>
                 <?php endforeach;?>
@@ -66,9 +66,9 @@
             <div class="content" id="guide">
                 <?php foreach($guides as $guide):?>
                     <div class="sub-list" id="sub-guide">
-                        <a href="index.php?controller=guide&action=detail&id=<?php echo $guide->MaHDV?>">
-                            <img id="avatar-guide" src="./Admin/public/img/guide/<?php echo $guide->AnhHDV?>" alt="anh hdv">
-                            <h4 id="guide-name"><?php echo $guide->TenHDV?></h4>
+                        <a href="index.php?controller=guide&action=detail&id=<?=$guide->MaHDV?>">
+                            <img id="avatar-guide" src="./Admin/public/img/guide/<?=$guide->AnhHDV?>" alt="anh hdv">
+                            <h4 id="guide-name"><?=$guide->TenHDV?></h4>
                             <span id="guide-age">
                                 <?php 
                                     $ngaySinh = new DateTime($guide->NgaySinh);

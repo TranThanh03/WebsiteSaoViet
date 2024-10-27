@@ -6,9 +6,35 @@
             $this->tourModel = new tourModel();
         }
         public function index() {
+            $dataCD = [
+                [
+                    'id' => 1,
+                    'name' => 'Tour Biển Đảo'
+                ],
+                [
+                    'id' => 2,
+                    'name' => 'Tour Văn Hóa Lịch Sử'
+                ],
+                [
+                    'id' => 3,
+                    'name' => 'Tour Nghỉ Dưỡng'
+                ],
+                [
+                    'id' => 4,
+                    'name' => 'Tour Mạo Hiểm'
+                ],
+                [
+                    'id' => 5,
+                    'name' => 'Tour Ẩm Thực'
+                ]
+            ];
+
             $tours = $this->tourModel->getAll();
             return $this->view("tour.index",
-            ['tours' => $tours]);
+            [
+                'tours' => $tours,
+                'dataCD' => $dataCD
+            ]);
         }
 
         public function create() {

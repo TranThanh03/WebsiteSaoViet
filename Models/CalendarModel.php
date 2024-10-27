@@ -9,7 +9,7 @@
         public function getAll($columns = ['*']) {
             return $this->all(self::TABLE, $columns);
         }
-        public function getById($columns = ['*'], $id, $value) {
+        public function getCalendarById($columns = ['*'], $id, $value) {
             return $this->getOption(self::TABLE, $columns, $id, $value);
         }
 

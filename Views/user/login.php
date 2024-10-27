@@ -75,6 +75,7 @@
                                     type="password"
                                     class="form-control form-control-lg bg-light fs-6"
                                     style="width: 100%; border-radius: 8px;"
+                                    placeholder="******"
                                     name="password"
                                     value="<?=isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>"
                                 />

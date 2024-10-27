@@ -13,12 +13,12 @@
         public function index() {
             if (isset($_SESSION['username'])) {
                 $idUser = $this->userModel->getUser(['MaKH'], 'email', $_SESSION['username']);
-                $idCalendar = $this->calendarModel->getCalendar(['MaLD'], 'MaKH', $idUser[0]->MaKH);
+                $idCalendars = $this->calendarModel->getCalendar(['MaLD'], 'MaKH', $idUser[0]->MaKH);
                 $calendars = [];
-            
-                if (!empty($idCalendar)) {
-                    foreach ($idCalendar as $value) {
-                        $data = $this->calendarModel->getById(['*'], "MaLD", $value->MaLD);
+
+                if (!empty($idCalendars)) {
+                    foreach ($idCalendars as $value) {
+                        $data = $this->calendarModel->getCalendarById(['*'], "MaLD", $value->MaLD);
                         array_push($calendars, $data);
                     }
                     
@@ -32,7 +32,6 @@
 
                         return $statusComparison;
                     });
-                    
 
                     return $this->view('calendar.index', [
                         'calendars' => $calendars
@@ -55,15 +54,15 @@
                 $result = $this->calendarModel->cancelCalendar(['TrangThai'], ['Đã hủy'], 'MaLD', $id);
 
                 $idUser = $this->userModel->getUser(['MaKH'], 'email', $_SESSION['username']);
-                $idCalendar = $this->calendarModel->getCalendar(['MaLD'], 'MaKH', $idUser[0]->MaKH);
+                $idCalendars = $this->calendarModel->getCalendar(['MaLD'], 'MaKH', $idUser[0]->MaKH);
                 $calendars = [];
-            
-                if (!empty($idCalendar)) {
-                    foreach ($idCalendar as $value) {
-                        $data = $this->calendarModel->getById(['*'], "MaLD", $value->MaLD);
+
+                if (!empty($idCalendars)) {    
+                    foreach ($idCalendars as $value) {
+                        $data = $this->calendarModel->getCalendarById(['*'], "MaLD", $value->MaLD);
                         array_push($calendars, $data);
-                    }
-                    
+                    }   
+
                     usort($calendars, function($a, $b) {
                         $order = ['Đang xử lý' => 1, 'Đã xác nhận' => 2, 'Đã hủy' => 3];
                         $statusComparison = $order[$a[0]->TrangThai] <=> $order[$b[0]->TrangThai];
@@ -76,23 +75,22 @@
                     });
                 }     
 
-                if(!empty($result) && !empty($getIdCalendar) && $getIdCalendar[0]->TrangThai != "Đã hủy") {
-                    
-                return $this->view("calendar.index",
-                [
-                        'code' => 0,
-                        'message' => "
-                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='35' height='35' fill='green'>
-                                <circle cx='12' cy='12' r='10' fill='none' stroke='green' stroke-width='2'/>
-                                <path d='M6 12l4 4l8-8' fill='none' stroke='green' stroke-width='2'/>
-                            </svg>
-                            <span id='message'>Hủy Tour <b>$id</b> thành công</span>",
-                        'calendars' => $calendars
-                ]);
-                }
+                if(!empty($result) && !empty($getIdCalendar) && $getIdCalendar[0]->TrangThai != "Đã hủy") {  
+                    return $this->view("calendar.index",
+                    [
+                            'code' => 0,
+                            'message' => "
+                                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='35' height='35' fill='green'>
+                                    <circle cx='12' cy='12' r='10' fill='none' stroke='green' stroke-width='2'/>
+                                    <path d='M6 12l4 4l8-8' fill='none' stroke='green' stroke-width='2'/>
+                                </svg>
+                                <span id='message'>Hủy Tour <b>$id</b> thành công</span>",
+                            'calendars' => $calendars
+                    ]);
+                } 
                 else {
                     return $this->view("calendar.index",
-                [
+                    [
                         'code' => 1,
                         'message' => "
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='35' height='35' fill='red'>
@@ -102,7 +100,7 @@
                             </svg>                                       
                             <span id='message'>Hủy Tour <b>$id</b> không thành công</span>",
                         'calendars' => $calendars
-                ]);
+                    ]);
                 }
             }
         }

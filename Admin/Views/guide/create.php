@@ -1,5 +1,5 @@
-<div class="user">
-    <div class=" form__insert-guide">
+<div class="main">
+    <div class="insert-guide">
         <div class="form__insert-content">
             <h2>Thêm hướng dẫn viên</h2>
             <form action="index.php?controller=guide&action=insert" method="post" enctype="multipart/form-data">
@@ -20,7 +20,7 @@
                 <select id="tour" name="MaTour">
                     <option value="0" selected>-----List Tour-----</option>;
                     <?php foreach($dataTour as $value):?>
-                        <option value="<?php echo $value['MaTour']?>">Mã tour <?php echo $value['MaTour']?>: <?php echo $value['TenTour']?></option>
+                        <option value="<?=$value['MaTour']?>">Mã tour <?=$value['MaTour']?>: <?=$value['TenTour']?></option>
                     <?php endforeach;?>
                 </select> <br>
                 <label for="mota">Mô tả</label>
@@ -34,7 +34,7 @@
                 <label for="danhgia">Đánh giá</label>
                 <select id="tour" name="DanhGia">
                     <?php for($i=1; $i<=5; $i++):?>
-                        <option value="<?php echo $i?>"><?php echo $i?></option>
+                        <option value="<?=$i?>"><?=$i?></option>
                     <?php endfor;?>
                 </select><br>
                 <button type="submit" name="insert" class="insert">Thêm</button>
