@@ -1,5 +1,5 @@
 <main class="booking-form">
-    <h2>Thông tin đơn đặt Tour</h2>
+    <h2>Thông tin đơn đặt mã <?=$calendar[0]->MaLD?></h2>
         <div class="form-container">
             <section class="tour-info">
                 <h2>Thông tin tour</h2>

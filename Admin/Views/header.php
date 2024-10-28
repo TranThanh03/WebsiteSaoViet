@@ -10,10 +10,10 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
-        <script src="./public/Js/showFormUser.js"></script>
-        <script src="./public/Js/showFormTour.js"></script>
-        <script src="./public/Js/onChangeAvatar.js"></script>
-        <script src="./public/Js/editor.js"></script>
+        <script src="./public/js/showFormUser.js"></script>
+        <script src="./public/js/showFormTour.js"></script>
+        <script src="./public/js/onChangeAvatar.js"></script>
+        <script src="./public/js/editor.js"></script>
         <script src="./ckeditor/ckeditor.js"></script>
         <script src="./public/js/general.js"></script>
         <script>
@@ -23,13 +23,16 @@
         
         <?php
             if(isset($_REQUEST['controller'])) {
-                if($_REQUEST['controller'] === 'appointment' && $_REQUEST['action'] === 'detail') {
-                    echo '<link rel="stylesheet" href="./public/css/appointment.css"/>';
-                }
-
                 if($_REQUEST['controller'] === 'home') {
                     echo '<script>sessionStorage.setItem("navIndex", 0)</script>';
                 }
+                else if($_REQUEST['controller'] === 'appointment' && $_REQUEST['action'] === 'detail') {
+                    echo '<link rel="stylesheet" href="./public/css/appointment.css"/>';
+                }
+                else if($_REQUEST['controller'] === 'task') {
+                    echo '<link rel="stylesheet" href="./public/css/task.css"/>';
+                }
+                
             }
         ?>   
     </head>
