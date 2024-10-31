@@ -6,16 +6,17 @@
         <title>Sao Việt - Vivu ba miền</title>
         <link rel="icon" href="./public/img/logo.jpg" type="image/jpg">
         <link rel="stylesheet" href="./public/css/home.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
-        <script src="./public/js/showFormUser.js"></script>
-        <script src="./public/js/showFormTour.js"></script>
+        <link rel="stylesheet" href="./public/css/notifi.css">
+        
         <script src="./public/js/onChangeAvatar.js"></script>
-        <script src="./public/js/editor.js"></script>
-        <script src="./ckeditor/ckeditor.js"></script>
         <script src="./public/js/general.js"></script>
+        <script src="./public/js/notifi.js"></script>
+
+        <!--ckeditor-->
+        <script src="./ckeditor/ckeditor.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+        <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
         <script>
             CKEDITOR.replace("GioiThieu");
             CKEDITOR.replace("MoTa");

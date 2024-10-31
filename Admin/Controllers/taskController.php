@@ -21,16 +21,18 @@
             $getID = $this->taskModel->getTask(['MaPC'], 'MaPC', $id);
             if(!empty($getID)) {
                 $result = $this->taskModel->deleteTask($id, 'MaPC');
-
                 if($result) {
-                    header('Location: index.php?controller=task&action=index&code=0');
+                    $message = "Xóa lịch phân công " . $id . " thành công.";
+                    header("Location: index.php?controller=task&action=index&message={$message}&code=0");
                 }
                 else {
-                    header('Location: index.php?controller=task&action=index&code=1');
+                    $message = "Xóa lịch phân công " . $id . " không thành công!";
+                    header("Location: index.php?controller=task&action=index&message={$message}&code=1");
                 }
             }
             else {
-                header('Location: index.php?controller=task&action=index&code=2');
+                $message = "Lịch phân công " . $id . " không tồn tại!";
+                header("Location: index.php?controller=task&action=index&message={$message}&code=1");
             }
             exit();
         }

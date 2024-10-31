@@ -241,3 +241,12 @@ footer .end span {
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
+button {
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+input {
+    height: 31px;
+}

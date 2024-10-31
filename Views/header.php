@@ -40,6 +40,7 @@
             }
             else if($_REQUEST['controller'] === 'calendar') {
                 echo '<link rel="stylesheet" href="./public/css/calendar.css">';
+                echo '<script src="./public/js/calendar.js"></script>';
             }
         }
         else {

@@ -12,11 +12,12 @@
         $actionName = $_REQUEST['action'] ?? "index";
     }
 
-    include './Views/header.php';
+    require './Views/header.php';
     
-    require "./Controllers/{$controllerName}.php";
+    require_once "./Controllers/{$controllerName}.php";
     $controllerObject = new $controllerName;
     $controllerObject -> $actionName();
+    require_once "./Views/notifi/index.php";
 
-    include './Views/footer.php';
+    require './Views/footer.php';
 ?>
