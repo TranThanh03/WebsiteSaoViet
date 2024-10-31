@@ -16,9 +16,5 @@
         {
             return $this->insert(self::GETTABLE, $keys, $data);
         }
-
-        public function deleteTask( $id, $columns) {
-            return $this->delete(self::GETTABLE, $id, $columns);
-        }
     }
 ?>

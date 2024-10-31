@@ -15,7 +15,11 @@
             ]);
         }
 
-        public function delete() {
+        public function showInsert() {
+            return $this->view(viewPath: 'task.insert');
+        }
+
+        public function insert() {
             $id = $_REQUEST['id'];
 
             $getID = $this->taskModel->getTask(['MaPC'], 'MaPC', $id);

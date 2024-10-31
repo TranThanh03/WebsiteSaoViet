@@ -1,7 +1,7 @@
 <div class="task">
     <h2 id="title">Danh sách phân công</h2>
         <div class="control">
-            <button>Thêm</button>
+            <a href="index.php?controller=task&action=showInsert"><button>Thêm</button></a>
             <div>
                 <input type="search"><button>Tìm</button>
             </div>
@@ -18,7 +18,7 @@
                 <th>Ảnh</th>
                 <th>Ngày khởi hành</th>
                 <th>Ngày kết thúc</th>
-                <th>Thao tác</th>
+                <th>Trạng thái</th>
             </thead>
             <tbody>
                 <?php 
@@ -34,7 +34,7 @@
                         <td><img src="./public/img/guide/<?=$value->AnhHDV?>"></td>
                         <td><?=date('d-m-Y', strtotime($value->NgayKH))?></td>
                         <td><?=date('d-m-Y', strtotime($value->NgayKT))?></td>
-                        <td><a href="index.php?controller=task&action=delete&id=<?=$value->MaPC?>"><button>Xóa</button></a></td>
+                        <td><?=$value->TrangThai?></td>
                     </tr>
                 <?php endforeach;?>
             </tbody>
