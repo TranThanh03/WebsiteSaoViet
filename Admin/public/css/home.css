@@ -208,45 +208,248 @@ footer .end span {
 
 #title {
     text-align: center;
-}
-
-.main table {
-    text-align: center;
-}
-
-.main table th, td {
-    padding: 10px 15px;
-}
-
-.main table img {
-    max-width: 100px;
-}
-
-.main table td {
-    border-bottom: 1px solid black;
-}
-
-.main table th {
-    border-bottom: 2px solid #ffc10e;
-}
-
-.main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    font-size: 24px;
+    color: #34b7c6;
+    margin: 20px 0;
+    font-weight: bold;
 }
 
 .control {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-button {
+.control input[type="search"] {
+    width: 250px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.control input[type="search"]:focus {
+    border-color: #34b7c6;
+    outline: none;
+}
+
+.control button {
+    padding: 10px 20px;
+    background-color: #34b7c6;
+    color: white;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    padding: 5px 10px;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.2s;
+    margin-right: 10px;
 }
 
-input {
-    height: 31px;
+
+.control button:hover {
+    background-color: #0052a3;
+    transform: translateY(-2px);
+}
+
+.control button:active {
+    transform: translateY(0);
+}
+
+.main table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.main table th,
+.main table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.main table th {
+    background-color: #34b7c6;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.main table td {
+    background-color: #f9f9f9;
+    font-size: 14px;
+}
+
+.main table tr:nth-child(even) td {
+    background-color: #f2f2f2;
+}
+
+.main table tr:hover td {
+    background-color: #e6f7ff;
+}
+
+.main table img {
+    max-width: 100px;
+}
+
+.main table td button {
+    padding: 5px 10px;
+    background-color: #ffc10e;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.3s ease;
+}
+
+.main table td button:hover {
+    background-color: #ffa500;
+}
+
+.admin-dashboard {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+    font-size: 28px;
+    color: #34b7c6;
+}
+
+.dashboard-header p {
+    color: #666;
+    font-size: 18px;
+}
+
+.dashboard-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.admin-profile {
+    width: 200px;
+    background-color: #f7f7f7;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.admin-profile h3 {
+    color: #34b7c6;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.dashboard-stats {
+    display: flex;
+    justify-content: space-around;
+    flex-grow: 1;
+}
+
+.stat-card {
+    background-color: #34b7c6;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 180px;
+}
+
+.stat-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.stat-card p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.dashboard-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.recent-orders, .dashboard-updates, .important-notices {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 8px;
+    width: 32%;
+}
+
+.recent-orders h2, .dashboard-updates h2, .important-notices h2 {
+    color: #34b7c6;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #34b7c6;
+    color: white;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.dashboard-updates ul, .important-notices ul, .highlighted-tours ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.dashboard-updates li, .important-notices li, .highlighted-tours li {
+    font-size: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.highlighted-tours {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+.highlighted-tours h2 {
+    color: #34b7c6;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.highlighted-tours ul li {
+    font-size: 16px;
+    margin-bottom: 8px;
+    padding-left: 10px;
+    position: relative;
+}
+
+.highlighted-tours ul li::before {
+    content: "★";
+    color: #ffc107;
+    position: absolute;
+    left: -10px;
 }

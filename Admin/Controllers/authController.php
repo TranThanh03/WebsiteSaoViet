@@ -1,5 +1,5 @@
 <?php
-    class authController extends BaseController {
+    class AuthController extends BaseController {
         
         public function index() {
             if(empty($_SESSION['accountAdmin']) && empty($_SESSION['passwordAdmin'])) {

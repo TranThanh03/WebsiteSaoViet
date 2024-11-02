@@ -16,13 +16,6 @@
                     <option value="Nam" selected>Nam</option>
                     <option value="Nữ">Nữ</option>
                 </select> <br>
-                <label for="tour">Tours</label>
-                <select id="tour" name="MaTour">
-                    <option value="0" selected>-----List Tour-----</option>;
-                    <?php foreach($dataTour as $value):?>
-                        <option value="<?=$value['MaTour']?>">Mã tour <?=$value['MaTour']?>: <?=$value['TenTour']?></option>
-                    <?php endforeach;?>
-                </select> <br>
                 <label for="mota">Mô tả</label>
                 <textarea name="MoTa" id="mota" cols="45" rows="10"></textarea> <br>
                 <label for="avatar">Ảnh</label>

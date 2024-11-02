@@ -1,43 +1,116 @@
 <?php
     class TaskController extends BaseController {
         public $taskModel;
+        public $tourModel;
+        public $guideModel;
 
         function __construct() {
             $this->model("taskModel");
-            $this->taskModel = new taskModel();
+            $this->taskModel = new TaskModel();
+
+            $this->model("tourModel");
+            $this->tourModel = new TourModel();
+
+            $this->model("guideModel");
+            $this->guideModel = new GuideModel();
         }
 
         public function index() {
             $tasks = $this->taskModel->getAll();
+            $guides = $this->guideModel->getAll(['MaHDV, TenHDV']);
+            $tours = $this->tourModel->getAll(['MaTour, TenTour']);
 
             return $this->view('task.index', [
-                'tasks' => $tasks
+                'tasks' => $tasks,
+                'guides' => $guides,
+                'tours' => $tours
             ]);
         }
 
-        public function showInsert() {
-            return $this->view(viewPath: 'task.insert');
-        }
-
         public function insert() {
-            $id = $_REQUEST['id'];
+            if(isset($_REQUEST['btn-submit'])) {
+                $MaTour = $_POST['MaTour'];
+                $MaHDV = $_POST['MaHDV'];
+                $NgayKH = date('Y-m-d', strtotime($_POST['NgayKH']));
+                $NgayKT = date('Y-m-d', strtotime($_POST['NgayKT']));
+                $nowDate = date('Y-m-d');
 
-            $getID = $this->taskModel->getTask(['MaPC'], 'MaPC', $id);
-            if(!empty($getID)) {
-                $result = $this->taskModel->deleteTask($id, 'MaPC');
-                if($result) {
-                    $message = "Xóa lịch phân công " . $id . " thành công.";
-                    header("Location: index.php?controller=task&action=index&message={$message}&code=0");
+                if($MaTour != 0 && $MaHDV != 0) {
+                    if($NgayKH >= $nowDate) {
+                        if($NgayKT >= $NgayKH) {
+                            $getTask = $this->taskModel->getTaskOptions(["MaHDV", "TrangThai" , "NgayKT"], ["{$MaHDV}", "Đang diễn ra", "{$NgayKH}"]);
+                            if(empty($getTask)) {
+                                $this->taskModel->insertTask(["MaTour", "MaHDV", "NgayKH", "NgayKT", "TrangThai"],
+                                                         ["{$MaTour}", "{$MaHDV}", "{$NgayKH}", "{$NgayKT}", "Đang diễn ra"]);
+
+                                $code = 0;
+                                $message = "Thêm mới thành công.";
+                            }
+                            else {
+                                $code = 1;
+                                $code2 = 2;
+                                $message = "Hướng dẫn viên này đang có lịch phân công. Vui lòng đổi lịch khác!";
+                            }
+                        }
+                        else {
+                            $code = 1;
+                            $code2 = 2;
+                            $startDate = date('d/m/Y', strtotime($NgayKH));
+                            $message = "Ngày kết thúc phải bắt đầu từ $startDate!";
+                        }
+                    }
+                    else {
+                        $code = 1;
+                        $code2 = 2;
+                        $nowDate = date('d/m/Y', strtotime($nowDate));
+                        $message = "Ngày khởi hành phải bắt đầu từ $nowDate!";
+                    }
                 }
                 else {
-                    $message = "Xóa lịch phân công " . $id . " không thành công!";
-                    header("Location: index.php?controller=task&action=index&message={$message}&code=1");
+                    $code = 1;
+                    $code2 = 2;
+                    $message = "Vui lòng nhập đầy đủ thông tin!";
+                }
+
+                if($code == 1) {
+                    header("Location: index.php?controller=task&action=index&message=$message&code=$code&code2=$code2&idTour=$MaTour&idGuide=$MaHDV&startDate=$NgayKH&endDate=$NgayKT");
+                }
+                else if($code == 0) {
+                    header("Location: index.php?controller=task&action=index&message=$message&code=$code");
+                }
+
+                exit();
+            }
+        }
+
+        public function delete() {
+            if(isset($_REQUEST['id'])) {
+                $id = $_REQUEST['id'];
+
+                try {
+                    $getTask = $this->taskModel->getTask(['MaPC'], 'MaPC', $id);
+                    if(!empty($getTask)) {
+                        $this->taskModel->deleteTask($id, 'MaPC');
+
+                        $code = 0;
+                        $message = "Xoá lịch phân công $id thành công.";
+                    }
+                    else {
+                        $code = 1;
+                        $message = "Lịch phân công $id không tồn tại!";
+                    }
+                }
+                catch(Exception) {
+                    $code = 1;
+                    $message = "Xoá lịch phân công $id không thành công!";
                 }
             }
             else {
-                $message = "Lịch phân công " . $id . " không tồn tại!";
-                header("Location: index.php?controller=task&action=index&message={$message}&code=1");
-            }
+                $code = 1;
+                $message = "Lỗi! Không thể xoá lịch phân công.";
+            } 
+
+            header("Location: index.php?controller=task&action=index&code=$code&message=$message");
             exit();
         }
     }

@@ -1,5 +1,5 @@
 <?php 
-    class guideModel extends BaseModel {
+    class GuideModel extends BaseModel {
         const TABLE = 'huongdanvien';
 
         public function getAll($columns = ['*']) {
@@ -19,7 +19,7 @@
             return $this->getOption(self::TABLE, $select, $id, $value);
         }
 
-        public function deleteGuide($id, $columns) {
-            return $this->delete(self::TABLE, $id, $columns);
+        public function deleteGuide($option, $column) {
+            return $this->delete(self::TABLE, $option, $column);
         }
     }

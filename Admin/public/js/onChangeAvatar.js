@@ -1,8 +1,12 @@
-$ = document.querySelector.bind(document);
+document.addEventListener('DOMContentLoaded', () => { 
+    let avatarImg = document.querySelector(".avata-img");
+    let avatarInput = document.querySelector(".avatar-input");
 
-const avatarImg = $(".avata-img");
-const avatarInput = $(".avatar-input-update");
-
-avatarInput.addEventListener("change", () => {
-    avatarImg.src = URL.createObjectURL(avatarInput.files[0]);
+    if(avatarImg) {
+        avatarInput.addEventListener("change", () => {
+            if (avatarInput.files && avatarInput.files[0]) {
+                avatarImg.src = URL.createObjectURL(avatarInput.files[0]);
+            }
+        });
+    }
 });

@@ -10,6 +10,10 @@
     margin-bottom: 30px;
 }
 
+.calendar-info {
+    margin-bottom: 50px;
+}
+
 .form-container {
     display: flex;
     gap: 20px;

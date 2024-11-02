@@ -1,5 +1,5 @@
 <?php 
-    class homeController extends BaseController {
+    class HomeController extends BaseController {
         public function index() {
             return $this->view("home.index");
         }

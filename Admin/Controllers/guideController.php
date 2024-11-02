@@ -1,14 +1,24 @@
 <?php
-    class guideController extends BaseController {
+    class GuideController extends BaseController {
         public $guideModel;
         public $tourModel;
+        public $calendarModel;
+        public $taskModel;
+    
         public function __construct(){
             $this->model("guideModel");
-            $this->guideModel = new guideModel();
+            $this->guideModel = new GuideModel();
 
             $this->model("tourModel");
-            $this->tourModel = new tourModel();
+            $this->tourModel = new TourModel();
+            
+            $this->model("calendarModel");
+            $this->calendarModel = new CalendarModel();
+
+            $this->model("taskModel");
+            $this->taskModel = new TaskModel();
         }
+
         public function index() {
             $guides = $this->guideModel->getAll(['*']);
             return $this->view("guide.index",
@@ -162,18 +172,39 @@
             if(isset($_REQUEST['id'])) {
                 $id = $_REQUEST['id'];
 
-                $img = $this->guideModel->getGuide(['AnhHDV'], 'MaHDV', $id);
-                $imgString = $img[0]->AnhHDV;
-                $link = "public/img/guide/{$imgString}";
-                if(unlink($link)) {
-                    $this->guideModel->deleteGuide($id, 'MaHDV');
+                $getCalendars = $this->calendarModel->getCalendar(['TrangThai'], 'MaTour', $id);
+                $pendingCalendars = array_filter($getCalendars, function($calendar) {
+                    return isset($calendar->TrangThai) && $calendar->TrangThai === "Đang xử lý";
+                });
 
-                    $message = "Xoá hướng dẫn viên " . $id . " thành công.";
-                    header("location: index.php?controller=guide&action=index&message={$message}&code=0");
-                }else {
-                    $message = "Xoá hướng dẫn viên " . $id . " không thành công!";
-                    header("location: index.php?controller=guide&action=index&message={$message}&code=1");
+                if(empty($pendingCalendars)) {
+                    $img = $this->guideModel->getGuide(['AnhHDV'], 'MaHDV', $id);
+                    $imgString = $img[0]->AnhHDV;
+                    $link = "public/img/guide/{$imgString}";
+                    
+                    try {
+                        $resultTask = $this->taskModel->deleteTask($id, 'MaHDV');
+                        $resultGuide = $this->guideModel->deleteGuide($id, 'MaHDV');
+                        $resultCalendar = $this->calendarModel->deleteCalendar($id, 'MaHDV');
+
+                        if($resultTask && $resultGuide && $resultCalendar) {
+                            unlink($link);
+
+                            $code = 0;
+                            $message = "Xoá hướng dẫn viên " . $id . " thành công.";
+                        }
+                    }
+                    catch(Exception $e) {
+                        $code = 1;
+                        $message = "Xoá hướng dẫn viên $id không thành công!";
+                    }
                 }
+                else {
+                    $code = 1;
+                    $message = "Xóa hướng dẫn viên $id không thành công do đang có lịch đặt!";
+                }
+
+                header("Location: index.php?controller=guide&action=index&message={$message}&code={$code}");
                 exit();
             }
 

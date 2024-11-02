@@ -22,7 +22,7 @@
                 <label for="mota">Mô tả</label>
                 <textarea name="MoTa" id="mota" cols="45" rows="10"><?=$value->MoTa?></textarea> <br>
                 <label for="avatar">Ảnh</label>
-                <input class="avatar-input-update" type="file" name="avatarUpdate" id="anh" > <br>
+                <input class="avatar-input" type="file" name="avatarUpdate" id="anh" > <br>
                 <img class="avata-img" src="../Admin/public/img/guide/<?=$value->AnhHDV?>" alt="ảnh"
                     style="width: 200px; margin-left: 155px;"> <br>
                 <label for="gia">Giá</label>

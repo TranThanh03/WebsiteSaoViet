@@ -12,4 +12,11 @@ document.addEventListener('DOMContentLoaded', function () {
             sessionStorage.setItem("navIndex", index);
         })
     });
+
+    if (window.innerHeight < 1500) {
+        const mainDiv = document.querySelector('.main');
+        if(mainDiv) {
+            mainDiv.style.marginBottom = "500px"; 
+        }
+    }
 });

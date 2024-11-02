@@ -27,13 +27,13 @@
                 if($_REQUEST['controller'] === 'home') {
                     echo '<script>sessionStorage.setItem("navIndex", 0)</script>';
                 }
-                else if($_REQUEST['controller'] === 'appointment' && $_REQUEST['action'] === 'detail') {
-                    echo '<link rel="stylesheet" href="./public/css/appointment.css"/>';
+                else if($_REQUEST['controller'] === 'calendar' && $_REQUEST['action'] === 'detail') {
+                    echo '<link rel="stylesheet" href="./public/css/calendar.css"/>';
                 }
-                else if($_REQUEST['controller'] === 'task') {
-                    echo '<link rel="stylesheet" href="./public/css/task.css"/>';
-                }
-                
+                else if($_REQUEST['controller'] === 'user' || $_REQUEST['controller'] === 'task') {
+                    echo '<link rel="stylesheet" href="./public/css/showFormInsert.css"/>';
+                    echo '<script src="./public/js/showFormInsert.js"></script>';
+                } 
             }
         ?>   
     </head>
@@ -65,7 +65,7 @@
                     <li><a href="index.php?controller=tour&action=index">Tours</a></li>
                     <li><a href="index.php?controller=guide&action=index">Hướng dẫn viên</a></li>
                     <li><a href="index.php?controller=task&action=index">Phân công</a></li>
-                    <li><a href="index.php?controller=appointment&action=index">Lịch đặt</a></li>
+                    <li><a href="index.php?controller=calendar&action=index">Lịch đặt</a></li>
                 </ul>
             </nav>
         </header>

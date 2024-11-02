@@ -1,5 +1,5 @@
 <?php 
-    class accountModel extends BaseModel {
+    class AccountModel extends BaseModel {
         const TABLE = 'taikhoan';
     
         public function getAll($columns = ['*'], $keys, $option) {
@@ -9,9 +9,9 @@
         public function getAccount($columns = ['*'], $keys, $option) {
             return $this->getOption(self::TABLE, $columns, $keys, $option);
         }
-    
-        public function loginAccount($data = ['*'], $option = []) {
-            return $this->login(self::TABLE, $data, $option);
+
+        public function getAccountOptions($data = ['*'], $option = []) {
+            return $this->getObjectOptions(self::TABLE, $data, $option);
         }
 
         public function insertAccount($keys, $data) {

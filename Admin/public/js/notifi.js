@@ -1,10 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
     const code = document.querySelector("#code");
+    const code2 = document.querySelector("#code2");
+
+    if(code2.value) {
+        let url = new URL(window.location.href);
+        url.searchParams.delete('code2');
+        url.searchParams.delete('full-name');
+        url.searchParams.delete('number-phone');
+        url.searchParams.delete('email');
+        url.searchParams.delete('password');
+        url.searchParams.delete('iduser');
+        url.searchParams.delete('idaccount');
+        window.history.replaceState(null, '', url);
+    }
 
     if(code.value) {
         let url = new URL(window.location.href);
         url.searchParams.delete('message');
         url.searchParams.delete('code');
+        url.searchParams.delete('code2');
+        url.searchParams.delete('full-name');
+        url.searchParams.delete('number-phone');
+        url.searchParams.delete('email');
+        url.searchParams.delete('password');
+        url.searchParams.delete('idTour');
+        url.searchParams.delete('idGuide');
+        url.searchParams.delete('startDate');
+        url.searchParams.delete('endDate');
+        url.searchParams.delete('endDate');
+        url.searchParams.delete('iduser');
+        url.searchParams.delete('idaccount');
         window.history.replaceState(null, '', url);
 
         const notifi = document.querySelector(".notifi");

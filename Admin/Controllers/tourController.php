@@ -1,9 +1,14 @@
 <?php 
-    class tourController extends BaseController {
+    class TourController extends BaseController {
         public $tourModel;
+        public $calendarModel;
+        
         function __construct() {
             $this->model("tourModel");
-            $this->tourModel = new tourModel();
+            $this->tourModel = new TourModel();
+
+            $this->model("calendarModel");
+            $this->calendarModel = new CalendarModel();
         }
         public function index() {
             $dataCD = [
@@ -38,7 +43,33 @@
         }
 
         public function create() {
-            return $this->view('tour.create');
+            $dataCD = [
+                [
+                    'id' => 1,
+                    'name' => 'Tour Biển Đảo'
+                ],
+                [
+                    'id' => 2,
+                    'name' => 'Tour Văn Hóa Lịch Sử'
+                ],
+                [
+                    'id' => 3,
+                    'name' => 'Tour Nghỉ Dưỡng'
+                ],
+                [
+                    'id' => 4,
+                    'name' => 'Tour Mạo Hiểm'
+                ],
+                [
+                    'id' => 5,
+                    'name' => 'Tour Ẩm Thực'
+                ]
+            ]; 
+            
+            return $this->view('tour.create', 
+            [
+                'dataCD' => $dataCD
+            ]);
         }
 
         public function insert() {
@@ -138,25 +169,43 @@
         }
 
         public function delete() {
-            $id = $_REQUEST['id'] ?? '';
-            if(empty($id)) {
-                echo "Lỗi";
-            } else {
-                try {
-                    $img = $this->tourModel->getTour(['AnhTour'], 'MaTour',$id);
+            if(isset($_REQUEST['id'])) {
+                $id = $_REQUEST['id'];
+
+                $getCalendars = $this->calendarModel->getCalendar(['TrangThai'], 'MaTour', $id);
+                $pendingCalendars = array_filter($getCalendars, function($calendar) {
+                    return isset($calendar->TrangThai) && $calendar->TrangThai === "Đang xử lý";
+                });
+
+                if(empty($pendingCalendars)) {
+                    $img = $this->tourModel->getTour(['AnhTour'], 'MaTour', $id);
                     $pathImg = $img[0]['AnhTour'];
-                    $link = "public/img/tour/{$pathImg}";
-                    $this->tourModel->deleteTour($id, 'MaTour');
+                    $link = "public/img/tour/$pathImg";
+                    
                     if(unlink($link)) {
-                        header('location: index.php?controller=tour&action=index');
-                    }else {
-                        echo "Lỗi xảy ra";
+                        $this->tourModel->deleteTour($id, 'MaTour');
+                        $this->calendarModel->deleteCalendar($id, 'MaTour');
+
+                        $code = 1;
+                        $message = "Xóa tour $id thành công.";
+                    }
+                    else {
+                        $code = 1;
+                        $message = "Xóa tour $id không thành công!";
                     }       
                 }
-                catch(Exception $e) {
-                    echo "Tour này chỉ có thể chỉnh sửa, không thể xóa!";
+                else {
+                    $code = 1;
+                    $message = "Xóa tour $id không thành công do đang có lịch đặt!";
                 }
             }
+            else {
+                $code = 1;
+                $message = "Lỗi! Không thể xóa tour.";
+            }
+
+            header("Location: index.php?controller=tour&action=index&code=$code&message=$message");
+            exit();
         }
 
         public function showForm() {
@@ -187,8 +236,8 @@
             if(empty($id)) {
                 echo "Lỗi";
             } else {
-                $tour = $this->tourModel->getTour(['*'], 'MaTour',$id);
-                return $this->view("tour.formUpdateTour",
+                $tour = $this->tourModel->getTour(['*'], 'MaTour', $id);
+                return $this->view("tour.update",
                 [
                     'tour' => $tour,
                     'dataCD' => $dataCD

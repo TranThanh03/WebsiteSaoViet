@@ -1,5 +1,5 @@
 <?php 
-    class userModel extends BaseModel {
+    class UserModel extends BaseModel {
         const TABLE = 'khachhang';
     
         public function getAll($columns = ['*']) {
@@ -9,7 +9,11 @@
         public function getUser($columns = ['*'], $keys, $data) {
             return $this->getOption(self::TABLE, $columns, $keys, $data);
         }
-    
+        
+        public function getUserOptions($data = ['*'], $option = []) {
+            return $this->getObjectOptions(self::TABLE, $data, $option);
+        }
+
         public function insertUser($keys, $data) {
             return $this->insert(self::TABLE, $keys, $data);
         }

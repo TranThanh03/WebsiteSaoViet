@@ -1,5 +1,16 @@
 <main class="booking-form">
     <h2>Thông tin đơn đặt mã <?=$calendar[0]->MaLD?></h2>
+        <div class="calendar-info">
+            <div class="form-group">
+                <label for="datetime">Thời gian đặt:</label>
+                <input type="text" id="datetime" name="datetime" value="<?=date('H:i:s d-m-Y', strtotime($calendar[0]->ThoiGianDat))?>" disabled>
+            </div>
+            <div class="form-group">
+                <label for="calendar-status">Trạng thái:</label>
+                <input type="text" id="calendar-status" name="calendar-status" value="<?=$calendar[0]->TrangThai?>" disabled>
+            </div>
+        </div>
+
         <div class="form-container">
             <section class="tour-info">
                 <h2>Thông tin tour</h2>
@@ -77,8 +88,8 @@
 
         <div class="form-actions">
             <?php if($calendar[0]->TrangThai === 'Đang xử lý'):?>
-                <button class="btn-submit"><a href="index.php?controller=appointment&action=update&id=<?=$_REQUEST['id']?>&status=confirm">Xác nhận</a></button>
-                <button class="btn-submit"><a href="index.php?controller=appointment&action=update&id=<?=$_REQUEST['id']?>&status=noConfirm" style="color: red;">Hủy</a></button>
+                <button class="btn-submit"><a href="index.php?controller=calendar&action=update&id=<?=$_REQUEST['id']?>&status=confirm">Xác nhận</a></button>
+                <button class="btn-submit"><a href="index.php?controller=calendar&action=update&id=<?=$_REQUEST['id']?>&status=noConfirm" style="color: red;">Hủy</a></button>
             <?php endif;?>
         </div>
     <br><br>

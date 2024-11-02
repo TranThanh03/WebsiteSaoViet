@@ -45,10 +45,25 @@ class BaseModel extends Database {
         return $data;
     }
 
-    // Đăng nhập dưới dạng đối tượng
     public function optionObject($table, $select = ['*'], $options = []) {
         $columns = implode(', ', $select);
         $sql = "SELECT {$columns} FROM {$table} WHERE {$select[0]} = '{$options[0]}' AND {$select[1]} = '{$options[1]}'";
+        $query = $this->_query($sql);
+
+        return mysqli_fetch_object($query);
+    }
+
+    public function getObjectOptions($table, $select = ['*'], $options = []) {
+        $columns = implode(', ', $select);
+        $sql = "SELECT {$columns} FROM {$table} WHERE {$select[0]} = '{$options[0]}' AND {$select[1]} != '{$options[1]}'";
+        $query = $this->_query($sql);
+
+        return mysqli_fetch_object($query);
+    }
+
+    public function taskOptions($table, $select = ['*'], $options = []) {
+        $columns = implode(', ', $select);
+        $sql = "SELECT {$columns} FROM {$table} WHERE {$select[0]} = '{$options[0]}' AND {$select[1]} = '{$options[1]}' AND {$select[2]} >= '{$options[2]}'";
         $query = $this->_query($sql);
 
         return mysqli_fetch_object($query);

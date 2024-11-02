@@ -12,9 +12,18 @@
             return $this->getOption(self::GETTABLE, $columns, $id, $value);
         }
 
+        public function getTaskOptions($data = ['*'], $option = []) {
+            return $this->taskOptions(self::GETTABLE, $data, $option);
+        }
+
         public function insertTask($keys, $data)
         {
             return $this->insert(self::GETTABLE, $keys, $data);
+        }
+
+        public function deleteTask($option, $column)
+        {
+            return $this->delete(self::GETTABLE, $option, $column);
         }
     }
 ?>

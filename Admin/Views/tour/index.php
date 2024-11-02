@@ -1,7 +1,7 @@
 <div class="tour">
     <h2 id="title">Danh sách tour</h2>
         <div class="control">
-            <button>Thêm</button>
+            <a href="index.php?controller=tour&action=create"><button>Thêm</button></a>
             <div>
                 <input type="search"><button>Tìm</button>
             </div>

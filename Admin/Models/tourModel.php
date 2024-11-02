@@ -1,5 +1,5 @@
 <?php 
-    class tourModel extends BaseModel {
+    class TourModel extends BaseModel {
         const TABLE = 'tour';
 
         public function getAll($columns = ['*']) {
@@ -19,8 +19,8 @@
             return $this->getOption(self::TABLE, $select, $id, $value);
         }
 
-        public function deleteTour( $id, $columns) {
-            return $this->delete(self::TABLE, $id, $columns);
+        public function deleteTour($option, $column) {
+            return $this->delete(self::TABLE,$option, $column);
         }
     }
 ?>

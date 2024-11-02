@@ -35,7 +35,7 @@
                     </select> <br><br>
                     <p id="anh">Ảnh Tour:</p>
                     <img class="avata-img" src="../Admin/public/img/tour/<?=$data->AnhTour?>" alt="ảnh tour" style="max-width: 400px; margin-left: 150px"><br>
-                    <input class="avatar-input-update" type="file" name="input-file" style="margin-left: 150px"><br>
+                    <input class="avatar-input" type="file" name="input-file" style="margin-left: 150px"><br>
                     <label for="mota">Mô tả:</label>
                     <textarea name="MoTa" id="mota" cols="45" rows="10">
                         <?=$data->MoTa?>

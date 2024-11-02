@@ -1,7 +1,7 @@
 <div class="user">
     <h2 id="title">Danh sách khách hàng</h2>
     <div class="control">
-        <button>Thêm</button>
+        <button id="btn-open">Thêm</button>
         <div>
             <input type="search"><button>Tìm</button>
         </div>
@@ -30,8 +30,8 @@
                             <td><?=$value->Email?></td>
                             <td><?=$value->MatKhau?></td>
                             <td>
-                                <a href="index.php?controller=user&action=showForm&iduser=<?=$value->MaKH?>&idaccount=<?=$value->MaTK?>"><button class="edit">Sửa</button></a>
-                                <a href="index.php?controller=user&action=delete&iduser=<?=$value->MaKH?>&idaccount=<?=$value->MaTK?>"><button class="delete" style="color: red;">Xóa</button></a>
+                                <a href="index.php?controller=user&action=show&iduser=<?=$value->MaKH?>&idaccount=<?=$value->MaTK?>&code2=3"><button id="btn-update" name="btn-update">Sửa</button></a>
+                                <a href="index.php?controller=user&action=delete&iduser=<?=$value->MaKH?>&idaccount=<?=$value->MaTK?>&code2=3"><button id="delete" style="color: red;">Xóa</button></a>
                             </td>
                         </tr>
                 <?php endforeach;?>
@@ -39,23 +39,43 @@
         </table>
     </div>
 
-    <div class="form-insert">
+    <div class="form-input" id="form-insert">
         <div class="content">
             <h2>Thêm khách hàng</h2>
-            <button class="close-btn">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
+            <button id="btn-close">X</button>
             <form action="index.php?controller=user&action=insert" method="post">
                 <label for="name">Tên khách hàng</label>
-                <input type="text" name="full-name" id="name" /> <br />
-                <label for="name">Số điện thoại</label>
-                <input type="text" name="number-phone" id="name" /><br />
-                <label for="name">Email</label>
-                <input type="text" name="email" id="name" /><br/>
-                <label for="name">Mật khẩu</label>
-                <input type="text" name="password" id="name" /><br />
+                <input type="text" name="full-name" id="name" value="<?=isset($_REQUEST['full-name']) ? $_REQUEST['full-name'] : ''?>"/> 
+                <label for="phone">Số điện thoại</label>
+                <input type="text" name="number-phone" id="phone" value="<?=isset($_REQUEST['number-phone']) ? $_REQUEST['number-phone'] : ''?>"/>
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" value="<?=isset($_REQUEST['email']) ? $_REQUEST['email'] : ''?>"/>
+                <label for="password">Mật khẩu</label>
+                <input type="password" name="password" id="password" value="<?=isset($_REQUEST['password']) ? $_REQUEST['password'] : ''?>"/>
         
-                <button type="submit" name="insert" class="insert">Thêm</button>
+                <button type="submit" name="btn-submit" id="btn-submit">Thêm</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="form-input" id="form-update">
+        <div class="content">
+            <h2>Sửa thông tin khách hàng</h2>
+            <button id="btn-close-update">X</button>
+            <form action="index.php?controller=user&action=update" method="post">
+                <input type="hidden" name="iduser" value="<?=$_REQUEST['iduser'] ?? ''?>"/>        
+                <input type="hidden" name="idaccount" value="<?=$_REQUEST['idaccount'] ?? ''?>"/>
+
+                <label for="name">Tên khách hàng</label>
+                <input type="text" name="full-name" id="name" value="<?=$_REQUEST['full-name'] ?? ''?>"/> 
+                <label for="phone">Số điện thoại</label>
+                <input type="text" name="number-phone" id="phone" value="<?=$_REQUEST['number-phone'] ?? ''?>"/>
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" value="<?=$_REQUEST['email'] ?? ''?>"/>
+                <label for="password">Mật khẩu</label>
+                <input type="password" name="password" id="password" value="<?=$_REQUEST['password'] ?? ''?>"/>
+        
+                <button type="submit" name="btn-update" id="btn-submit">Cập nhật</button>
             </form>
         </div>
     </div>

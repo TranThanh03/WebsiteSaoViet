@@ -13,11 +13,9 @@
                     <textarea name="GioiThieu" id="gioithieu" cols="45" rows="10"></textarea><br><br>
                     <label for="tour" id="anh">Chủ đề:</label>
                     <select id="tour" name="MaCD" style="height: 30px; width: 200px;">
-                        <option value="1" selected>Tour Biển Đảo</option>
-                        <option value="2" >Tour Văn Hóa Lịch Sử</option>
-                        <option value="3" >Tour Nghỉ Dưỡng</option>
-                        <option value="4" >Tour Mạo Hiểm</option>
-                        <option value="5" >Tour Ẩm Thực</option>
+                        <?php foreach($dataCD as $value):?>
+                            <option value="<?=$value['id']?>"><?=$value['name']?></option>
+                        <?php endforeach;?>
                     </select> <br><br>
                     <p id="anh">Ảnh Tour:</p>
                     <img class="avata-img" alt="ảnh tour" style="max-width: 400px; margin-left: 150px"><br>

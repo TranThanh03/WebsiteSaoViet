@@ -1,14 +1,14 @@
 <?php 
-    class userController extends BaseController {
+    class UserController extends BaseController {
         public $userModel;
         public $accountModel;
         
         function __construct() {
             $this->model("userModel");
-            $this->userModel = new userModel();
+            $this->userModel = new UserModel();
 
             $this->model("accountModel");
-            $this->accountModel = new accountModel();
+            $this->accountModel = new AccountModel();
         }
 
         function index() {
@@ -47,58 +47,114 @@
         }
 
         public function insert() {
-            if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if(isset($_REQUEST['btn-submit'])) {
                 $fullName = $_POST['full-name'];
                 $numberPhone = $_POST['number-phone'];
                 $email = $_POST['email'];
                 $password = $_POST['password'];
 
-                $getByPhone = $this->accountModel->getAccount(['MaTK'], 'SDT', $numberPhone);
-                $getByEmail = $this->userModel->getUser(['MaTK'], 'Email', $email);
-                
-                if(!empty($getByPhone)) {
-                    echo "<script>alert('Số điện thoại đã tồn tại!')</script>";
-                }
-                else if(!empty($getByEmail)) {
-                    echo "<script>alert('Email đã tồn tại!')</script>";
+                if(empty($fullName) || empty($numberPhone) || empty($email) || empty($password)) {
+                    $code = 1;
+                    $message = "Vui lòng nhập đầy đủ thông tin khách hàng!";
                 }
                 else {
-                    $accounts = $this->accountModel->insertAccount(['SDT' ,'MatKhau', 'Quyen'], ["{$numberPhone}", "{$password}", "user"]);
-                    $getIdAccount = $this->accountModel->getAccount(['MaTK'], 'SDT', $numberPhone);
-                    $users = $this->userModel->insertUser(['TenKH','Email', 'MaTK'], ["{$fullName}", "{$email}", "{$getIdAccount[0]->MaTK}"]);
-                        
-                    if($users && $accounts) {
-                        echo "<script>alert('Thêm khách hàng thành công.')</script>";
+                    $getByPhone = $this->accountModel->getAccount(['MaTK'], 'SDT', $numberPhone);
+                    $getByEmail = $this->userModel->getUser(['MaTK'], 'Email', $email);
+                    
+                    if(!empty($getByPhone)) {
+                        $code = 1;
+                        $message = "Số điện thoại đã tồn tại!";
+                    }
+                    else if(!empty($getByEmail)) {
+                        $code = 1;
+                        $message = "Email đã tồn tại!";
                     }
                     else {
-                        echo "<script>alert('Lỗi! Thêm khách hàng không thành công.')</script>";
+                        $accounts = $this->accountModel->insertAccount(['SDT' ,'MatKhau', 'Quyen'], ["{$numberPhone}", "{$password}", "user"]);
+                        $getIdAccount = $this->accountModel->getAccount(['MaTK'], 'SDT', $numberPhone);
+                        $users = $this->userModel->insertUser(['TenKH','Email', 'MaTK'], ["{$fullName}", "{$email}", "{$getIdAccount[0]->MaTK}"]);
+                            
+                        if($users && $accounts) {
+                            $code = 0;
+                            $message = "Thêm mới khách hàng thành công.";
+                        }
+                        else {
+                            $code = 1;
+                            $message = "Lỗi! Thêm khách hàng không thành công.";
+                        }
                     }
                 }
-                echo "<script>window.location.href = 'index.php?controller=user&action=index'</script>";
+                if($code == 1) {
+                    header("Location: index.php?controller=user&action=index&code=$code&message=$message&full-name=$fullName&number-phone=$numberPhone&email=$email&password=$password&code2=2");
+                }
+                else {
+                    header("Location: index.php?controller=user&action=index&code=$code&message=$message");
+                }
+
+                exit();
+            }
+        }
+
+        public function show() {
+            if(isset($_REQUEST['iduser']) && isset($_REQUEST['idaccount'])) {
+                $idaccount = $_REQUEST['idaccount'];
+                $iduser = $_REQUEST['iduser'];
+
+                $user = $this->userModel->getUser(["*"], "MaKH", $iduser);
+                $account = $this->accountModel->getAccount(["*"], "MaTK", $idaccount);
+
+                $fullName = $user[0]->TenKH;
+                $numberPhone = $account[0]->SDT;
+                $email = $user[0]->Email;
+                $password = $account[0]->MatKhau;
+
+                header("Location: index.php?controller=user&action=index&iduser=$iduser&idaccount=$idaccount&full-name=$fullName&number-phone=$numberPhone&email=$email&password=$password&code2=3");
+                exit();
             }
         }
 
         public function update() {
-            $idUser = $_REQUEST['iduser'] ?? '';
-            $idAccount = $_REQUEST['idaccount'] ?? '';
+            if(isset($_REQUEST['btn-update'])) {
+                if(isset($_REQUEST['iduser']) && isset($_REQUEST['idaccount'])) {
+                    $idUser = $_REQUEST['iduser'];
+                    $idAccount = $_REQUEST['idaccount'];
+                    $fullName = $_POST['full-name'];
+                    $email = $_POST['email'];
+                    $numberPhone = $_POST['number-phone'];
+                    $password = $_POST['password'];
 
-            if(empty($idUser) || empty($idAccount)) {
-                echo "Lỗi";
-            } else {
-                if($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    $this->userModel->updateUser(
-                    ['TenKH', 'Email'],
-                    [$_POST['full-name'], $_POST['email']], 
-                    'MaKH', $idUser);
+                    if(empty($fullName) || empty($numberPhone) || empty($email) || empty($password)) {
+                        $code = 1;
+                        $message = "Vui lòng nhập đầy đủ thông tin khách hàng!";
+                    }
+                    else {
+                        $getByPhone = $this->accountModel->getAccountOptions(["SDT", "MaTK"], ["{$numberPhone}", "{$idAccount}"]);
+                        $getByEmail = $this->userModel->getUserOptions(["Email", "MaKH"], ["{$email}", "{$idUser}"]);
+                        
+                        if(!empty($getByPhone)) {
+                            $code = 1;
+                            $message = "Số điện thoại đã tồn tại!";
+                        }
+                        else if(!empty($getByEmail)) {
+                            $code = 1;
+                            $message = "Email đã tồn tại!";
+                        }
+                        else {
+                            $this->userModel->updateUser(['TenKH', 'Email'], ["{$fullName}", "{$email}"], 'MaKH', $idUser);
+                            $this->accountModel->updateAccount(['SDT' ,'MatKhau'], ["{$numberPhone}", "{$password}"], 'MaTK', $idAccount);
 
-                    $this->accountModel->updateAccount(
-                        ['SDT' ,'MatKhau'],
-                        [$_POST['number-phone'], $_POST['password']], 
-                        'MaTK', $idAccount);
+                            $code = 0;
+                            $message = "Sửa thông tin khách hàng $idUser thành công.";
+                        }
+                    }
 
-                    header('location: index.php?controller=user&action=index');
-                } else {
-                    echo 'Lỗi!' ;
+                    if($code == 1) {
+                        header("Location: index.php?controller=user&action=index&iduser=$idUser&idaccount=$idAccount&code=$code&message=$message&full-name=$fullName&number-phone=$numberPhone&email=$email&password=$password&code2=3");
+                    }
+                    else {
+                        header("Location: index.php?controller=user&action=index&code=$code&message=$message");
+                    }
+                    exit();
                 }
             }
         }
@@ -118,7 +174,7 @@
                     ['MaTK', 'SDT', 'MatKhau'], 
                     'MaTK', $idAccount);
 
-                return $this->view("user.formUpdateUser",
+                return $this->view("user.update",
                 [
                     'users' => $this->dataNormalization($users, $accounts)
                 ]
@@ -127,18 +183,29 @@
         }
 
         public function delete() {
-            $idUser = $_REQUEST['iduser'] ?? '';
-            $idAccount = $_REQUEST['idaccount'] ?? '';
+            if(isset($_REQUEST['iduser']) && isset($_REQUEST['idaccount'])) {
+                $idUser = $_REQUEST['iduser'];
+                $idAccount = $_REQUEST['idaccount'];
 
-            if(empty($idUser) || empty($idAccount)) {
-                echo "Lỗi";
-            } else {
-                $this->userModel->deleteUser( $idUser, 'MaKH');
-                $this->accountModel->deleteAccount( $idAccount, 'MaTK');
-                header('location: index.php?controller=user&action=index');
+                try {
+                    $this->userModel->deleteUser( $idUser, 'MaKH');
+                    $this->accountModel->deleteAccount( $idAccount, 'MaTK');
+
+                    $code = 0;
+                    $message = "Xoá khách hàng $idUser thành công.";
+                }
+                catch(Exception) {
+                    $code = 1;
+                    $message = "Xoá khách hàng $idUser không thành công!";
+                }
             }
+            else {
+                $code = 1;
+                $message = "Lỗi! Không thể xoá khách hàng.";
+            } 
 
+            header("Location: index.php?controller=user&action=index&code=$code&message=$message");
+            exit();
         }
     }
-
 ?>
