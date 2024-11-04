@@ -42,6 +42,9 @@
                 echo '<link rel="stylesheet" href="./public/css/calendar.css">';
                 echo '<script src="./public/js/calendar.js"></script>';
             }
+            else if($_REQUEST['controller'] === 'calendarContent' && $_REQUEST['action'] === 'booking') {
+                echo '<script src="./public/js/message.js"></script>';
+            }
         }
         else {
             echo '<script src="./public/js/home.js"></script>';

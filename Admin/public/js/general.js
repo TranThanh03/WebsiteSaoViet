@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
             sessionStorage.setItem("navIndex", index);
         })
     });
-
-    if (window.innerHeight < 1500) {
+    
+    if (document.body.scrollHeight <= 1000) {
         const mainDiv = document.querySelector('.main');
         if(mainDiv) {
             mainDiv.style.marginBottom = "500px"; 

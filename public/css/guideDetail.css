@@ -1,5 +1,5 @@
 .guide-detail {
-    max-width: 800px;
+    width: 800px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -52,10 +52,12 @@
 
 .tour-infor {
     margin: 25px 0px;
+    border-bottom: 1px solid black;
 }
 
 .tour-infor img {
-    max-width: 350px;
+    width: 350px;
+    height: 175px;
     float: left;
     margin-right: 30px;
 }
@@ -73,7 +75,8 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 40px;
+    margin-top: 20px;
+    margin-bottom: 25px;
 }
 
 .tour-infor a {

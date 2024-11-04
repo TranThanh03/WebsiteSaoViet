@@ -1,5 +1,5 @@
 <?php 
-    class tourModel extends BaseModel {
+    class TourModel extends BaseModel {
         const TABLE = 'tour';
         public function getAll($columns = ['*']) {
             return $this->all(self::TABLE, $columns);

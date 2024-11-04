@@ -8,26 +8,27 @@
         <div class="dashboard-info">
             <div class="admin-profile">
                 <h3>Thông tin người quản trị</h3>
-                <p>Tên: Admin</p>
-                <p>Vai trò: Quản trị viên</p>
-                <p>Email: admin@saoviet.com</p>
+                <p><b>Tên:</b> Admin</p>
+                <p><b>Vai trò:</b> Quản trị viên</p>
+                <p><b>Email:</b> admin@saoviet.com</p>
             </div>
             <div class="dashboard-stats">
                 <div class="stat-card">
                     <h3>Khách hàng</h3>
-                    <p>150</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Đơn đặt hàng</h3>
-                    <p>30</p>
+                    <p><?=$totalUser ?? 0?></p>
                 </div>
                 <div class="stat-card">
                     <h3>Tours đang hoạt động</h3>
-                    <p>10</p>
+                    <p><?=$totalTour ?? 0?></p>
                 </div>
                 <div class="stat-card">
-                    <h3>Doanh thu tháng</h3>
-                    <p>50,000,000 VNĐ</p>
+                    <h3>Đơn đặt tour thành công</h3>
+                    <p><?=$totalCalendar ?? 0?></p>
+                </div>
+                <div class="stat-card">
+                    <h3>Tổng doanh thu</h3>
+                    <p><?=$totalCost ?? 0?></p>
+                    <p style="font-size: 18px;">VND</p>
                 </div>
             </div>
         </div>
@@ -35,7 +36,7 @@
         <div class="dashboard-content">
             <div class="recent-orders">
                 <h2>Đơn hàng mới</h2>
-                <table>
+                <table style="text-align: center;">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -46,13 +47,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Nguyễn Văn A</td>
-                            <td>Tour Hà Giang</td>
-                            <td>2024-10-25</td>
-                            <td>Chờ xử lý</td>
-                        </tr>
+                        <?php 
+                            if(isset($latestCalendars)) {
+                                foreach($latestCalendars as $value) {?>
+                                <tr>
+                                    <td><?=$value->MaLD?></td>
+                                    <td><?=$value->TenKH?></td>
+                                    <td><?=$value->TenTour?></td>
+                                    <td><?=date('H:i:s d/m/Y', strtotime($value->ThoiGianDat))?></td>
+                                    <td><?=$value->TrangThai?></td>
+                                </tr>
+                        <?php }}?>
                     </tbody>
                 </table>
             </div>

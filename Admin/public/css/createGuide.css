@@ -1,0 +1,127 @@
+:root {
+    --color-background: #f4f4f4;
+    --color-primary: #34b7c6;
+    --color-primary-dark: #2a95a0;
+    --color-text: #333;
+    --color-border: #ccc;
+    --color-white: #ffffff;
+    --spacing-sm: 10px;
+    --spacing-md: 15px;
+    --spacing-lg: 20px;
+    --spacing-xl: 30px;
+    --border-radius: 8px;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-background);
+}
+
+.insert-guide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: var(--spacing-lg);
+}
+
+.insert-content {
+    background-color: var(--color-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    max-width: 600px;
+    width: 100%;
+    padding: var(--spacing-xl);
+}
+
+.insert-content h2 {
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    font-size: 24px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    width: 150px;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--color-text);
+    margin-right: var(--spacing-sm);
+    text-align: right;
+}
+
+.insert-content input,
+.insert-content select,
+.insert-content textarea {
+    flex: 1;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.insert-content input:focus,
+.insert-content select:focus,
+.insert-content textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(52, 183, 198, 0.2);
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.btn-secondary {
+    background-color: #f2f2f2;
+    color: var(--color-text-light);
+}
+
+.btn-secondary:hover {
+    background-color: #e0e0e0;
+}
+
+.avatar-img {
+    max-width: 200px;
+    border-radius: 4px;
+    display: block;
+    margin: var(--spacing-md) auto;
+}
+
+.avatar-input {
+   width: 378px;
+}

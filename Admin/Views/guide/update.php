@@ -1,47 +1,91 @@
-<div class="user">
-    <div class="form__update form__insert-user">
-        <div class="form__insert-content">
-            <h2>Sửa thông tin hướng dẫn viên</h2><br>
-            <?php foreach($guides as $value):?>
-            <form action="index.php?controller=guide&action=update&id=<?=$value->MaHDV?>" method="post" enctype="multipart/form-data">
-                <label for="name">Mã hướng dẫn viên</label>
-                <input type="text" name="MaHDV" id="name" value="<?=$value->MaHDV?>" disabled/> <br>
-                <label for="name">Tên hướng dẫn viên</label>
-                <input type="text" name="TenHDV" id="name" value="<?=$value->TenHDV?>"/> <br>
-                <label for="name">Số điện thoại</label>
-                <input type="text" name="SDT" id="name" value="<?=$value->SDT?>"/><br>
-                <label for="name">Email</label>
-                <input type="text" name="Email" id="name" value="<?=$value->Email?>"/><br>
-                <label for="name">Ngày sinh</label>
-                <input type="date" name="NgaySinh" id="name" value="<?=$value->NgaySinh?>"/><br>
-                <label for="name">Giới tính</label>
-                <select  name="GioiTinh">
-                    <option value="Nam" <?=($value->GioiTinh === 'Nam') ? 'selected' : ''; ?>>Nam</option>
-                    <option value="Nữ" <?=($value->GioiTinh !== 'Nam') ? 'selected' : ''; ?>>Nữ</option>
-                </select> <br>
-                <label for="mota">Mô tả</label>
-                <textarea name="MoTa" id="mota" cols="45" rows="10"><?=$value->MoTa?></textarea> <br>
-                <label for="avatar">Ảnh</label>
-                <input class="avatar-input" type="file" name="avatarUpdate" id="anh" > <br>
-                <img class="avata-img" src="../Admin/public/img/guide/<?=$value->AnhHDV?>" alt="ảnh"
-                    style="width: 200px; margin-left: 155px;"> <br>
-                <label for="gia">Giá</label>
-                <input type="text" name="Gia" id="gia" value="<?=$value->Gia?>"/><br>
-                <label for="danhgia">Đánh giá</label>
-                <select id="tour" name="DanhGia">
-                    <?php for($i=1; $i<=5; $i++):?>
-                        <option value="<?=$i?>" <?=($value->DanhGia == $i) ? 'selected' : '';?>><?=$i?></option>
-                    <?php endfor;?>
-                </select> <br>
-                <button type="submit" name="update" class="insert">Cập nhật</button>
-                <button>
-                    <a href="index.php?controller=guide&action=index">Quay về</a>
-                </button>
-            </form>
-            <?php endforeach;?>
-            <br><br>
+<div class="guide">
+    <div class="form-update">
+        <div class="update-content">
+            <h2>Sửa thông tin hướng dẫn viên</h2>
+                <form action="index.php?controller=guide&action=update&id=<?= $guide[0]->MaHDV ?>" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="guide-id">Mã hướng dẫn viên</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="MaHDV" id="guide-id" value="<?= $guide[0]->MaHDV ?>" disabled required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guide-name">Tên hướng dẫn viên</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="TenHDV" id="guide-name" value="<?= $guide[0]->TenHDV ?>" required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại</label>
+                        <div class="input-wrapper">
+                            <input type="tel" name="SDT" id="phone" pattern="[0-9]{9,10}" value="<?= $guide[0]->SDT ?>" required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="Email" id="email" value="<?= $guide[0]->Email ?>" required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthdate">Ngày sinh</label>
+                        <div class="input-wrapper">
+                            <input type="date" name="NgaySinh" id="birthdate" value="<?= $guide[0]->NgaySinh ?>" required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Giới tính</label>
+                        <div class="input-wrapper">
+                            <select name="GioiTinh" id="gender">
+                                <option value="Nam" <?= ($guide[0]->GioiTinh === 'Nam') ? 'selected' : ''; ?>>Nam</option>
+                                <option value="Nữ" <?= ($guide[0]->GioiTinh !== 'Nam') ? 'selected' : ''; ?>>Nữ</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="textarea-group">
+                        <label for="description">Mô tả</label>
+                        <div class="input-wrapper">
+                            <textarea name="MoTa" id="description" required><?= $guide[0]->MoTa ?></textarea>
+                        </div>
+                    </div>
+
+                    <div class="image-group">
+                        <label for="avatar">Ảnh</label>
+                        <div class="input-wrapper">
+                            <img class="avatar-img" src="../Admin/public/img/guide/<?= $guide[0]->AnhHDV ?>" alt="ảnh hướng dẫn viên">
+                            <input class="avatar-input" type="file" name="avatarUpdate" id="avatar">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Giá</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="Gia" id="price" value="<?= $guide[0]->Gia ?>" required/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rating">Đánh giá</label>
+                        <div class="input-wrapper">
+                            <select id="rating" name="DanhGia">
+                                <?php for ($i = 1; $i <= 5; $i++): ?>
+                                    <option value="<?= $i ?>" <?= ($guide[0]->DanhGia == $i) ? 'selected' : ''; ?>><?= $i ?> sao</option>
+                                <?php endfor; ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" name="btn-update" class="insert">Cập nhật</button>
+                        <a href="index.php?controller=guide&action=index"><button class="back" type="button">Quay về</button></a>
+                    </div>
+                </form>
         </div>
     </div>
 </div>
-
-

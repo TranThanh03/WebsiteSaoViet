@@ -1,54 +1,68 @@
-<div class="user">
-    <div class=" form__update-tour">
-        <div class="form__update-content">
+<div class="tour">
+    <div class="form-update">
+        <div class="update-content">
             <h2>Sửa thông tin Tour</h2><br>
-            <?php foreach($tour as $data):?>
-                <form action="index.php?controller=tour&action=update&id=<?=$data->MaTour?>" method="post" enctype="multipart/form-data">
+            <form action="index.php?controller=tour&action=update&id=<?=$tour[0]->MaTour?>" method="post" enctype="multipart/form-data">
+                <div class="form-group">
                     <label for="id">Mã Tour:</label>
-                    <input id="id" name="MaTour" type="text" style="height: 30px; margin-left: 88px" disabled value="<?=$data->MaTour?>"><br><br>
+                    <div class="input-wrapper">
+                        <input id="id" name="MaTour" type="text" disabled value="<?=$tour[0]->MaTour?>">
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="name">Tên Tour:</label>
-                    <input id="name" name="TenTour" type="text" style="width: 400px; height: 30px; margin-left: 85px" value="<?=$data->TenTour?>"><br><br>
-                    <label for="name">Ngày khởi hành:</label>
-                    <input id="name" name="NgayKH" type="date" style="width: 400px; height: 30px; margin-left: 37px" value="<?=$data->NgayKH?>"><br><br>
-                    <label for="name">Ngày kết thúc:</label>
-                    <input id="name" name="NgayKT" type="date" style="width: 400px; height: 30px; margin-left: 49px" value="<?=$data->NgayKT?>"><br><br>
+                    <div class="input-wrapper">
+                        <input id="name" name="TenTour" type="text" value="<?=$tour[0]->TenTour?>" required>
+                    </div>
+                </div>
+
+                <div class="textarea-group">
                     <label for="gioithieu">Giới thiệu:</label>
-                    <textarea name="GioiThieu" id="gioithieu" cols="45" rows="10">
-                        <?=$data->GioiThieu?>
-                    </textarea><br><br>
-                    <label for="tour" id="anh">Chủ đề:</label>
-                    <select id="tour" name="MaCD" style="height: 30px; width: 200px; margin-left: 88px">
-                        <option value="<?=$data->MaCD?>" selected>
-                            <?php 
-                                foreach($dataCD as $value) {
-                                    if($value['id'] == $data->MaCD) {
-                                        echo $value['name'];
-                                    }
-                                }
-                            ?>
-                        </option>
-                        <option value="1" >Tour Biển Đảo</option>
-                        <option value="2" >Tour Văn Hóa Lịch Sử</option>
-                        <option value="3" >Tour Nghỉ Dưỡng</option>
-                        <option value="4" >Tour Mạo Hiểm</option>
-                        <option value="5" >Tour Ẩm Thực</option>
-                    </select> <br><br>
-                    <p id="anh">Ảnh Tour:</p>
-                    <img class="avata-img" src="../Admin/public/img/tour/<?=$data->AnhTour?>" alt="ảnh tour" style="max-width: 400px; margin-left: 150px"><br>
-                    <input class="avatar-input" type="file" name="input-file" style="margin-left: 150px"><br>
+                    <div class="input-wrapper">
+                        <textarea name="GioiThieu" id="gioithieu" required><?=$tour[0]->GioiThieu?></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="tour">Chủ đề:</label>
+                    <div class="input-wrapper">
+                        <select id="tour" name="MaCD">
+                                <?php foreach ($dataCD as $value):?> 
+                                    <option value="<?=$value['id']?>" <?= $tour[0]->MaCD == $value['id'] ? 'selected' : ''?>><?=$value['name']?></option>
+                                <?php endforeach; ?>
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="image-group">
+                    <label>Ảnh Tour:</label>
+                    <div class="input-wrapper">
+                        <img class="avatar-img" src="../Admin/public/img/tour/<?=$tour[0]->AnhTour?>" alt="ảnh tour">
+                        <input class="avatar-input" type="file" name="avatarUpdate">
+                    </div>
+                </div>
+
+                <div class="textarea-group">
                     <label for="mota">Mô tả:</label>
-                    <textarea name="MoTa" id="mota" cols="45" rows="10">
-                        <?=$data->MoTa?>
-                    </textarea> <br>
+                    <div class="input-wrapper">
+                        <textarea name="MoTa" id="mota" required><?=$tour[0]->MoTa?></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="gia">Giá:</label>
-                    <input type="text" name="Gia" style="width: 200px; height: 30px; margin-left: 85px" value="<?=$data->Gia?>"><br><br>
-                    <button type="submit" name="update" class="update">Cập nhật</button>
-                    <button name="insert" class="insert">
-                        <a href="index.php?controller=tour&action=index">Quay về</a>
-                    </button>
-                </form>
-            <?php endforeach;?>
+                    <div class="input-wrapper">
+                        <input type="text" id="gia" name="Gia" value="<?=$tour[0]->Gia?>" required>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" name="btn-update" class="update">Cập nhật</button>
+                    <a href="index.php?controller=tour&action=index"><button type="button">Quay về</button></a>
+                </div>
+            </form>
         </div>
-        <br><br>
     </div>
 </div>

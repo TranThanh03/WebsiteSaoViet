@@ -1,7 +1,7 @@
 <style>
     .control {
         justify-content: right;
-        padding-right: 25px;
+        padding-right: 50px;
     }
 </style>
 

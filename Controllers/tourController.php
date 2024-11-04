@@ -1,10 +1,10 @@
 <?php 
-    class tourController extends BaseController {
+    class TourController extends BaseController {
         public $tourModel;
 
         public function __construct() {
             $this->model('tourModel');
-            $this->tourModel = new tourModel();
+            $this->tourModel = new TourModel();
         }
         public function index() {
             return $this->view('tour.index');

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => { 
-    let avatarImg = document.querySelector(".avata-img");
+    let avatarImg = document.querySelector(".avatar-img");
     let avatarInput = document.querySelector(".avatar-input");
 
     if(avatarImg) {

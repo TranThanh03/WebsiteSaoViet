@@ -1,12 +1,14 @@
 <?php
-    class homeController extends BaseController {
+    class HomeController extends BaseController {
         public $tourModel;
         public $guideModel;
+
         public function __construct() {
             $this->model('tourModel');
+            $this->tourModel = new TourModel();
+
             $this->model('guideModel');
-            $this->tourModel = new tourModel();
-            $this->guideModel = new guideModel();
+            $this->guideModel = new GuideModel();
         }
         public function index() {
             $tours = $this->tourModel->getAll();

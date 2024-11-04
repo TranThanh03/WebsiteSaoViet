@@ -1,5 +1,5 @@
 <?php 
-    class accountModel extends BaseModel {
+    class AccountModel extends BaseModel {
         const TABLE = 'taikhoan';
     
         public function getAll($columns = ['*']) {

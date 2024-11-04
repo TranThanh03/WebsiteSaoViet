@@ -34,6 +34,18 @@
                     echo '<link rel="stylesheet" href="./public/css/showFormInsert.css"/>';
                     echo '<script src="./public/js/showFormInsert.js"></script>';
                 } 
+                else if($_REQUEST['controller'] === 'tour' && $_REQUEST['action'] === 'create') {
+                    echo '<link rel="stylesheet" href="./public/css/createTour.css"/>';
+                }
+                else if($_REQUEST['controller'] === 'tour' && $_REQUEST['action'] === 'showForm') {
+                    echo '<link rel="stylesheet" href="./public/css/updateTour.css"/>';
+                }
+                else if($_REQUEST['controller'] === 'guide' && $_REQUEST['action'] === 'create') {
+                    echo '<link rel="stylesheet" href="./public/css/createGuide.css"/>';
+                }
+                else if($_REQUEST['controller'] === 'guide' && $_REQUEST['action'] === 'showForm') {
+                    echo '<link rel="stylesheet" href="./public/css/updateGuide.css"/>';
+                }
             }
         ?>   
     </head>

@@ -1,35 +1,63 @@
-<div class="user">
-    <div class=" form__insert-tour">
-        <div class="form__insert-content">
-            <h2>Thêm Tour</h2><br>
-            <form action="index.php?controller=tour&action=insert" method="post" enctype="multipart/form-data">
-                    <label for="name">Tên Tour:</label>
-                    <input id="name" name="TenTour" type="text" style="width: 400px; height: 30px;"><br><br>
-                    <label for="name">Ngày khởi hành:</label>
-                    <input id="name" name="NgayKH" type="date" style="width: 400px; height: 30px;"><br><br>
-                    <label for="name">Ngày kết thúc:</label>
-                    <input id="name" name="NgayKT" type="date" style="width: 400px; height: 30px;"><br><br>
-                    <label for="gioithieu">Giới thiệu:</label>
-                    <textarea name="GioiThieu" id="gioithieu" cols="45" rows="10"></textarea><br><br>
-                    <label for="tour" id="anh">Chủ đề:</label>
-                    <select id="tour" name="MaCD" style="height: 30px; width: 200px;">
+<div class="notifi">
+    <div class="title">
+        <input type="hidden" id="code" value="<?=$code ?? ''?>">
+        <p id="message"><?=$message ?? ''?></p>
+    </div>
+    <div class="content">
+        <p id="countdown"></p>
+    </div>
+</div>
+
+<div class="tour-form">
+    <div class="form-container">
+        <div class="form-content">
+            <h2>Thêm Tour</h2>
+            <form action="index.php?controller=tour&action=create" method="post" enctype="multipart/form-data" class="tour-insert-form">
+                <div class="form-group">
+                    <label for="tourName">Tên Tour:</label>
+                    <input id="tourName" name="TenTour" type="text" required value="<?=$_POST['TenTour'] ?? ""?>">
+                </div>
+
+                <div class="form-group">
+                    <label for="introduction">Giới thiệu:</label>
+                    <textarea id="introduction" name="GioiThieu" rows="5" required><?=$_POST['GioiThieu'] ?? ""?></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="tourCategory">Chủ đề:</label>
+                    <select id="tourCategory" name="MaCD" required>
+                        <option value="">--Chọn chủ đề--</option>
                         <?php foreach($dataCD as $value):?>
-                            <option value="<?=$value['id']?>"><?=$value['name']?></option>
+                            <option value="<?=$value['id']?>" <?= isset($_POST['MaCD']) && $_POST['MaCD'] == $value['id'] ? 'selected' : ''?>><?=$value['name']?></option>
                         <?php endforeach;?>
-                    </select> <br><br>
-                    <p id="anh">Ảnh Tour:</p>
-                    <img class="avata-img" alt="ảnh tour" style="max-width: 400px; margin-left: 150px"><br>
-                    <input class="avatar-input-update" type="file" name="input-file" style="margin-left: 150px"><br>
-                    <label for="mota">Mô tả:</label>
-                    <textarea name="MoTa" id="mota" cols="45" rows="10"></textarea> <br>
-                    <label for="gia">Giá:</label>
-                    <input type="text" name="Gia" style="width: 200px; height: 30px;"><br><br> 
-                    <button type="submit" name="insert" class="insert">Thêm</button>
-                    <button type="submit" name="insert" class="insert">
-                        <a href="index.php?controller=tour&action=index">Quay về</a>
-                    </button>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tourImage">Ảnh Tour:</label>
+                    <div class="image-upload">
+                        <img id="imagePreview" src="./public/img/no-image.png" alt="Ảnh tour" class="avatar-img">
+                        <input type="file" id="tourImage" name="avatar-input" class="avatar-input" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Mô tả:</label>
+                    <textarea id="description" name="MoTa" rows="5" required><?=$_POST['MoTa'] ?? ""?></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Giá:</label>
+                    <input id="price" name="Gia" type="text" min="0" required value="<?=$_POST['Gia'] ?? ""?>">
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" name="btn-insert" class="btn btn-primary">Thêm</button>
+                    <a href="index.php?controller=tour&action=index" class="btn btn-secondary">
+                        Quay về
+                    </a>
+                </div>
             </form>
-            <br><br>
         </div>
     </div>
 </div>

@@ -35,41 +35,34 @@
                 $NgayKT = date('Y-m-d', strtotime($_POST['NgayKT']));
                 $nowDate = date('Y-m-d');
 
-                if($MaTour != 0 && $MaHDV != 0) {
-                    if($NgayKH >= $nowDate) {
-                        if($NgayKT >= $NgayKH) {
-                            $getTask = $this->taskModel->getTaskOptions(["MaHDV", "TrangThai" , "NgayKT"], ["{$MaHDV}", "Đang diễn ra", "{$NgayKH}"]);
-                            if(empty($getTask)) {
-                                $this->taskModel->insertTask(["MaTour", "MaHDV", "NgayKH", "NgayKT", "TrangThai"],
-                                                         ["{$MaTour}", "{$MaHDV}", "{$NgayKH}", "{$NgayKT}", "Đang diễn ra"]);
+                if($NgayKH >= $nowDate) {
+                    if($NgayKT >= $NgayKH) {
+                        $getTask = $this->taskModel->getTaskOptions(["MaHDV", "TrangThai" , "NgayKT"], ["{$MaHDV}", "Đang diễn ra", "{$NgayKH}"]);
+                        if(empty($getTask)) {
+                            $this->taskModel->insertTask(["MaTour", "MaHDV", "NgayKH", "NgayKT", "TrangThai"],
+                                                        ["{$MaTour}", "{$MaHDV}", "{$NgayKH}", "{$NgayKT}", "Đang diễn ra"]);
 
-                                $code = 0;
-                                $message = "Thêm mới thành công.";
-                            }
-                            else {
-                                $code = 1;
-                                $code2 = 2;
-                                $message = "Hướng dẫn viên này đang có lịch phân công. Vui lòng đổi lịch khác!";
-                            }
+                            $code = 0;
+                            $message = "Thêm mới thành công.";
                         }
                         else {
                             $code = 1;
                             $code2 = 2;
-                            $startDate = date('d/m/Y', strtotime($NgayKH));
-                            $message = "Ngày kết thúc phải bắt đầu từ $startDate!";
+                            $message = "Hướng dẫn viên này đang có lịch phân công. Vui lòng đổi lịch khác!";
                         }
                     }
                     else {
                         $code = 1;
                         $code2 = 2;
-                        $nowDate = date('d/m/Y', strtotime($nowDate));
-                        $message = "Ngày khởi hành phải bắt đầu từ $nowDate!";
+                        $startDate = date('d/m/Y', strtotime($NgayKH));
+                        $message = "Ngày kết thúc phải bắt đầu từ $startDate!";
                     }
                 }
                 else {
                     $code = 1;
                     $code2 = 2;
-                    $message = "Vui lòng nhập đầy đủ thông tin!";
+                    $nowDate = date('d/m/Y', strtotime($nowDate));
+                    $message = "Ngày khởi hành phải bắt đầu từ $nowDate!";
                 }
 
                 if($code == 1) {

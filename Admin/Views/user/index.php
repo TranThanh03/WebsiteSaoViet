@@ -45,13 +45,13 @@
             <button id="btn-close">X</button>
             <form action="index.php?controller=user&action=insert" method="post">
                 <label for="name">Tên khách hàng</label>
-                <input type="text" name="full-name" id="name" value="<?=isset($_REQUEST['full-name']) ? $_REQUEST['full-name'] : ''?>"/> 
+                <input type="text" name="full-name" id="name" value="<?=isset($_REQUEST['full-name']) ? $_REQUEST['full-name'] : ''?>" required/> 
                 <label for="phone">Số điện thoại</label>
-                <input type="text" name="number-phone" id="phone" value="<?=isset($_REQUEST['number-phone']) ? $_REQUEST['number-phone'] : ''?>"/>
+                <input type="tel" name="number-phone" id="phone" pattern="[0-9]{10}" value="<?=isset($_REQUEST['number-phone']) ? $_REQUEST['number-phone'] : ''?>" required/>
                 <label for="email">Email</label>
-                <input type="text" name="email" id="email" value="<?=isset($_REQUEST['email']) ? $_REQUEST['email'] : ''?>"/>
+                <input type="text" name="email" id="email" value="<?=isset($_REQUEST['email']) ? $_REQUEST['email'] : ''?>" required/>
                 <label for="password">Mật khẩu</label>
-                <input type="password" name="password" id="password" value="<?=isset($_REQUEST['password']) ? $_REQUEST['password'] : ''?>"/>
+                <input type="password" name="password" id="password" value="<?=isset($_REQUEST['password']) ? $_REQUEST['password'] : ''?>" required/>
         
                 <button type="submit" name="btn-submit" id="btn-submit">Thêm</button>
             </form>
@@ -67,13 +67,13 @@
                 <input type="hidden" name="idaccount" value="<?=$_REQUEST['idaccount'] ?? ''?>"/>
 
                 <label for="name">Tên khách hàng</label>
-                <input type="text" name="full-name" id="name" value="<?=$_REQUEST['full-name'] ?? ''?>"/> 
+                <input type="text" name="full-name" id="name" value="<?=$_REQUEST['full-name2'] ?? ''?>" required/> 
                 <label for="phone">Số điện thoại</label>
-                <input type="text" name="number-phone" id="phone" value="<?=$_REQUEST['number-phone'] ?? ''?>"/>
+                <input type="tel" name="number-phone" id="phone" pattern="[0-9]{9,10}" value="<?=$_REQUEST['number-phone2'] ?? ''?>" required/>
                 <label for="email">Email</label>
-                <input type="text" name="email" id="email" value="<?=$_REQUEST['email'] ?? ''?>"/>
+                <input type="text" name="email" id="email" value="<?=$_REQUEST['email2'] ?? ''?>" required/>
                 <label for="password">Mật khẩu</label>
-                <input type="password" name="password" id="password" value="<?=$_REQUEST['password'] ?? ''?>"/>
+                <input type="password" name="password" id="password" value="<?=$_REQUEST['password2'] ?? ''?>" required/>
         
                 <button type="submit" name="btn-update" id="btn-submit">Cập nhật</button>
             </form>

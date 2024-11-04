@@ -2,6 +2,7 @@
     class TourController extends BaseController {
         public $tourModel;
         public $calendarModel;
+        public $taskModel;
         
         function __construct() {
             $this->model("tourModel");
@@ -9,6 +10,9 @@
 
             $this->model("calendarModel");
             $this->calendarModel = new CalendarModel();
+
+            $this->model("taskModel");
+            $this->taskModel = new TaskModel();
         }
         public function index() {
             $dataCD = [
@@ -65,106 +69,68 @@
                     'name' => 'Tour Ẩm Thực'
                 ]
             ]; 
-            
-            return $this->view('tour.create', 
-            [
-                'dataCD' => $dataCD
-            ]);
-        }
 
-        public function insert() {
-            if (!isset($_FILES["input-file"]))
-            {
-                echo "Dữ liệu không đúng cấu trúc";
-                die;
-            }
-            
-            if ($_FILES["input-file"]['error'] != 0)
-            {
-                echo "Dữ liệu upload bị lỗi";
-                die;
-            }
-
-            $target_dir    = "./public/img/tour/";
-            $target_file   = $target_dir . basename($_FILES["input-file"]["name"]);
-            $allowUpload   = true;
-
-            $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-
-            $maxfilesize   = 800000;
-            $allowtypes    = array('jpg', 'png', 'jpeg', 'gif');
-
-
-            if(isset($_POST["submit"])) {
-                $check = getimagesize($_FILES["input-file"]["tmp_name"]);
-                if($check !== false)
-                {
-                    echo "Đây là file ảnh - " . $check["mime"] . ".";
-                    $allowUpload = true;
-                }
-                else
-                {
-                    echo "Không phải file ảnh.";
-                    $allowUpload = false;
-                }
-            }
-
-            if (file_exists($target_file))
-            {
-                echo "Tên file đã tồn tại trên server, không được ghi đè";
-                $allowUpload = false;
-            }
-        
-            if ($_FILES["input-file"]["size"] > $maxfilesize)
-            {
-                echo "Không được upload ảnh lớn hơn $maxfilesize (bytes).";
-                $allowUpload = false;
-            }
-
-            if (!in_array($imageFileType,$allowtypes ))
-            {
-                echo "Chỉ được upload các định dạng JPG, PNG, JPEG, GIF";
-                $allowUpload = false;
-            }
-
-            if ($allowUpload)
-            {
-                if (move_uploaded_file($_FILES["input-file"]["tmp_name"], $target_file))
-                {
-                    echo "File ". basename( $_FILES["input-file"]["name"]).
-                    " Đã upload thành công.";
-
-                    echo "File lưu tại " . $target_file;
-
-                }
-                else
-                {
-                    echo "Có lỗi xảy ra khi upload file.";
-                }
-            }
-            else
-            {
-                echo "Không upload được file, có thể do file lớn, kiểu file không đúng ...";
-            }
-            if($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $nameTour = $_POST['TenTour'];
-                $dateStart = date('Y-m-d', strtotime( $_POST['NgayKH']));
-                $dateEnd = date('Y-m-d', strtotime( $_POST['NgayKT']));
-                $introduce = $_POST['GioiThieu'];
-                $pathImage = basename( $_FILES["input-file"]["name"]);
-                $description = $_POST['MoTa'];
-                $cost = $_POST['Gia'];
-                $maCD = $_POST['MaCD'];
-
-                $data = $this->tourModel->insertTour(
-                ['TenTour', 'NgayKH', 'NgayKT','GioiThieu', 'AnhTour','MoTa', 'Gia', 'MaCD'], 
-                ["{$nameTour}", "{$dateStart}", "{$dateEnd}", "{$introduce}", "{$pathImage}", "{$description}", "{$cost}", "{$maCD}"]);
+            if(isset($_REQUEST['btn-insert'])) {
+                $TenTour = $_POST['TenTour'];
+                $GioiThieu = $_POST['GioiThieu'];
+                $MoTa = $_POST['MoTa'];
+                $Gia = $_POST['Gia'];
+                $MaCD = $_POST['MaCD'];
+                $Anh = basename( $_FILES["avatar-input"]["name"]);
     
-                if($data) {
-                    header('location: index.php?controller=tour&action=index');
-                } else {
-                    echo 'lỗi';
+                $target_dir    = "./public/img/tour/";
+                $target_file   = $target_dir . basename($_FILES["avatar-input"]["name"]);
+
+                $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+                $maxfilesize   = 800000;
+
+                $allowtypes    = array('jpg', 'png', 'jpeg', 'gif');
+
+                if ($_FILES["avatar-input"]["size"] > $maxfilesize)
+                {
+                    $code = 1;
+                    $message = "Không được upload ảnh lớn hơn $maxfilesize (bytes)!";
                 }
+                else if (!in_array($imageFileType,$allowtypes ))
+                {
+                    $code = 1;
+                    $message = "Chỉ được upload các định dạng JPG, PNG, JPEG, GIF!";
+                }
+                else
+                {
+                    if (!move_uploaded_file($_FILES["avatar-input"]["tmp_name"], $target_file)) {
+                        $code = 1;
+                        $message = "Có lỗi xảy ra khi upload file!";
+                        
+                    }
+                    else {
+                        $data = $this->tourModel->insertTour(
+                            ['TenTour', 'GioiThieu', 'AnhTour','MoTa', 'Gia', 'MaCD'], 
+                            ["{$TenTour}", "{$GioiThieu}", "{$Anh}", "{$MoTa}", "{$Gia}", "{$MaCD}"]);
+
+                        $code = 0;
+                        $message = "Thêm tour thành công.";
+                    }
+                }
+
+                if($code == 1) {
+                    return $this->view("tour.create", 
+                    [
+                        'code' => $code,
+                        'message' => $message,
+                        'dataCD' => $dataCD
+                    ]);
+                }
+                else {
+                    header("Location: index.php?controller=tour&action=index&message=$message&code=$code");
+                    exit();
+                }
+            }
+            else {
+                return $this->view('tour.create', 
+                [
+                    'dataCD' => $dataCD
+                ]);
             }
         }
 
@@ -179,14 +145,17 @@
 
                 if(empty($pendingCalendars)) {
                     $img = $this->tourModel->getTour(['AnhTour'], 'MaTour', $id);
-                    $pathImg = $img[0]['AnhTour'];
+                    $pathImg = $img[0]->AnhTour;
                     $link = "public/img/tour/$pathImg";
                     
-                    if(unlink($link)) {
-                        $this->tourModel->deleteTour($id, 'MaTour');
-                        $this->calendarModel->deleteCalendar($id, 'MaTour');
+                    $resultTask = $this->taskModel->deleteTask($id, 'MaTour');
+                    $resultTour = $this->tourModel->deleteTour($id, 'MaTour');
+                    $resultCalendar = $this->calendarModel->deleteCalendar($id, 'MaTour');
 
-                        $code = 1;
+                    if($resultTask && $resultTour && $resultCalendar) {
+                        unlink($link);
+
+                        $code = 0;
                         $message = "Xóa tour $id thành công.";
                     }
                     else {
@@ -209,33 +178,31 @@
         }
 
         public function showForm() {
-            $id = $_REQUEST['id'] ?? '';
-            $dataCD = [
-                    [
-                        'id' => 1,
-                        'name' => 'Tour Biển Đảo'
-                    ],
-                    [
-                        'id' => 2,
-                        'name' => 'Tour Văn Hóa Lịch Sử'
-                    ],
-                    [
-                        'id' => 3,
-                        'name' => 'Tour Nghỉ Dưỡng'
-                    ],
-                    [
-                        'id' => 4,
-                        'name' => 'Tour Mạo Hiểm'
-                    ],
-                    [
-                        'id' => 5,
-                        'name' => 'Tour Ẩm Thực'
-                    ]
-                ];
+            if(isset($_REQUEST['id'])) {
+                $id = $_REQUEST['id'];
+                $dataCD = [
+                        [
+                            'id' => 1,
+                            'name' => 'Tour Biển Đảo'
+                        ],
+                        [
+                            'id' => 2,
+                            'name' => 'Tour Văn Hóa Lịch Sử'
+                        ],
+                        [
+                            'id' => 3,
+                            'name' => 'Tour Nghỉ Dưỡng'
+                        ],
+                        [
+                            'id' => 4,
+                            'name' => 'Tour Mạo Hiểm'
+                        ],
+                        [
+                            'id' => 5,
+                            'name' => 'Tour Ẩm Thực'
+                        ]
+                    ];
 
-            if(empty($id)) {
-                echo "Lỗi";
-            } else {
                 $tour = $this->tourModel->getTour(['*'], 'MaTour', $id);
                 return $this->view("tour.update",
                 [
@@ -243,90 +210,86 @@
                     'dataCD' => $dataCD
                 ]);
             }
+            else {
+                $code = 1;
+                $message = "Lỗi!";
+                header("Location: index.php?controller=tour&action=index&code=$code&message=$message");
+                exit();
+            }
         }
 
         public function update() {
-            $id = $_REQUEST['id'] ?? '';
-            if (!isset($_FILES["input-file"]))
-            {
-                echo "Dữ liệu không đúng cấu trúc";
-                die;
-            }
-            
-            $target_dir    = "./public/img/tour/";
-            $target_file   = $target_dir . basename($_FILES["input-file"]["name"]);
-            $allowUpload   = true;
-
-            $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-            $maxfilesize   = 800000;
-            $allowtypes    = array('jpg', 'png', 'jpeg', 'gif');
-
-
-            if(isset($_POST["submit"])) {
-                $check = getimagesize($_FILES["input-file"]["tmp_name"]);
-                if($check !== false)
-                {
-                    $allowUpload = true;
-                }
-                else
-                {
-                    echo "Không phải file ảnh.";
-                    $allowUpload = false;
-                }
-            }
-
-            if ($_FILES["input-file"]["size"] > $maxfilesize)
-            {
-                echo "Không được upload ảnh lớn hơn $maxfilesize (bytes).";
-                $allowUpload = false;
-            }
-
-            if (!in_array($imageFileType,$allowtypes ))
-            {
-                echo "Chỉ được upload các định dạng JPG, PNG, JPEG, GIF";
-                $allowUpload = false;
-            }
-
-            if ($allowUpload)
-            {
-                if (move_uploaded_file($_FILES["input-file"]["tmp_name"], $target_file))
-                {
-                    echo "File ". basename( $_FILES["input-file"]["name"]).
-                    " Đã upload thành công.";
-
-                    echo "File lưu tại " . $target_file;
-
-                }
-                else
-                {
-                    echo "Có lỗi xảy ra khi upload file.";
-                }
-            }
-            else
-            {
-                echo "Không upload được file, có thể do file lớn, kiểu file không đúng ...";
-            }
-
-            if(empty($id)) {
-                echo "Lỗi";
-            } else {
-                if($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    $img = $this->tourModel->getTour(['AnhTour'], 'MaTour', $id);
-                    $imgString = $img[0]->AnhTour;
-                    if(empty(basename( $_FILES["input-file"]["name"]))) {
-                        $anhTour = $imgString;
-                    } else {
-                        $anhTour = basename($_FILES["input-file"]["name"]);
-                    }
-                    $this->tourModel->updateTour(
-                        ['TenTour', 'NgayKH', 'NgayKT', 'GioiThieu','AnhTour','MoTa' ,'Gia', 'MaCD'],
-                        [$_POST['TenTour'], date('Y-m-d', strtotime( $_POST['NgayKH'])), date('Y-m-d', strtotime( $_POST['NgayKT'])), $_POST['GioiThieu'], $anhTour, $_POST['MoTa'], $_POST['Gia'], $_POST['MaCD']], 
-                        'MaTour', $id);
-                    header('location: index.php?controller=tour&action=index');
+            if(isset($_REQUEST['btn-update'])) {
+                if(isset($_REQUEST['id'])) {
+                    $id = $_REQUEST['id'];
+                    $TenTour = $_POST['TenTour'];
+                    $GioiThieu = $_POST['GioiThieu'];
+                    $MoTa = $_POST['MoTa'];
+                    $Gia = $_POST['Gia'];
+                    $MaCD = $_POST['MaCD'];
                     
-                } else {
-                    echo 'Lỗi!' ;
+                    if(empty(basename( $_FILES["avatarUpdate"]["name"]))) {
+                        $this->tourModel->updateTour(
+                            ['TenTour', 'GioiThieu', 'MoTa', 'Gia', 'MaCD'],
+                            [$TenTour, $GioiThieu, $MoTa, $Gia, $MaCD], 
+                            'MaTour', $id);
+                            
+                        $code = 0;
+                        $message = "Cập nhật thông tin tour $id thành công.";
+                    } 
+                    else {
+                        $Anh = basename( $_FILES["avatarUpdate"]["name"]);
+    
+                        $target_dir    = "./public/img/tour/";
+                        $target_file   = $target_dir . basename($_FILES["avatarUpdate"]["name"]);
+    
+                        $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+                        $maxfilesize   = 800000;
+    
+                        $allowtypes    = array('jpg', 'png', 'jpeg', 'gif');
+    
+                        if ($_FILES["avatarUpdate"]["size"] > $maxfilesize)
+                        {
+                            $code = 1;
+                            $message = "Không được upload ảnh lớn hơn $maxfilesize (bytes)!";
+                        }
+                        else if (!in_array($imageFileType,$allowtypes ))
+                        {
+                            $code = 1;
+                            $message = "Chỉ được upload các định dạng JPG, PNG, JPEG, GIF!";
+                        }
+                        else
+                        {
+                            if (!move_uploaded_file($_FILES["avatarUpdate"]["tmp_name"], $target_file)) {
+                                $code = 1;
+                                $message = "Có lỗi xảy ra khi upload file!";
+                                
+                            }
+                            else {
+                                $this->tourModel->updateTour(
+                                    ['TenTour', 'GioiThieu', 'AnhTour', 'MoTa', 'Gia', 'MaCD'],
+                                    [$TenTour, $GioiThieu, $Anh, $MoTa, $Gia, $MaCD], 
+                                    'MaTour', $id);
+                                
+                                $code = 0;
+                                $message = "Cập nhật thông tin tour $id thành công.";
+                            }
+                        }
+                    }
+
+                    if($code == 1) {
+                        header("Location: index.php?controller=tour&action=showForm&id=$id&message=$message&code=$code");
+                    }
+                    else {
+                        header("Location: index.php?controller=tour&action=index&message=$message&code=$code");
+                    }
                 }
+                else {
+                    $code = 1;
+                    $message = "Lỗi!";
+                    header("Location: index.php?controller=tour&action=index&code=$code&message=$message");
+                }
+                exit();
             }
         }
     }

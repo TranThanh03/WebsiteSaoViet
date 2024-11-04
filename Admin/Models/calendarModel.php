@@ -13,6 +13,10 @@
             return $this->getOption(self::GETTABLE, $select, $id, $value);
         }
 
+        public function getCalendarLatest($select, $id, $option, $orderBy) {
+            return $this->calendarLatest(self::TABLE, $select, $id, $option, $orderBy);
+        }
+
         public function updateCalendar($columns, $value, $id, $option) {
             return $this->update(self::GETTABLE, $columns, $value, $id, $option);
         }

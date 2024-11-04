@@ -48,15 +48,15 @@
             <button id="btn-close">X</button>
             <form action="index.php?controller=task&action=insert" method="post">
                 <label for="select-item">Mã - Tên tour</label>
-                <select class="select-item" name="MaTour">
-                    <option value="0"></option>
+                <select class="select-item" name="MaTour" required>
+                    <option value="">--Chọn tour--</option>
                     <?php foreach($tours as $tour):?>
                         <option value="<?=$tour->MaTour?>" <?=isset($_REQUEST['idTour']) && $tour->MaTour == $_REQUEST['idTour'] ? 'selected' : ''?>><?=$tour->MaTour?> - <?=$tour->TenTour?></option>;
                     <?php endforeach;?>
                 </select>
                 <label for="select-item">Mã - Tên hướng dẫn viên</label>
-                <select class="select-item" name="MaHDV">
-                    <option value="0"></option>
+                <select class="select-item" name="MaHDV" required>
+                    <option value="">--Chọn hướng dẫn viên--</option>
                     <?php foreach($guides as $guide):?>
                         <option value="<?=$guide->MaHDV?>" <?=isset($_REQUEST['idGuide']) && $guide->MaHDV == $_REQUEST['idGuide'] ? 'selected' : ''?>><?=$guide->MaHDV?> - <?=$guide->TenHDV?></option>;
                     <?php endforeach;?>

@@ -29,7 +29,7 @@ header .logo {
 }
 
 header .logo img {
-    max-width: 70px;
+    width: 70px;
     border-radius: 50%;
     margin-left: 20%;
 }
@@ -74,7 +74,7 @@ header .search button {
 }
 
 header .search img {
-    max-width: 17px;
+    width: 17px;
 }
 
 header .content-right {
@@ -112,12 +112,12 @@ header .icon-account a {
 }
 
 header .icon-calendar img {
-    max-width: 28px;
+    width: 28px;
     cursor: pointer;
 }
 
 header .icon-account img {
-    max-width: 25px;
+    width: 25px;
 }
 
 nav {
@@ -183,7 +183,7 @@ nav .menu a {
 }
 
 .slide .item img {
-    max-width: 1000px;
+    width: 1000px;
     height: auto;
 }
 
@@ -317,7 +317,8 @@ nav .menu a {
 }
 
 #sub-guide img {
-    max-width: 200px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
 }
 
@@ -372,7 +373,7 @@ footer .policy {
 }
 
 footer .policy img {
-    max-width: 40px;
+    width: 40px;
     border-radius: 50%;
 }
 
@@ -405,7 +406,7 @@ footer .contact a {
 }
 
 footer .contact img {
-    max-width: 18px;
+    width: 18px;
     margin-right: 10px;
 }
 

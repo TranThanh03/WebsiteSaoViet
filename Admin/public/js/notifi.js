@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if(code2.value) {
         let url = new URL(window.location.href);
         url.searchParams.delete('code2');
-        url.searchParams.delete('full-name');
-        url.searchParams.delete('number-phone');
-        url.searchParams.delete('email');
-        url.searchParams.delete('password');
+        url.searchParams.delete('full-name2');
+        url.searchParams.delete('number-phone2');
+        url.searchParams.delete('email2');
+        url.searchParams.delete('password2');
         url.searchParams.delete('iduser');
         url.searchParams.delete('idaccount');
         window.history.replaceState(null, '', url);

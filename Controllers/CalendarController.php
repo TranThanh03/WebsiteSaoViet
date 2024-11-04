@@ -1,14 +1,15 @@
 <?php 
-    class calendarController extends BaseController {
+    class CalendarController extends BaseController {
         public $calendarModel;
         public $userModel;
+        
         public function __construct()
         {
             $this->model('calendarModel');
-            $this->calendarModel = new calendarModel();
+            $this->calendarModel = new CalendarModel();
             
             $this->model('userModel');
-            $this->userModel = new userModel();
+            $this->userModel = new UserModel();
         }
         public function index() {
             if (isset($_SESSION['username'])) {

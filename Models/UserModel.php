@@ -1,5 +1,5 @@
 <?php 
-    class userModel extends BaseModel {
+    class UserModel extends BaseModel {
         const TABLE = 'khachhang';
     
         public function getAll($columns = ['*']) {

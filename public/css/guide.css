@@ -125,8 +125,8 @@ h2 {
 }
 
 #evaluate img {
-    max-width: 15px;
-    max-height: 15px;
+    width: 15px;
+    height: 15px;
 }
 
 #totalEvaluate {

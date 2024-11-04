@@ -32,6 +32,18 @@ class BaseModel extends Database {
         return $data;
     }
 
+    public function calendarLatest($table, $select = ['*'], $id, $option, $orderBy) {
+        $columns = implode(', ', $select);
+        $sql = "SELECT {$columns} FROM {$table} WHERE {$id} = '{$option}' $orderBy";
+        $query = $this->_query($sql);
+
+        $data = [];
+        while ($row = mysqli_fetch_object($query)) {
+            array_push($data, $row);
+        }
+        return $data;
+    }
+
     // Tìm kiếm dữ liệu với LIKE dưới dạng đối tượng
     public function search($table, $select = ['*'], $id, $option) {
         $columns = implode(', ', $select);

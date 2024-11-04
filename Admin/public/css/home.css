@@ -25,7 +25,7 @@ header .logo {
 }
 
 header .logo img {
-    max-width: 70px;
+    width: 70px;
     border-radius: 50%;
     margin-left: 20%;
 }
@@ -71,7 +71,7 @@ header .icon-account a {
 }
 
 header .icon-account img {
-    max-width: 25px;
+    width: 25px;
 }
 
 nav {
@@ -148,7 +148,7 @@ footer .policy {
 }
 
 footer .policy img {
-    max-width: 40px;
+    width: 40px;
     border-radius: 50%;
 }
 
@@ -181,7 +181,7 @@ footer .contact a {
 }
 
 footer .contact img {
-    max-width: 18px;
+    width: 18px;
     margin-right: 10px;
 }
 
@@ -209,7 +209,7 @@ footer .end span {
 #title {
     text-align: center;
     font-size: 24px;
-    color: #34b7c6;
+    color: #ffc107;
     margin: 20px 0;
     font-weight: bold;
 }
@@ -294,7 +294,7 @@ footer .end span {
 }
 
 .main table img {
-    max-width: 100px;
+    width: 100px;
 }
 
 .main table td button {
@@ -324,7 +324,7 @@ footer .end span {
 
 .dashboard-header h1 {
     font-size: 28px;
-    color: #34b7c6;
+    color: #ffc107;
 }
 
 .dashboard-header p {
@@ -339,7 +339,7 @@ footer .end span {
 }
 
 .admin-profile {
-    width: 200px;
+    width: 230px;
     background-color: #f7f7f7;
     padding: 15px;
     border-radius: 8px;
@@ -363,7 +363,7 @@ footer .end span {
     padding: 20px;
     border-radius: 8px;
     text-align: center;
-    width: 180px;
+    width: 200px;
 }
 
 .stat-card h3 {
@@ -402,7 +402,7 @@ table {
 
 table th, table td {
     padding: 10px;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
@@ -432,6 +432,7 @@ table tr:nth-child(even) {
     padding: 20px;
     border-radius: 8px;
     margin-top: 30px;
+    margin-bottom: 50px;
 }
 
 .highlighted-tours h2 {

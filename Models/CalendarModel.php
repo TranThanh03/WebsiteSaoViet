@@ -1,5 +1,5 @@
 <?php 
-    class calendarModel extends BaseModel {
+    class CalendarModel extends BaseModel {
         const TABLE = ' lichdat
                         INNER JOIN khachhang ON lichdat.MaKH = khachhang.MaKH
                         INNER JOIN tour ON lichdat.MaTour = tour.MaTour

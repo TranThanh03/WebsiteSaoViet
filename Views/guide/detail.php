@@ -40,7 +40,6 @@
                     <p id="tour-cost"><strong>Giá:</strong> <span style="color: red;"><?=$value->Gia?>VND</span></p>
                     <a href="index.php?controller=calendarContent&action=index&idTour=<?=$value->MaTour?>&idGuide=<?=$guide[0]->MaHDV?>"><button class="book-button">Đặt tour</button></a>
                 </div>   
-                <hr>
             <?php endforeach;?>
         <?php endforeach;?>     
     </section>

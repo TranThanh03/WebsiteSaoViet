@@ -19,6 +19,7 @@
     require_once "./Controllers/{$controllerName}.php";
     $controllerObject = new $controllerName;
     $controllerObject -> $actionName();
+
     require_once "./Views/notifi/index.php";
 
     require './Views/footer.php';

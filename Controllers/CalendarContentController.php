@@ -1,5 +1,5 @@
 <?php 
-    class calendarContentController extends BaseController {
+    class CalendarContentController extends BaseController {
         public $calendarModel;
         public $userModel;
         public $accountModel;
@@ -9,22 +9,22 @@
 
         public function __construct() {
             $this->model('calendarModel');
-            $this->calendarModel = new calendarModel();
+            $this->calendarModel = new CalendarModel();
             
             $this->model('userModel');
-            $this->userModel = new userModel();
+            $this->userModel = new UserModel();
 
             $this->model('accountModel');
-            $this->accountModel = new accountModel();
+            $this->accountModel = new AccountModel();
             
             $this->model('tourModel');
-            $this->tourModel = new tourModel();
+            $this->tourModel = new TourModel();
 
             $this->model('guideModel');
-            $this->guideModel = new guideModel();
+            $this->guideModel = new GuideModel();
 
             $this->model('taskModel');
-            $this->taskModel = new taskModel();
+            $this->taskModel = new TaskModel();
         }
 
         private function _get($idTour, $idGuide) {
@@ -124,7 +124,7 @@
         }
 
         public function booking() {
-            if (!empty($_GET)) {
+            if (!empty($_GET) && isset($_GET["resultCode"])) {
                 $resultCode = $_GET["resultCode"];
 
                 if ($resultCode == 0) {
@@ -180,6 +180,10 @@
                         'href' => "index.php?controller=calendarContent&action=index&idUser=" . $_REQUEST['idUser'] . "&idTour=" . $_REQUEST['idTour'] . "&idGuide=" . $_REQUEST['idGuide']
                     ]);
                 }
+            }
+            else {
+                header('Location: index.php?controller=calendarContent&action=error');
+                exit();
             }
         }
 

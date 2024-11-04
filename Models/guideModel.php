@@ -1,5 +1,5 @@
 <?php 
-    class guideModel extends BaseModel {
+    class GuideModel extends BaseModel {
         const TABLE = 'huongdanvien';
         
         public function getAll() {

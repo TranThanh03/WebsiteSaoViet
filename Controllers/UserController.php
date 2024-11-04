@@ -1,14 +1,15 @@
 <?php 
-    class userController extends BaseController {
+    class UserController extends BaseController {
         public $userModel;
         public $accountModel;
         public $account;
+
         public function __construct() {
             $this->model("userModel");
-            $this->userModel = new userModel();
+            $this->userModel = new UserModel();
 
             $this->model("accountModel");
-            $this->accountModel = new accountModel();
+            $this->accountModel = new AccountModel();
         }
         public function index() {
             return $this->view("user.login");

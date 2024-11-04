@@ -11,7 +11,11 @@
     <div class="container">
         <h1>404</h1>
         <p>Oops! The page you're looking for doesn't exist.</p>
-        <a href="index.php?controller=calendarContent&action=index&idTour=<?=$_REQUEST['idTour']?>&idGuide=<?=$_REQUEST['idGuide']?>" class="back-button">Go Back</a>
+        <?php if(isset($_REQUEST['idTour']) && isset($_REQUEST['idGuide'])):?>
+            <a href="index.php?controller=calendarContent&action=index&idTour=<?=$_REQUEST['idTour']?>&idGuide=<?=$_REQUEST['idGuide']?>" class="back-button">Go Back</a>    
+        <?php else:?>
+            <a href="index.php?controller=home&action=index" class="back-button">Go Back</a>
+        <?php endif;?>
     </div>
 </body>
 </html>

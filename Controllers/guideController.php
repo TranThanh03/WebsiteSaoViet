@@ -1,18 +1,18 @@
 <?php 
-    class guideController extends BaseController {
+    class GuideController extends BaseController {
         public $guideModel;
         public $tourModel;
         public $taskModel;
 
         public function __construct() {
             $this->model('guideModel');
-            $this->guideModel = new guideModel();
+            $this->guideModel = new GuideModel();
 
             $this->model('tourModel');
-            $this->tourModel = new tourModel();
+            $this->tourModel = new TourModel();
 
             $this->model('taskModel');
-            $this->taskModel = new taskModel();
+            $this->taskModel = new TaskModel();
         }
 
         public function index() {
