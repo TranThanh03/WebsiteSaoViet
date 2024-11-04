@@ -228,5 +228,37 @@
             }
 
         }
+
+        public function search() {
+            if(isset($_REQUEST['btn-search'])) {
+                if(isset($_REQUEST['input-search'])) {
+                    $input = $_REQUEST['input-search'];
+
+                    if(ctype_digit($input)) {
+                        $guides = $this->guideModel->searchGuide(['*'], ['MaHDV'], $input);
+                        if(empty($guides)) {
+                            $guides = $this->guideModel->searchGuide(['*'], ['MaHDV', 'SDT'], $input);
+                        }
+                    }
+                    else {
+                        $guides = $this->guideModel->searchGuide(['*'], ['TenHDV'], $input);
+                    }
+
+                    if(!empty($guides)) {
+                        return $this->view("guide.index",
+                        [
+                            'guides' => $guides
+                        ]);
+                    }
+                    else {
+                        $code = 1;
+                        $message = "Hướng dẫn viên không tồn tại!";
+
+                        header("Location: index.php?controller=guide&action=index&code=$code&message=$message");
+                        exit();
+                    }
+                }
+            }
+        }
     }
 ?>

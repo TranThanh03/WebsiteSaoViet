@@ -8,7 +8,7 @@
             <h2 id="introduce-tour">Giới thiệu:</h2>
             <span id="introduce"><?=$tour[0]->GioiThieu?></span>
             <h2 id="price-tour">Giá Tour:</h2>
-            <p id="price"><?=$tour[0]->Gia?>VND</p>
+            <p id="price"><?=$tour[0]->GiaTour?>VND</p>
             <a href="index.php?controller=guide&action=index&idTour=<?=$tour[0]->MaTour?>"><button class="book-now">Đặt ngay</button></a>
         </div>
     </div>

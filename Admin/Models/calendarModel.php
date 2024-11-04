@@ -24,4 +24,8 @@
         public function deleteCalendar($option, $column) {
             return $this->delete(self::GETTABLE,  $option, $column);
         }
+
+        public function searchCalendar($selects = ['*'], $columns = [], $option) {
+            return $this->searchAdmin(self::TABLE, $selects, $columns, $option);
+        }
     }

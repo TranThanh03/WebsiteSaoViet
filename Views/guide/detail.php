@@ -28,8 +28,7 @@
     <section class="guide-booking">
         <h2>Đặt tour với <?=$guide[0]->TenHDV?></h2>
         
-        <?php foreach($tours as $item):?>
-            <?php foreach($item as $index => $value):?>
+        <?php foreach($tasks as $value):?>
                 <div class="tour-infor">
                     <a href="index.php?controller=tour&action=detail&id=<?=$value->MaTour?>">
                         <img src="./Admin/public/img/tour/<?=$value->AnhTour?>" alt="anh" id="tour-image">
@@ -37,10 +36,9 @@
                     <h3><?=$value->TenTour?></h3></p>
                     <p><b>Ngày khởi hành: </b><?=date('d-m-Y', strtotime($value->NgayKH))?></p>
                     <p><b>Ngày kết thúc: </b><?=date('d-m-Y', strtotime($value->NgayKT))?></p>
-                    <p id="tour-cost"><strong>Giá:</strong> <span style="color: red;"><?=$value->Gia?>VND</span></p>
-                    <a href="index.php?controller=calendarContent&action=index&idTour=<?=$value->MaTour?>&idGuide=<?=$guide[0]->MaHDV?>"><button class="book-button">Đặt tour</button></a>
+                    <p id="tour-cost"><strong>Giá:</strong> <span style="color: red;"><?=$value->GiaTour?>VND</span></p>
+                    <a href="index.php?controller=calendarContent&action=index&idTask=<?=$value->MaPC?>"><button class="book-button">Đặt tour</button></a>
                 </div>   
             <?php endforeach;?>
-        <?php endforeach;?>     
     </section>
 </main>

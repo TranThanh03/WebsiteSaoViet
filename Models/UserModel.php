@@ -2,10 +2,6 @@
     class UserModel extends BaseModel {
         const TABLE = 'khachhang';
     
-        public function getAll($columns = ['*']) {
-            return $this->all(self::TABLE, $columns);
-        }
-    
         public function getUser($columns = ['*'], $keys, $data) {
             return $this->getOption(self::TABLE, $columns, $keys, $data);
         }

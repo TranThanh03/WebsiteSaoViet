@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-group">
                     <label for="tour-costs">Giá:</label>
-                    <input class= "cost" type="text" id="tour-costs" name="tour-costs" value="<?=$tour[0]->Gia?>VND" readonly>
+                    <input class= "cost" type="text" id="tour-costs" name="tour-costs" value="<?=$tour[0]->GiaTour?>VND" readonly>
                 </div>
             </section>
 
@@ -88,8 +88,8 @@
 
         <div class="form-actions">
             <?php if($calendar[0]->TrangThai === 'Đang xử lý'):?>
-                <button class="btn-submit"><a href="index.php?controller=calendar&action=update&id=<?=$_REQUEST['id']?>&status=confirm">Xác nhận</a></button>
-                <button class="btn-submit"><a href="index.php?controller=calendar&action=update&id=<?=$_REQUEST['id']?>&status=noConfirm" style="color: red;">Hủy</a></button>
+                <a href="index.php?controller=calendar&action=update&id=<?=$_REQUEST['id']?>&status=confirm"><button class="btn-submit">Xác nhận</button></a>
+                <a href="index.php?controller=calendar&action=update&id=<?=$_REQUEST['id']?>&status=noConfirm"><button class="btn-submit" style="color: red;">Hủy</button></a>
             <?php endif;?>
         </div>
     <br><br>

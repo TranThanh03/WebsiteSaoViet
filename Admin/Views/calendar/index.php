@@ -3,13 +3,30 @@
         justify-content: right;
         padding-right: 50px;
     }
+
+    .control #search {
+        width: 440px;
+    }
+
+    .main .confirm {
+        color: green;
+        font-weight: bold;
+    }
+
+    .main .cancel {
+        color: red;
+        font-weight: bold;
+    }
 </style>
 
 <div class="calendar"></div>    
     <h2 id="title">Danh sách lịch đặt</h2>
     <div class="control">
         <div>
-            <input type="search"><button>Tìm</button>
+            <form action="index.php?controller=calendar&action=search" method="post">
+                <input id="search" type="search" name="input-search" placeholder="Nhập mã lịch đặt, mã khách hàng, mã tour, mã hướng dẫn viên" autocomplete="off" required>
+                <button type="submit" name="btn-search">Tìm</button>
+            </form>
         </div>
     </div>
     <div class="main">
@@ -39,7 +56,9 @@
                             <td><?=$value->MaHDV?></td>
                             <td><?=$value->TongTien?></td>
                             <td><?=date('H:i:s d/m/Y', strtotime($value->ThoiGianDat))?></td>
-                            <td><?=$value->TrangThai?></td>
+                            <td <?= $value->TrangThai == "Đã xác nhận" ? 'class="confirm"' : ($value->TrangThai == "Đã hủy" ? 'class="cancel"' : '') ?>>
+                                <?= $value->TrangThai ?>
+                            </td>
                             <td>
                                 <a href="index.php?controller=calendar&action=detail&id=<?=$value->MaLD?>"><button type="button">Chi tiết</button></a>
                             </td> 

@@ -22,5 +22,9 @@
         public function deleteTour($option, $column) {
             return $this->delete(self::TABLE,$option, $column);
         }
+
+        public function searchTour($selects = ['*'], $columns = [], $option) {
+            return $this->searchAdmin(self::TABLE, $selects, $columns, $option);
+        }
     }
 ?>

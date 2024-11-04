@@ -2,10 +2,3 @@ NGUYEN VAN A
 9704 0000 0000 0018
 03/07
 OTP
-
-<label for="tour">Tours</label>
-<select id="tour" name="MaTour">
-    <?php foreach($dataTour as $value):?>
-        <option value="<?php echo $value->MaTour?>" <?php echo ($value->MaTour === $value->MaTour) ? 'selected' : ''; ?>>Mã tour <?php echo $value->MaTour?>: <?php echo $value->TenTour?></option>
-    <?php endforeach;?>
-</select> <br>

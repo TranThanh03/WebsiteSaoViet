@@ -7,9 +7,9 @@
         public $NgayKT;
         public $GioiThieu;
         public $MoTa;
-        public $Gia;
+        public $GiaTour;
         public $MaCD;
-        public function __construct($MaTour, $TenTour, $AnhTour, $NgayKH, $NgayKT, $GioiThieu, $MoTa, $Gia, $MaCD) {
+        public function __construct($MaTour, $TenTour, $AnhTour, $NgayKH, $NgayKT, $GioiThieu, $MoTa, $GiaTour, $MaCD) {
             $this->MaTour = $MaTour;
             $this->TenTour = $TenTour;
             $this->AnhTour = $AnhTour;
@@ -17,7 +17,7 @@
             $this->NgayKT = $NgayKT;
             $this->GioiThieu = $GioiThieu;
             $this->MoTa = $MoTa;
-            $this->Gia = $Gia;
+            $this->GiaTour = $GiaTour;
             $this->MaCD = $MaCD;
         }
     }

@@ -22,4 +22,8 @@
         public function deleteGuide($option, $column) {
             return $this->delete(self::TABLE, $option, $column);
         }
+
+        public function searchGuide($selects = ['*'], $columns = [], $option) {
+            return $this->searchAdmin(self::TABLE, $selects, $columns, $option);
+        }
     }

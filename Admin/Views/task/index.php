@@ -1,9 +1,24 @@
+<style>
+    .main .ongoing {
+        color: green;
+        font-weight: bold;
+    }
+
+    .main .ended {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+
 <div class="task">
     <h2 id="title">Danh sách phân công</h2>
         <div class="control">
             <button id="btn-open">Thêm</button></a>
             <div>
-                <input type="search"><button>Tìm</button>
+                <form action="index.php?controller=task&action=search" method="post">
+                    <input style="width: 350px;" type="search" name="input-search" placeholder="Nhập mã phân công, mã tour, mã hướng dẫn viên" autocomplete="off" required>
+                    <button type="submit" name="btn-search">Tìm</button>
+                </form>
             </div>
         </div>
     <div class="main">
@@ -33,7 +48,9 @@
                         <td><?=$value->TenHDV?></td>
                         <td><?=date('d-m-Y', strtotime($value->NgayKH))?></td>
                         <td><?=date('d-m-Y', strtotime($value->NgayKT))?></td>
-                        <td><?=$value->TrangThai?></td>
+                        <td <?= $value->TrangThai == "Đang diễn ra" ? 'class="ongoing"' : ($value->TrangThai == "Đã kết thúc" ? 'class="ended"' : '') ?>>
+                                <?= $value->TrangThai ?>
+                            </td>
                         <td><a href="index.php?controller=task&action=delete&id=<?=$value->MaPC?>"><button>Xóa</button></a></td>
                     </tr>
                 <?php endforeach;?>

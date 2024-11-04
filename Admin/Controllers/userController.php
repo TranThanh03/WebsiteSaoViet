@@ -17,37 +17,11 @@
 
         function index() {
             $users = $this->userModel->getAll();
-            $accounts = $this->accountModel->getAll(['*'], 'Quyen', 'admin');
 
             return $this->view("user.index",
             [
-                'users' => $this->dataNormalization($users, $accounts)
+                'users' => $users
             ]);
-        }
-
-        public function dataNormalization($dataUser, $dataAccount)
-        {
-            $mergedData = [];
-
-            foreach ($dataUser as $user) {
-                foreach ($dataAccount as $account) {
-                    if ($user->MaTK == $account->MaTK) {
-                        $mergedObject = new stdClass();
-                        
-                        foreach ($user as $key => $value) {
-                            $mergedObject->$key = $value;
-                        }
-                        
-                        foreach ($account as $key => $value) {
-                            $mergedObject->$key = $value;
-                        }
-
-                        $mergedData[] = $mergedObject;
-                    }
-                }
-            }
-
-            return $mergedData;
         }
 
         public function insert() {
@@ -192,6 +166,39 @@
 
             header("Location: index.php?controller=user&action=index&code=$code&message=$message");
             exit();
+        }
+
+        public function search() {
+            if(isset($_REQUEST['btn-search'])) {
+                if(isset($_REQUEST['input-search'])) {
+                    $input = $_REQUEST['input-search'];
+
+                    if(ctype_digit($input)) {
+                        $users = $this->userModel->searchUserAccount(['*'], ['khachhang.MaKH'], $input);
+                        
+                        if(empty($users)) {
+                            $users = $this->accountModel->searchAccount(['*'], ['SDT'], $input);
+                        }
+                    }
+                    else {
+                        $users = $this->userModel->searchUserAccount(['*'], ['TenKH', 'Email'], $input);
+                    }
+
+                    if(!empty($users)) {
+                        return $this->view("user.index",
+                        [
+                            'users' => $users
+                        ]);
+                    }
+                    else {
+                        $code = 1;
+                        $message = "Khách hàng không tồn tại!";
+
+                        header("Location: index.php?controller=user&action=index&code=$code&message=$message");
+                        exit();
+                    }
+                }
+            }
         }
     }
 ?>

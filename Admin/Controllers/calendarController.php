@@ -97,5 +97,29 @@
             header("location: index.php?controller=calendar&action=detail&id=$id&code=$code&message=$message");
             exit();
         }
+
+        public function search() {
+            if(isset($_REQUEST['btn-search'])) {
+                if(isset($_REQUEST['input-search'])) {
+                    $input = $_REQUEST['input-search'];
+
+                    $calendars = $this->calendarModel->searchCalendar(['*'], ['lichdat.MaLD', 'lichdat.MaKH', 'lichdat.MaTour', 'lichdat.MaHDV'], $input);
+
+                    if(!empty($calendars)) {
+                        return $this->view("calendar.index",
+                        [
+                            'calendars' => $calendars
+                        ]);
+                    }
+                    else {
+                        $code = 1;
+                        $message = "Lịch đặt không tồn tại!";
+
+                        header("Location: index.php?controller=calendar&action=index&code=$code&message=$message");
+                        exit();
+                    }
+                }
+            }
+        }
     }
 ?>

@@ -1,16 +1,16 @@
 <?php
     class TaskModel extends BaseModel {
-        const TABLE = 'phancong';
+        const GETTABLE = ' phancong
+                            INNER JOIN tour ON phancong.MaTour = tour.MaTour
+                            INNER JOIN huongdanvien ON phancong.MaHDV = huongdanvien.MaHDV';
         
-        public function getAll() {
-            return $this->all(self::TABLE);
-        }
-        public function getTask($columns = ['*'], $id, $value) {
-            return $this->getOption(self::TABLE, $columns, $id, $value);
+        public function getTask($select = ['*'], $columns = [], $options = []) {
+            return $this->getTaskOptions(self::GETTABLE,$select, $columns, $options);
         }
 
-        public function getTaskOption($data = ['*'], $option = []) {
-            return $this->optionObject(self::TABLE, $data, $option);
+        public function updateTask($column, $option)
+        {
+            return $this->updateStatus(self::GETTABLE, $column, $option);
         }
     }
 ?>

@@ -16,14 +16,19 @@
         }
 
         public function index() {
+            $this->taskModel->updateTask('NgayKT', date('Y-m-d'));
+
             $tasks = $this->taskModel->getAll();
-            $guides = $this->guideModel->getAll(['MaHDV, TenHDV']);
-            $tours = $this->tourModel->getAll(['MaTour, TenTour']);
+            usort($tasks, function($a, $b) {
+                $order = ["Đang diễn ra", "Đã kết thúc"];
+                $statusA = array_search($a->TrangThai, $order);
+                $statusB = array_search($b->TrangThai, $order);
+                
+                return $statusA - $statusB;
+            });
 
             return $this->view('task.index', [
-                'tasks' => $tasks,
-                'guides' => $guides,
-                'tours' => $tours
+                'tasks' => $tasks
             ]);
         }
 
@@ -37,7 +42,8 @@
 
                 if($NgayKH >= $nowDate) {
                     if($NgayKT >= $NgayKH) {
-                        $getTask = $this->taskModel->getTaskOptions(["MaHDV", "TrangThai" , "NgayKT"], ["{$MaHDV}", "Đang diễn ra", "{$NgayKH}"]);
+                        $getTask = $this->taskModel->getTaskDate(["MaHDV", "TrangThai", "NgayKH", "NgayKT"], ["{$MaHDV}", "Đang diễn ra", "{$NgayKH}", "{$NgayKT}"]);
+            
                         if(empty($getTask)) {
                             $this->taskModel->insertTask(["MaTour", "MaHDV", "NgayKH", "NgayKT", "TrangThai"],
                                                         ["{$MaTour}", "{$MaHDV}", "{$NgayKH}", "{$NgayKT}", "Đang diễn ra"]);
@@ -106,4 +112,29 @@
             header("Location: index.php?controller=task&action=index&code=$code&message=$message");
             exit();
         }
+
+        public function search() {
+            if(isset($_REQUEST['btn-search'])) {
+                if(isset($_REQUEST['input-search'])) {
+                    $input = $_REQUEST['input-search'];
+
+                    $tasks = $this->taskModel->searchTask(['*'], ['phancong.MaPC', 'phancong.MaTour', 'phancong.MaHDV'], $input);
+
+                    if(!empty($tasks)) {
+                        return $this->view("task.index",
+                        [
+                            'tasks' => $tasks
+                        ]);
+                    }
+                    else {
+                        $code = 1;
+                        $message = "Phân công không tồn tại!";
+
+                        header("Location: index.php?controller=task&action=index&code=$code&message=$message");
+                        exit();
+                    }
+                }
+            }
+        }
     }
+?>

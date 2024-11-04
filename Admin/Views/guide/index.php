@@ -3,7 +3,10 @@
         <div class="control">
             <a href="index.php?controller=guide&action=create"><button>Thêm</button></a>
             <div>
-                <input type="search"><button>Tìm</button>
+                <form action="index.php?controller=guide&action=search" method="post">
+                    <input type="search" name="input-search" placeholder="Nhập mã, tên, sdt hướng dẫn viên" autocomplete="off" required>
+                    <button type="submit" name="btn-search">Tìm</button>
+                </form>
             </div>
         </div>
     <div class="main">

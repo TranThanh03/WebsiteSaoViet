@@ -1,9 +1,12 @@
 <?php 
     class UserModel extends BaseModel {
         const TABLE = 'khachhang';
+        const GETTABLE = 'khachhang
+                  INNER JOIN taikhoan ON khachhang.MaTK = taikhoan.MaTK
+                  WHERE taikhoan.Quyen != "Admin"';
     
         public function getAll($columns = ['*']) {
-            return $this->all(self::TABLE, $columns);
+            return $this->all(self::GETTABLE, $columns);
         }
     
         public function getUser($columns = ['*'], $keys, $data) {
@@ -24,6 +27,10 @@
 
         public function deleteUser($option, $id) {
             return $this->delete(self::TABLE, $option, $id);
+        }
+
+        public function searchUserAccount($selects = ['*'], $columns = [], $option) {
+            return $this->searchUser(self::GETTABLE, $selects, $columns, $option);
         }
     }
 ?>

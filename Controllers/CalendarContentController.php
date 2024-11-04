@@ -3,8 +3,6 @@
         public $calendarModel;
         public $userModel;
         public $accountModel;
-        public $tourModel;
-        public $guideModel;
         public $taskModel;
 
         public function __construct() {
@@ -16,44 +14,22 @@
 
             $this->model('accountModel');
             $this->accountModel = new AccountModel();
-            
-            $this->model('tourModel');
-            $this->tourModel = new TourModel();
-
-            $this->model('guideModel');
-            $this->guideModel = new GuideModel();
 
             $this->model('taskModel');
             $this->taskModel = new TaskModel();
         }
 
-        private function _get($idTour, $idGuide) {
-            $user = $this->userModel->getUser(['*'], 'Email', $_SESSION['username']);
-            $account = $this->accountModel->getAccount(['SDT'], 'MaTK', $user[0]->MaTK);
-            $tour = $this->tourModel->getById(['MaTour', 'TenTour', 'AnhTour', 'Gia'],'MaTour', $idTour);
-            $guide = $this->guideModel->getGuide(['MaHDV', 'TenHDV', 'AnhHDV', 'DanhGia', 'Gia'],'MaHDV', $idGuide);
-
-            return [
-                'tour' => $tour,
-                'account' => $account,
-                'user' => $user,
-                'guide' => $guide
-            ];
-        }
-
         public function index() {
             if(isset($_SESSION['username'])) {
-                $idTour = $_REQUEST['idTour'] ?? '';
-                $idGuide = $_REQUEST['idGuide'] ?? '';
-                
-                $datas = $this->_get($idTour, $idGuide);
-                $task = $this->taskModel->getTaskOption(['MaTour', 'MaHDV', 'MaPC', 'NgayKH', 'NgayKT'], [$idTour, $idGuide]);
+                $idTask = $_REQUEST['idTask'] ?? '';
+               
+                $task = $this->taskModel->getTask(['*'], 'MaPC', $idTask);
+                $user = $this->userModel->getUser(['*'], 'Email', $_SESSION['username']);
+                $account = $this->accountModel->getAccount(['SDT'], 'MaTK', $user[0]->MaTK);
 
                 return $this->view("calendarContent.index",[
-                    'tour' => $datas['tour'],
-                    'user' => $datas['user'],
-                    'account' => $datas['account'],
-                    'guide' => $datas['guide'],
+                    'user' => $user,
+                    'account' => $account,
                     'task' => $task 
                 ]);
             } else {
@@ -87,9 +63,10 @@
                 $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
                 $orderInfo = "Thanh toán qua MoMo";
                 $amount = str_replace('.', '', str_replace("VND", "", $_POST['total-price']));
+
                 $orderId = rand(1, 1000);
-                $redirectUrl = "http://localhost/WebsiteSaoViet/index.php?controller=calendarContent&action=booking&idUser=" . $_REQUEST['idUser'] . "&idTour=" . $_REQUEST['idTour'] . "&idGuide=" . $_REQUEST['idGuide'] . '&ngayKH=' . $_REQUEST["startDate"] . '&ngayKT=' . $_REQUEST["endDate"];    
-                $ipnUrl = "http://localhost/WebsiteSaoViet/index.php?controller=calendarContent&action=booking&idUser=" . $_REQUEST['idUser'] . "&idTour=" . $_REQUEST['idTour'] . "&idGuide=" . $_REQUEST['idGuide'] . '&ngayKH=' . $_REQUEST["startDate"] . '&ngayKT=' . $_REQUEST["startDate"];
+                $redirectUrl = "http://localhost/WebsiteSaoViet/index.php?controller=calendarContent&action=booking&idUser=" . $_REQUEST["idUser"] . "&idTask=" . $_REQUEST["idTask"];    
+                $ipnUrl = "http://localhost/WebsiteSaoViet/index.php?controller=calendarContent&action=booking&idUser=" . $_REQUEST["idUser"] . "&idTask=" . $_REQUEST["idTask"];
                 $extraData = "";
 
                 $serectkey = $secretKey;
@@ -118,7 +95,7 @@
                     header('Location: ' . $jsonResult['payUrl']);
                 }
                 else {
-                    header('Location: index.php?controller=calendarContent&action=error&idTour=' . $_REQUEST["idTour"] . '&idGuide=' . $_REQUEST["idGuide"]);
+                    header('Location: index.php?controller=calendarContent&action=error&idTask=' . $_REQUEST["idTask"]);
                 }
             }
         }
@@ -129,10 +106,14 @@
 
                 if ($resultCode == 0) {
                     $MaKH = $_REQUEST['idUser'];
-                    $MaTour = $_REQUEST['idTour'];
-                    $MaHDV = $_REQUEST['idGuide'];
-                    $NgayKH = date('Y-m-d', strtotime($_REQUEST['ngayKH']));
-                    $NgayKT = date('Y-m-d', strtotime($_REQUEST['ngayKT']));
+                    $MaPC = $_REQUEST['idTask'];
+
+                    $task = $this->taskModel->getTask(['*'], 'MaPC', $MaPC);
+
+                    $MaTour = $task[0]->MaTour;
+                    $MaHDV = $task[0]->MaHDV;
+                    $NgayKH = date('Y-m-d', strtotime($task[0]->NgayKH));
+                    $NgayKT = date('Y-m-d', strtotime($task[0]->NgayKT));
                     $TongTien = number_format($_GET['amount'], 0, ',', '.');
                     $CurrentTime = date('Y-m-d H:i:s');
                     
@@ -163,7 +144,7 @@
                                         <p>Đặt Tour không thành công</p>',
                             'message' => 'Có lỗi khi đặt tour. Vui lòng đặt Tour lại!',
                             'messageAction' => "Đặt tour",
-                            'href' => "index.php?controller=calendarContent&action=index&idUser=" . $_REQUEST['idUser'] . "&idTour=" . $_REQUEST['idTour'] . "&idGuide=" . $_REQUEST['idGuide']
+                            'href' => "index.php?controller=calendarContent&action=index&idUser=" . $_REQUEST['idUser'] . "&idTask=" . $_REQUEST['idTask']
                         ]);
                     }
                 } else {
@@ -177,7 +158,7 @@
                                     <p>Đặt Tour không thành công</p>',
                         'message' => 'Có lỗi khi đặt tour. Vui lòng đặt Tour lại!',
                         'messageAction' => "Đặt tour",
-                        'href' => "index.php?controller=calendarContent&action=index&idUser=" . $_REQUEST['idUser'] . "&idTour=" . $_REQUEST['idTour'] . "&idGuide=" . $_REQUEST['idGuide']
+                        'href' => "index.php?controller=calendarContent&action=index&idUser=" . $_REQUEST['idUser'] . "&idTask=" . $_REQUEST['idTask']
                     ]);
                 }
             }

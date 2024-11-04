@@ -54,7 +54,7 @@
                 <div class="form-group">
                     <label for="gia">Giá:</label>
                     <div class="input-wrapper">
-                        <input type="text" id="gia" name="Gia" value="<?=$tour[0]->Gia?>" required>
+                        <input type="text" id="gia" name="Gia" value="<?=$tour[0]->GiaTour?>" required>
                     </div>
                 </div>
 

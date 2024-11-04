@@ -1,12 +1,12 @@
 <?php 
     class HomeController extends BaseController {
-        public $accountModel;
+        public $userModel;
         public $tourModel;
         public $calendarModel;
 
         public function __construct() {
-            $this->model("accountModel");
-            $this->accountModel = new AccountModel();
+            $this->model("userModel");
+            $this->userModel = new UserModel();
 
             $this->model("tourModel");
             $this->tourModel = new TourModel();
@@ -16,7 +16,7 @@
         }
 
         public function index() {
-            $accounts = $this->accountModel->getAll(['*'], 'Quyen', 'admin');
+            $users = $this->userModel->getAll(['*']);
             $tours = $this->tourModel->getAll(['MaTour']);
             $calendars = $this->calendarModel->getCalendar(['TongTien'], 'TrangThai', 'Đã xác nhận');
             $totalCost = 0;
@@ -29,7 +29,7 @@
 
             return $this->view("home.index", 
             [
-                'totalUser' => count($accounts),
+                'totalUser' => count($users),
                 'totalTour' => count($tours),
                 'totalCalendar' => count($calendars),
                 'totalCost' => number_format($totalCost, 0, '.'),

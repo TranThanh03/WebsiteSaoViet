@@ -105,7 +105,7 @@
                     }
                     else {
                         $data = $this->tourModel->insertTour(
-                            ['TenTour', 'GioiThieu', 'AnhTour','MoTa', 'Gia', 'MaCD'], 
+                            ['TenTour', 'GioiThieu', 'AnhTour','MoTa', 'GiaTour', 'MaCD'], 
                             ["{$TenTour}", "{$GioiThieu}", "{$Anh}", "{$MoTa}", "{$Gia}", "{$MaCD}"]);
 
                         $code = 0;
@@ -181,27 +181,27 @@
             if(isset($_REQUEST['id'])) {
                 $id = $_REQUEST['id'];
                 $dataCD = [
-                        [
-                            'id' => 1,
-                            'name' => 'Tour Biển Đảo'
-                        ],
-                        [
-                            'id' => 2,
-                            'name' => 'Tour Văn Hóa Lịch Sử'
-                        ],
-                        [
-                            'id' => 3,
-                            'name' => 'Tour Nghỉ Dưỡng'
-                        ],
-                        [
-                            'id' => 4,
-                            'name' => 'Tour Mạo Hiểm'
-                        ],
-                        [
-                            'id' => 5,
-                            'name' => 'Tour Ẩm Thực'
-                        ]
-                    ];
+                    [
+                        'id' => 1,
+                        'name' => 'Tour Biển Đảo'
+                    ],
+                    [
+                        'id' => 2,
+                        'name' => 'Tour Văn Hóa Lịch Sử'
+                    ],
+                    [
+                        'id' => 3,
+                        'name' => 'Tour Nghỉ Dưỡng'
+                    ],
+                    [
+                        'id' => 4,
+                        'name' => 'Tour Mạo Hiểm'
+                    ],
+                    [
+                        'id' => 5,
+                        'name' => 'Tour Ẩm Thực'
+                    ]
+                ];
 
                 $tour = $this->tourModel->getTour(['*'], 'MaTour', $id);
                 return $this->view("tour.update",
@@ -230,7 +230,7 @@
                     
                     if(empty(basename( $_FILES["avatarUpdate"]["name"]))) {
                         $this->tourModel->updateTour(
-                            ['TenTour', 'GioiThieu', 'MoTa', 'Gia', 'MaCD'],
+                            ['TenTour', 'GioiThieu', 'MoTa', 'GiaTour', 'MaCD'],
                             [$TenTour, $GioiThieu, $MoTa, $Gia, $MaCD], 
                             'MaTour', $id);
                             
@@ -267,7 +267,7 @@
                             }
                             else {
                                 $this->tourModel->updateTour(
-                                    ['TenTour', 'GioiThieu', 'AnhTour', 'MoTa', 'Gia', 'MaCD'],
+                                    ['TenTour', 'GioiThieu', 'AnhTour', 'MoTa', 'GiaTour', 'MaCD'],
                                     [$TenTour, $GioiThieu, $Anh, $MoTa, $Gia, $MaCD], 
                                     'MaTour', $id);
                                 
@@ -290,6 +290,59 @@
                     header("Location: index.php?controller=tour&action=index&code=$code&message=$message");
                 }
                 exit();
+            }
+        }
+
+        public function search() {
+            $dataCD = [
+                [
+                    'id' => 1,
+                    'name' => 'Tour Biển Đảo'
+                ],
+                [
+                    'id' => 2,
+                    'name' => 'Tour Văn Hóa Lịch Sử'
+                ],
+                [
+                    'id' => 3,
+                    'name' => 'Tour Nghỉ Dưỡng'
+                ],
+                [
+                    'id' => 4,
+                    'name' => 'Tour Mạo Hiểm'
+                ],
+                [
+                    'id' => 5,
+                    'name' => 'Tour Ẩm Thực'
+                ]
+            ];
+
+            if(isset($_REQUEST['btn-search'])) {
+                if(isset($_REQUEST['input-search'])) {
+                    $input = $_REQUEST['input-search'];
+
+                    if(ctype_digit($input)) {
+                        $tours = $this->tourModel->searchTour(['*'], ['MaTour'], $input);
+                    }
+                    else {
+                        $tours = $this->tourModel->searchTour(['*'], ['TenTour'], $input);
+                    }
+
+                    if(!empty($tours)) {
+                        return $this->view("tour.index",
+                        [
+                            'tours' => $tours,
+                            'dataCD' => $dataCD
+                        ]);
+                    }
+                    else {
+                        $code = 1;
+                        $message = "Tour không tồn tại!";
+
+                        header("Location: index.php?controller=tour&action=index&code=$code&message=$message");
+                        exit();
+                    }
+                }
             }
         }
     }

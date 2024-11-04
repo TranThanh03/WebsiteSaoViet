@@ -40,7 +40,7 @@
                         <a href="index.php?controller=tour&action=detail&id=<?=$tour->MaTour?>">
                             <img src="./Admin/public/img/tour/<?=$tour->AnhTour?>" alt="anh tour" id="avatar-tour">
                             <h4 id="tour-name"><?=$tour->TenTour?></h4>
-                            <span id="tour-price"><?=$tour->Gia?>VND</span>
+                            <span id="tour-price"><?=$tour->GiaTour?>VND</span>
                         </a>
                     </div>
                 <?php endforeach;?>

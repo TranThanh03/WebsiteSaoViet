@@ -10,7 +10,7 @@
                     <div class="tour-info">
                         <h2><?=$value->TenTour?></h2>
                         <p><?=$value->GioiThieu?></p>
-                        <p><strong>Giá:</strong> <?=$value->Gia?> VND</p>
+                        <p><strong>Giá:</strong> <?=$value->GiaTour?> VND</p>
                         <a href="index.php?controller=tour&action=detail&id=<?=$value->MaTour?>" class="btn-detail">Xem chi tiết</a>
                     </div>
                 </div>
