@@ -23,7 +23,7 @@
             if(isset($_SESSION['username'])) {
                 $idTask = $_REQUEST['idTask'] ?? '';
                
-                $task = $this->taskModel->getTask(['*'], 'MaPC', $idTask);
+                $task = $this->taskModel->getTask(['*'], ['phancong.MaPC', 'TrangThai'], [$idTask, 'Đã kết thúc']);
                 $user = $this->userModel->getUser(['*'], 'Email', $_SESSION['username']);
                 $account = $this->accountModel->getAccount(['SDT'], 'MaTK', $user[0]->MaTK);
 
@@ -108,7 +108,7 @@
                     $MaKH = $_REQUEST['idUser'];
                     $MaPC = $_REQUEST['idTask'];
 
-                    $task = $this->taskModel->getTask(['*'], 'MaPC', $MaPC);
+                    $task = $this->taskModel->getTask(['*'], ['phancong.MaPC', 'TrangThai'], [$MaPC, 'Đã kết thúc']);
 
                     $MaTour = $task[0]->MaTour;
                     $MaHDV = $task[0]->MaHDV;
@@ -117,8 +117,8 @@
                     $TongTien = number_format($_GET['amount'], 0, ',', '.');
                     $CurrentTime = date('Y-m-d H:i:s');
                     
-                    $createCalendar = $this->calendarModel->createCalendar(['MaKH', 'MaTour', 'MaHDV', 'NgayKH', 'NgayKT', 'TongTien', 'ThoiGianDat', 'TrangThai'], 
-                                                                            [$MaKH, $MaTour, $MaHDV, $NgayKH, $NgayKT, $TongTien, $CurrentTime, "Đang xử lý"]);
+                    $createCalendar = $this->calendarModel->createCalendar(['MaKH', 'MaTour', 'MaHDV', 'MaPC', 'NgayKH', 'NgayKT', 'TongTien', 'ThoiGianDat', 'TrangThai'], 
+                                                                            [$MaKH, $MaTour, $MaHDV, $MaPC, $NgayKH, $NgayKT, $TongTien, $CurrentTime, "Đang xử lý"]);
                         
                     if(!empty($createCalendar)) {
                         echo "<script>sessionStorage.setItem('statusCalendar', 'true');</script>";

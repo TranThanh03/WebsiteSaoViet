@@ -3,6 +3,7 @@
         public $taskModel;
         public $tourModel;
         public $guideModel;
+        public $calendarModel;
 
         function __construct() {
             $this->model("taskModel");
@@ -13,6 +14,9 @@
 
             $this->model("guideModel");
             $this->guideModel = new GuideModel();
+
+            $this->model("calendarModel");
+            $this->calendarModel = new CalendarModel();
         }
 
         public function index() {
@@ -86,22 +90,34 @@
             if(isset($_REQUEST['id'])) {
                 $id = $_REQUEST['id'];
 
-                try {
-                    $getTask = $this->taskModel->getTask(['MaPC'], 'MaPC', $id);
-                    if(!empty($getTask)) {
-                        $this->taskModel->deleteTask($id, 'MaPC');
+                $getCalendars = $this->calendarModel->getCalendar(['TrangThai'], 'MaPC', $id);
 
-                        $code = 0;
-                        $message = "Xoá lịch phân công $id thành công.";
+                $pendingCalendars = array_filter($getCalendars, function($calendar) {
+                    return isset($calendar->TrangThai) && $calendar->TrangThai === "Đang xử lý";
+                });
+
+                if(empty($pendingCalendars)) {
+                    try {
+                        $getTask = $this->taskModel->getTask(['MaPC'], 'MaPC', $id);
+                        if(!empty($getTask)) {
+                            $this->taskModel->deleteTask($id, 'MaPC');
+
+                            $code = 0;
+                            $message = "Xoá lịch phân công $id thành công.";
+                        }
+                        else {
+                            $code = 1;
+                            $message = "Lịch phân công $id không tồn tại!";
+                        }
                     }
-                    else {
+                    catch(Exception) {
                         $code = 1;
-                        $message = "Lịch phân công $id không tồn tại!";
+                        $message = "Xoá lịch phân công $id không thành công!";
                     }
                 }
-                catch(Exception) {
+                else {
                     $code = 1;
-                    $message = "Xoá lịch phân công $id không thành công!";
+                    $message = "Xóa lịch phân công $id không thành công do đang có lịch đặt!";
                 }
             }
             else {

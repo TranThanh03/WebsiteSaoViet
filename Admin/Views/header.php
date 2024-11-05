@@ -13,15 +13,8 @@
         <script src="./public/js/notifi.js"></script>
 
         <!--ckeditor-->
-        <script src="./ckeditor/ckeditor.js"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-        <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
-        <script>
-            CKEDITOR.replace("GioiThieu");
-            CKEDITOR.replace("MoTa");
-        </script>
-        
+        <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+
         <?php
             if(isset($_REQUEST['controller'])) {
                 if($_REQUEST['controller'] === 'home') {

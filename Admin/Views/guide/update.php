@@ -1,3 +1,7 @@
+<script>
+    CKEDITOR.replace("MoTa");
+</script>
+        
 <div class="guide">
     <div class="form-update">
         <div class="update-content">
@@ -51,7 +55,7 @@
                     <div class="textarea-group">
                         <label for="description">Mô tả</label>
                         <div class="input-wrapper">
-                            <textarea name="MoTa" id="description" required><?= $guide[0]->MoTa ?></textarea>
+                            <textarea name="MoTa" id="MoTa" rows="5" required><?= $guide[0]->MoTa ?></textarea>
                         </div>
                     </div>
 
@@ -89,3 +93,8 @@
         </div>
     </div>
 </div>
+
+<script>
+    CKEDITOR.replace("GioiThieu");
+    CKEDITOR.replace("MoTa");
+</script>

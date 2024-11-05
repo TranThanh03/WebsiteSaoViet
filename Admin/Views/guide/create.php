@@ -44,7 +44,7 @@
                     
                     <div class="form-group">
                         <label for="description">Mô tả</label>
-                        <textarea name="MoTa" id="description" cols="45" rows="5" required><?=$_POST['MoTa'] ?? ''?></textarea>
+                        <textarea name="MoTa" id="MoTa" rows="5" required><?=$_POST['MoTa'] ?? ''?></textarea>
                     </div>
                     
                     <div class="form-group">
@@ -77,3 +77,8 @@
         </div>
     </div>
 </div>
+
+<script>
+    CKEDITOR.replace("GioiThieu");
+    CKEDITOR.replace("MoTa");
+</script>

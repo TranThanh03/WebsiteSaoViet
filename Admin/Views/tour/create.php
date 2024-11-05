@@ -20,7 +20,7 @@
 
                 <div class="form-group">
                     <label for="introduction">Giới thiệu:</label>
-                    <textarea id="introduction" name="GioiThieu" rows="5" required><?=$_POST['GioiThieu'] ?? ""?></textarea>
+                    <textarea id="GioiThieu" name="GioiThieu" rows="5"><?=$_POST['GioiThieu'] ?? ""?></textarea>
                 </div>
 
                 <div class="form-group">
@@ -43,7 +43,7 @@
 
                 <div class="form-group">
                     <label for="description">Mô tả:</label>
-                    <textarea id="description" name="MoTa" rows="5" required><?=$_POST['MoTa'] ?? ""?></textarea>
+                    <textarea id="MoTa" name="MoTa" rows="5" required><?=$_POST['MoTa'] ?? ""?></textarea>
                 </div>
 
                 <div class="form-group">
@@ -61,3 +61,8 @@
         </div>
     </div>
 </div>
+
+<script>
+    CKEDITOR.replace("GioiThieu");
+    CKEDITOR.replace("MoTa");
+</script>

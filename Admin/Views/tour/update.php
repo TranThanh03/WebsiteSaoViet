@@ -20,7 +20,7 @@
                 <div class="textarea-group">
                     <label for="gioithieu">Giới thiệu:</label>
                     <div class="input-wrapper">
-                        <textarea name="GioiThieu" id="gioithieu" required><?=$tour[0]->GioiThieu?></textarea>
+                        <textarea name="GioiThieu" id="GioiThieu" rows="5" required><?=$tour[0]->GioiThieu?></textarea>
                     </div>
                 </div>
 
@@ -47,7 +47,7 @@
                 <div class="textarea-group">
                     <label for="mota">Mô tả:</label>
                     <div class="input-wrapper">
-                        <textarea name="MoTa" id="mota" required><?=$tour[0]->MoTa?></textarea>
+                        <textarea name="MoTa" id="MoTa" rows="5" required><?=$tour[0]->MoTa?></textarea>
                     </div>
                 </div>
 
@@ -66,3 +66,8 @@
         </div>
     </div>
 </div>
+
+<script>
+    CKEDITOR.replace("GioiThieu");
+    CKEDITOR.replace("MoTa");
+</script>
