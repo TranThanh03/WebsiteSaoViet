@@ -47,7 +47,7 @@
                 $calendar = $this->calendarModel->getCalendar(['*'], 'MaLD', $_REQUEST['id']);
                 $user = $this->userModel->getUser(['*'], 'MaKH', $calendar[0]->MaKH);
                 $account = $this->accountModel->getAccount(['SDT'], 'MaTK', $user[0]->MaTK);
-                $guide = $this->guideModel->getGuide(['TenHDV', 'AnhHDV', 'Gia'], 'MaHDV', $calendar[0]->MaHDV);
+                $guide = $this->guideModel->getGuide(['TenHDV', 'AnhHDV'], 'MaHDV', $calendar[0]->MaHDV);
                 $tour = $this->tourModel->getTour(['*'], 'MaTour',  $calendar[0]->MaTour);
 
                 return $this->view("calendar.detail",
@@ -104,6 +104,17 @@
                     $input = $_REQUEST['input-search'];
 
                     $calendars = $this->calendarModel->searchCalendar(['*'], ['lichdat.MaLD', 'lichdat.MaKH', 'lichdat.MaTour', 'lichdat.MaHDV'], $input);
+
+                    usort($calendars, function($a, $b) {
+                        $order = ['Đang xử lý' => 1, 'Đã xác nhận' => 2, 'Đã hủy' => 3];
+                        $statusComparison = $order[$a->TrangThai] <=> $order[$b->TrangThai];
+                    
+                        if ($statusComparison === 0) {
+                            return $b->MaLD <=> $a->MaLD;
+                        }
+                
+                        return $statusComparison;
+                    });
 
                     if(!empty($calendars)) {
                         return $this->view("calendar.index",

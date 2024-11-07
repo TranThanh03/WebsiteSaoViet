@@ -30,6 +30,7 @@
                 <th>Tour</th>
                 <th>Mã hướng dẫn viên</th>
                 <th>Hướng dẫn viên</th>
+                <th>Giá HDV</th>
                 <th>Ngày khởi hành</th>
                 <th>Ngày kết thúc</th>
                 <th>Trạng thái</th>
@@ -46,12 +47,19 @@
                         <td><?=$value->TenTour?></td>
                         <td><?=$value->MaHDV?></td>
                         <td><?=$value->TenHDV?></td>
+                        <td><?=$value->GiaHDV?></td>
                         <td><?=date('d-m-Y', strtotime($value->NgayKH))?></td>
                         <td><?=date('d-m-Y', strtotime($value->NgayKT))?></td>
                         <td <?= $value->TrangThai == "Đang diễn ra" ? 'class="ongoing"' : ($value->TrangThai == "Đã kết thúc" ? 'class="ended"' : '') ?>>
                                 <?= $value->TrangThai ?>
                             </td>
-                        <td><a href="index.php?controller=task&action=delete&id=<?=$value->MaPC?>"><button>Xóa</button></a></td>
+                        <td>
+                            <?php
+                                if($value->TrangThai == "Đang diễn ra") {
+                                    echo "<a href='index.php?controller=task&action=delete&id=<?=$value->MaPC?>'><button>Xóa</button></a>";
+                                }
+                            ?>
+                        </td>
                     </tr>
                 <?php endforeach;?>
             </tbody>
@@ -78,6 +86,8 @@
                         <option value="<?=$guide->MaHDV?>" <?=isset($_REQUEST['idGuide']) && $guide->MaHDV == $_REQUEST['idGuide'] ? 'selected' : ''?>><?=$guide->MaHDV?> - <?=$guide->TenHDV?></option>;
                     <?php endforeach;?>
                 </select>
+                <label for="cost">Giá hướng dẫn viên:</label>
+                <input type="text" name="GiaHDV" value="<?=isset($_REQUEST['cost']) ? $_REQUEST['cost'] : ''?>" required/>
                 <label for="date">Ngày khởi hành:</label>
                 <input type="date" name="NgayKH" value="<?=isset($_REQUEST['startDate']) ? date('Y-m-d', strtotime($_REQUEST['startDate'])) : date('Y-m-d')?>"/>
                 <label for="date">Ngày kết thúc:</label>

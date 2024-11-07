@@ -251,7 +251,7 @@ nav .menu a {
 }
 
 .sub-list img {
-    width: 315px;
+    width: 320px;
     height: 160px;
     margin-bottom: 10px;
     border-radius: 10px 10px 0 0;
@@ -448,4 +448,8 @@ footer .end span {
     background-color: #45C3D2;
     border-radius: 20px;
     padding: 2px 5px 5px 5px;
+}
+
+.content #tour-price {
+    color: red;
 }

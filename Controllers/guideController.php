@@ -22,6 +22,10 @@
                 if(isset($_SESSION['username'])) {
                     $tasks = $this->taskModel->getTask(['*'], ["phancong.MaTour", "TrangThai"], [$_REQUEST['idTour'], "Đã kết thúc"]);
 
+                    usort($tasks, function($a, $b) {
+                        return $b->DanhGia <=> $a->DanhGia;
+                    });
+
                     return $this->view("guide.index", 
                     [
                         "tasks" => $tasks
@@ -34,6 +38,11 @@
             }
             else {
                 $guides = $this->guideModel->getAll();
+
+                usort($guides, function($a, $b) {
+                    return $b->DanhGia <=> $a->DanhGia;
+                });
+
                 return $this->view("guide.index", 
                     [
                         "guides" => $guides
@@ -43,16 +52,18 @@
         }
 
         public function detail() {
-            $this->taskModel->updateTask('NgayKT', date('Y-m-d'));
-            $value = $_REQUEST['id'] ?? '';
+            if(isset($_REQUEST['id']) && $_REQUEST['id'] != '') {
+                $this->taskModel->updateTask('NgayKT', date('Y-m-d'));
+                $value = $_REQUEST['id'];
 
-            $guide = $this->guideModel->getGuide(['*'], 'MaHDV', $value);
-            $tasks = $this->taskModel->getTask(['*'], ["phancong.MaHDV", "TrangThai"], [$value, "Đã kết thúc"]);
+                $guide = $this->guideModel->getGuide(['*'], 'MaHDV', $value);
+                $tasks = $this->taskModel->getTask(['*'], ["phancong.MaHDV", "TrangThai"], [$value, "Đã kết thúc"]);
 
-            return $this->view("guide.detail",[
-                'guide' => $guide,
-                'tasks' => $tasks
-            ]);
+                return $this->view("guide.detail",[
+                    'guide' => $guide,
+                    'tasks' => $tasks
+                ]);
+            }
         }
         
     }

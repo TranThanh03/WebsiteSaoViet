@@ -56,11 +56,6 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="price">Giá</label>
-                        <input type="text" name="Gia" id="price" required value="<?=$_POST['Gia'] ?? ''?>"/>
-                    </div>
-                    
-                    <div class="form-group">
                         <label for="rating">Đánh giá</label>
                         <select id="rating" name="DanhGia">
                             <?php for ($i = 1; $i <= 5; $i++): ?>

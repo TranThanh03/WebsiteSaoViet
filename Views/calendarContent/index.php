@@ -54,7 +54,7 @@
                 </div>
                 <div class="form-group">
                     <label for="guide-costs">Giá:</label>
-                    <input class= "cost" type="text" id="guide-costs" name="guide-costs" value="<?=$task[0]->Gia?>VND" disabled>
+                    <input class= "cost" type="text" id="guide-costs" name="guide-costs" value="<?=$task[0]->GiaHDV?>VND" disabled>
                 </div>
             </div>
         </div>

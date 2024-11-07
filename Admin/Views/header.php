@@ -13,7 +13,7 @@
         <script src="./public/js/notifi.js"></script>
 
         <!--ckeditor-->
-        <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+        <script src="//cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 
         <?php
             if(isset($_REQUEST['controller'])) {

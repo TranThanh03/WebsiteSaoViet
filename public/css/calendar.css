@@ -20,6 +20,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .tour-item:hover {
@@ -27,8 +28,8 @@
 }
 
 .tour-item img {
-    width: 300px;
-    height: 100%;
+    width: 400px;
+    height: 200px;
     border-radius: 8px;
     margin-right: 20px;
     object-fit: cover;
@@ -36,6 +37,7 @@
 
 .tour-info {
     flex-grow: 1;
+    margin-left: 15px;
 }
 
 .tour-info h3 {

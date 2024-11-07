@@ -34,7 +34,6 @@
                 $Email = $_POST['Email'];
                 $NgaySinh = $_POST['NgaySinh'];
                 $GioiTinh = $_POST['GioiTinh'];
-                $Gia = $_POST['Gia'];
                 $MoTa = $_POST['MoTa'];
                 $DanhGia = $_POST['DanhGia'];
                 $Anh = basename( $_FILES["avatar-input"]["name"]);
@@ -66,8 +65,8 @@
                     }
                     else {
                         $this->guideModel->insertGuide(
-                            ['TenHDV','SDT','Email' ,'NgaySinh' ,'GioiTinh', 'AnhHDV', 'Gia', 'MoTa', 'DanhGia'],
-                            [$TenHDV,  $SDT, $Email, $NgaySinh, $GioiTinh, $Anh, $Gia, $MoTa, $DanhGia]);
+                            ['TenHDV','SDT','Email' ,'NgaySinh' ,'GioiTinh', 'AnhHDV', 'MoTa', 'DanhGia'],
+                            [$TenHDV,  $SDT, $Email, $NgaySinh, $GioiTinh, $Anh, $MoTa, $DanhGia]);
 
                         $code = 0;
                         $message = "Thêm hướng dẫn viên thành công.";
@@ -119,14 +118,13 @@
                     $Email = $_POST['Email'];
                     $NgaySinh = $_POST['NgaySinh'];
                     $GioiTinh = $_POST['GioiTinh'];
-                    $Gia = $_POST['Gia'];
                     $MoTa = $_POST['MoTa'];
                     $DanhGia = $_POST['DanhGia'];
 
                     if(empty(basename( $_FILES["avatarUpdate"]["name"]))) {
                         $this->guideModel->updateGuide(
-                            ['TenHDV','SDT','Email' ,'NgaySinh' ,'GioiTinh', 'Gia', 'MoTa', 'DanhGia'],
-                            [$TenHDV,  $SDT, $Email, $NgaySinh, $GioiTinh, $Gia, $MoTa, $DanhGia], 
+                            ['TenHDV','SDT','Email' ,'NgaySinh' ,'GioiTinh', 'MoTa', 'DanhGia'],
+                            [$TenHDV,  $SDT, $Email, $NgaySinh, $GioiTinh, $MoTa, $DanhGia], 
                             'MaHDV', $id);
                         
                         $code = 0;
@@ -161,8 +159,8 @@
                             }
                             else {
                                 $this->guideModel->updateGuide(
-                                    ['TenHDV','SDT','Email' ,'NgaySinh' ,'GioiTinh', 'AnhHDV', 'Gia', 'MoTa', 'DanhGia'],
-                                    [$TenHDV,  $SDT, $Email, $NgaySinh, $GioiTinh, $Anh, $Gia, $MoTa, $DanhGia], 
+                                    ['TenHDV','SDT','Email' ,'NgaySinh' ,'GioiTinh', 'AnhHDV', 'MoTa', 'DanhGia'],
+                                    [$TenHDV,  $SDT, $Email, $NgaySinh, $GioiTinh, $Anh, $MoTa, $DanhGia], 
                                     'MaHDV', $id);
     
                                 $code = 0;

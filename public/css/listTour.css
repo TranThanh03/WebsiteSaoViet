@@ -1,6 +1,5 @@
 .tour-detail {
-    padding: 20px;
-    width: 1200px;
+    width: 1300px;
     margin: 0 auto;
 }
 
@@ -9,7 +8,7 @@
     margin-bottom: 20px;
 }
 
-.tour-detail p {
+.tour-detail h3 {
     text-align: center;
     margin-bottom: 40px;
     color: #555;
@@ -17,8 +16,9 @@
 
 .tour-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 350px));
+    gap: 30px;
+    justify-content: space-evenly;
 }
 
 .tour-item {
@@ -26,6 +26,7 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
 }
 
 .tour-item img {
@@ -51,6 +52,10 @@
 
 .tour-info strong {
     color: #333;
+}
+
+.tour-info #cost {
+    color: red;
 }
 
 .btn-detail {

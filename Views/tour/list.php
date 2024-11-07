@@ -1,7 +1,7 @@
 <?php if(!empty($tours)):?>
     <div class="tour-detail">
         <h1>Danh sách các Tour</h1>
-        <p>Khám phá các tour cùng Sao Việt hấp dẫn với nhiều địa điểm du lịch tuyệt vời</p>
+        <h3>Khám phá các tour cùng Sao Việt hấp dẫn với nhiều địa điểm du lịch tuyệt vời</h3>
         
         <div class="tour-list">
             <?php foreach($tours as $value):?>
@@ -10,7 +10,7 @@
                     <div class="tour-info">
                         <h2><?=$value->TenTour?></h2>
                         <p><?=$value->GioiThieu?></p>
-                        <p><strong>Giá:</strong> <?=$value->GiaTour?> VND</p>
+                        <p id="cost"><strong>Giá:</strong> <?=$value->GiaTour?> VND</p>
                         <a href="index.php?controller=tour&action=detail&id=<?=$value->MaTour?>" class="btn-detail">Xem chi tiết</a>
                     </div>
                 </div>

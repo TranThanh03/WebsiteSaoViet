@@ -16,7 +16,6 @@
             <p><strong>Số điện thoại:</strong> <?=$guide[0]->SDT?></p>
             <p><strong>Email:</strong> <?=$guide[0]->Email?></p>
             <p><strong>Đánh giá:</strong> <span id="evaluate"><?=$guide[0]->DanhGia?></span></p>
-            <p><strong>Giá:</strong> <span style="color: red;"><?=$guide[0]->Gia?>VND</span></p>
         </div>
     </div>
 
@@ -36,7 +35,8 @@
                     <h3><?=$value->TenTour?></h3></p>
                     <p><b>Ngày khởi hành: </b><?=date('d-m-Y', strtotime($value->NgayKH))?></p>
                     <p><b>Ngày kết thúc: </b><?=date('d-m-Y', strtotime($value->NgayKT))?></p>
-                    <p id="tour-cost"><strong>Giá:</strong> <span style="color: red;"><?=$value->GiaTour?>VND</span></p>
+                    <p id="tour-cost"><strong>Giá Tour:</strong> <span style="color: red;"><?=$value->GiaTour?>VND</span></p>
+                    <p><strong>Giá HDV:</strong> <span style="color: red;"><?=$value->GiaHDV?>VND</span></p>
                     <a href="index.php?controller=calendarContent&action=index&idTask=<?=$value->MaPC?>"><button class="book-button">Đặt tour</button></a>
                 </div>   
             <?php endforeach;?>

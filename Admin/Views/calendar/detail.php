@@ -15,7 +15,7 @@
             <section class="tour-info">
                 <h2>Thông tin tour</h2>
                 <div class="tour-image">
-                    <img src="./public/img/tour/<?=$tour[0]->AnhTour?>" alt="anh" id="tour-image">
+                    <img src="./public/img/tour/<?=$tour[0]->AnhTour ?? 'no-image.png'?>" alt="anh" id="tour-image">
                 </div>
                 <div class="form-group">
                     <label for="tour-code">Mã tour:</label>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label for="tour-name">Tên tour:</label>
-                    <input type="text" id="tour-name" name="tour-name" value="<?=$tour[0]->TenTour?>" disabled>
+                    <input type="text" id="tour-name" name="tour-name" value="<?=$tour[0]->TenTour ?? 'Không xác định'?>" disabled>
                 </div>
                 <div class="form-group">
                     <label for="start-date">Ngày khởi hành:</label>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-group">
                     <label for="tour-costs">Giá:</label>
-                    <input class= "cost" type="text" id="tour-costs" name="tour-costs" value="<?=$tour[0]->GiaTour?>VND" readonly>
+                    <input class= "cost" type="text" id="tour-costs" name="tour-costs" value="<?=$calendar[0]->GiaTour?>VND" readonly>
                 </div>
             </section>
 
@@ -63,7 +63,7 @@
         <div class="guide-info">
             <h2>Thông tin hướng dẫn viên</h2>
             <div class="guide-image">
-                <img src="./public/img/guide/<?=$guide[0]->AnhHDV?>" alt="anh" id="guide-image">
+                <img src="./public/img/guide/<?=$guide[0]->AnhHDV ?? 'no-image.png'?>" alt="anh" id="guide-image">
             </div>
             <div class="guide-content">
                 <div class="form-group">
@@ -72,11 +72,11 @@
                 </div>
                 <div class="form-group">
                     <label for="guide-name">Hướng dẫn viên:</label>
-                    <input type="text" id="guide-name" name="guide-name" value="<?=$guide[0]->TenHDV?>" disabled>
+                    <input type="text" id="guide-name" name="guide-name" value="<?=$guide[0]->TenHDV ?? 'Không xác định'?>" disabled>
                 </div>
                 <div class="form-group">
                     <label for="guide-costs">Giá:</label>
-                    <input class= "cost" type="text" id="guide-costs" name="guide-costs" value="<?=$guide[0]->Gia?>VND" readonly>
+                    <input class= "cost" type="text" id="guide-costs" name="guide-costs" value="<?=$calendar[0]->GiaHDV?>VND" readonly>
                 </div>
             </div>
         </div>

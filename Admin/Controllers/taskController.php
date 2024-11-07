@@ -20,6 +20,9 @@
         }
 
         public function index() {
+            $tours = $this->tourModel->getAll();
+            $guides = $this->guideModel->getAll();
+
             $this->taskModel->updateTask('NgayKT', date('Y-m-d'));
 
             $tasks = $this->taskModel->getAll();
@@ -32,7 +35,9 @@
             });
 
             return $this->view('task.index', [
-                'tasks' => $tasks
+                'tasks' => $tasks,
+                'tours' => $tours,
+                'guides' => $guides
             ]);
         }
 
@@ -40,6 +45,7 @@
             if(isset($_REQUEST['btn-submit'])) {
                 $MaTour = $_POST['MaTour'];
                 $MaHDV = $_POST['MaHDV'];
+                $GiaHDV = $_POST['GiaHDV'];
                 $NgayKH = date('Y-m-d', strtotime($_POST['NgayKH']));
                 $NgayKT = date('Y-m-d', strtotime($_POST['NgayKT']));
                 $nowDate = date('Y-m-d');
@@ -49,8 +55,8 @@
                         $getTask = $this->taskModel->getTaskDate(["MaHDV", "TrangThai", "NgayKH", "NgayKT"], ["{$MaHDV}", "Đang diễn ra", "{$NgayKH}", "{$NgayKT}"]);
             
                         if(empty($getTask)) {
-                            $this->taskModel->insertTask(["MaTour", "MaHDV", "NgayKH", "NgayKT", "TrangThai"],
-                                                        ["{$MaTour}", "{$MaHDV}", "{$NgayKH}", "{$NgayKT}", "Đang diễn ra"]);
+                            $this->taskModel->insertTask(["MaTour", "MaHDV", "GiaHDV", "NgayKH", "NgayKT", "TrangThai"],
+                                                        ["{$MaTour}", "{$MaHDV}", "{$GiaHDV}", "{$NgayKH}", "{$NgayKT}", "Đang diễn ra"]);
 
                             $code = 0;
                             $message = "Thêm mới thành công.";
@@ -76,7 +82,7 @@
                 }
 
                 if($code == 1) {
-                    header("Location: index.php?controller=task&action=index&message=$message&code=$code&code2=$code2&idTour=$MaTour&idGuide=$MaHDV&startDate=$NgayKH&endDate=$NgayKT");
+                    header("Location: index.php?controller=task&action=index&message=$message&code=$code&code2=$code2&idTour=$MaTour&idGuide=$MaHDV&cost=$GiaHDV&startDate=$NgayKH&endDate=$NgayKT");
                 }
                 else if($code == 0) {
                     header("Location: index.php?controller=task&action=index&message=$message&code=$code");
@@ -135,7 +141,14 @@
                     $input = $_REQUEST['input-search'];
 
                     $tasks = $this->taskModel->searchTask(['*'], ['phancong.MaPC', 'phancong.MaTour', 'phancong.MaHDV'], $input);
-
+                    usort($tasks, function($a, $b) {
+                        $order = ["Đang diễn ra", "Đã kết thúc"];
+                        $statusA = array_search($a->TrangThai, $order);
+                        $statusB = array_search($b->TrangThai, $order);
+                        
+                        return $statusA - $statusB;
+                    });
+                    
                     if(!empty($tasks)) {
                         return $this->view("task.index",
                         [

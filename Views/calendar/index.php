@@ -7,7 +7,7 @@
                     <?php foreach($calendars as $value):?>
                         <div class="tour-item">
                             <a href="index.php?controller=tour&action=detail&id=<?=$value[0]->MaTour?>">
-                                <img src="./Admin/public/img/tour/<?=$value[0]->AnhTour?>" alt="anh">
+                                <img src="./Admin/public/img/tour/<?=$value[0]->AnhTour ?? 'no-image.png'?>" alt="anh">
                             </a>
                             <div class="tour-info">
                                 <h3><?=$value[0]->TenTour?>(<span id="startDate"><?=date('d/m/Y', strtotime($value[0]->NgayKH))?></span> - <span id="endDate"><?=date('d/m/Y', strtotime($value[0]->NgayKT))?></span>)</h3>

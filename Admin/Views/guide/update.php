@@ -68,13 +68,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="price">Giá</label>
-                        <div class="input-wrapper">
-                            <input type="text" name="Gia" id="price" value="<?= $guide[0]->Gia ?>" required/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label for="rating">Đánh giá</label>
                         <div class="input-wrapper">
                             <select id="rating" name="DanhGia">

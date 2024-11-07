@@ -53,11 +53,12 @@
 .tour-infor {
     margin: 25px 0px;
     border-bottom: 1px solid black;
+    overflow: hidden;
 }
 
 .tour-infor img {
-    width: 350px;
-    height: 175px;
+    width: 400px;
+    height: 200px;
     float: left;
     margin-right: 30px;
 }
