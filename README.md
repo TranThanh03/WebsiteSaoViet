@@ -53,7 +53,7 @@ Công nghệ sử dụng
 
   o	PHP: Xử lý logic phía server, kết nối và tương tác với cơ sở dữ liệu.
 
-o	MySQL: Lưu trữ dữ liệu cho người dùng, tour, đơn đặt tour, hướng dẫn viên, và các thông tin khác.
+  o	MySQL: Lưu trữ dữ liệu cho người dùng, tour, đơn đặt tour, hướng dẫn viên, và các thông tin khác.
 
 
 Hướng dẫn cài đặt
