@@ -43,15 +43,15 @@ Công nghệ sử dụng
 
 •	Frontend:
 
-o	HTML: Xây dựng cấu trúc và bố cục cho các trang.
+  o	HTML: Xây dựng cấu trúc và bố cục cho các trang.
 
-o	CSS: Tạo kiểu và trình bày giao diện người dùng.
+  o	CSS: Tạo kiểu và trình bày giao diện người dùng.
 
-o	JavaScript: Xử lý logic phía client và tạo tương tác người dùng.
+  o	JavaScript: Xử lý logic phía client và tạo tương tác người dùng.
 
 •	Backend:
 
-o	PHP: Xử lý logic phía server, kết nối và tương tác với cơ sở dữ liệu.
+  o	PHP: Xử lý logic phía server, kết nối và tương tác với cơ sở dữ liệu.
 
 o	MySQL: Lưu trữ dữ liệu cho người dùng, tour, đơn đặt tour, hướng dẫn viên, và các thông tin khác.
 
@@ -62,21 +62,21 @@ Hướng dẫn cài đặt
 
 2.	Cấu hình Database:
 
-o	Khởi chạy MySQL và tạo database "toursaoviet".
+  o	Khởi chạy MySQL và tạo database "toursaoviet".
 
-o	Import file toursaoviet.sql trong project để khởi tạo cấu trúc cơ sở dữ liệu.
+  o	Import file toursaoviet.sql trong project để khởi tạo cấu trúc cơ sở dữ liệu.
 
 3.	Cấu hình kết nối Database:
 
-o	Mở file config.php trong thư mục Core/.
+  o	Mở file config.php trong thư mục Core/.
 
-o	Cập nhật thông tin kết nối với database (host, username, password, tên database).
+  o	Cập nhật thông tin kết nối với database (host, username, password, tên database).
 
 4.	Chạy server:
 
-o	Đưa project vào thư mục htdocs nếu sử dụng XAMPP hoặc cấu hình server để trỏ đến thư mục WebsiteSaoViet/.
+  o	Đưa project vào thư mục htdocs nếu sử dụng XAMPP hoặc cấu hình server để trỏ đến thư mục WebsiteSaoViet/.
 
-o	Khởi động server và truy cập vào trang web qua trình duyệt.
+  o	Khởi động server và truy cập vào trang web qua trình duyệt.
 
 
 Hướng dẫn sử dụng
