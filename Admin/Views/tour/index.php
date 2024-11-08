@@ -28,7 +28,7 @@
                         <td><?=$value->MaTour?></td>
                         <td><?=$value->TenTour?></td>
                         <td class="avatar">
-                            <img src="../Admin/public/img/tour/<?=$value->AnhTour?>" alt="ảnh tour">
+                            <img src="../Admin/public/img/tour/<?=isset($value->AnhTour) && $value->AnhTour != '' ? $value->AnhTour : 'no-image.png'?>" alt="ảnh tour">
                         </td>
                         <td>
                             <?php 

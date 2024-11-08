@@ -54,11 +54,9 @@
                                 <?= $value->TrangThai ?>
                             </td>
                         <td>
-                            <?php
-                                if($value->TrangThai == "Đang diễn ra") {
-                                    echo "<a href='index.php?controller=task&action=delete&id=<?=$value->MaPC?>'><button>Xóa</button></a>";
-                                }
-                            ?>
+                            <?php if($value->TrangThai == "Đang diễn ra"):?>
+                                <a href="index.php?controller=task&action=delete&id=<?=$value->MaPC?>"><button>Xóa</button></a>
+                            <?php endif;?>
                         </td>
                     </tr>
                 <?php endforeach;?>

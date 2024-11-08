@@ -33,7 +33,7 @@
                         <td><?=$value->GioiTinh?></td>
                         <td><?=$value->SDT?></td>
                         <td class="avatar">
-                            <img src="../Admin/public/img/guide/<?=$value->AnhHDV?>" alt="anh hdv">
+                            <img src="../Admin/public/img/guide/<?=isset($value->AnhHDV) && $value->AnhHDV != '' ? $value->AnhHDV : 'no-image.png'?>" alt="anh hdv">
                         </td>
                         <td>
                             <a href="index.php?controller=guide&action=showForm&id=<?=$value->MaHDV?>"><button>Sửa</button></a>

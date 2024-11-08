@@ -62,7 +62,7 @@
                     <div class="image-group">
                         <label for="avatar">Ảnh</label>
                         <div class="input-wrapper">
-                            <img class="avatar-img" src="../Admin/public/img/guide/<?= $guide[0]->AnhHDV ?>" alt="ảnh hướng dẫn viên">
+                            <img class="avatar-img" src="../Admin/public/img/guide/<?= isset($guide[0]->AnhHDV) && $guide[0]->AnhHDV != '' ? $guide[0]->AnhHDV : 'no-image.png'?>" alt="ảnh hướng dẫn viên">
                             <input class="avatar-input" type="file" name="avatarUpdate" id="avatar">
                         </div>
                     </div>

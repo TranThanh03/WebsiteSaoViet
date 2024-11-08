@@ -39,7 +39,7 @@
                 <div class="image-group">
                     <label>Ảnh Tour:</label>
                     <div class="input-wrapper">
-                        <img class="avatar-img" src="../Admin/public/img/tour/<?=$tour[0]->AnhTour?>" alt="ảnh tour">
+                        <img class="avatar-img" src="../Admin/public/img/tour/<?=isset($tour[0]->AnhTour) && $tour[0]->AnhTour != '' ? $tour[0]->AnhTour : 'no-image.png'?>" alt="ảnh tour">
                         <input class="avatar-input" type="file" name="avatarUpdate">
                     </div>
                 </div>
