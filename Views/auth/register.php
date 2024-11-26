@@ -32,11 +32,7 @@
                 <label for="pwd" class="form-floating">Nhập lại mật khẩu</label>
               </div>
               <div>
-                <?php 
-                  if(!empty($warning)) {
-                    echo "<p style='color: red; padding-top:4px;'>{$warning}</p>";
-                  }
-                ?>
+                <p style='color: red; padding-top:4px;'><?=$warning ?? ''?></p>
                 <button type="submit" class="btn btn-lg btn-primary w-100 fs-6" >Đăng ký</button>
                 <p>Bằng việc đăng ký tài khoản bạn đã đồng ý với <a href="#">Điều khoản sử dụng</a> của chúng tôi!</p>
                 <p>Bạn đã có tài khoản? <a href="index.php?controller=auth&action=index">Đăng nhập</a> </p>

@@ -95,6 +95,12 @@
                 $email = $_POST['email'];
                 $password = $_POST['password'];
 
+                if(empty($fullName) || empty($numberPhone) || empty($email) ||empty($password)) {
+                    return $this->view('auth.register',[
+                        'warning' => 'Không được để trống thông tin!'
+                    ]);
+                } 
+
                 if(!$this->isValidUsername($numberPhone)) {
                     return $this->view('auth.register',[
                         'warning' => 'Số điện thoại chỉ được nhập số và có độ dài 10 chữ số!'
@@ -104,12 +110,6 @@
                 if($password !== $_POST['repeatpw']) {
                     return $this->view('auth.register',[
                         'warning' => 'Mật khẩu không khớp!'
-                    ]);
-                } 
-
-                if(empty($fullName) || empty($numberPhone) || empty($email) ||empty($password)) {
-                    return $this->view('auth.register',[
-                        'warning' => 'Không được để trống thông tin!'
                     ]);
                 } 
 
