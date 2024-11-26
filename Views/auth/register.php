@@ -10,7 +10,7 @@
     <div class="container d-flex justify-content-center align-items-center min-vh-100 box-area0" style="font-family:'Segoe UI';">
         <div class="row border rounded-5 p-3 bg-while shadow box-area1" style="background-color: white;">
             <h1 class="text-center " >Đăng ký tài khoản</h1>
-            <form action="index.php?controller=user&action=createAccount" method="post">
+            <form action="index.php?controller=auth&action=createAccount" method="post">
               <div class="form-floating mb-1 mt-1">
                 <input type="text" class="form-control" id="email" placeholder="Họ và tên" name="full-name" value="<?php echo isset($_POST['full-name']) ? htmlspecialchars($_POST['full-name']) : ''; ?>">
                 <label for="name">Họ và tên</label>
@@ -39,7 +39,7 @@
                 ?>
                 <button type="submit" class="btn btn-lg btn-primary w-100 fs-6" >Đăng ký</button>
                 <p>Bằng việc đăng ký tài khoản bạn đã đồng ý với <a href="#">Điều khoản sử dụng</a> của chúng tôi!</p>
-                <p>Bạn đã có tài khoản? <a href="index.php?controller=user&action=index">Đăng nhập</a> </p>
+                <p>Bạn đã có tài khoản? <a href="index.php?controller=auth&action=index">Đăng nhập</a> </p>
               </div>
             </form>
           </div>

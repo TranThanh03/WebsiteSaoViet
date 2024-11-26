@@ -5,10 +5,10 @@
         
         public function __construct()
         {
-            $this->model('calendarModel');
+            $this->model('CalendarModel');
             $this->calendarModel = new CalendarModel();
             
-            $this->model('userModel');
+            $this->model('UserModel');
             $this->userModel = new UserModel();
         }
         public function index() {

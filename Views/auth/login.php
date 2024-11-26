@@ -50,7 +50,7 @@
                             <h2>Hello</h2>
                             <p>We are very happy to have your back</p>
                         </div>
-                        <form action="index.php?controller=user&action=login" method="post">
+                        <form action="index.php?controller=auth&action=login" method="post">
 
                             <div
                                 class="input-group mb-3"
@@ -84,19 +84,6 @@
                                 class="form-check mb-2 d-flex justify-content-between"
                                 style="font-family: 'Segoe UI'"
                             >
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input
-                                            class="form-check-input"
-                                            type="checkbox"
-                                            name="remember"
-                                        />
-                                        Remember me
-                                    </label>
-                                </div>
-                                <div class="forgot">
-                                    <small><a href="#">Forgot Password?</a></small>
-                                </div>
                             </div>
                             <div>
                                 <button type="submit" class="btn btn-lg btn-primary w-100 fs-6">
@@ -105,14 +92,8 @@
                             </div>
                         </form>
                         <div>
-                        <?php
-                            if(!empty($warning['0'])) {
-                                echo "<p style='color: red; padding-top:4px;'>{$warning}</p>";
-                            }
-                        ?>
+                            <p style="color: red; padding-top:4px;"><?=$warning ?? ''?></p>
                         </div>
-
-                        <!-- day la div cua create account -->
                         <div
                             class="input-group mb-2 .bg-warning d-flex fs-5 justify-content-between"
                             style="font-family: 'Segoe UI'"
@@ -124,7 +105,7 @@
                                 <div class="Dangky">
                                     <small
                                         ><a
-                                            href="index.php?controller=user&action=register"
+                                            href="index.php?controller=auth&action=register"
                                             >Tạo tài khoản mới</a
                                         ></small
                                     >

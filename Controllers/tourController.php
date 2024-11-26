@@ -3,7 +3,7 @@
         public $tourModel;
 
         public function __construct() {
-            $this->model('tourModel');
+            $this->model('TourModel');
             $this->tourModel = new TourModel();
         }
         public function index() {

@@ -5,13 +5,13 @@
         public $taskModel;
 
         public function __construct() {
-            $this->model('guideModel');
+            $this->model('GuideModel');
             $this->guideModel = new GuideModel();
 
-            $this->model('tourModel');
+            $this->model('TourModel');
             $this->tourModel = new TourModel();
 
-            $this->model('taskModel');
+            $this->model('TaskModel');
             $this->taskModel = new TaskModel();
         }
 

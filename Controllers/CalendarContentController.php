@@ -6,16 +6,16 @@
         public $taskModel;
 
         public function __construct() {
-            $this->model('calendarModel');
+            $this->model('CalendarModel');
             $this->calendarModel = new CalendarModel();
             
-            $this->model('userModel');
+            $this->model('UserModel');
             $this->userModel = new UserModel();
 
-            $this->model('accountModel');
+            $this->model('AccountModel');
             $this->accountModel = new AccountModel();
 
-            $this->model('taskModel');
+            $this->model('TaskModel');
             $this->taskModel = new TaskModel();
         }
 

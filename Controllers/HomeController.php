@@ -4,10 +4,10 @@
         public $guideModel;
 
         public function __construct() {
-            $this->model('tourModel');
+            $this->model('TourModel');
             $this->tourModel = new TourModel();
 
-            $this->model('guideModel');
+            $this->model('GuideModel');
             $this->guideModel = new GuideModel();
         }
         public function index() {

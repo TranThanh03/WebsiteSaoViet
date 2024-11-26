@@ -45,6 +45,9 @@
             else if($_REQUEST['controller'] === 'calendarContent' && $_REQUEST['action'] === 'booking') {
                 echo '<script src="./public/js/message.js"></script>';
             }
+            else if($_REQUEST['controller'] === 'user') {
+                echo '<link rel="stylesheet" href="./public/css/user.css">';
+            }
         }
         else {
             echo '<script src="./public/js/home.js"></script>';
@@ -82,25 +85,22 @@
                     </a>
                 </div>
                 <div class="icon-account">
-                    <a href=" 
-                        <?php
-                        if (isset($_SESSION['username'])) {
-                            echo "index.php?controller=user&action=logout";
-                        } else {
-                            echo "index.php?controller=user&action=index";
-                        }
-                        ?> ">
-                        <img src="./public/icons/user-regular.svg" alt="icon"></i>
-                        <p>
-                            <?php
-                            if (isset($_SESSION['username'])) {
-                                echo "Đăng xuất";
-                            } else {
-                                echo "Đăng nhập";
-                            }
-                            ?>
-                        </p>
-                    </a>
+                    <?php
+                        if (!isset($_SESSION['username'])):?>
+                            <a href="index.php?controller=auth&action=index">
+                                <img src="./public/icons/user-regular.svg" alt="icon"></i>
+                                <p>Đăng nhập</p>
+                            </a>
+                    <?php else:?>
+                        <div class="account-info">
+                            <img src="./public/icons/user-regular.svg" alt="icon"></i>
+                            <p><?=$_SESSION['fullNameUser']?></p>
+                            <ul id="slidebar">
+                                <li><a href="index.php?controller=user&action=index">Thông tin khách hàng</a></li>
+                                <li><a href="index.php?controller=auth&action=logout" style="color: red;">Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    <?php endif;?>
                 </div>
             </div>
         </div>

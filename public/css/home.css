@@ -105,10 +105,48 @@ header .icon-account {
     padding: 45px 0;
 }
 
-header .icon-account a {
+header .icon-account p {
+    color: white;
+}
+
+header .icon-account .account-info {
+    cursor: pointer;
+    padding-bottom: 10px;
+}
+
+header .account-info:hover > #slidebar {
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+header .icon-account #slidebar {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
+    position: relative;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 5px 4px 6px rgb(146 146 150);
+    list-style: none;
+    padding: 15px 5px;
+    z-index: 10;
+    width: 200px;
+}
+
+header .icon-account #slidebar li{
+    margin-bottom: 10px;
+}
+
+header .icon-account #slidebar li:hover a {
+    font-weight: bold;
+}
+
+
+header .icon-account #slidebar a {
     text-decoration: none;
     font-weight: 500;
-    color: white;
+    color: black;
 }
 
 header .icon-calendar img {
