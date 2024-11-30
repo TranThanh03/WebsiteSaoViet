@@ -24,11 +24,15 @@
         public function list() {
             if(isset($_REQUEST['id']) && $_REQUEST['id'] != '') {
                 $value = $_REQUEST['id'];
-                if($value != '') {
-                    $tours = $this->tourModel->getById(['*'],"MaCD", $value);
-                } else {
-                    $tours = $this->tourModel->getAll();
-                }
+                
+                $tours = $this->tourModel->getById(['*'],"MaCD", $value);
+
+                return $this->view("tour.list", [
+                    'tours' => $tours
+                ]);
+            }
+            else {
+                $tours = $this->tourModel->getAll();
 
                 return $this->view("tour.list", [
                     'tours' => $tours

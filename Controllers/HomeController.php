@@ -11,7 +11,7 @@
             $this->guideModel = new GuideModel();
         }
         public function index() {
-            $tours = $this->tourModel->getAll();
+            $tours = $this->tourModel->getNewTour();
             $guides = $this->guideModel->getGuide(['MaHDV', 'TenHDV', 'AnhHDV', 'NgaySinh'], 'DanhGia', '5');
             return $this->view("home.index",
                 [

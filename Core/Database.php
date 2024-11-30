@@ -8,11 +8,12 @@ class Database
 
     public function connect()
     {
-        $connect = mysqli_connect(self::HOST, self::USER, self::PASS, self::DB_NAME);
-        mysqli_set_charset($connect, 'utf8');
-        if ($connect->connect_errno) {
-            die("Connection failed: " . $connect->connect_error);
+        $conn = mysqli_connect(self::HOST, self::USER, self::PASS, self::DB_NAME);
+        mysqli_set_charset($conn, 'utf8');
+        
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
         }
-        return $connect;
+        return $conn;
     }
 }

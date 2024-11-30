@@ -33,7 +33,7 @@
                     );
                 }
                 else {
-                    header("Location: index.php?controller=user&action=index");
+                    header("Location: index.php?controller=auth&action=index");
                 }
             }
             else {
