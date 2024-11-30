@@ -70,7 +70,7 @@
                     <li><a href="index.php?controller=tour&action=index">Tours</a></li>
                     <li><a href="index.php?controller=guide&action=index">Hướng dẫn viên</a></li>
                     <li><a href="index.php?controller=task&action=index">Phân công</a></li>
-                    <li><a href="index.php?controller=calendar&action=index">Lịch đặt</a></li>
+                    <li><a href="index.php?controller=calendar&action=index">Đơn đặt</a></li>
                 </ul>
             </nav>
         </header>
