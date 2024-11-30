@@ -28,7 +28,7 @@
 <!-- list tour -->
 <div class="list" id="tour-slide">
         <div class="title">
-            <span>Tours xu hướng</span>
+            <span>Tours mới nhất</span>
             <a href="index.php?controller=tour&action=list">
                 <span>Xem thêm</span>
             </a>
