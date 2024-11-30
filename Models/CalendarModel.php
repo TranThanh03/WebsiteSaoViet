@@ -1,11 +1,11 @@
 <?php 
     class CalendarModel extends BaseModel {
-        const TABLE = ' lichdat
-                        INNER JOIN khachhang ON lichdat.MaKH = khachhang.MaKH
-                        INNER JOIN tour ON lichdat.MaTour = tour.MaTour
-                        INNER JOIN huongdanvien ON lichdat.MaHDV = huongdanvien.MaHDV';
+        const TABLE = ' dondat
+                        INNER JOIN khachhang ON dondat.MaKH = khachhang.MaKH
+                        INNER JOIN tour ON dondat.MaTour = tour.MaTour
+                        INNER JOIN huongdanvien ON dondat.MaHDV = huongdanvien.MaHDV';
 
-        const GETTABLE = 'lichdat';
+        const GETTABLE = 'dondat';
         public function getAll($columns = ['*']) {
             return $this->all(self::TABLE, $columns);
         }
