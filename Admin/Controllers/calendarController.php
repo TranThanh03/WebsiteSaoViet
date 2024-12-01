@@ -31,7 +31,7 @@
                 $statusComparison = $order[$a->TrangThai] <=> $order[$b->TrangThai];
             
                 if ($statusComparison === 0) {
-                    return $b->MaLD <=> $a->MaLD;
+                    return $b->MaDD <=> $a->MaDD;
                 }
         
                 return $statusComparison;
@@ -44,7 +44,7 @@
 
         public function detail() {
             if($_REQUEST['id']) {
-                $calendar = $this->calendarModel->getCalendar(['*'], 'MaLD', $_REQUEST['id']);
+                $calendar = $this->calendarModel->getCalendar(['*'], 'MaDD', $_REQUEST['id']);
                 $user = $this->userModel->getUser(['*'], 'MaKH', $calendar[0]->MaKH);
                 $account = $this->accountModel->getAccount(['SDT'], 'MaTK', $user[0]->MaTK);
                 $guide = $this->guideModel->getGuide(['TenHDV', 'AnhHDV'], 'MaHDV', $calendar[0]->MaHDV);
@@ -66,19 +66,19 @@
             if(isset($_REQUEST['id']) && isset($_REQUEST['status'])) {
                 $id = $_REQUEST['id'];
                 $status = $_REQUEST['status'];
-                $getCalendar = $this->calendarModel->getCalendar(['MaLD'], 'MaLD', $id);
+                $getCalendar = $this->calendarModel->getCalendar(['MaDD'], 'MaDD', $id);
 
                 if(!empty($getCalendar)) {
                     if($status === 'confirm') {
                         $this->calendarModel->updateCalendar(['TrangThai'], ["Đã xác nhận"]
-                        , 'MaLD', $id);
+                        , 'MaDD', $id);
 
                         $code = 0;
                         $message = "Lịch đặt $id đã được xác nhận.";
                     } 
                     else {
                         $this->calendarModel->updateCalendar(['TrangThai'], ["Đã hủy"]
-                        , 'MaLD', $id);
+                        , 'MaDD', $id);
 
                         $code = 0;
                         $message = "Lịch đặt $id đã bị hủy.";
@@ -103,14 +103,14 @@
                 if(isset($_REQUEST['input-search'])) {
                     $input = $_REQUEST['input-search'];
 
-                    $calendars = $this->calendarModel->searchCalendar(['*'], ['lichdat.MaLD', 'lichdat.MaKH', 'lichdat.MaTour', 'lichdat.MaHDV'], $input);
+                    $calendars = $this->calendarModel->searchCalendar(['*'], ['lichdat.MaDD', 'lichdat.MaKH', 'lichdat.MaTour', 'lichdat.MaHDV'], $input);
 
                     usort($calendars, function($a, $b) {
                         $order = ['Đang xử lý' => 1, 'Đã xác nhận' => 2, 'Đã hủy' => 3];
                         $statusComparison = $order[$a->TrangThai] <=> $order[$b->TrangThai];
                     
                         if ($statusComparison === 0) {
-                            return $b->MaLD <=> $a->MaLD;
+                            return $b->MaDD <=> $a->MaDD;
                         }
                 
                         return $statusComparison;

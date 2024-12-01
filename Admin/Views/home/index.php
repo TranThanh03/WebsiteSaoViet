@@ -51,7 +51,7 @@
                             if(isset($latestCalendars)) {
                                 foreach($latestCalendars as $value) {?>
                                 <tr>
-                                    <td><?=$value->MaLD?></td>
+                                    <td><?=$value->MaDD?></td>
                                     <td><?=$value->TenKH?></td>
                                     <td><?=$value->TenTour?></td>
                                     <td><?=date('H:i:s d/m/Y', strtotime($value->ThoiGianDat))?></td>

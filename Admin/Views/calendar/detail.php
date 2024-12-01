@@ -1,5 +1,5 @@
 <main class="booking-form">
-    <h2>Thông tin đơn đặt mã <?=$calendar[0]->MaLD?></h2>
+    <h2>Thông tin đơn đặt mã <?=$calendar[0]->MaDD?></h2>
         <div class="calendar-info">
             <div class="form-group">
                 <label for="datetime">Thời gian đặt:</label>

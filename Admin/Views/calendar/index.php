@@ -20,11 +20,11 @@
 </style>
 
 <div class="calendar"></div>    
-    <h2 id="title">Danh sách lịch đặt</h2>
+    <h2 id="title">Danh sách đơn đặt</h2>
     <div class="control">
         <div>
             <form action="index.php?controller=calendar&action=search" method="post">
-                <input id="search" type="search" name="input-search" placeholder="Nhập mã lịch đặt, mã khách hàng, mã tour, mã hướng dẫn viên" autocomplete="off" required>
+                <input id="search" type="search" name="input-search" placeholder="Nhập mã đơn đặt, mã khách hàng, mã tour, mã hướng dẫn viên" autocomplete="off" required>
                 <button type="submit" name="btn-search">Tìm</button>
             </form>
         </div>
@@ -33,7 +33,7 @@
         <table>
             <thead>
                 <th>STT</th>
-                <th>Mã lịch đặt</th>
+                <th>Mã đơn đặt</th>
                 <th>Mã khách hàng</th>
                 <th>Tên khách hàng</th>
                 <th>Mã tour</th>
@@ -49,7 +49,7 @@
                     foreach($calendars as $value):?>
                         <tr>
                             <td><?=$stt++?></td>
-                            <td><?=$value->MaLD?></td>
+                            <td><?=$value->MaDD?></td>
                             <td><?=$value->MaKH?></td>
                             <td><?=$value->TenKH ?? 'Không xác định'?></td>
                             <td><?=$value->MaTour?></td>
@@ -60,7 +60,7 @@
                                 <?= $value->TrangThai ?>
                             </td>
                             <td>
-                                <a href="index.php?controller=calendar&action=detail&id=<?=$value->MaLD?>"><button type="button">Chi tiết</button></a>
+                                <a href="index.php?controller=calendar&action=detail&id=<?=$value->MaDD?>"><button type="button">Chi tiết</button></a>
                             </td> 
                         </tr>
                 <?php endforeach;?>

@@ -16,12 +16,12 @@
                 $id = $_REQUEST['id'] ?? '';
                 $code = $_REQUEST['code'] ?? '';
                 $idUser = $this->userModel->getUser(['MaKH'], 'email', $_SESSION['username']);
-                $idCalendars = $this->calendarModel->getCalendar(['MaLD'], 'MaKH', $idUser[0]->MaKH);
+                $idCalendars = $this->calendarModel->getCalendar(['MaDD'], 'MaKH', $idUser[0]->MaKH);
                 $calendars = [];
 
                 if (!empty($idCalendars)) {
                     foreach ($idCalendars as $value) {
-                        $data = $this->calendarModel->getCalendarById(['*'], "MaLD", $value->MaLD);
+                        $data = $this->calendarModel->getCalendarById(['*'], "MaDD", $value->MaDD);
                         array_push($calendars, $data);
                     }
                     
@@ -30,7 +30,7 @@
                         
                         $statusComparison = $order[$a[0]->TrangThai] <=> $order[$b[0]->TrangThai];
                         if ($statusComparison === 0) {
-                            return $b[0]->MaLD <=> $a[0]->MaLD;
+                            return $b[0]->MaDD <=> $a[0]->MaDD;
                         }
 
                         return $statusComparison;
@@ -83,8 +83,8 @@
         public function cancel() {
             if(isset($_REQUEST['id'])) {
                 $id = $_REQUEST['id'];
-                $getIdCalendar = $this->calendarModel->getCalendar(['TrangThai'], 'MaLD', $id);
-                $result = $this->calendarModel->cancelCalendar(['TrangThai'], ['Đã hủy'], 'MaLD', $id);
+                $getIdCalendar = $this->calendarModel->getCalendar(['TrangThai'], 'MaDD', $id);
+                $result = $this->calendarModel->cancelCalendar(['TrangThai'], ['Đã hủy'], 'MaDD', $id);
 
                 if(isset($result) && !empty($getIdCalendar) && $getIdCalendar[0]->TrangThai != "Đã hủy") {  
                     header('Location: index.php?controller=calendar&action=index&id='.$id.'&code=0');
