@@ -124,12 +124,12 @@ header .icon-account #slidebar {
     opacity: 0;
     transform: translateY(20px);
     transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
-    position: relative;
+    position: absolute;
     background-color: white;
     border: 1px solid #ddd;
     box-shadow: 5px 4px 6px rgb(146 146 150);
     list-style: none;
-    padding: 15px 5px;
+    padding: 15px 0;
     z-index: 10;
     width: 200px;
 }
