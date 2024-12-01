@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2024 at 06:40 PM
+-- Generation Time: Dec 01, 2024 at 08:41 AM
 -- Server version: 11.4.3-MariaDB
 -- PHP Version: 8.2.12
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `dondat` (
-  `MaLD` int(11) NOT NULL,
+  `MaDD` int(11) NOT NULL,
   `MaKH` int(11) NOT NULL,
   `MaTour` int(11) NOT NULL,
   `TongTien` varchar(100) NOT NULL,
@@ -37,7 +37,6 @@ CREATE TABLE `dondat` (
   `MaHDV` int(11) DEFAULT NULL,
   `NgayKH` date DEFAULT NULL,
   `NgayKT` date DEFAULT NULL,
-  `MaPC` int(10) DEFAULT NULL,
   `GiaTour` varchar(30) DEFAULT NULL,
   `GiaHDV` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
@@ -46,10 +45,11 @@ CREATE TABLE `dondat` (
 -- Dumping data for table `dondat`
 --
 
-INSERT INTO `dondat` (`MaLD`, `MaKH`, `MaTour`, `TongTien`, `ThoiGianDat`, `TrangThai`, `MaHDV`, `NgayKH`, `NgayKT`, `MaPC`, `GiaTour`, `GiaHDV`) VALUES
-(90, 52, 23, '5.150.000', '2024-11-08 15:07:21', 'Đã xác nhận', 21, '2024-11-17', '2024-11-20', 45, '4.950.000', '200.000'),
-(91, 52, 23, '5.200.000', '2024-11-08 15:12:01', 'Đã hủy', 21, '2024-11-17', '2024-11-20', 45, '5.000.000', '200.000'),
-(92, 52, 22, '5.500.000', '2024-12-01 00:24:10', 'Đang xử lý', 21, '2024-11-30', '2024-12-01', 46, '5.000.000', '500.000');
+INSERT INTO `dondat` (`MaDD`, `MaKH`, `MaTour`, `TongTien`, `ThoiGianDat`, `TrangThai`, `MaHDV`, `NgayKH`, `NgayKT`, `GiaTour`, `GiaHDV`) VALUES
+(90, 52, 23, '5.150.000', '2024-11-08 15:07:21', 'Đã xác nhận', 21, '2024-11-17', '2024-11-20', '4.950.000', '200.000'),
+(91, 52, 23, '5.200.000', '2024-11-08 15:12:01', 'Đã hủy', 21, '2024-11-17', '2024-11-20', '5.000.000', '200.000'),
+(92, 52, 22, '5.500.000', '2024-12-01 00:24:10', 'Đang xử lý', 21, '2024-11-30', '2024-12-01', '5.000.000', '500.000'),
+(93, 52, 22, '5.500.000', '2024-12-01 14:05:33', 'Đang xử lý', 21, '2024-11-30', '2024-12-01', '5.000.000', '500.000');
 
 -- --------------------------------------------------------
 
@@ -193,7 +193,7 @@ INSERT INTO `tour` (`MaTour`, `TenTour`, `AnhTour`, `MoTa`, `GiaTour`, `GioiThie
 -- Indexes for table `dondat`
 --
 ALTER TABLE `dondat`
-  ADD PRIMARY KEY (`MaLD`),
+  ADD PRIMARY KEY (`MaDD`),
   ADD KEY `FK_LD_KH` (`MaKH`) USING BTREE,
   ADD KEY `FK_LD_PC` (`MaTour`);
 
@@ -238,7 +238,7 @@ ALTER TABLE `tour`
 -- AUTO_INCREMENT for table `dondat`
 --
 ALTER TABLE `dondat`
-  MODIFY `MaLD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `MaDD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT for table `huongdanvien`
