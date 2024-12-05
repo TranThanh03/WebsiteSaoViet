@@ -37,7 +37,7 @@
                         </td>
                         <td>
                             <a href="index.php?controller=guide&action=showForm&id=<?=$value->MaHDV?>"><button>Sửa</button></a>
-                            <a href="index.php?controller=guide&action=delete&id=<?=$value->MaHDV?>"><button style="color: red;">Xóa</button></a>
+                            <button type="button" style="color: red;" onclick="actionDelete(<?=$value->MaHDV?>)">Xóa</button></a>
                         </td>
                     </tr>
                 <?php endforeach;?>
@@ -45,3 +45,20 @@
         </table>
     </div>
 </div>
+
+<script>
+    function actionDelete(idGuide) {
+        Swal.fire({
+            title: 'Xác nhận',
+            html: `Bạn có chắc chắn xóa hướng dẫn viên <b>${idGuide}</b> không?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Có',
+            cancelButtonText: 'Không'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = `index.php?controller=guide&action=delete&id=${idGuide}`;
+            }
+        });
+    }
+</script>

@@ -23,12 +23,10 @@
                                     <a href="index.php?controller=guide&action=detail&id=<?=$value[0]->MaHDV?>"><?=$value[0]->TenHDV?></a>
                                 </p>
                                 <p><strong>Tổng tiền:</strong> <span style="color: red;"><?=$value[0]->TongTien?>VND</span></p>
-                                <p class="status-confirmed"><strong>Trạng thái:</strong> <?=$value[0]->TrangThai?></p>
+                                <p class="status" <?= $value[0]->TrangThai == "Đã xác nhận" ? 'id="confirm-status"' : ($value[0]->TrangThai == "Đã hủy" ? 'id="cancel-status"' : '') ?>><strong>Trạng thái:</strong> <?=$value[0]->TrangThai?></p>
                                 
                                 <?php if($value[0]->TrangThai === 'Đang xử lý'):?>
-                                <a href="index.php?controller=calendar&action=cancel&id=<?=$value[0]->MaDD?>">
-                                    <button>Hủy Tour</button>
-                                </a>
+                                    <button type="button" id="btn-cancel" onclick="actionCancel(<?=$value[0]->MaDD?>)">Hủy Tour</button>
                                 <?php endif;?>
                             </div>
                         </div>
@@ -56,3 +54,20 @@
         <p id="countdown"></p>
     </div>
 </div>
+
+<script>
+    function actionCancel(idCalendar) {
+        Swal.fire({
+            title: 'Xác nhận',
+            html: `Bạn có chắc chắn hủy đơn <b>${idCalendar}</b> không?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Có',
+            cancelButtonText: 'Không'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = `index.php?controller=calendar&action=cancel&id=${idCalendar}`;
+            }
+        });
+    }
+</script>

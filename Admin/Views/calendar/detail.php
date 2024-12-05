@@ -88,9 +88,41 @@
 
         <div class="form-actions">
             <?php if($calendar[0]->TrangThai === 'Đang xử lý'):?>
-                <a href="index.php?controller=calendar&action=update&id=<?=$_REQUEST['id']?>&status=confirm"><button class="btn-submit">Xác nhận</button></a>
-                <a href="index.php?controller=calendar&action=update&id=<?=$_REQUEST['id']?>&status=noConfirm"><button class="btn-submit" style="color: red;">Hủy</button></a>
+                <button class="btn-submit" id="btn-confirm" type="button" onclick="actionConfirm(<?=$_REQUEST['id']?>)">Xác nhận</button>
+                <button class="btn-submit" id="btn-noConfirm" type="button" onclick="actionNoConfirm(<?=$_REQUEST['id']?>)">Hủy</button>
             <?php endif;?>
         </div>
     <br><br>
 </main>
+
+<script>
+    function actionConfirm(idCalendar) {
+        Swal.fire({
+            title: 'Xác nhận',
+            html: `Bạn có chắc chắn <b style="color: green;">xác nhận</b> đơn đặt <b>${idCalendar}</b> không?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Có',
+            cancelButtonText: 'Không'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = `index.php?controller=calendar&action=update&id=${idCalendar}&status=confirm`;
+            }
+        });
+    }
+
+    function actionNoConfirm(idCalendar) {
+        Swal.fire({
+            title: 'Xác nhận',
+            html: `Bạn có chắc chắn <b style="color: red;">hủy</b> đơn đặt <b>${idCalendar}</b> không?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Có',
+            cancelButtonText: 'Không'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = `index.php?controller=calendar&action=update&id=${idCalendar}&status=noConfirm`;
+            }
+        });
+    }
+</script>

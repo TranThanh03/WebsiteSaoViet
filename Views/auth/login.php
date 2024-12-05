@@ -12,16 +12,14 @@
         <title>Đăng nhập</title>
     </head>
     <body>
-        <div
-            class="container d-flex justify-content-center align-items-center min-vh-100"
-        >
+        <div class="container d-flex justify-content-center align-items-center min-vh-100">
             <div class="row border rounded-5 p-3 bg-while shadow box-area">
                 <div
                     class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
                     style="background: #1087be"
                 >
                 <div class="featured-image mb-3">
-                    <img src="./public/img/logo.jpg" class="img-fluid" style="width:280px; height: 200px;">
+                    <img src="./public/img/logo.jpg" class="img-fluid" style="width:280px; height: 200px; border-radius: 10px;">
                 </div>
                     <p
                         class="text-white fs-2"
@@ -36,22 +34,21 @@
                     <small
                         class="text-white text-wrap text-center fs-4"
                         style="
-                            width: 17rem;
+                            width: 20rem;
                             font-family: 'Segoe UI';
                         "
                     >
-                        Reputation creates trust</small
+                        Uy tín tạo nên sự tin tưởng</small
                     >
                 </div>
 
                 <div class="col-md-6 right-box d-flex">
                     <div class="row align-items-center">
                         <div class="header-text mb-4">
-                            <h2>Hello</h2>
-                            <p>We are very happy to have your back</p>
+                            <h2>Xin chào</h2>
+                            <p>Chúng tôi rất vui vì bạn đã trở lại!</p>
                         </div>
                         <form action="index.php?controller=auth&action=login" method="post">
-
                             <div
                                 class="input-group mb-3"
                                 style="font-family: 'Segoe UI'; display: block;"
@@ -80,12 +77,7 @@
                                     value="<?=isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>"
                                 />
                             </div>
-                            <div
-                                class="form-check mb-2 d-flex justify-content-between"
-                                style="font-family: 'Segoe UI'"
-                            >
-                            </div>
-                            <div>
+                            <div class="mt-3">
                                 <button type="submit" class="btn btn-lg btn-primary w-100 fs-6">
                                     Đăng nhập
                                 </button>
@@ -99,26 +91,17 @@
                             style="font-family: 'Segoe UI'"
                         >
                             <div class="d-flex">
-                                <div class="me-3">
-                                    <p>Khách hàng mới?</p>
-                                </div>
-                                <div class="Dangky">
-                                    <small
-                                        ><a
-                                            href="index.php?controller=auth&action=register"
-                                            >Tạo tài khoản mới</a
-                                        ></small
-                                    >
+                                <div class="register">
+                                    <small>
+                                        Khách hàng mới?
+                                        <a href="index.php?controller=auth&action=register">Tạo tài khoản mới</a>
+                                    </small>
                                 </div>
                             </div>
-                            <div class="Dangky">
-                                <small
-                                    ><a
-                                        href="index.php?controller=home&action=index"
-                                        style="text-decoration: none;"
-                                        >Quay về</a
-                                    ></small
-                                >
+                            <div class="back">
+                                <small>
+                                    <a href="index.php?controller=home&action=index" style="text-decoration: none;" >Quay về</a>
+                                </small>
                             </div>
                         </div>
                     </div>

@@ -6,11 +6,11 @@
         <title>Sao Việt - Vivu ba miền</title>
         <link rel="icon" href="./public/img/logo.jpg" type="image/jpg">
         <link rel="stylesheet" href="./public/css/home.css">
-        <link rel="stylesheet" href="./public/css/notifi.css">
-        
+        <link rel="stylesheet" href="./public/css/notifi.css">        
         <script src="./public/js/onChangeAvatar.js"></script>
         <script src="./public/js/general.js"></script>
         <script src="./public/js/notifi.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <!--ckeditor-->
         <script src="//cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>

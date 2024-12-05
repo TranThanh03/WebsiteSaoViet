@@ -42,16 +42,10 @@
                 $target_file   = $target_dir . basename($_FILES["avatar-input"]["name"]);
 
                 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-                $maxfilesize   = 800000;
 
                 $allowtypes    = array('jpg', 'png', 'jpeg', 'gif');
 
-                if ($_FILES["avatar-input"]["size"] > $maxfilesize)
-                {
-                    $code = 1;
-                    $message = "Không được upload ảnh lớn hơn $maxfilesize (bytes)!";
-                }
-                else if (!in_array($imageFileType,$allowtypes ))
+                if (!in_array($imageFileType,$allowtypes ))
                 {
                     $code = 1;
                     $message = "Chỉ được upload các định dạng JPG, PNG, JPEG, GIF!";
@@ -136,16 +130,10 @@
                         $target_file   = $target_dir . basename($_FILES["avatarUpdate"]["name"]);
     
                         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-                        $maxfilesize   = 800000;
     
                         $allowtypes    = array('jpg', 'png', 'jpeg', 'gif');
     
-                        if ($_FILES["avatarUpdate"]["size"] > $maxfilesize)
-                        {
-                            $code = 1;
-                            $message = "Không được upload ảnh lớn hơn $maxfilesize (bytes)!";
-                        }
-                        else if (!in_array($imageFileType,$allowtypes ))
+                        if (!in_array($imageFileType,$allowtypes ))
                         {
                             $code = 1;
                             $message = "Chỉ được upload các định dạng JPG, PNG, JPEG, GIF!";

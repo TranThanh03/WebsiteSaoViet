@@ -55,7 +55,7 @@
                             </td>
                         <td>
                             <?php if($value->TrangThai == "Đang diễn ra"):?>
-                                <a href="index.php?controller=task&action=delete&id=<?=$value->MaPC?>"><button>Xóa</button></a>
+                                <button type="button" onclick="actionDelete(<?=$value->MaPC?>)">Xóa</button>
                             <?php endif;?>
                         </td>
                     </tr>
@@ -68,7 +68,7 @@
 <div class="form-input" id="form-insert">
         <div class="content">
             <h2>Thêm lịch phân công</h2>
-            <button id="btn-close">X</button>
+            <button type="button" id="btn-close">X</button>
             <form action="index.php?controller=task&action=insert" method="post">
                 <label for="select-item">Mã - Tên tour</label>
                 <select class="select-item" name="MaTour" required>
@@ -96,3 +96,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    function actionDelete(idTask) {
+        Swal.fire({
+            title: 'Xác nhận',
+            html: `Bạn có chắc chắn xóa lịch phân công <b>${idTask}</b> không?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Có',
+            cancelButtonText: 'Không'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = `index.php?controller=task&action=delete&id=${idTask}`;
+            }
+        });
+    }
+</script>

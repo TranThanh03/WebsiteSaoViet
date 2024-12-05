@@ -119,8 +119,8 @@
                     $TongTien = number_format($_GET['amount'], 0, ',', '.');
                     $CurrentTime = date('Y-m-d H:i:s');
                     
-                    $createCalendar = $this->calendarModel->createCalendar(['MaKH', 'MaTour', 'MaHDV', 'NgayKH', 'NgayKT', 'TongTien', 'ThoiGianDat', 'GiaTour', 'GiaHDV', 'TrangThai'], 
-                                                                            [$MaKH, $MaTour, $MaHDV, $NgayKH, $NgayKT, $TongTien, $CurrentTime, $GiaTour, $GiaHDV, "Đang xử lý"]);
+                    $createCalendar = $this->calendarModel->createCalendar(['MaKH', 'MaTour', 'MaHDV', 'MaPC', 'NgayKH', 'NgayKT', 'TongTien', 'ThoiGianDat', 'GiaTour', 'GiaHDV', 'TrangThai'], 
+                                                                            [$MaKH, $MaTour, $MaHDV, $MaPC, $NgayKH, $NgayKT, $TongTien, $CurrentTime, $GiaTour, $GiaHDV, "Đang xử lý"]);
                         
                     if(!empty($createCalendar)) {
                         echo "<script>sessionStorage.setItem('statusCalendar', 'true');</script>";

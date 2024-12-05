@@ -59,7 +59,7 @@
                                                         ["{$MaTour}", "{$MaHDV}", "{$GiaHDV}", "{$NgayKH}", "{$NgayKT}", "Đang diễn ra"]);
 
                             $code = 0;
-                            $message = "Thêm mới thành công.";
+                            $message = "Thêm mới lịch phân công thành công.";
                         }
                         else {
                             $code = 1;
@@ -123,7 +123,7 @@
                 }
                 else {
                     $code = 1;
-                    $message = "Xóa lịch phân công $id không thành công do đang có lịch đặt!";
+                    $message = "Xóa lịch phân công $id không thành công do đang có đơn đặt!";
                 }
             }
             else {

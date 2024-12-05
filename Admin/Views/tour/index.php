@@ -41,7 +41,7 @@
                         </td>
                         <td>
                             <a href="index.php?controller=tour&action=showForm&id=<?=$value->MaTour?>"><button type="button">Sửa</button></a>
-                            <a href="index.php?controller=tour&action=delete&id=<?=$value->MaTour?>"><button type="button" style="color: red;">Xóa</button></a>
+                            <button type="button" style="color: red;" onclick="actionDelete(<?=$value->MaTour?>)">Xóa</button></a>
                         </td>
                     </tr>
                 <?php endforeach;?>
@@ -49,3 +49,20 @@
         </table>
     </div>
 </div>
+
+<script>
+    function actionDelete(idTour) {
+        Swal.fire({
+            title: 'Xác nhận',
+            html: `Bạn có chắc chắn xóa tour <b>${idTour}</b> không?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Có',
+            cancelButtonText: 'Không'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = `index.php?controller=tour&action=delete&id=${idTour}`;
+            }
+        });
+    }
+</script>

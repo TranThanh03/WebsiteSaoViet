@@ -50,7 +50,7 @@
                                         <circle cx='12' cy='12' r='10' fill='none' stroke='green' stroke-width='2'/>
                                         <path d='M6 12l4 4l8-8' fill='none' stroke='green' stroke-width='2'/>
                                     </svg>
-                                    <span id='message'>Hủy Tour <b>$id</b> thành công</span>",
+                                    <span id='message'>Hủy đơn <b>$id</b> thành công</span>",
                                 'calendars' => $calendars
                             ]);
                         }
@@ -63,7 +63,7 @@
                                         <line x1='8' y1='8' x2='16' y2='16' stroke='red' stroke-width='2'/>
                                         <line x1='16' y1='8' x2='8' y2='16' stroke='red' stroke-width='2'/>
                                     </svg>                                       
-                                    <span id='message'>Hủy Tour <b>$id</b> không thành công</span>",
+                                    <span id='message'>Hủy đơn <b>$id</b> không thành công</span>",
                                 'calendars' => $calendars
                             ]);
                         }

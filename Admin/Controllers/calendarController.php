@@ -74,19 +74,19 @@
                         , 'MaDD', $id);
 
                         $code = 0;
-                        $message = "Lịch đặt $id đã được xác nhận.";
+                        $message = "Đơn đặt $id đã được xác nhận.";
                     } 
                     else {
                         $this->calendarModel->updateCalendar(['TrangThai'], ["Đã hủy"]
                         , 'MaDD', $id);
 
-                        $code = 0;
-                        $message = "Lịch đặt $id đã bị hủy.";
+                        $code = 1;
+                        $message = "Đơn đặt $id đã bị hủy.";
                     }
                 }
                 else {
-                    $code = 0;
-                    $message = "Lịch đặt $id không tồn tại.";
+                    $code = 1;
+                    $message = "Đơn đặt $id không tồn tại.";
                 }
             }
             else {
@@ -124,7 +124,7 @@
                     }
                     else {
                         $code = 1;
-                        $message = "Lịch đặt không tồn tại!";
+                        $message = "Đơn đặt không tồn tại!";
 
                         header("Location: index.php?controller=calendar&action=index&code=$code&message=$message");
                         exit();

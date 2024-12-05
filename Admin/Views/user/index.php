@@ -34,7 +34,7 @@
                             <td><?=$value->MatKhau?></td>
                             <td>
                                 <a href="index.php?controller=user&action=show&iduser=<?=$value->MaKH?>&idaccount=<?=$value->MaTK?>&code2=3"><button id="btn-update" name="btn-update">Sửa</button></a>
-                                <a href="index.php?controller=user&action=delete&iduser=<?=$value->MaKH?>&idaccount=<?=$value->MaTK?>&code2=3"><button id="delete" style="color: red;">Xóa</button></a>
+                                <button type="button" id="btn-delete" style="color: red;" onclick="actionDelete(<?=$value->MaTK?>, <?=$value->MaKH?>)">Xóa</button></a>
                             </td>
                         </tr>
                 <?php endforeach;?>
@@ -45,7 +45,7 @@
     <div class="form-input" id="form-insert">
         <div class="content">
             <h2>Thêm khách hàng</h2>
-            <button id="btn-close">X</button>
+            <button type="button" id="btn-close">X</button>
             <form action="index.php?controller=user&action=insert" method="post">
                 <label for="name">Tên khách hàng</label>
                 <input type="text" name="full-name" id="name" value="<?=isset($_REQUEST['full-name']) ? $_REQUEST['full-name'] : ''?>" required/> 
@@ -64,7 +64,7 @@
     <div class="form-input" id="form-update">
         <div class="content">
             <h2>Sửa thông tin khách hàng</h2>
-            <button id="btn-close-update">X</button>
+            <button type="button" id="btn-close-update">X</button>
             <form action="index.php?controller=user&action=update" method="post">
                 <input type="hidden" name="iduser" value="<?=$_REQUEST['iduser'] ?? ''?>"/>        
                 <input type="hidden" name="idaccount" value="<?=$_REQUEST['idaccount'] ?? ''?>"/>
@@ -83,3 +83,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    function actionDelete(idAccount, idUser) {
+        Swal.fire({
+            title: 'Xác nhận',
+            html: `Bạn có chắc chắn xóa khách hàng <b>${idUser}</b> không?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Có',
+            cancelButtonText: 'Không'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = `index.php?controller=user&action=delete&iduser=${idUser}&idaccount=${idAccount}&code2=3`;
+            }
+        });
+    }
+</script>
