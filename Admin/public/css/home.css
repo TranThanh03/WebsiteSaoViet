@@ -294,12 +294,14 @@ footer .end span {
 }
 
 .main table img {
-    width: 100px;
+    width: 150px;
+    height: 75px;
+    object-fit: cover;
 }
 
 .main table td button {
-    padding: 5px 10px;
-    background-color: #ffc10e;
+    padding: 6px 12px;
+    background-color: #ffc927;
     color: black;
     border: none;
     border-radius: 4px;

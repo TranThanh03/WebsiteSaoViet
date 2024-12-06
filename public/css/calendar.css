@@ -45,6 +45,10 @@
     color: #333;
 }
 
+.tour-info h3 a {
+    color: black;
+}
+
 .tour-info p {
     margin: 5px 0;
     color: #666;

@@ -18,8 +18,12 @@
                     <p><?=$totalUser ?? 0?></p>
                 </div>
                 <div class="stat-card">
-                    <h3>Tours đang hoạt động</h3>
+                    <h3>Tours</h3>
                     <p><?=$totalTour ?? 0?></p>
+                </div>
+                <div class="stat-card">
+                    <h3>Hướng dẫn viên</h3>
+                    <p><?=$totalGuide ?? 0?></p>
                 </div>
                 <div class="stat-card">
                     <h3>Đơn đặt tour thành công</h3>

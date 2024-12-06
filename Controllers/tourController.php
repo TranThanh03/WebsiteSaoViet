@@ -28,7 +28,7 @@
                         <script>
                             Swal.fire({
                                 title: 'Lỗi',
-                                html: 'Tour <b>$id</b> không tồn tại hoặc không hợp lệ!',
+                                html: 'Tour không tồn tại hoặc không hợp lệ!',
                                 icon: 'error',
                                 confirmButtonText: 'Đóng'
                             });

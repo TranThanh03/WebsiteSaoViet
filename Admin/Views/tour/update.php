@@ -59,8 +59,8 @@
                 </div>
 
                 <div class="button-group">
-                    <button type="submit" name="btn-update" class="update">Cập nhật</button>
                     <a href="index.php?controller=tour&action=index"><button type="button">Quay về</button></a>
+                    <button type="submit" name="btn-update" class="update">Cập nhật</button>
                 </div>
             </form>
         </div>

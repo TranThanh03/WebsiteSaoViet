@@ -5,6 +5,8 @@
         public $accountModel;
         public $userModel;
         public $taskModel;
+        public $tourModel;
+        public $guideModel;
 
         public function __construct() {
             $this->model('CalendarModel');
@@ -18,6 +20,12 @@
 
             $this->model('TaskModel');
             $this->taskModel = new TaskModel();
+
+            $this->model('TourModel');
+            $this->tourModel = new TourModel();
+
+            $this->model('GuideModel');
+            $this->guideModel = new GuideModel();
         }
 
         public function index() {
@@ -113,8 +121,15 @@
 
                     $getUser = $this->userModel->getUser(['TenKH'], 'MaKH', $MaKH);
                     $TenKH = $getUser[0]->TenKH;
+
                     $MaTour = $task[0]->MaTour;
+                    $getTour = $this->tourModel->getTour(['TenTour'], 'MaTour', $MaTour);
+                    $TenTour = $getTour[0]->TenTour;
+
                     $MaHDV = $task[0]->MaHDV;
+                    $getGuide = $this->guideModel->getGuide(['TenHDV'], 'MaHDV', $MaHDV);
+                    $TenHDV = $getGuide[0]->TenHDV;
+
                     $NgayKH = date('Y-m-d', strtotime($task[0]->NgayKH));
                     $NgayKT = date('Y-m-d', strtotime($task[0]->NgayKT));
                     $GiaTour = $task[0]->GiaTour;
@@ -122,8 +137,8 @@
                     $TongTien = number_format($_GET['amount'], 0, ',', '.');
                     $CurrentTime = date('Y-m-d H:i:s');
                     
-                    $createCalendar = $this->calendarModel->createCalendar(['MaKH', 'TenKH', 'MaTour', 'MaHDV', 'MaPC', 'NgayKH', 'NgayKT', 'TongTien', 'ThoiGianDat', 'GiaTour', 'GiaHDV', 'TrangThai'], 
-                                                                            [$MaKH, $TenKH, $MaTour, $MaHDV, $MaPC, $NgayKH, $NgayKT, $TongTien, $CurrentTime, $GiaTour, $GiaHDV, "Đang xử lý"]);
+                    $createCalendar = $this->calendarModel->createCalendar(['MaKH', 'TenKH', 'MaTour', 'TenTour', 'MaHDV', 'TenHDV', 'MaPC', 'NgayKH', 'NgayKT', 'TongTien', 'ThoiGianDat', 'GiaTour', 'GiaHDV', 'TrangThai'], 
+                                                                            [$MaKH, $TenKH, $MaTour, $TenTour, $MaHDV, $TenHDV, $MaPC, $NgayKH, $NgayKT, $TongTien, $CurrentTime, $GiaTour, $GiaHDV, "Đang xử lý"]);
                         
                     if(!empty($createCalendar)) {
                         echo "<script>sessionStorage.setItem('statusCalendar', 'true');</script>";

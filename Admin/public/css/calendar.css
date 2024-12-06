@@ -82,6 +82,7 @@
     cursor: pointer;
     font-size: 16px;
     margin-right: 20px;
+    font-weight: 600;
 }
 
 .btn-submit {
@@ -131,18 +132,33 @@
     text-align: center;
 }
 
-#btn-confirm {
+.form-actions #btn-confirm {
     background-color: rgb(0, 176, 0);
 }
 
-#btn-confirm:hover {
+.form-actions #btn-confirm:hover {
     background-color: rgb(0, 88, 0);
 }
 
-#btn-noConfirm {
+.form-actions #btn-noConfirm {
     background-color: rgb(222, 0, 0);
 }
 
-#btn-noConfirm:hover {
+.form-actions #btn-noConfirm:hover {
     background-color: rgb(145, 0, 0);
+}
+
+.form-actions #btn-back {
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 10px 20px;
+    font-weight: 600;
+    background-color: #34b7c6;
+    cursor: pointer;
+}
+
+.form-actions #btn-back:hover {
+    background-color: #028796;
 }

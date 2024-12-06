@@ -161,7 +161,6 @@
                     try {
                         $this->userModel->deleteUser( $idUser, 'MaKH');
                         $this->accountModel->deleteAccount( $idAccount, 'MaTK');
-                        $this->calendarModel->deleteCalendar($idUser, 'MaKH');
     
                         $code = 0;
                         $message = "Xoá khách hàng $idUser thành công.";

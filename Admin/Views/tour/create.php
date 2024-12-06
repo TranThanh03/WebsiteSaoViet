@@ -52,10 +52,8 @@
                 </div>
 
                 <div class="button-group">
+                    <a href="index.php?controller=tour&action=index" class="btn btn-secondary">Quay về</a>
                     <button type="submit" name="btn-insert" class="btn btn-primary">Thêm</button>
-                    <a href="index.php?controller=tour&action=index" class="btn btn-secondary">
-                        Quay về
-                    </a>
                 </div>
             </form>
         </div>

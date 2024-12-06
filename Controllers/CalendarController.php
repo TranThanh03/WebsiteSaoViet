@@ -2,6 +2,8 @@
     class CalendarController extends BaseController {
         public $calendarModel;
         public $accountModel;
+        public $tourModel;
+        public $guideModel;
         
         public function __construct()
         {
@@ -10,6 +12,12 @@
             
             $this->model('AccountModel');
             $this->accountModel = new AccountModel();
+
+            $this->model('TourModel');
+            $this->tourModel = new TourModel();
+
+            $this->model('GuideModel');
+            $this->guideModel = new GuideModel();
         }
         public function index() {
             if (isset($_SESSION['username'])) {
@@ -19,17 +27,33 @@
                 $idAcc = $this->accountModel->getAccount(['MaTK'], 'SDT', $_SESSION['username']);
                 $idUser = $this->accountModel->getUserIdAccount(['MaKH'], ['taikhoan.MaTK'], $idAcc[0]->MaTK);
 
-                if (!empty($idUser)) {
-                    $calendars = $this->calendarModel->getCalendarById(['*'], "MaKH", $idUser[0]->MaKH);
-                    
-                    usort($calendars, function($a, $b) {
-                        $order = ['Đang xử lý' => 1, 'Đã xác nhận' => 2, 'Đã hủy' => 3];
-                        
-                        $statusComparison = $order[$a[0]->TrangThai] <=> $order[$b[0]->TrangThai];
-                        if ($statusComparison === 0) {
-                            return $b[0]->MaDD <=> $a[0]->MaDD;
-                        }
+                $calendars = [];
 
+                if (!empty($idUser)) {
+                    $listCalendarsId = $this->calendarModel->getCalendarById(['MaDD'], "MaKH", $idUser[0]->MaKH);
+                    
+                    foreach($listCalendarsId as $value) {
+                        $getCalendar = $this->calendarModel->getCalendar(['*'], 'MaDD', $value->MaDD);
+                        $getTour = $this->tourModel->getTour(['AnhTour'], 'MaTour', $getCalendar[0]->MaTour);
+                    
+                        $calendars[] = array (
+                            'calendar' => $getCalendar,
+                            'tour' => !empty($getTour) ? $getTour[0] : null,
+                        );
+                    }
+
+                    usort($calendars, function ($a, $b) {
+                        $order = ['Đang xử lý' => 1, 'Đã xác nhận' => 2, 'Đã hủy' => 3];
+                    
+                        $statusA = $order[$a['calendar'][0]->TrangThai] ?? PHP_INT_MAX;
+                        $statusB = $order[$b['calendar'][0]->TrangThai] ?? PHP_INT_MAX;
+                    
+                        $statusComparison = $statusA <=> $statusB;
+                    
+                        if ($statusComparison === 0) {
+                            return $b['calendar'][0]->MaDD <=> $a['calendar'][0]->MaDD;
+                        }
+                    
                         return $statusComparison;
                     });
 

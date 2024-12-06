@@ -79,8 +79,8 @@
                     </div>
 
                     <div class="button-group">
-                        <button type="submit" name="btn-update" class="insert">Cập nhật</button>
                         <a href="index.php?controller=guide&action=index"><button class="back" type="button">Quay về</button></a>
+                        <button type="submit" name="btn-update" class="insert">Cập nhật</button>  
                     </div>
                 </form>
         </div>

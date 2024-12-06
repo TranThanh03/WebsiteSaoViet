@@ -4,7 +4,9 @@
         public $MaKH;
         public $TenKH;
         public $MaTour;
+        public $TenTour;
         public $MaHDV;
+        public $TenHDV;
         public $MaPC;
         public $NgayKH;
         public $NgayKT;
@@ -14,12 +16,14 @@
         public $ThoiGianDat;
         public $TrangThai;
 
-        public function __construct($MaDD, $MaKH, $TenKH, $MaTour, $MaHDV, $MaPC, $NgayKH, $NgayKT, $GiaTour, $GiaHDV, $TongTien, $ThoiGianDat, $TrangThai) {
+        public function __construct($MaDD, $MaKH, $TenKH, $MaTour, $TenTour, $MaHDV, $TenHDV, $MaPC, $NgayKH, $NgayKT, $GiaTour, $GiaHDV, $TongTien, $ThoiGianDat, $TrangThai) {
             $this->MaDD = $MaDD;
             $this->MaKH = $MaKH;
             $this->TenKH = $TenKH;
             $this->MaTour = $MaTour;
+            $this->TenTour = $TenTour;
             $this->MaHDV = $MaHDV;
+            $this->TenHDV = $TenHDV;
             $this->MaPC = $MaPC;
             $this->NgayKH = $NgayKH;
             $this->NgayKT = $NgayKT;

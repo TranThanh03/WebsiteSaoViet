@@ -45,18 +45,19 @@
         public function detail() {
             if($_REQUEST['id']) {
                 $calendar = $this->calendarModel->getCalendar(['*'], 'MaDD', $_REQUEST['id']);
-                $user = $this->userModel->getUser(['MaKH, TenKH, MaTK'], 'MaKH', $calendar[0]->MaKH);
+                $user = $this->userModel->getUser(['MaTK'], 'MaKH', $calendar[0]->MaKH);
+
                 if(!empty($user)) {
                     $account = $this->accountModel->getAccount(['SDT, Email'], 'MaTK', $user[0]->MaTK);
                 }
-                $guide = $this->guideModel->getGuide(['TenHDV', 'AnhHDV'], 'MaHDV', $calendar[0]->MaHDV);
-                $tour = $this->tourModel->getTour(['*'], 'MaTour',  $calendar[0]->MaTour);
+
+                $guide = $this->guideModel->getGuide(['AnhHDV'], 'MaHDV', $calendar[0]->MaHDV);
+                $tour = $this->tourModel->getTour(['AnhTour'], 'MaTour',  $calendar[0]->MaTour);
 
                 if (!empty($account)) {
                     return $this->view("calendar.detail",
                         [
                             'calendar' => $calendar,
-                            'user' => $user,
                             'account' => $account,
                             'guide' => $guide,
                             'tour' => $tour
@@ -67,7 +68,6 @@
                     return $this->view("calendar.detail",
                         [
                             'calendar' => $calendar,
-                            'user' => $user,
                             'guide' => $guide,
                             'tour' => $tour
                         ]

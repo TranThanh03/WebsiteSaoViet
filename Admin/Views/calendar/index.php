@@ -51,7 +51,7 @@
                             <td><?=$stt++?></td>
                             <td><?=$value->MaDD?></td>
                             <td><?=$value->MaKH?></td>
-                            <td><?=$value->TenKH ?? 'Không xác định'?></td>
+                            <td><?=$value->TenKH?></td>
                             <td><?=$value->MaTour?></td>
                             <td><?=$value->MaHDV?></td>
                             <td><?=$value->TongTien?></td>

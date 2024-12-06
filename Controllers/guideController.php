@@ -34,7 +34,7 @@
                             <script>
                                 Swal.fire({
                                     title: 'Thông báo',
-                                    html: 'Hiện tại Tour <b>$id</b> không có hướng dẫn viên!',
+                                    html: 'Hiện tại Tour không có hướng dẫn viên!',
                                     icon: 'info',
                                     confirmButtonText: 'Đóng'
                                 });
@@ -81,7 +81,7 @@
                             <script>
                                 Swal.fire({
                                     title: 'Thông báo',
-                                    html: 'Hiện tại hướng dẫn viên <b>$id</b> không được phân công Tour!',
+                                    html: 'Hiện tại hướng dẫn viên không được phân công Tour!',
                                     icon: 'info',
                                     confirmButtonText: 'Đóng'
                                 });
@@ -102,7 +102,7 @@
                         <script>
                             Swal.fire({
                                 title: 'Lỗi',
-                                html: 'Hướng dẫn viên <b>$id</b> không tồn tại hoặc không hợp lệ!',
+                                html: 'Hướng dẫn viên không tồn tại hoặc không hợp lệ!',
                                 icon: 'error',
                                 confirmButtonText: 'Đóng'
                             });

@@ -3,11 +3,11 @@
         <div class="calendar-info">
             <div class="form-group">
                 <label for="datetime">Thời gian đặt:</label>
-                <input type="text" id="datetime" name="datetime" value="<?=date('H:i:s d-m-Y', strtotime($calendar[0]->ThoiGianDat))?>" disabled>
+                <input type="text" id="datetime" name="datetime" value="<?=date('H:i:s d-m-Y', strtotime($calendar[0]->ThoiGianDat))?>" readonly>
             </div>
             <div class="form-group">
                 <label for="calendar-status">Trạng thái:</label>
-                <input type="text" id="calendar-status" name="calendar-status" value="<?=$calendar[0]->TrangThai?>" disabled>
+                <input type="text" id="calendar-status" name="calendar-status" value="<?=$calendar[0]->TrangThai?>" readonly>
             </div>
         </div>
 
@@ -23,15 +23,15 @@
                 </div>
                 <div class="form-group">
                     <label for="tour-name">Tên tour:</label>
-                    <input type="text" id="tour-name" name="tour-name" value="<?=$tour[0]->TenTour ?? 'Không xác định'?>" disabled>
+                    <input type="text" id="tour-name" name="tour-name" value="<?=$calendar[0]->TenTour?>" readonly>
                 </div>
                 <div class="form-group">
                     <label for="start-date">Ngày khởi hành:</label>
-                    <input type="text" id="start-date" name="start-date" value="<?=date('d-m-Y', strtotime($calendar[0]->NgayKH))?>" disabled>
+                    <input type="text" id="start-date" name="start-date" value="<?=date('d-m-Y', strtotime($calendar[0]->NgayKH))?>" readonly>
                 </div>
                 <div class="form-group">
                     <label for="end-date">Ngày kết thúc:</label>
-                    <input type="text" id="end-date" name="end-date" value="<?=date('d-m-Y', strtotime($calendar[0]->NgayKT))?>" disabled>
+                    <input type="text" id="end-date" name="end-date" value="<?=date('d-m-Y', strtotime($calendar[0]->NgayKT))?>" readonly>
                 </div>
                 <div class="form-group">
                     <label for="tour-costs">Giá:</label>
@@ -47,15 +47,15 @@
                 </div>
                 <div class="form-group">
                     <label for="fullname">Họ và tên:</label>
-                    <input type="text" id="fullname" name="fullname" value="<?=$user[0]->TenKH ?? "Không xác định"?>" disabled>
+                    <input type="text" id="fullname" name="fullname" value="<?=$calendar[0]->TenKH?>" readonly>
                 </div>
                 <div class="form-group">
                     <label for="phone">Số điện thoại:</label>
-                    <input type="text" id="phone" name="phone" value="<?=$account[0]->SDT ?? "Không xác định"?>" readonly>
+                    <input type="text" id="phone" name="phone" value="<?=$account[0]->SDT ?? 'Không xác định!'?>" readonly>
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="text" id="email" name="email" value="<?=$account[0]->Email ?? "Không xác định"?>" readonly>
+                    <input type="text" id="email" name="email" value="<?=$account[0]->Email ?? 'Không xác định!'?>" readonly>
                 </div>
             </section>
         </div>
@@ -72,7 +72,7 @@
                 </div>
                 <div class="form-group">
                     <label for="guide-name">Hướng dẫn viên:</label>
-                    <input type="text" id="guide-name" name="guide-name" value="<?=$guide[0]->TenHDV ?? 'Không xác định'?>" disabled>
+                    <input type="text" id="guide-name" name="guide-name" value="<?=$calendar[0]->TenHDV?>" readonly>
                 </div>
                 <div class="form-group">
                     <label for="guide-costs">Giá:</label>
@@ -90,6 +90,8 @@
             <?php if($calendar[0]->TrangThai === 'Đang xử lý'):?>
                 <button class="btn-submit" id="btn-confirm" type="button" onclick="actionConfirm(<?=$_REQUEST['id']?>)">Xác nhận</button>
                 <button class="btn-submit" id="btn-noConfirm" type="button" onclick="actionNoConfirm(<?=$_REQUEST['id']?>)">Hủy</button>
+            <?php else:?>
+                <a href="index.php?controller=calendar&action=index"><button type="button" id="btn-back">Quay về</button></a>
             <?php endif;?>
         </div>
     <br><br>
