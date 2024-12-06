@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./public/img/logo.jpg" type="image/jpg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Đăng ký</title>
 </head>
@@ -12,23 +13,23 @@
             <h1 class="text-center " >Đăng ký tài khoản</h1>
             <form action="index.php?controller=auth&action=createAccount" method="post">
               <div class="form-floating mb-1 mt-1">
-                <input type="text" class="form-control" id="email" placeholder="Họ và tên" name="full-name" value="<?php echo isset($_POST['full-name']) ? htmlspecialchars($_POST['full-name']) : ''; ?>">
+                <input type="text" class="form-control" id="email" placeholder="Họ và tên" name="full-name" value="<?=isset($_POST['full-name']) ? htmlspecialchars($_POST['full-name']) : ''; ?>">
                 <label for="name">Họ và tên</label>
               </div>
               <div class="form-floating  mb-1 mt-1">
-                <input type="text" class="form-control" id="phone" placeholder="Enter password" name="number-phone" value="<?php echo isset($_POST['number-phone']) ? htmlspecialchars($_POST['number-phone']) : ''; ?>">
+                <input type="text" class="form-control" id="phone" placeholder="Enter password" name="number-phone" value="<?=isset($_POST['number-phone']) ? htmlspecialchars($_POST['number-phone']) : ''; ?>">
                 <label for="telephone">Số điện thoại</label>
               </div>
               <div class="form-floating mb-1 mt-1">
-                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" value="<?=isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
                 <label for="email">Email</label>
               </div>
               <div class="form-floating mb-1 mt-1">
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>">
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" value="<?=isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>">
                 <label for="pwd">Mật khẩu</label>
               </div>
               <div class="form-floating mb-1 mt-1 ml-3">
-                <input type="password" class="form-control" id="email" placeholder="Enter email" name="repeatpw" value="<?php echo isset($_POST['repeatpw']) ? htmlspecialchars($_POST['repeatpw']) : ''; ?>">
+                <input type="password" class="form-control" id="email" placeholder="Enter email" name="repeatpw" value="<?=isset($_POST['repeatpw']) ? htmlspecialchars($_POST['repeatpw']) : ''; ?>">
                 <label for="pwd" class="form-floating">Nhập lại mật khẩu</label>
               </div>
               <div>

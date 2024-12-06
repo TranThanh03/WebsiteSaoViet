@@ -18,7 +18,6 @@
                 <th>Tên khách hàng</th>
                 <th>Số điện thoại</th>
                 <th>Email</th>
-                <th>Mật khẩu</th>
                 <th>Thao tác</th>
             </thead>
             <tbody>
@@ -31,7 +30,6 @@
                             <td><?=$value->TenKH?></td>
                             <td><?=$value->SDT?></td>
                             <td><?=$value->Email?></td>
-                            <td><?=$value->MatKhau?></td>
                             <td>
                                 <a href="index.php?controller=user&action=show&iduser=<?=$value->MaKH?>&idaccount=<?=$value->MaTK?>&code2=3"><button id="btn-update" name="btn-update">Sửa</button></a>
                                 <button type="button" id="btn-delete" style="color: red;" onclick="actionDelete(<?=$value->MaTK?>, <?=$value->MaKH?>)">Xóa</button></a>
@@ -76,7 +74,7 @@
                 <label for="email">Email</label>
                 <input type="text" name="email" id="email" value="<?=$_REQUEST['email2'] ?? ''?>" required/>
                 <label for="password">Mật khẩu</label>
-                <input type="password" name="password" id="password" value="<?=$_REQUEST['password2'] ?? ''?>" required/>
+                <input type="password" name="password" id="password" value="<?=$_REQUEST['password2'] ?? ''?>"/>
         
                 <button type="submit" name="btn-update" id="btn-submit">Cập nhật</button>
             </form>

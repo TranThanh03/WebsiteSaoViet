@@ -2,7 +2,7 @@
     <main>
         <h1 style="color: red;">Vui lòng chọn hướng dẫn viên du lịch!</h1>
 
-        <section class="guide-list">
+        <section class="guide-list" <?=empty($tasks) ? 'id="none-guide-list"' : ''?>>
             <h2>Danh sách hướng dẫn viên</h2>
             <div class="guide-grid">
                 <?php foreach($tasks as $value):?>
@@ -39,7 +39,6 @@
             <h2>Đội ngũ hướng dẫn viên chuyên nghiệp</h2>
             <p>Tại Sao Việt Travel, chúng tôi tự hào có đội ngũ hướng dẫn viên giàu kinh nghiệm, am hiểu văn hóa và nhiệt tình. Họ sẽ đồng hành cùng bạn trong mọi hành trình, mang đến những trải nghiệm du lịch đáng nhớ.</p>
         </section>
-
         <section class="guide-list">
             <h2>Danh sách hướng dẫn viên</h2>
             <div class="guide-grid">

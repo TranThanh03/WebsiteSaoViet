@@ -6,7 +6,6 @@ class BaseModel extends Database {
         $this->connect = $this->connect();
     }
 
-    // Lấy tất cả dữ liệu theo kiểu đối tượng
     public function all($table, $select = ['*']) {
         $columns = implode(', ', $select);
         $sql = "SELECT {$columns} FROM {$table}";
@@ -19,7 +18,6 @@ class BaseModel extends Database {
         return $data;
     }
 
-    // Lấy dữ liệu theo ID dưới dạng đối tượng
     public function getOption($table, $select = ['*'], $id, $option) {
         $columns = implode(', ', $select);
         $sql = "SELECT {$columns} FROM {$table} WHERE {$id} = '{$option}'";
@@ -57,7 +55,7 @@ class BaseModel extends Database {
         return $data;
     }
 
-    public function searchAdmin($table, $selects = ['*'], $columns = [], $option) {
+    public function searchObjectByOption($table, $selects = ['*'], $columns = [], $option) {
         $column = implode(', ', $selects);
     
         $whereClauses = [];
@@ -93,14 +91,6 @@ class BaseModel extends Database {
             array_push($data, $row);
         }
         return $data;
-    }
-
-    public function login($table, $select = ['*'], $options = []) {
-        $columns = implode(', ', $select);
-        $sql = "SELECT {$columns} FROM {$table} WHERE {$select[0]} = '{$options[0]}' AND {$select[1]} = '{$options[1]}'";
-        $query = $this->_query($sql);
-
-        return mysqli_fetch_object($query);
     }
 
     public function getObjectOptions($table, $select = ['*'], $options = []) {

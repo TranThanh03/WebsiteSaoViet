@@ -12,12 +12,29 @@
 
         public function detail() {
             if(isset($_REQUEST['id']) && $_REQUEST['id'] != '') {
-                $value = $_REQUEST['id'];
-                $tour = $this->tourModel->getById(['*'],"MaTour", $value);
+                $id = $_REQUEST['id'];
+                $tour = $this->tourModel->getById(['*'],"MaTour", $id);
                 
-                return $this->view("tour.detail", [
-                    'tour' => $tour
-                ]);
+                if(!empty($tour)) {
+                    return $this->view("tour.detail", [
+                        'tour' => $tour
+                    ]);
+                }
+                else {
+                    echo "
+                        <div class='none-tour-details'>
+                            <h2>Không có dữ liệu!</h2>
+                        </div>
+                        <script>
+                            Swal.fire({
+                                title: 'Lỗi',
+                                html: 'Tour <b>$id</b> không tồn tại hoặc không hợp lệ!',
+                                icon: 'error',
+                                confirmButtonText: 'Đóng'
+                            });
+                        </script>
+                    ";
+                }
             }
         }
 

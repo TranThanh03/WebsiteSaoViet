@@ -6,7 +6,7 @@
                         INNER JOIN huongdanvien ON dondat.MaHDV = huongdanvien.MaHDV';
         const GETTABLE = 'dondat';
         public function getAll($columns = ["*"]) {
-            return $this->all(self::TABLE, $columns);
+            return $this->all(self::GETTABLE, $columns);
         }
 
         public function getCalendar($select, $id, $value) {
@@ -26,6 +26,6 @@
         }
 
         public function searchCalendar($selects = ['*'], $columns = [], $option) {
-            return $this->searchAdmin(self::TABLE, $selects, $columns, $option);
+            return $this->searchObjectByOption(self::GETTABLE, $selects, $columns, $option);
         }
     }

@@ -27,12 +27,14 @@
                 else {
                     echo '<link rel="stylesheet" href="./public/css/tour.css">';
                     echo '<link rel="stylesheet" href="./public/css/tourDetail.css">';
+                    echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
                 }
             }
             else if($_REQUEST['controller'] === 'guide') {
                 echo '<link rel="stylesheet" href="./public/css/guide.css">';
                 echo '<link rel="stylesheet" href="./public/css/guideDetail.css">';
                 echo '<script src="./public/js/reviews.js"></script>';
+                echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
             }
             else if($_REQUEST['controller'] === 'calendarContent' && $_REQUEST['action'] === 'index') {
                 echo '<link rel="stylesheet" href="./public/css/calendarContent.css">';

@@ -45,20 +45,34 @@
         public function detail() {
             if($_REQUEST['id']) {
                 $calendar = $this->calendarModel->getCalendar(['*'], 'MaDD', $_REQUEST['id']);
-                $user = $this->userModel->getUser(['*'], 'MaKH', $calendar[0]->MaKH);
-                $account = $this->accountModel->getAccount(['SDT'], 'MaTK', $user[0]->MaTK);
+                $user = $this->userModel->getUser(['MaKH, TenKH, MaTK'], 'MaKH', $calendar[0]->MaKH);
+                if(!empty($user)) {
+                    $account = $this->accountModel->getAccount(['SDT, Email'], 'MaTK', $user[0]->MaTK);
+                }
                 $guide = $this->guideModel->getGuide(['TenHDV', 'AnhHDV'], 'MaHDV', $calendar[0]->MaHDV);
                 $tour = $this->tourModel->getTour(['*'], 'MaTour',  $calendar[0]->MaTour);
 
-                return $this->view("calendar.detail",
-                    [
-                        'calendar' => $calendar,
-                        'user' => $user,
-                        'account' => $account,
-                        'guide' => $guide,
-                        'tour' => $tour
-                    ]
-                );
+                if (!empty($account)) {
+                    return $this->view("calendar.detail",
+                        [
+                            'calendar' => $calendar,
+                            'user' => $user,
+                            'account' => $account,
+                            'guide' => $guide,
+                            'tour' => $tour
+                        ]
+                    );
+                }
+                else {
+                    return $this->view("calendar.detail",
+                        [
+                            'calendar' => $calendar,
+                            'user' => $user,
+                            'guide' => $guide,
+                            'tour' => $tour
+                        ]
+                    );
+                }
             }
         }
 
@@ -103,7 +117,7 @@
                 if(isset($_REQUEST['input-search'])) {
                     $input = $_REQUEST['input-search'];
 
-                    $calendars = $this->calendarModel->searchCalendar(['*'], ['lichdat.MaDD', 'lichdat.MaKH', 'lichdat.MaTour', 'lichdat.MaHDV'], $input);
+                    $calendars = $this->calendarModel->searchCalendar(['*'], ['dondat.MaDD', 'dondat.MaKH', 'dondat.MaTour', 'dondat.MaHDV'], $input);
 
                     usort($calendars, function($a, $b) {
                         $order = ['Đang xử lý' => 1, 'Đã xác nhận' => 2, 'Đã hủy' => 3];

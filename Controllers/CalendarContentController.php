@@ -1,19 +1,20 @@
 <?php 
     class CalendarContentController extends BaseController {
         public $calendarModel;
-        public $userModel;
+        
         public $accountModel;
+        public $userModel;
         public $taskModel;
 
         public function __construct() {
             $this->model('CalendarModel');
             $this->calendarModel = new CalendarModel();
-            
-            $this->model('UserModel');
-            $this->userModel = new UserModel();
 
             $this->model('AccountModel');
             $this->accountModel = new AccountModel();
+
+            $this->model('UserModel');
+            $this->userModel = new UserModel();
 
             $this->model('TaskModel');
             $this->taskModel = new TaskModel();
@@ -24,12 +25,12 @@
                 $idTask = $_REQUEST['idTask'] ?? '';
                
                 $task = $this->taskModel->getTask(['*'], ['phancong.MaPC', 'TrangThai'], [$idTask, 'Đã kết thúc']);
-                $user = $this->userModel->getUser(['*'], 'Email', $_SESSION['username']);
-                $account = $this->accountModel->getAccount(['SDT'], 'MaTK', $user[0]->MaTK);
+                $idAcc = $this->accountModel->getAccount(['MaTK'], 'SDT', $_SESSION['username']);
+                $user = $this->accountModel->getUserIdAccount(['*'], ['taikhoan.MaTK'], $idAcc[0]->MaTK);
+
 
                 return $this->view("calendarContent.index",[
                     'user' => $user,
-                    'account' => $account,
                     'task' => $task 
                 ]);
             } else {
@@ -110,6 +111,8 @@
 
                     $task = $this->taskModel->getTask(['*'], ['phancong.MaPC', 'TrangThai'], [$MaPC, 'Đã kết thúc']);
 
+                    $getUser = $this->userModel->getUser(['TenKH'], 'MaKH', $MaKH);
+                    $TenKH = $getUser[0]->TenKH;
                     $MaTour = $task[0]->MaTour;
                     $MaHDV = $task[0]->MaHDV;
                     $NgayKH = date('Y-m-d', strtotime($task[0]->NgayKH));
@@ -119,8 +122,8 @@
                     $TongTien = number_format($_GET['amount'], 0, ',', '.');
                     $CurrentTime = date('Y-m-d H:i:s');
                     
-                    $createCalendar = $this->calendarModel->createCalendar(['MaKH', 'MaTour', 'MaHDV', 'MaPC', 'NgayKH', 'NgayKT', 'TongTien', 'ThoiGianDat', 'GiaTour', 'GiaHDV', 'TrangThai'], 
-                                                                            [$MaKH, $MaTour, $MaHDV, $MaPC, $NgayKH, $NgayKT, $TongTien, $CurrentTime, $GiaTour, $GiaHDV, "Đang xử lý"]);
+                    $createCalendar = $this->calendarModel->createCalendar(['MaKH', 'TenKH', 'MaTour', 'MaHDV', 'MaPC', 'NgayKH', 'NgayKT', 'TongTien', 'ThoiGianDat', 'GiaTour', 'GiaHDV', 'TrangThai'], 
+                                                                            [$MaKH, $TenKH, $MaTour, $MaHDV, $MaPC, $NgayKH, $NgayKT, $TongTien, $CurrentTime, $GiaTour, $GiaHDV, "Đang xử lý"]);
                         
                     if(!empty($createCalendar)) {
                         echo "<script>sessionStorage.setItem('statusCalendar', 'true');</script>";

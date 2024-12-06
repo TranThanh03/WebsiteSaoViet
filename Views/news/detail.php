@@ -119,14 +119,5 @@
                 <li><a href="#">Trải nghiệm du lịch</a></li>
             </ul>
         </section>
-        
-        <section class="newsletter">
-            <h3>Đăng ký nhận tin</h3>
-            <p>Nhận những thông tin du lịch mới nhất và ưu đãi hấp dẫn!</p>
-            <form>
-                <input type="email" placeholder="Nhập email của bạn">
-                <button type="submit">Đăng ký</button>
-            </form>
-        </section>
     </aside>
 </main>

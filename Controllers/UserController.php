@@ -13,8 +13,8 @@
         }
         
         public function index() {
-            $getIdAcc = $this->userModel->getUser(['MaTK'], 'Email', $_SESSION['username']);
-            $user = $this->userModel->getUserByUsername(['*'], ['khachhang.MaTK'], $getIdAcc[0]->MaTK);
+            $getIdAcc = $this->accountModel->getAccount(['MaTK'], 'SDT', $_SESSION['username']);
+            $user = $this->accountModel->getUserIdAccount(['*'], ['taikhoan.MaTK'], $getIdAcc[0]->MaTK);
             
             return $this->view("user.index",
                 [

@@ -47,15 +47,15 @@
                 </div>
                 <div class="form-group">
                     <label for="fullname">Họ và tên:</label>
-                    <input type="text" id="fullname" name="fullname" value="<?=$user[0]->TenKH?>" disabled>
+                    <input type="text" id="fullname" name="fullname" value="<?=$user[0]->TenKH ?? "Không xác định"?>" disabled>
                 </div>
                 <div class="form-group">
                     <label for="phone">Số điện thoại:</label>
-                    <input type="text" id="phone" name="phone" value="<?=$account[0]->SDT?>" readonly>
+                    <input type="text" id="phone" name="phone" value="<?=$account[0]->SDT ?? "Không xác định"?>" readonly>
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="text" id="email" name="email" value="<?=$user[0]->Email?>" readonly>
+                    <input type="text" id="email" name="email" value="<?=$account[0]->Email ?? "Không xác định"?>" readonly>
                 </div>
             </section>
         </div>

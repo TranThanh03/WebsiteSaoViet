@@ -74,3 +74,8 @@
 .tour-infor #introduce {
     text-align: justify;
 }
+
+.none-tour-details {
+    margin-bottom: 410px;
+    padding-top: 10px;
+}

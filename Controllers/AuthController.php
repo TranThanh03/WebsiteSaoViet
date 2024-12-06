@@ -34,6 +34,7 @@
             if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $username = $_POST['username'];
                 $password = $_POST['password'];
+
                 if(empty($username) || empty($password)) {
                     return $this->view('auth.login',[
                         'warning' => 'Bạn cần nhập thông tin đăng nhập!'
@@ -47,36 +48,34 @@
                 }
 
                 if($this->isNumberUsername($username)) {
-                    $this->account = $this->accountModel->loginAccount(['SDT', 'MatKhau', 'Quyen'], [$username, $password]);
-                    
-                    if(!empty($this->account)) {
-                        $idAcc = $this->accountModel->getAccount(['MaTK'], 'SDT', $username);
-                        $getUserByIdAcc = $this->userModel->getUser(['TenKH, Email'], 'MaTK', $idAcc[0]->MaTK);
-                        $username = $getUserByIdAcc[0]->Email;
-                        $fullName = $getUserByIdAcc[0]->TenKH;
-                    }
+                    $this->account = $this->accountModel->getAccount(['MaTK', 'MatKhau', 'Quyen'], 'SDT', $username);
                 }
                 else {
-                    $getUserByUsername = $this->userModel->getUser(['MaTK, TenKH'], 'Email', $username);
-                    if(!empty($getUserByUsername)) {
-                        $this->account = $this->accountModel->loginAccount(['MaTK', 'MatKhau', 'Quyen'], [$getUserByUsername[0]->MaTK, $password]);
-                        $fullName = $getUserByUsername[0]->TenKH;
+                    $this->account = $this->accountModel->getAccount(['MaTK', 'SDT', 'MatKhau', 'Quyen'], 'Email', $username);
+                    
+                    if(!empty($this->account)) {                        
+                        $username = $this->account[0]->SDT;
                     }
                 }
 
-                if(!empty($this->account) && $this->account->Quyen == 'user') {
+                if(!empty($this->account) && password_verify($password, $this->account[0]->MatKhau) && $this->account[0]->Quyen == 'user') {
+                    $getUser = $this->userModel->getUser(['TenKH'], 'MaTK', $this->account[0]->MaTK);
+                    
                     $_SESSION['username'] = $username;
-                    $_SESSION['fullNameUser'] = $fullName;
+                    $_SESSION['fullNameUser'] = $getUser[0]->TenKH;
+
                     header('location: index.php?controller=home&action=index');
                 }
-                else if(!empty($this->account) && $this->account->Quyen == 'admin')
+                else if(!empty($this->account) && password_verify($password, $this->account[0]->MatKhau) && $this->account[0]->Quyen == 'admin')
                 {
                     $_SESSION['accountAdmin'] = $_POST['username'];
                     $_SESSION['passwordAdmin'] = $_POST['password'];
+
                     header('location: /WebsiteSaoViet/Admin/index.php?controller=home&action=index');
                 } 
                 else {
                     $warning = "Tài khoản hoặc mật khẩu không đúng!";
+
                     return $this->view('auth.login', 
                     ['warning' => $warning]);
                 }
@@ -85,6 +84,7 @@
         public function logout() {
             unset($_SESSION['username']);
             unset($_SESSION['fullNameUser']);
+
             header('location: index.php?controller=home&action=index');
         }
 
@@ -114,9 +114,14 @@
                 } 
 
                 $userByPhone = $this->accountModel->getAccount(["SDT"], 'SDT', $numberPhone);
-                $userByEmail = $this->userModel->getUser(["Email"], 'Email', $email);
-               
-                if(!empty($userByPhone)) {
+                $userByEmail = $this->accountModel->getAccount(["Email"], 'Email', $email);
+                
+                if(!empty($userByPhone) && !empty($userByEmail)) {
+                    return $this->view('auth.register',[
+                        'warning' => 'Số điện thoại và Email đã tồn tại!!'
+                    ]);
+                }
+                else if(!empty($userByPhone)) {
                     return $this->view('auth.register',[
                         'warning' => 'Số điện thoại đã tồn tại!'
                     ]);
@@ -127,16 +132,19 @@
                     ]);
                 } 
                 else {
-                    $dataAccount = $this->accountModel->insertAccount(['SDT','MatKhau', 'Quyen'], [$numberPhone, $password, "user"]);
+                    $passwordEncrypt = password_hash($password, PASSWORD_DEFAULT);
+
+                    $dataAccount = $this->accountModel->insertAccount(['SDT', 'Email', 'MatKhau', 'Quyen'], [$numberPhone, $email, $passwordEncrypt, "user"]);
                     $getIdAccount = $this->accountModel->getAccount(['MaTK'], 'SDT', $numberPhone);
-                    $dataUser = $this->userModel->insertUser(['TenKH', 'Email', 'MaTK'], [$fullName, $email, $getIdAccount[0]->MaTK]);
+                    $dataUser = $this->userModel->insertUser(['TenKH', 'MaTK'], [$fullName, $getIdAccount[0]->MaTK]);
                     
                     if($dataAccount && $dataUser) {
-                        $_SESSION['username'] = $email;
+                        $_SESSION['username'] = $numberPhone;
                         $_SESSION['fullNameUser'] = $fullName;
+
                         header('location: index.php?controller=home&action=index');
                     } else {
-                        echo 'lỗi';
+                        echo 'Lỗi';
                     }
                 }
 

@@ -31,10 +31,14 @@
                 $email = $_POST['email'];
                 $password = $_POST['password'];
 
-                $getByPhone = $this->accountModel->getAccount(['MaTK'], 'SDT', $numberPhone);
-                $getByEmail = $this->userModel->getUser(['MaTK'], 'Email', $email);
+                $getByPhone = $this->accountModel->getAccount(['SDT'], 'SDT', $numberPhone);
+                $getByEmail = $this->accountModel->getAccount(['Email'], 'Email', $email);
                 
-                if(!empty($getByPhone)) {
+                if(!empty($getByPhone) && !empty($getByEmail)) {
+                    $code = 1;
+                    $message = "Số điện thoại và Email đã tồn tại!";
+                }
+                else if(!empty($getByPhone)) {
                     $code = 1;
                     $message = "Số điện thoại đã tồn tại!";
                 }
@@ -43,9 +47,11 @@
                     $message = "Email đã tồn tại!";
                 }
                 else {
-                    $accounts = $this->accountModel->insertAccount(['SDT' ,'MatKhau', 'Quyen'], ["{$numberPhone}", "{$password}", "user"]);
+                    $passwordEncrypt = password_hash($password, PASSWORD_DEFAULT);
+
+                    $accounts = $this->accountModel->insertAccount(['SDT', 'Email', 'MatKhau', 'Quyen'], ["{$numberPhone}", "{$email}", "{$passwordEncrypt}", "user"]);
                     $getIdAccount = $this->accountModel->getAccount(['MaTK'], 'SDT', $numberPhone);
-                    $users = $this->userModel->insertUser(['TenKH','Email', 'MaTK'], ["{$fullName}", "{$email}", "{$getIdAccount[0]->MaTK}"]);
+                    $users = $this->userModel->insertUser(['TenKH', 'MaTK'], ["{$fullName}", "{$getIdAccount[0]->MaTK}"]);
                         
                     if($users && $accounts) {
                         $code = 0;
@@ -77,10 +83,9 @@
 
                 $fullName = $user[0]->TenKH;
                 $numberPhone = $account[0]->SDT;
-                $email = $user[0]->Email;
-                $password = $account[0]->MatKhau;
+                $email = $account[0]->Email;
 
-                header("Location: index.php?controller=user&action=index&iduser=$iduser&idaccount=$idaccount&full-name2=$fullName&number-phone2=$numberPhone&email2=$email&password2=$password&code2=3");
+                header("Location: index.php?controller=user&action=index&iduser=$iduser&idaccount=$idaccount&full-name2=$fullName&number-phone2=$numberPhone&email2=$email&code2=3");
             }
             else {
                 $code = 1;
@@ -101,9 +106,13 @@
                     $password = $_POST['password'];
 
                     $getByPhone = $this->accountModel->getAccountOptions(["SDT", "MaTK"], ["{$numberPhone}", "{$idAccount}"]);
-                    $getByEmail = $this->userModel->getUserOptions(["Email", "MaKH"], ["{$email}", "{$idUser}"]);
+                    $getByEmail = $this->accountModel->getAccountOptions(["Email", "MaTK"], ["{$email}", "{$idAccount}"]);
                     
-                    if(!empty($getByPhone)) {
+                    if(!empty($getByPhone) && !empty($getByEmail)) {
+                        $code = 1;
+                        $message = "Số điện thoại và Email đã tồn tại!";
+                    }
+                    else if(!empty($getByPhone)) {
                         $code = 1;
                         $message = "Số điện thoại đã tồn tại!";
                     }
@@ -112,8 +121,16 @@
                         $message = "Email đã tồn tại!";
                     }
                     else {
-                        $this->userModel->updateUser(['TenKH', 'Email'], ["{$fullName}", "{$email}"], 'MaKH', $idUser);
-                        $this->accountModel->updateAccount(['SDT' ,'MatKhau'], ["{$numberPhone}", "{$password}"], 'MaTK', $idAccount);
+                        $this->userModel->updateUser(['TenKH'], ["{$fullName}"], 'MaKH', $idUser);
+                        
+                        if ($password) {
+                            $passwordEncrypt = password_hash($password, PASSWORD_DEFAULT);
+
+                            $this->accountModel->updateAccount(['SDT', 'Email' ,'MatKhau'], ["{$numberPhone}", "{$email}" , "{$passwordEncrypt}"], 'MaTK', $idAccount);
+                        }
+                        else {
+                            $this->accountModel->updateAccount(['SDT', 'Email'], ["{$numberPhone}", "{$email}"], 'MaTK', $idAccount);
+                        }
 
                         $code = 0;
                         $message = "Sửa thông tin khách hàng $idUser thành công.";

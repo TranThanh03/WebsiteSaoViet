@@ -190,9 +190,8 @@
                     try {
                         $resultTask = $this->taskModel->deleteTask($id, 'MaHDV');
                         $resultGuide = $this->guideModel->deleteGuide($id, 'MaHDV');
-                        $resultCalendar = $this->calendarModel->deleteCalendar($id, 'MaHDV');
 
-                        if($resultTask && $resultGuide && $resultCalendar) {
+                        if($resultTask && $resultGuide) {
                             unlink($link);
 
                             $code = 0;

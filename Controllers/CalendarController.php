@@ -1,29 +1,26 @@
 <?php 
     class CalendarController extends BaseController {
         public $calendarModel;
-        public $userModel;
+        public $accountModel;
         
         public function __construct()
         {
             $this->model('CalendarModel');
             $this->calendarModel = new CalendarModel();
             
-            $this->model('UserModel');
-            $this->userModel = new UserModel();
+            $this->model('AccountModel');
+            $this->accountModel = new AccountModel();
         }
         public function index() {
             if (isset($_SESSION['username'])) {
                 $id = $_REQUEST['id'] ?? '';
                 $code = $_REQUEST['code'] ?? '';
-                $idUser = $this->userModel->getUser(['MaKH'], 'email', $_SESSION['username']);
-                $idCalendars = $this->calendarModel->getCalendar(['MaDD'], 'MaKH', $idUser[0]->MaKH);
-                $calendars = [];
 
-                if (!empty($idCalendars)) {
-                    foreach ($idCalendars as $value) {
-                        $data = $this->calendarModel->getCalendarById(['*'], "MaDD", $value->MaDD);
-                        array_push($calendars, $data);
-                    }
+                $idAcc = $this->accountModel->getAccount(['MaTK'], 'SDT', $_SESSION['username']);
+                $idUser = $this->accountModel->getUserIdAccount(['MaKH'], ['taikhoan.MaTK'], $idAcc[0]->MaTK);
+
+                if (!empty($idUser)) {
+                    $calendars = $this->calendarModel->getCalendarById(['*'], "MaKH", $idUser[0]->MaKH);
                     
                     usort($calendars, function($a, $b) {
                         $order = ['Đang xử lý' => 1, 'Đã xác nhận' => 2, 'Đã hủy' => 3];

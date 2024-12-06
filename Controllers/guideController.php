@@ -20,16 +20,32 @@
 
             if(isset($_REQUEST['idTour'])) {
                 if(isset($_SESSION['username'])) {
-                    $tasks = $this->taskModel->getTask(['*'], ["phancong.MaTour", "TrangThai"], [$_REQUEST['idTour'], "Đã kết thúc"]);
+                    $id = $_REQUEST['idTour'];
 
-                    usort($tasks, function($a, $b) {
-                        return $b->DanhGia <=> $a->DanhGia;
-                    });
+                    $tasks = $this->taskModel->getTask(['*'], ["phancong.MaTour", "TrangThai"], [$id, "Đã kết thúc"]);
+
+                    if(!empty($tasks)) {
+                        usort($tasks, function($a, $b) {
+                            return $b->DanhGia <=> $a->DanhGia;
+                        });
+                    }
+                    else {
+                        echo "
+                            <script>
+                                Swal.fire({
+                                    title: 'Thông báo',
+                                    html: 'Hiện tại Tour <b>$id</b> không có hướng dẫn viên!',
+                                    icon: 'info',
+                                    confirmButtonText: 'Đóng'
+                                });
+                            </script>
+                        ";
+                    }
 
                     return $this->view("guide.index", 
-                    [
-                        "tasks" => $tasks
-                    ]
+                        [
+                            "tasks" => $tasks
+                        ]
                     );
                 }
                 else {
@@ -54,15 +70,45 @@
         public function detail() {
             if(isset($_REQUEST['id']) && $_REQUEST['id'] != '') {
                 $this->taskModel->updateTask('NgayKT', date('Y-m-d'));
-                $value = $_REQUEST['id'];
+                $id = $_REQUEST['id'];
 
-                $guide = $this->guideModel->getGuide(['*'], 'MaHDV', $value);
-                $tasks = $this->taskModel->getTask(['*'], ["phancong.MaHDV", "TrangThai"], [$value, "Đã kết thúc"]);
+                $guide = $this->guideModel->getGuide(['*'], 'MaHDV', $id);
+                $tasks = $this->taskModel->getTask(['*'], ["phancong.MaHDV", "TrangThai"], [$id, "Đã kết thúc"]);
 
-                return $this->view("guide.detail",[
-                    'guide' => $guide,
-                    'tasks' => $tasks
-                ]);
+                if(!empty($guide)) {
+                    if(empty($tasks)) {
+                        echo "
+                            <script>
+                                Swal.fire({
+                                    title: 'Thông báo',
+                                    html: 'Hiện tại hướng dẫn viên <b>$id</b> không được phân công Tour!',
+                                    icon: 'info',
+                                    confirmButtonText: 'Đóng'
+                                });
+                            </script>
+                        ";
+                    }
+
+                    return $this->view("guide.detail",[
+                        'guide' => $guide,
+                        'tasks' => $tasks
+                    ]);
+                }
+                else {
+                    echo "
+                        <div class='none-guide-details'>
+                            <h2>Không có dữ liệu!</h2>
+                        </div>
+                        <script>
+                            Swal.fire({
+                                title: 'Lỗi',
+                                html: 'Hướng dẫn viên <b>$id</b> không tồn tại hoặc không hợp lệ!',
+                                icon: 'error',
+                                confirmButtonText: 'Đóng'
+                            });
+                        </script>
+                    ";
+                }
             }
         }
         

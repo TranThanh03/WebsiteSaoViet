@@ -6,27 +6,27 @@
                 <div class="tour-list">
                     <?php foreach($calendars as $value):?>
                         <div class="tour-item">
-                            <a href="index.php?controller=tour&action=detail&id=<?=$value[0]->MaTour?>">
-                                <img src="./Admin/public/img/tour/<?=$value[0]->AnhTour ?? 'no-image.png'?>" alt="anh">
+                            <a href="index.php?controller=tour&action=detail&id=<?=$value->MaTour?>">
+                                <img src="./Admin/public/img/tour/<?=$value->AnhTour ?? 'no-image.png'?>" alt="anh">
                             </a>
                             <div class="tour-info">
-                                <h3><?=$value[0]->TenTour?>(<span id="startDate"><?=date('d/m/Y', strtotime($value[0]->NgayKH))?></span> - <span id="endDate"><?=date('d/m/Y', strtotime($value[0]->NgayKT))?></span>)</h3>
-                                <p><strong>Mã đơn đặt:</strong> <?=$value[0]->MaDD?></p>
+                                <h3><?=$value->TenTour?>(<span id="startDate"><?=date('d/m/Y', strtotime($value->NgayKH))?></span> - <span id="endDate"><?=date('d/m/Y', strtotime($value->NgayKT))?></span>)</h3>
+                                <p><strong>Mã đơn đặt:</strong> <?=$value->MaDD?></p>
                                 <p><strong>Thời gian đặt:</strong> 
                                     <?php 
-                                        $datetime = $value[0]->ThoiGianDat;
+                                        $datetime = $value->ThoiGianDat;
                                         $date = new DateTime($datetime);
                                         echo $date->format('H:i:s d-m-Y');
                                     ?>
                                 </p>
                                 <p><strong>Hướng dẫn viên:</strong> 
-                                    <a href="index.php?controller=guide&action=detail&id=<?=$value[0]->MaHDV?>"><?=$value[0]->TenHDV?></a>
+                                    <a href="index.php?controller=guide&action=detail&id=<?=$value->MaHDV?>"><?=$value->TenHDV?></a>
                                 </p>
-                                <p><strong>Tổng tiền:</strong> <span style="color: red;"><?=$value[0]->TongTien?>VND</span></p>
-                                <p class="status" <?= $value[0]->TrangThai == "Đã xác nhận" ? 'id="confirm-status"' : ($value[0]->TrangThai == "Đã hủy" ? 'id="cancel-status"' : '') ?>><strong>Trạng thái:</strong> <?=$value[0]->TrangThai?></p>
+                                <p><strong>Tổng tiền:</strong> <span style="color: red;"><?=$value->TongTien?>VND</span></p>
+                                <p class="status" <?= $value->TrangThai == "Đã xác nhận" ? 'id="confirm-status"' : ($value->TrangThai == "Đã hủy" ? 'id="cancel-status"' : '') ?>><strong>Trạng thái:</strong> <?=$value->TrangThai?></p>
                                 
-                                <?php if($value[0]->TrangThai === 'Đang xử lý'):?>
-                                    <button type="button" id="btn-cancel" onclick="actionCancel(<?=$value[0]->MaDD?>)">Hủy Tour</button>
+                                <?php if($value->TrangThai === 'Đang xử lý'):?>
+                                    <button type="button" id="btn-cancel" onclick="actionCancel(<?=$value->MaDD?>)">Hủy Tour</button>
                                 <?php endif;?>
                             </div>
                         </div>

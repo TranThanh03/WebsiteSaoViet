@@ -60,9 +60,7 @@
     <section class="newsletter">
         <h2>Đăng ký nhận tin</h2>
         <p>Nhận những thông tin du lịch mới nhất và ưu đãi hấp dẫn!</p>
-        <form>
             <input type="email" placeholder="Nhập email của bạn">
             <button type="submit">Đăng ký</button>
-        </form>
     </section>
 </main>

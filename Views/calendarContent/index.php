@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     <label for="phone">Số điện thoại:</label>
-                    <input type="text" id="phone" name="phone" value="<?=$account[0]->SDT?>" disabled>
+                    <input type="text" id="phone" name="phone" value="<?=$user[0]->SDT?>" disabled>
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>

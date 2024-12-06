@@ -144,9 +144,8 @@
                     
                     $resultTask = $this->taskModel->deleteTask($id, 'MaTour');
                     $resultTour = $this->tourModel->deleteTour($id, 'MaTour');
-                    $resultCalendar = $this->calendarModel->deleteCalendar($id, 'MaTour');
 
-                    if($resultTask && $resultTour && $resultCalendar) {
+                    if($resultTask && $resultTour) {
                         unlink($link);
 
                         $code = 0;

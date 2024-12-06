@@ -24,6 +24,6 @@
         }
 
         public function searchGuide($selects = ['*'], $columns = [], $option) {
-            return $this->searchAdmin(self::TABLE, $selects, $columns, $option);
+            return $this->searchObjectByOption(self::TABLE, $selects, $columns, $option);
         }
     }

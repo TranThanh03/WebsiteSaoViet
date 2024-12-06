@@ -36,13 +36,13 @@
         <div class="container">
             <div class="content" id="tour">
                 <?php foreach($tours as $tour):?>
-                    <div class="sub-list" id="sub-tour">
-                        <a href="index.php?controller=tour&action=detail&id=<?=$tour->MaTour?>">
+                    <a href="index.php?controller=tour&action=detail&id=<?=$tour->MaTour?>">
+                        <div class="sub-list" id="sub-tour">                    
                             <img src="./Admin/public/img/tour/<?=$tour->AnhTour?>" alt="anh tour" id="avatar-tour">
                             <h4 id="tour-name"><?=$tour->TenTour?></h4>
-                            <span id="tour-price"><?=$tour->GiaTour?>VND</span>
-                        </a>
-                    </div>
+                            <span id="tour-price"><?=$tour->GiaTour?>VND</span>                       
+                        </div>
+                    </a>
                 <?php endforeach;?>
             </div>
             <button class="button-prev" type="button" id="tour-prev">
@@ -65,8 +65,8 @@
         <div class="container">
             <div class="content" id="guide">
                 <?php foreach($guides as $guide):?>
-                    <div class="sub-list" id="sub-guide">
-                        <a href="index.php?controller=guide&action=detail&id=<?=$guide->MaHDV?>">
+                    <a href="index.php?controller=guide&action=detail&id=<?=$guide->MaHDV?>">
+                        <div class="sub-list" id="sub-guide">         
                             <img id="avatar-guide" src="./Admin/public/img/guide/<?=$guide->AnhHDV?>" alt="anh hdv">
                             <h4 id="guide-name"><?=$guide->TenHDV?></h4>
                             <span id="guide-age">
@@ -79,8 +79,8 @@
                                 ?>
                                 tuổi
                             </span>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 <?php endforeach;?>
             </div>
             <button class="button-prev" type="button" id="gui-prev">
