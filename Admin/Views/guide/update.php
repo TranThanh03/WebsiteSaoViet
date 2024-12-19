@@ -1,7 +1,3 @@
-<script>
-    CKEDITOR.replace("MoTa");
-</script>
-        
 <div class="guide">
     <div class="form-update">
         <div class="update-content">
