@@ -114,12 +114,6 @@ header .icon-account .account-info {
     padding-bottom: 10px;
 }
 
-header .account-info:hover > #slidebar {
-    opacity: 1;
-    transform: translateY(0);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
 header .icon-account #slidebar {
     opacity: 0;
     transform: translateY(20px);
@@ -127,21 +121,20 @@ header .icon-account #slidebar {
     position: absolute;
     background-color: white;
     border: 1px solid #ddd;
-    box-shadow: 5px 4px 6px rgb(146 146 150);
+    box-shadow: 5px 4px 6px rgb(146, 146, 150);
     list-style: none;
     padding: 15px 0;
     z-index: 10;
     width: 200px;
 }
 
-header .icon-account #slidebar li{
+header .icon-account #slidebar li {
     margin-bottom: 10px;
 }
 
 header .icon-account #slidebar li:hover a {
     font-weight: bold;
 }
-
 
 header .icon-account #slidebar a {
     text-decoration: none;
@@ -282,10 +275,9 @@ nav .menu a {
     margin: 10px;
     padding: 50px 10px;
     border-radius: 15px;
-    height: 190px;
+    height: 345px;
     text-align: center;
     background-color: rgb(246, 246, 246);
-    height: auto;
 }
 
 .sub-list img {
@@ -310,6 +302,7 @@ nav .menu a {
     margin-left: 93px;
     width: 1120px;
     overflow: hidden;
+    height: 100%;
 }
 
 .button-prev,
@@ -327,6 +320,7 @@ nav .menu a {
     box-shadow: 5px 5px 5px rgb(150, 149, 149);
     font-weight: 500;
 }
+
 .button-prev {
     left: 198px;
     display: none;
