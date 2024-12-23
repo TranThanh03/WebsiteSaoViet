@@ -5,15 +5,16 @@
         
         <div class="tour-list">
             <?php foreach($tours as $value):?>
-                <div class="tour-item">
-                    <img src="./Admin/public/img/tour/<?=$value->AnhTour?>" alt="anh">
-                    <div class="tour-info">
-                        <h2><?=$value->TenTour?></h2>
-                        <p><?=$value->GioiThieu?></p>
-                        <p id="cost"><strong>Giá:</strong> <?=$value->GiaTour?> VND</p>
-                        <a href="index.php?controller=tour&action=detail&id=<?=$value->MaTour?>" class="btn-detail">Xem chi tiết</a>
+                <a href="index.php?controller=tour&action=detail&id=<?=$value->MaTour?>" id="link-detail">
+                    <div class="tour-item">
+                        <img src="./Admin/public/img/tour/<?=$value->AnhTour?>" alt="anh">
+                        <div class="tour-info">
+                            <h2><?=$value->TenTour?></h2>
+                            <p><?=$value->GioiThieu?></p>
+                            <p id="cost"><strong>Giá:</strong> <?=$value->GiaTour?> VND</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             <?php endforeach;?>
         </div>
     </div>

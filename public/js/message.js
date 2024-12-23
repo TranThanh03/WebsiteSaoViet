@@ -1,8 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let url = new URL(window.location.href);
-    url.searchParams.delete('resultCode');
-    window.history.replaceState(null, '', url);
-    
     const code = document.querySelector('.message #code');
 
     if(code.value == 0) {

@@ -72,7 +72,7 @@ function functionSlide_2() {
             prevBtn.style.display = 'block';
             nextBtn.style.display = 'block';
         }
-        subList.style.transform = `translateX(-${index * 1110}px)`;
+        subList.style.transform = `translateX(-${index * 1115}px)`;
         currentSlide = index;
     }
 

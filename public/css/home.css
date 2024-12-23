@@ -307,7 +307,8 @@ nav .menu a {
 }
 
 .container {
-    width: 1095px;
+    margin-left: 93px;
+    width: 1120px;
     overflow: hidden;
 }
 
@@ -327,7 +328,7 @@ nav .menu a {
     font-weight: 500;
 }
 .button-prev {
-    left: 160px;
+    left: 198px;
     display: none;
 }
 
