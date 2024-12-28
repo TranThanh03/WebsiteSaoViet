@@ -12,9 +12,9 @@
         <h1>404</h1>
         <p>Oops! The page you're looking for doesn't exist.</p>
         <?php if(isset($_REQUEST['idTask'])):?>
-            <a href="index.php?controller=calendarContent&action=index&idTask=<?=$_REQUEST['idTask']?>" class="back-button">Go Back</a>    
+            <a href="index.php?controller=calendarContent&action=index&idTask=<?=$_REQUEST['idTask']?>" class="back-button">Back</a>    
         <?php else:?>
-            <a href="index.php?controller=home&action=index" class="back-button">Go Back</a>
+            <a href="index.php?controller=home&action=index" class="back-button">Back</a>
         <?php endif;?>
     </div>
 </body>

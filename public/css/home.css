@@ -114,6 +114,12 @@ header .icon-account .account-info {
     padding-bottom: 10px;
 }
 
+header .account-info:hover > #slidebar {
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
 header .icon-account #slidebar {
     opacity: 0;
     transform: translateY(20px);

@@ -59,7 +59,8 @@
                                     type="text"
                                     class="form-control form-control-lg bg-light fs-6"
                                     style="width: 100%; border-radius: 8px;"
-                                    placeholder="SĐT hoặc Email"
+                                    placeholder="SDT hoặc Email"
+                                    id="username"
                                     name="username"
                                     value="<?=isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>"
                                 />
@@ -74,6 +75,7 @@
                                     class="form-control form-control-lg bg-light fs-6"
                                     style="width: 100%; border-radius: 8px;"
                                     placeholder="******"
+                                    id="password"
                                     name="password"
                                     value="<?=isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>"
                                 />
