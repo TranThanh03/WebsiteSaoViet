@@ -305,7 +305,6 @@ nav .menu a {
 }
 
 .container {
-    margin-left: 93px;
     width: 1120px;
     overflow: hidden;
     height: 100%;
@@ -328,12 +327,12 @@ nav .menu a {
 }
 
 .button-prev {
-    left: 198px;
+    left: 153px;
     display: none;
 }
 
 .button-next {
-    right: 200px;
+    right: 160px;
 }
 
 .button-next:active,
@@ -347,12 +346,13 @@ nav .menu a {
 }
 
 #guide {
-    gap: 25px;
+    gap: 50px;
 }
 
 .list #sub-guide {
     padding: 20px;
     height: 320px;
+    width: 320px;
 }
 
 #sub-guide img {

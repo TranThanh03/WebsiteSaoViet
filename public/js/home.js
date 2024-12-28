@@ -108,7 +108,7 @@ function functionSlide_3() {
             prevBtn.style.display = 'block';
             nextBtn.style.display = 'block';
         }
-        subList.style.transform = `translateX(-${index * 1145}px)`;
+        subList.style.transform = `translateX(-${index * 1165}px)`;
         currentSlide = index;
     }
 
