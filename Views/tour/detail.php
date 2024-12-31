@@ -1,5 +1,5 @@
 <div class="tour-details">
-    <h1>Tour <?=$tour[0]->TenTour?></h1>
+    <h1><?=$tour[0]->TenTour?></h1>
     <div class="tour-info">
         <div class="tour-image">
             <img src="./Admin/public/img/tour/<?=$tour[0]->AnhTour?>" alt="anh Tour">

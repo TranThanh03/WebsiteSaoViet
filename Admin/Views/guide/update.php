@@ -6,7 +6,7 @@
                     <div class="form-group">
                         <label for="guide-id">Mã hướng dẫn viên</label>
                         <div class="input-wrapper">
-                            <input type="text" name="MaHDV" id="guide-id" value="<?= $guide[0]->MaHDV ?>" disabled required/>
+                            <input type="text" name="MaHDV" id="guide-id" value="<?= $guide[0]->MaHDV ?>" disabled readonly/>
                         </div>
                     </div>
 

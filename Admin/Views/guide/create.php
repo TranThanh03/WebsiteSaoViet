@@ -16,7 +16,7 @@
                 <form action="index.php?controller=guide&action=create" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="name">Tên hướng dẫn viên</label>
-                        <input type="text" name="TenHDV" id="name" value="<?=$_POST['TenHDV'] ?? ''?>"/>
+                        <input type="text" name="TenHDV" id="name" required value="<?=$_POST['TenHDV'] ?? ''?>"/>
                     </div>
                     
                     <div class="form-group">
