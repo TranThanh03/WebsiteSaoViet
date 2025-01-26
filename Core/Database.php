@@ -3,7 +3,7 @@ class Database
 {
     const HOST = 'localhost';
     const USER = 'root';
-    const PASS = '123';
+    const PASS = '';
     const DB_NAME = 'toursaoviet';
 
     public function connect()
