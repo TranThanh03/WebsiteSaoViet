@@ -1,7 +1,7 @@
     <footer>
         <div class="infor">
             <h4>Sao Việt - Vivu ba miền</h4>
-            <span><img src="./public/icons/location-dot-solid.svg" alt="icon"></span><p>1 Hoàng Công Chất, Phú Diễn, Nam Từ Liêm, Hà Nội, Việt Nam</p>
+            <span><img src="./public/icons/location-dot-solid.svg" alt="icon"></span><p>1 Hoàng Công Chất, Phú Diễn, Bắc Từ Liêm, Hà Nội</p>
             <span><img src="./public/icons/phone-solid.svg" alt="icon"></span><p>0399999999 </p>
             <span><img src="./public/icons/envelope-solid.svg" alt="icon"></span><p>support@saoviet.com</p>
             <span><img src="./public/icons/bo-cong-thuong.svg" alt="icon"></span>
