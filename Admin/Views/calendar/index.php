@@ -19,7 +19,7 @@
     }
 </style>
 
-<div class="calendar"></div>    
+<div class="calendar">
     <h2 id="title">Danh sách đơn đặt</h2>
     <div class="control">
         <div>
@@ -67,3 +67,4 @@
             </tbody>
         </table>
     </div>
+</div>
